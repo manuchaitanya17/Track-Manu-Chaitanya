@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Intensity | Manu Chaitanya</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+
+  <style>
+    :root{
+      --intensity-accent: #bac964;
+      --intensity-panel: rgba(255, 255, 255, 0.05);
+      --intensity-panel-strong: rgba(255, 255, 255, 0.08);
+      --intensity-border: rgba(255, 255, 255, 0.09);
+      --intensity-muted: rgba(255, 255, 255, 0.62);
+      --intensity-soft: rgba(255, 255, 255, 0.40);
+      --intensity-bg: #222;
+    }
+
+    body{
+      background: var(--intensity-bg);
+    }
+
+    .intensity-hero{
+      position: relative;
+      padding: 11rem 0 6rem;
+      background:
+        radial-gradient(circle at top left, rgba(186, 201, 100, 0.22), transparent 36%),
+        linear-gradient(120deg, rgba(33, 33, 33, 0.82), rgba(24, 24, 24, 0.94)),
+        url("images/image_1_long.jpg") center center / cover no-repeat;
+      overflow: hidden;
+    }
+
+    .intensity-hero:before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.48));
+    }
+
+    .intensity-hero .container{
+      position: relative;
+      z-index: 2;
+    }
+
+    .intensity-hero h1{
+      font-size: 4rem;
+      font-weight: 200;
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+
+    .intensity-hero h1 strong{
+      display: block;
+      font-weight: 700;
+    }
+
+    .intensity-hero p.lead{
+      max-width: 42rem;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .intensity-pill{
+      display: inline-flex;
+      align-items: center;
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      background: rgba(186, 201, 100, 0.12);
+      border: 1px solid rgba(186, 201, 100, 0.22);
+      color: var(--intensity-accent);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+
+    .intensity-hero-actions .btn{
+      min-width: 170px;
+      margin-right: 12px;
+      margin-bottom: 12px;
+    }
+
+    .intensity-orb{
+      position: absolute;
+      top: 120px;
+      right: 8%;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(186, 201, 100, 0.24), rgba(186, 201, 100, 0.02) 70%, transparent 72%);
+      opacity: 0.9;
+      animation: intensityPulse 6s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    @keyframes intensityPulse{
+      0%, 100%{ transform: scale(1); opacity: 0.70; }
+      50%{ transform: scale(1.08); opacity: 1; }
+    }
+
+    .intensity-hero-panel{
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(10px);
+    }
+
+    .intensity-hero-panel:after{
+      content: "";
+      position: absolute;
+      right: -40px;
+      bottom: -40px;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(186, 201, 100, 0.22), transparent 72%);
+      pointer-events: none;
+    }
+
+    .intensity-panel-kicker{
+      color: var(--intensity-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .intensity-panel-date{
+      color: var(--intensity-soft);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .intensity-hero-stats{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 1.5rem;
+    }
+
+    .intensity-hero-stat{
+      padding: 14px 16px;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .intensity-hero-stat-label{
+      color: var(--intensity-muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.45rem;
+    }
+
+    .intensity-hero-stat-value{
+      color: var(--intensity-accent);
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .intensity-hero-stat-sub{
+      color: var(--intensity-soft);
+      font-size: 0.86rem;
+      margin-top: 0.35rem;
+    }
+
+    #section-work-ethic .col-lg-6,
+    #section-tracker .col-lg-5,
+    #section-tracker .col-lg-7{
+      display: flex;
+    }
+
+    .intensity-card{
+      width: 100%;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+      border: 1px solid var(--intensity-border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .intensity-card:hover{
+      transform: translateY(-8px);
+      border-color: rgba(186, 201, 100, 0.35);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.30);
+    }
+
+    .intensity-card .icon{
+      box-shadow: 0 0 0 14px rgba(186, 201, 100, 0.08);
+    }
+
+    .intensity-card h3{
+      margin-bottom: 0.8rem;
+    }
+
+    .intensity-card p{
+      color: rgba(255, 255, 255, 0.66);
+      line-height: 1.9;
+      margin-bottom: 0;
+    }
+
+    .intensity-card-tag{
+      color: var(--intensity-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .tracker-panel,
+    .tracker-summary-panel,
+    .tracker-history-panel{
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+      border: 1px solid var(--intensity-border);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.16);
+    }
+
+    .tracker-kicker{
+      color: var(--intensity-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .tracker-intro{
+      color: var(--intensity-muted);
+      margin-bottom: 1.6rem;
+    }
+
+    .intensity-form-control{
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      color: #fff;
+      height: 48px;
+      border-radius: 6px;
+    }
+
+    .intensity-form-control:focus{
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+      border-color: rgba(186, 201, 100, 0.42);
+      box-shadow: 0 0 0 0.2rem rgba(186, 201, 100, 0.14);
+    }
+
+    .intensity-form-control::placeholder{
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    .intensity-form-control[readonly]{
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    select.intensity-form-control option{
+      background: #232323;
+      color: #fff;
+    }
+
+    .tracker-panel label{
+      color: rgba(255, 255, 255, 0.78);
+      font-weight: 600;
+      margin-bottom: 0.55rem;
+    }
+
+    .tracker-help{
+      color: var(--intensity-soft);
+      font-size: 0.88rem;
+    }
+
+    .diet-toggle{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .diet-toggle input[type="radio"]{
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .diet-choice{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.03);
+      color: rgba(255, 255, 255, 0.72);
+      cursor: pointer;
+      font-weight: 700;
+      transition: 0.25s all ease;
+    }
+
+    .diet-choice:hover{
+      border-color: rgba(186, 201, 100, 0.32);
+      color: var(--intensity-accent);
+    }
+
+    .diet-toggle input[type="radio"]:checked + .diet-choice{
+      background: var(--intensity-accent);
+      border-color: var(--intensity-accent);
+      color: #222;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(186, 201, 100, 0.22);
+    }
+
+    .diet-toggle input[type="radio"]:focus + .diet-choice{
+      box-shadow: 0 0 0 0.2rem rgba(186, 201, 100, 0.20);
+    }
+
+    .tracker-metrics{
+      margin-top: 0.35rem;
+    }
+
+    .fitness-metric{
+      padding: 16px 18px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      height: 100%;
+      transition: transform 0.28s ease, border-color 0.28s ease;
+    }
+
+    .fitness-metric:hover{
+      transform: translateY(-4px);
+      border-color: rgba(186, 201, 100, 0.20);
+    }
+
+    .fitness-metric-label{
+      color: var(--intensity-muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.45rem;
+    }
+
+    .fitness-metric-value{
+      color: var(--intensity-accent);
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .fitness-metric-sub{
+      margin-top: 0.45rem;
+      color: var(--intensity-soft);
+      font-size: 0.86rem;
+    }
+
+    .fitness-breakdown{
+      margin-top: 1.75rem;
+      padding: 18px 20px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .fitness-breakdown h4{
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .fitness-breakdown-row + .fitness-breakdown-row{
+      margin-top: 1rem;
+    }
+
+    .fitness-breakdown-head{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: rgba(255, 255, 255, 0.74);
+      margin-bottom: 0.4rem;
+      font-size: 0.92rem;
+    }
+
+    .fitness-breakdown-head strong{
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .fitness-bar{
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+
+    .fitness-bar-fill{
+      display: block;
+      height: 100%;
+      width: 0;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--intensity-accent), #d6e48a);
+      transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .tracker-summary-text{
+      color: var(--intensity-muted);
+    }
+
+    .tracker-history-panel .table thead th{
+      color: rgba(255, 255, 255, 0.65);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      border-top: 0;
+    }
+
+    .tracker-history-panel .table tbody tr{
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .tracker-history-panel .table td{
+      color: rgba(255, 255, 255, 0.80);
+      vertical-align: middle;
+    }
+
+    .tracker-history-panel .table tbody tr.is-today td{
+      color: var(--intensity-accent);
+      font-weight: 600;
+    }
+
+    .diet-badge{
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: capitalize;
+      border: 1px solid transparent;
+    }
+
+    .diet-badge.controlled{
+      color: #182109;
+      background: var(--intensity-accent);
+      border-color: var(--intensity-accent);
+    }
+
+    .diet-badge.uncontrolled{
+      color: rgba(255, 255, 255, 0.75);
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.10);
+    }
+
+    #fitnessStatus{
+      min-height: 24px;
+    }
+
+    .tracker-empty{
+      color: var(--intensity-muted);
+    }
+
+    @media (max-width: 991.98px){
+      .intensity-hero{
+        padding-top: 9rem;
+      }
+
+      .intensity-hero h1{
+        font-size: 3rem;
+      }
+
+      .intensity-orb{
+        display: none;
+      }
+    }
+
+    @media (max-width: 767.98px){
+      .intensity-hero{
+        padding: 8rem 0 4rem;
+      }
+
+      .intensity-hero h1{
+        font-size: 2.45rem;
+      }
+
+      .intensity-hero-stats{
+        grid-template-columns: 1fr;
+      }
+
+      .diet-toggle{
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .phase-shell{
+      width: min(94vw, 1680px);
+      margin: 0 auto;
+    }
+
+    .phase-hero{
+      position: relative;
+      padding: 10.5rem 0 5rem;
+      overflow: hidden;
+    }
+
+    .intensity-phase-hero{
+      background:
+        radial-gradient(circle at 14% 14%, rgba(186, 201, 100, 0.18), transparent 16%),
+        radial-gradient(circle at 80% 18%, rgba(54, 168, 239, 0.10), transparent 18%),
+        linear-gradient(140deg, rgba(26,26,26,0.84), rgba(30,30,30,0.92)),
+        url("images/image_1_long.jpg") center center / cover no-repeat;
+    }
+
+    .phase-hero:before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.24), rgba(0,0,0,0.56)),
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: auto, 48px 48px, 48px 48px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.96), rgba(0,0,0,0.32));
+      pointer-events: none;
+    }
+
+    .phase-hero .phase-shell,
+    .journey-section .phase-shell{
+      position: relative;
+      z-index: 1;
+    }
+
+    .phase-grid{
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .phase-banner,
+    .phase-panel,
+    .journey-card{
+      position: relative;
+      overflow: hidden;
+      border-radius: 32px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      box-shadow: 0 28px 90px rgba(0,0,0,0.26);
+      backdrop-filter: blur(10px);
+    }
+
+    .phase-banner{
+      padding: clamp(1.9rem, 3vw, 2.8rem);
+      min-height: 440px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .phase-banner:after,
+    .phase-panel:after,
+    .journey-card:after{
+      content: "";
+      position: absolute;
+      right: -42px;
+      bottom: -48px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(186, 201, 100, 0.18), rgba(186, 201, 100, 0.02) 70%, transparent 74%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .phase-kicker,
+    .panel-kicker,
+    .section-kicker,
+    .journey-pill{
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      color: var(--intensity-accent);
+      border: 1px solid rgba(186, 201, 100, 0.28);
+      background: rgba(186, 201, 100, 0.08);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .phase-title{
+      font-size: clamp(3rem, 5vw, 5rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin: 1.2rem 0 1.1rem;
+      font-weight: 200;
+    }
+
+    .phase-title strong{
+      display: block;
+      font-weight: 700;
+    }
+
+    .phase-copy,
+    .phase-panel-copy,
+    .section-copy,
+    .journey-copy{
+      color: rgba(255,255,255,0.78);
+      line-height: 1.85;
+      font-size: 1.08rem;
+    }
+
+    .phase-copy{
+      max-width: 49rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .phase-metrics,
+    .journey-meta{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .phase-metrics{
+      margin-bottom: 1.5rem;
+    }
+
+    .phase-chip,
+    .journey-tag{
+      padding: 0.78rem 1rem;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.84);
+      font-weight: 700;
+    }
+
+    .phase-actions .btn,
+    .journey-footer .btn{
+      min-width: 180px;
+      margin-right: 12px;
+      margin-bottom: 12px;
+    }
+
+    .phase-panel{
+      padding: 1.7rem;
+      min-height: 440px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .phase-panel:before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(54, 168, 239, 0.16), transparent 18%),
+        radial-gradient(circle at 20% 86%, rgba(18, 203, 99, 0.12), transparent 18%);
+      pointer-events: none;
+    }
+
+    .phase-panel > *{
+      position: relative;
+      z-index: 1;
+    }
+
+    .phase-panel h3{
+      font-size: clamp(2rem, 2.7vw, 2.8rem);
+      letter-spacing: -0.04em;
+      margin: 0.9rem 0;
+    }
+
+    .phase-stats{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 1.4rem 0 1.5rem;
+    }
+
+    .phase-stat{
+      border-radius: 18px;
+      padding: 1rem;
+      background: rgba(0,0,0,0.16);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .phase-stat-label{
+      color: rgba(255,255,255,0.48);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .phase-stat-value{
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      line-height: 1;
+      font-weight: 800;
+      color: var(--intensity-accent);
+      margin-bottom: 0.35rem;
+    }
+
+    .phase-stat-sub{
+      color: rgba(255,255,255,0.72);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .phase-route{
+      border-radius: 22px;
+      padding: 1.2rem;
+      background: rgba(0,0,0,0.16);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .phase-route-label{
+      color: rgba(255,255,255,0.48);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+
+    .phase-route-title{
+      font-size: 1.38rem;
+      font-weight: 800;
+      margin-bottom: 0.45rem;
+    }
+
+    .phase-route-copy{
+      color: rgba(255,255,255,0.78);
+      line-height: 1.75;
+      margin-bottom: 0;
+    }
+
+    .journey-section{
+      position: relative;
+      padding: 4.7rem 0 3.2rem;
+    }
+
+    #section-tracker .section-heading,
+    #section-history .section-heading{
+      margin-bottom: 2.1rem;
+    }
+
+    .section-intro-modern{
+      max-width: 52rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-intro-modern .section-kicker{
+      margin-bottom: 1rem;
+    }
+
+    .section-intro-modern .section-title{
+      font-size: clamp(2.2rem, 3.4vw, 3.4rem);
+      letter-spacing: -0.04em;
+      margin-bottom: 0.85rem;
+    }
+
+    .journey-carousel-wrap{
+      position: relative;
+    }
+
+    .journey-carousel{
+      position: relative;
+      padding: 0 4.8rem;
+    }
+
+    .journey-viewport{
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .journey-track{
+      display: flex;
+      gap: 24px;
+      align-items: stretch;
+      will-change: transform;
+      transition: transform 0.52s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .journey-card{
+      flex: 0 0 min(620px, calc(100vw - 10rem));
+      padding: 1.55rem;
+      opacity: 0.74;
+      transform: scale(0.94);
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, opacity 0.35s ease;
+    }
+
+    .journey-card.is-active{
+      opacity: 1;
+      transform: scale(1);
+      border-color: rgba(186,201,100,0.18);
+      box-shadow: 0 26px 80px rgba(0,0,0,0.24);
+    }
+
+    .journey-icon{
+      width: 74px;
+      height: 74px;
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(186,201,100,0.12);
+      border: 1px solid rgba(186,201,100,0.18);
+      color: var(--intensity-accent);
+      font-size: 1.9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .journey-header{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .journey-code{
+      color: rgba(255,255,255,0.48);
+      font-size: 0.92rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .journey-header h3{
+      font-size: clamp(2rem, 2.8vw, 2.8rem);
+      letter-spacing: -0.04em;
+      margin: 0 0 0.45rem;
+    }
+
+    .journey-footer{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      margin-top: 1.55rem;
+      padding-top: 1.15rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .journey-footer span{
+      color: rgba(255,255,255,0.78);
+      line-height: 1.7;
+      max-width: 25rem;
+    }
+
+    .journey-nav{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 58px;
+      height: 58px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      font-size: 1.2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 2;
+      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    }
+
+    .journey-nav:hover{
+      transform: translateY(-50%) scale(1.04);
+      border-color: rgba(186,201,100,0.22);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .journey-nav.prev{
+      left: 0;
+    }
+
+    .journey-nav.next{
+      right: 0;
+    }
+
+    .journey-nav:disabled{
+      opacity: 0.32;
+      cursor: default;
+      transform: translateY(-50%);
+    }
+
+    .journey-dots{
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 1.25rem;
+    }
+
+    .journey-dot{
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.18);
+      border: 0;
+      padding: 0;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .journey-dot.is-active{
+      background: var(--intensity-accent);
+      transform: scale(1.2);
+    }
+
+    .reveal-up{
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal-up.is-visible{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1199.98px){
+      .phase-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .phase-panel,
+      .phase-banner{
+        min-height: auto;
+      }
+
+      .journey-card{
+        flex-basis: min(540px, calc(100vw - 8rem));
+      }
+    }
+
+    @media (max-width: 767.98px){
+      .phase-hero{
+        padding-top: 8.8rem;
+        padding-bottom: 3.5rem;
+      }
+
+      .phase-banner,
+      .phase-panel,
+      .journey-card{
+        border-radius: 24px;
+      }
+
+      .phase-stats{
+        grid-template-columns: 1fr;
+      }
+
+      .phase-actions .btn,
+      .journey-footer .btn{
+        width: 100%;
+        margin-right: 0;
+      }
+
+      .journey-footer{
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .journey-carousel{
+        padding: 0 2.4rem;
+      }
+
+      .journey-card{
+        flex-basis: calc(100vw - 5.8rem);
+      }
+
+      .journey-nav{
+        width: 48px;
+        height: 48px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="css/mobile-responsive.css">
+  <link rel="stylesheet" href="css/home-page-system.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+</head>
+<body data-spy="scroll" data-target="#pb-navbar" data-offset="200">
+
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsIntensity" aria-controls="navbarsIntensity" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbarsIntensity">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="index.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-intensity">Overview</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-journey">Journey Tracks</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-tracker">Tracker</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-history">History</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="phase-hero intensity-phase-hero" id="section-intensity">
+    <div class="phase-shell">
+      <div class="phase-grid">
+        <div class="phase-banner reveal-up">
+          <div>
+            <span class="phase-kicker">Phase 02 - Intensity</span>
+            <h1 class="phase-title">Deliberate <strong>Execution</strong></h1>
+            <p class="phase-copy">
+              Intensity is the execution phase. The work moved under pressure, deadlines, and parallel responsibility. This page keeps the daily fitness system visible while the linked tracks show the academic and delivery streams that ran alongside the phase.
+            </p>
+            <div class="phase-metrics">
+              <div class="phase-chip">2 Parallel Tracks</div>
+              <div class="phase-chip">Fitness Logging</div>
+              <div class="phase-chip">Execution Under Pressure</div>
+              <div class="phase-chip">Delivery + Capstone</div>
+            </div>
+          </div>
+
+          <div class="phase-actions">
+            <a href="#section-tracker" class="btn btn-primary px-4 py-3">Track Today</a>
+            <a href="#section-history" class="btn btn-secondary px-4 py-3">View History</a>
+          </div>
+        </div>
+
+        <aside class="phase-panel reveal-up">
+          <div>
+            <div class="panel-kicker">Performance Compass</div>
+            <div class="intensity-panel-date mt-2">Today - <span id="heroTodayLabel">-</span></div>
+            <h3>Execution stayed measurable every day!</h3>
+            <p class="phase-panel-copy">The tracker keeps pressure visible through training, hydration, and logging consistency. At the same time, the connected cards below point to the two major tracks that define this phase: direct delivery work and the parallel academic capstone.</p>
+          </div>
+
+          <div class="phase-stats">
+            <div class="phase-stat">
+              <div class="phase-stat-label">This Week</div>
+              <div class="phase-stat-value" id="heroWeekHours">0</div>
+              <div class="phase-stat-sub">Training hours logged this week.</div>
+            </div>
+            <div class="phase-stat">
+              <div class="phase-stat-label">Logging Streak</div>
+              <div class="phase-stat-value" id="heroStreakDays">0</div>
+              <div class="phase-stat-sub">Consecutive logged days.</div>
+            </div>
+            <div class="phase-stat">
+              <div class="phase-stat-label">Month Entries</div>
+              <div class="phase-stat-value" id="heroMonthEntries">0</div>
+              <div class="phase-stat-sub">Recorded days this month.</div>
+            </div>
+            <div class="phase-stat">
+              <div class="phase-stat-label">Avg Water</div>
+              <div class="phase-stat-value" id="heroAvgWater">0</div>
+              <div class="phase-stat-sub">Liters per logged day.</div>
+            </div>
+          </div>
+
+          <div class="phase-route">
+            <div class="phase-route-label">Parallel Tracks</div>
+            <div class="phase-route-title">Internship Capstone-II + FTE Capstone</div>
+            <p class="phase-route-copy">Intensity was defined by delivery on one side and revision-heavy academic execution on the other, both running in parallel with the daily fitness discipline tracked here.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section journey-section" id="section-journey">
+    <div class="phase-shell">
+      <div class="section-intro-modern reveal-up">
+        <div class="section-kicker">Journey Tracks</div>
+        <h2 class="section-title">Tracks Defining Intensity</h2>
+        <p class="section-copy">The current phase archive ties Intensity to two active tracks. Internship Capstone-II carries the experience-side delivery work, while FTE Capstone holds the academic revision and execution stream running in parallel.</p>
+      </div>
+
+      <div class="journey-carousel-wrap">
+        <div class="journey-carousel reveal-up" data-journey-carousel>
+          <button class="journey-nav prev" type="button" aria-label="Previous track">
+            <span class="icon-chevron-left"></span>
+          </button>
+          <div class="journey-viewport">
+            <div class="journey-track">
+              <article class="journey-card">
+                <div class="journey-icon"><span class="icon-briefcase3"></span></div>
+                <div class="journey-header">
+                  <div>
+                    <div class="journey-code">Track 01</div>
+                    <h3>Internship Capstone-II</h3>
+                  </div>
+                  <span class="journey-pill">Experience Link</span>
+                </div>
+                <p class="journey-copy">Internship Capstone-II represents the live delivery side of Intensity. It moved through multi-client NetSuite work, faster adaptation, and accountable technical execution inside real project timelines.</p>
+                <div class="journey-meta">
+                  <span class="journey-tag">Crowe Horwath</span>
+                  <span class="journey-tag">Industry Delivery</span>
+                  <span class="journey-tag">Project Execution</span>
+                </div>
+                <div class="journey-footer">
+                  <span>Open the Experience track to review the billable projects, non-billable work, and delivery progression connected to this phase.</span>
+                  <a href="experience-capstone-ii.html" class="btn btn-outline-primary">Open Experience</a>
+                </div>
+              </article>
+
+              <article class="journey-card">
+                <div class="journey-icon"><span class="icon-presentation"></span></div>
+                <div class="journey-header">
+                  <div>
+                    <div class="journey-code">Track 02</div>
+                    <h3>FTE Capstone</h3>
+                  </div>
+                  <span class="journey-pill">Academic Link</span>
+                </div>
+                <p class="journey-copy">FTE Capstone represents the academic side of Intensity through structured revision of frontend, programming, Data Structures and Algorithms, OOP, and DBMS, all consolidated into one capstone execution cycle.</p>
+                <div class="journey-meta">
+                  <span class="journey-tag">Academic Capstone</span>
+                  <span class="journey-tag">Revision Track</span>
+                  <span class="journey-tag">Semester 07</span>
+                </div>
+                <div class="journey-footer">
+                  <span>Open the FTE Capstone page to review the course revision map and the subject folders that define the academic side of this phase.</span>
+                  <a href="seventhSemester-fte-capstone.html" class="btn btn-outline-primary">Open FTE Capstone</a>
+                </div>
+              </article>
+            </div>
+          </div>
+          <button class="journey-nav next" type="button" aria-label="Next track">
+            <span class="icon-chevron-right"></span>
+          </button>
+        </div>
+        <div class="journey-dots reveal-up"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section pt-0" id="section-tracker">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 mb-5">
+          <div class="section-heading text-center">
+            <h2>Tracking My <strong>Fitness</strong></h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-5 mb-5 mb-lg-0">
+          <div class="resume-item p-4 tracker-panel site-animate" data-animate-effect="fadeInLeft">
+            <div class="tracker-kicker">Today's Workout And Diet</div>
+            <h3 class="mt-2">Daily log</h3>
+            <p class="tracker-intro">Save one clean entry per day. Cardio and weight training accept quarter-hour values so short sessions still count.</p>
+
+            <form id="fitnessForm" novalidate>
+              <div class="form-group">
+                <label for="fitnessDate">Date</label>
+                <input type="text" id="fitnessDate" class="form-control intensity-form-control" readonly>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-sm-6">
+                  <label for="cardioHours">Cardio Hours</label>
+                  <input type="number" id="cardioHours" class="form-control intensity-form-control" min="0" step="0.25" placeholder="e.g. 1.5">
+                </div>
+
+                <div class="form-group col-sm-6">
+                  <label for="weightHours">Weight Training Hours</label>
+                  <input type="number" id="weightHours" class="form-control intensity-form-control" min="0" step="0.25" placeholder="e.g. 1.25">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Diet</label>
+                <div class="diet-toggle">
+                  <div>
+                    <input type="radio" id="dietControlled" name="diet_status" value="controlled">
+                    <label class="diet-choice" for="dietControlled">Controlled</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="dietUncontrolled" name="diet_status" value="uncontrolled">
+                    <label class="diet-choice" for="dietUncontrolled">Uncontrolled</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="waterIntake">Water Intake (Liters)</label>
+                <input type="number" id="waterIntake" class="form-control intensity-form-control" min="0" step="0.25" placeholder="e.g. 3">
+              </div>
+
+              <button type="submit" class="btn btn-primary px-4 py-3">Save Today</button>
+              <p id="fitnessStatus" class="mt-3 mb-2"></p>
+              <small class="tracker-help d-block">Tip: Use <strong>0</strong> if a workout category did not happen today.</small>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-lg-7">
+          <div class="resume-item p-4 tracker-summary-panel site-animate" data-animate-effect="fadeInRight">
+            <div class="tracker-kicker">Current Pulse</div>
+            <h3 class="mt-2">Live summary</h3>
+            <p id="fitnessSummaryText" class="tracker-summary-text mb-0">No logs yet. Save today's fitness entry to start tracking intensity.</p>
+
+            <div class="row tracker-metrics">
+              <div class="col-sm-6 col-xl-3 mb-3">
+                <div class="fitness-metric">
+                  <div class="fitness-metric-label">Today Hours</div>
+                  <div class="fitness-metric-value" id="metricTodayHours">0</div>
+                  <div class="fitness-metric-sub">cardio + strength</div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 col-xl-3 mb-3">
+                <div class="fitness-metric">
+                  <div class="fitness-metric-label">Week Hours</div>
+                  <div class="fitness-metric-value" id="metricWeekHours">0</div>
+                  <div class="fitness-metric-sub">Monday to Sunday</div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 col-xl-3 mb-3">
+                <div class="fitness-metric">
+                  <div class="fitness-metric-label">Avg Water</div>
+                  <div class="fitness-metric-value" id="metricAvgWater">0</div>
+                  <div class="fitness-metric-sub">liters per logged day</div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 col-xl-3 mb-3">
+                <div class="fitness-metric">
+                  <div class="fitness-metric-label">Streak</div>
+                  <div class="fitness-metric-value" id="metricStreakDays">0</div>
+                  <div class="fitness-metric-sub">days in a row</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="fitness-breakdown">
+              <h4 class="mb-3">Weekly breakdown</h4>
+
+              <div class="fitness-breakdown-row">
+                <div class="fitness-breakdown-head">
+                  <span>Cardio load share</span>
+                  <strong id="cardioShareLabel">0%</strong>
+                </div>
+                <div class="fitness-bar">
+                  <span class="fitness-bar-fill" id="cardioShareBar"></span>
+                </div>
+              </div>
+
+              <div class="fitness-breakdown-row">
+                <div class="fitness-breakdown-head">
+                  <span>Strength load share</span>
+                  <strong id="weightShareLabel">0%</strong>
+                </div>
+                <div class="fitness-bar">
+                  <span class="fitness-bar-fill" id="weightShareBar"></span>
+                </div>
+              </div>
+
+              <div class="fitness-breakdown-row">
+                <div class="fitness-breakdown-head">
+                  <span>Logging consistency</span>
+                  <strong id="consistencyLabel">0/7 days</strong>
+                </div>
+                <div class="fitness-bar">
+                  <span class="fitness-bar-fill" id="consistencyBar"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section pt-0" id="section-history">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 mb-5">
+          <div class="section-heading text-center">
+            <h2>Fitness <strong>History</strong></h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="resume-item p-4 tracker-history-panel site-animate" data-animate-effect="fadeInUp">
+            <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between">
+              <div class="mb-3 mb-md-0">
+                <h3 class="mb-1">Summary</h3>
+                <p id="fitnessRangeSummary" class="mb-0 tracker-summary-text">No logs in this range yet.</p>
+              </div>
+
+              <div class="d-flex align-items-center">
+                <label for="fitnessRange" class="mb-0 mr-2">Show</label>
+                <select id="fitnessRange" class="form-control form-control-sm intensity-form-control">
+                  <option value="7" selected>Last 7 days</option>
+                  <option value="30">Last 30 days</option>
+                  <option value="90">Last 90 days</option>
+                  <option value="365">Last 365 days</option>
+                  <option value="all">All</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-responsive mt-4">
+              <table class="table table-borderless table-sm mb-0">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Cardio</th>
+                    <th>Weight Training</th>
+                    <th>Total Hours</th>
+                    <th>Diet</th>
+                    <th>Water Intake</th>
+                  </tr>
+                </thead>
+                <tbody id="fitnessTableBody">
+                  <tr>
+                    <td colspan="6" class="tracker-empty">No logs yet. Save today's fitness entry to start tracking intensity.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mt-4 d-flex flex-wrap">
+              <button type="button" class="btn btn-secondary btn-sm mr-2 mb-2" id="fitnessExportCsvBtn">Export CSV</button>
+              <button type="button" class="btn btn-secondary btn-sm mr-2 mb-2" id="fitnessExportJsonBtn">Export JSON</button>
+              <button type="button" class="btn btn-outline-light btn-sm mb-2" id="fitnessClearBtn">Clear All</button>
+            </div>
+
+            <small class="d-block mt-3 tracker-help">Data is stored in this browser using LocalStorage. If you clear browser data or switch devices, the history will not carry over.</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+
+      <div class="row mb-5">
+        <div class="col-md-12 text-center">
+          <p>
+            <a href="https://www.facebook.com/m14chaitanya" class="social-item"><span class="icon-facebook2"></span></a>
+            <a href="#" class="social-item"><span class="icon-twitter"></span></a>
+            <a href="https://www.instagram.com/m17chaitanya/" class="social-item"><span class="icon-instagram2"></span></a>
+            <a href="https://www.linkedin.com/in/manuchaitanya/" class="social-item"><span class="icon-linkedin2"></span></a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/vendor/popper.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/jquery.easing.1.3.js"></script>
+  <script src="js/vendor/jquery.stellar.min.js"></script>
+  <script src="js/vendor/jquery.waypoints.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script>
+    (function () {
+      function initReveal() {
+        if (!('IntersectionObserver' in window)) {
+          Array.prototype.forEach.call(document.querySelectorAll('.reveal-up'), function (el) {
+            el.classList.add('is-visible');
+          });
+          return;
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          });
+        }, { threshold: 0.14 });
+
+        Array.prototype.forEach.call(document.querySelectorAll('.reveal-up'), function (el, index) {
+          el.style.transitionDelay = Math.min(index * 60, 420) + 'ms';
+          observer.observe(el);
+        });
+      }
+
+      function initJourneyCarousels() {
+        Array.prototype.forEach.call(document.querySelectorAll('[data-journey-carousel]'), function (root) {
+          var viewport = root.querySelector('.journey-viewport');
+          var track = root.querySelector('.journey-track');
+          var prev = root.querySelector('.journey-nav.prev');
+          var next = root.querySelector('.journey-nav.next');
+          var wrap = root.parentElement;
+          var dotsRoot = wrap ? wrap.querySelector('.journey-dots') : null;
+          if (!viewport || !track || !prev || !next || !dotsRoot) return;
+
+          var cards = Array.prototype.slice.call(track.querySelectorAll('.journey-card'));
+          if (!cards.length) return;
+
+          if (cards.length <= 1) {
+            prev.style.display = 'none';
+            next.style.display = 'none';
+            dotsRoot.style.display = 'none';
+            cards[0].classList.add('is-active');
+            track.style.justifyContent = 'center';
+            track.style.transform = 'translate3d(0,0,0)';
+            return;
+          }
+
+          var index = 0;
+          var pointerStartX = null;
+
+          dotsRoot.innerHTML = cards.map(function (_, dotIndex) {
+            return '<button class="journey-dot' + (dotIndex === 0 ? ' is-active' : '') + '" type="button" data-index="' + dotIndex + '" aria-label="Go to track ' + (dotIndex + 1) + '"></button>';
+          }).join('');
+
+          var dots = Array.prototype.slice.call(dotsRoot.querySelectorAll('.journey-dot'));
+
+          function clamp(value, min, max) {
+            return Math.max(min, Math.min(max, value));
+          }
+
+          function sync(animate) {
+            index = clamp(index, 0, cards.length - 1);
+
+            cards.forEach(function (card, cardIndex) {
+              card.classList.toggle('is-active', cardIndex === index);
+            });
+
+            dots.forEach(function (dot, dotIndex) {
+              dot.classList.toggle('is-active', dotIndex === index);
+            });
+
+            track.style.transition = animate
+              ? 'transform 0.52s cubic-bezier(0.22, 1, 0.36, 1)'
+              : 'none';
+
+            var activeCard = cards[index];
+            var maxOffset = Math.max(track.scrollWidth - viewport.clientWidth, 0);
+            var desired = activeCard.offsetLeft - ((viewport.clientWidth - activeCard.offsetWidth) / 2);
+            var offset = clamp(desired, 0, maxOffset);
+            track.style.transform = 'translate3d(' + (-offset) + 'px, 0, 0)';
+
+            prev.disabled = index === 0;
+            next.disabled = index === cards.length - 1;
+          }
+
+          prev.addEventListener('click', function () {
+            index = clamp(index - 1, 0, cards.length - 1);
+            sync(true);
+          });
+
+          next.addEventListener('click', function () {
+            index = clamp(index + 1, 0, cards.length - 1);
+            sync(true);
+          });
+
+          dotsRoot.addEventListener('click', function (event) {
+            var dot = event.target.closest('.journey-dot');
+            if (!dot) return;
+            index = Number(dot.getAttribute('data-index')) || 0;
+            sync(true);
+          });
+
+          viewport.addEventListener('touchstart', function (event) {
+            pointerStartX = event.touches && event.touches[0] ? event.touches[0].clientX : null;
+          }, { passive: true });
+
+          viewport.addEventListener('touchend', function (event) {
+            if (pointerStartX === null) return;
+            var endX = event.changedTouches && event.changedTouches[0] ? event.changedTouches[0].clientX : pointerStartX;
+            var delta = endX - pointerStartX;
+            if (Math.abs(delta) > 44) {
+              index = clamp(index + (delta < 0 ? 1 : -1), 0, cards.length - 1);
+              sync(true);
+            }
+            pointerStartX = null;
+          }, { passive: true });
+
+          window.addEventListener('resize', function () {
+            sync(false);
+          });
+
+          sync(false);
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        initReveal();
+        initJourneyCarousels();
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var STORAGE_KEY = "intensityFitness.v1";
+
+      function $(id) {
+        return document.getElementById(id);
+      }
+
+      function pad2(n) {
+        return String(n).padStart(2, "0");
+      }
+
+      function toDateKey(d) {
+        return d.getFullYear() + "-" + pad2(d.getMonth() + 1) + "-" + pad2(d.getDate());
+      }
+
+      function fromDateKey(key) {
+        var parts = String(key).split("-");
+        if (parts.length !== 3) return null;
+        var y = Number(parts[0]);
+        var m = Number(parts[1]) - 1;
+        var day = Number(parts[2]);
+        if (!Number.isFinite(y) || !Number.isFinite(m) || !Number.isFinite(day)) return null;
+        return new Date(y, m, day);
+      }
+
+      function startOfDay(d) {
+        return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+      }
+
+      function safeParse(text, fallback) {
+        try {
+          var parsed = JSON.parse(text);
+          return parsed && typeof parsed === "object" ? parsed : fallback;
+        } catch (e) {
+          return fallback;
+        }
+      }
+
+      function loadStore() {
+        return safeParse(localStorage.getItem(STORAGE_KEY) || "{}", {});
+      }
+
+      function saveStore(store) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+      }
+
+      function formatNumber(n, digits) {
+        var value = Number(n);
+        if (!Number.isFinite(value)) return "0";
+        var precision = Number.isFinite(digits) ? digits : 0;
+        return value.toFixed(precision).replace(/\.?0+$/, "");
+      }
+
+      function formatLongDate(key) {
+        var d = fromDateKey(key);
+        if (!d) return key;
+        try {
+          return d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+        } catch (e) {
+          return key;
+        }
+      }
+
+      function formatShortDate(d) {
+        try {
+          return d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+        } catch (e) {
+          return pad2(d.getMonth() + 1) + "/" + pad2(d.getDate());
+        }
+      }
+
+      function getWeekRange(today) {
+        var day = today.getDay();
+        var diffFromMonday = (day + 6) % 7;
+        var start = new Date(today);
+        start.setDate(today.getDate() - diffFromMonday);
+        var end = new Date(start);
+        end.setDate(start.getDate() + 6);
+        return { start: start, end: end };
+      }
+
+      function getMonthRange(today) {
+        return {
+          start: new Date(today.getFullYear(), today.getMonth(), 1),
+          end: new Date(today.getFullYear(), today.getMonth() + 1, 0)
+        };
+      }
+
+      function getEntryMetrics(entry) {
+        var cardio = Number(entry && entry.cardioHours);
+        var weight = Number(entry && entry.weightHours);
+        var water = Number(entry && entry.waterLiters);
+
+        cardio = Number.isFinite(cardio) && cardio >= 0 ? cardio : 0;
+        weight = Number.isFinite(weight) && weight >= 0 ? weight : 0;
+        water = Number.isFinite(water) && water >= 0 ? water : 0;
+
+        return {
+          cardioHours: cardio,
+          weightHours: weight,
+          totalHours: cardio + weight,
+          dietStatus: entry && entry.dietStatus === "controlled" ? "controlled" : "uncontrolled",
+          waterLiters: water
+        };
+      }
+
+      function getSortedEntries(store) {
+        return Object.keys(store)
+          .map(function (key) {
+            return {
+              date: key,
+              entry: store[key],
+              metrics: getEntryMetrics(store[key])
+            };
+          })
+          .filter(function (row) {
+            return !!fromDateKey(row.date);
+          })
+          .sort(function (a, b) {
+            return a.date < b.date ? 1 : -1;
+          });
+      }
+
+      function getEntriesInRange(store, start, end) {
+        var rows = [];
+        Object.keys(store).forEach(function (key) {
+          var d = fromDateKey(key);
+          if (!d) return;
+          var t = d.getTime();
+          if (t >= start.getTime() && t <= end.getTime()) {
+            rows.push({
+              date: key,
+              entry: store[key],
+              metrics: getEntryMetrics(store[key])
+            });
+          }
+        });
+        rows.sort(function (a, b) {
+          return a.date.localeCompare(b.date);
+        });
+        return rows;
+      }
+
+      function clampRangeEntries(entries, rangeValue, today) {
+        if (rangeValue === "all") return entries;
+        var days = Number(rangeValue);
+        if (!Number.isFinite(days) || days <= 0) return entries;
+
+        var cutoff = new Date(today);
+        cutoff.setDate(today.getDate() - (days - 1));
+        var cutoffKey = toDateKey(cutoff);
+        var todayKey = toDateKey(today);
+
+        return entries.filter(function (row) {
+          return row.date >= cutoffKey && row.date <= todayKey;
+        });
+      }
+
+      function summarizeEntries(entries) {
+        var totalHours = 0;
+        var cardioHours = 0;
+        var weightHours = 0;
+        var waterTotal = 0;
+        var controlledDays = 0;
+
+        entries.forEach(function (row) {
+          totalHours += row.metrics.totalHours;
+          cardioHours += row.metrics.cardioHours;
+          weightHours += row.metrics.weightHours;
+          waterTotal += row.metrics.waterLiters;
+          if (row.metrics.dietStatus === "controlled") controlledDays++;
+        });
+
+        return {
+          totalHours: totalHours,
+          cardioHours: cardioHours,
+          weightHours: weightHours,
+          waterAverage: entries.length ? (waterTotal / entries.length) : 0,
+          controlledDays: controlledDays,
+          count: entries.length
+        };
+      }
+
+      function computeLoggingStreak(store, today) {
+        var streak = 0;
+        var cursor = startOfDay(today);
+
+        while (true) {
+          var key = toDateKey(cursor);
+          if (!Object.prototype.hasOwnProperty.call(store, key)) break;
+          streak++;
+          cursor.setDate(cursor.getDate() - 1);
+        }
+
+        return streak;
+      }
+
+      function setStatus(message, type) {
+        var el = $("fitnessStatus");
+        if (!el) return;
+        el.textContent = message || "";
+        el.classList.remove("text-danger", "text-success", "text-warning", "text-info");
+        if (type === "success") el.classList.add("text-success");
+        else if (type === "warning") el.classList.add("text-warning");
+        else if (type === "danger") el.classList.add("text-danger");
+        else if (message) el.classList.add("text-info");
+      }
+
+      function animateMetric(id, value, digits) {
+        var el = $(id);
+        if (!el) return;
+
+        var next = Number(value);
+        if (!Number.isFinite(next)) {
+          el.textContent = "-";
+          el.removeAttribute("data-value");
+          return;
+        }
+
+        var previous = Number(el.getAttribute("data-value"));
+        if (!Number.isFinite(previous)) previous = 0;
+
+        var startTime = null;
+        var duration = 500;
+
+        function step(timestamp) {
+          if (startTime === null) startTime = timestamp;
+          var progress = Math.min((timestamp - startTime) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          var current = previous + (next - previous) * eased;
+          el.textContent = formatNumber(current, digits);
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          } else {
+            el.textContent = formatNumber(next, digits);
+            el.setAttribute("data-value", String(next));
+          }
+        }
+
+        window.requestAnimationFrame(step);
+      }
+
+      function setBar(barId, labelId, percentage, labelText) {
+        var bar = $(barId);
+        var label = $(labelId);
+        var safePercentage = Math.max(0, Math.min(100, Number(percentage) || 0));
+        if (bar) bar.style.width = safePercentage + "%";
+        if (label) label.textContent = labelText;
+      }
+
+      function downloadFile(filename, content, mime) {
+        var blob = new Blob([content], { type: mime || "text/plain" });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.setTimeout(function () {
+          URL.revokeObjectURL(url);
+        }, 250);
+      }
+
+      function populateFormForToday(store, todayKey) {
+        var form = $("fitnessForm");
+        if (!form) return;
+
+        form.reset();
+        $("fitnessDate").value = formatLongDate(todayKey);
+
+        var saved = store[todayKey];
+        if (!saved) return;
+
+        var metrics = getEntryMetrics(saved);
+        $("cardioHours").value = formatNumber(metrics.cardioHours, 2);
+        $("weightHours").value = formatNumber(metrics.weightHours, 2);
+        $("waterIntake").value = formatNumber(metrics.waterLiters, 2);
+
+        var dietInput = form.querySelector('input[name="diet_status"][value="' + metrics.dietStatus + '"]');
+        if (dietInput) dietInput.checked = true;
+      }
+
+      function render() {
+        var form = $("fitnessForm");
+        var tableBody = $("fitnessTableBody");
+        var rangeSelect = $("fitnessRange");
+        if (!form || !tableBody || !rangeSelect) return;
+
+        var now = new Date();
+        var today = startOfDay(now);
+        var todayKey = toDateKey(today);
+        var store = loadStore();
+        var allEntries = getSortedEntries(store);
+
+        populateFormForToday(store, todayKey);
+
+        if ($("heroTodayLabel")) $("heroTodayLabel").textContent = formatLongDate(todayKey);
+
+        var week = getWeekRange(today);
+        var month = getMonthRange(today);
+        var weekEntries = getEntriesInRange(store, week.start, week.end);
+        var monthEntries = getEntriesInRange(store, month.start, month.end);
+
+        var todayMetrics = Object.prototype.hasOwnProperty.call(store, todayKey)
+          ? getEntryMetrics(store[todayKey])
+          : { cardioHours: 0, weightHours: 0, totalHours: 0, dietStatus: "uncontrolled", waterLiters: 0 };
+
+        var weekSummary = summarizeEntries(weekEntries);
+        var monthSummary = summarizeEntries(monthEntries);
+        var streak = computeLoggingStreak(store, today);
+
+        animateMetric("metricTodayHours", todayMetrics.totalHours, 2);
+        animateMetric("metricWeekHours", weekSummary.totalHours, 2);
+        animateMetric("metricAvgWater", weekSummary.waterAverage, 2);
+        animateMetric("metricStreakDays", streak, 0);
+
+        animateMetric("heroWeekHours", weekSummary.totalHours, 2);
+        animateMetric("heroStreakDays", streak, 0);
+        animateMetric("heroMonthEntries", monthSummary.count, 0);
+        animateMetric("heroAvgWater", monthSummary.waterAverage, 2);
+
+        var weeklyTotal = weekSummary.totalHours;
+        var cardioShare = weeklyTotal > 0 ? (weekSummary.cardioHours / weeklyTotal) * 100 : 0;
+        var weightShare = weeklyTotal > 0 ? (weekSummary.weightHours / weeklyTotal) * 100 : 0;
+        var loggingConsistency = (weekSummary.count / 7) * 100;
+
+        setBar("cardioShareBar", "cardioShareLabel", cardioShare, formatNumber(cardioShare, 0) + "%");
+        setBar("weightShareBar", "weightShareLabel", weightShare, formatNumber(weightShare, 0) + "%");
+        setBar("consistencyBar", "consistencyLabel", loggingConsistency, weekSummary.count + "/7 days");
+
+        var summaryEl = $("fitnessSummaryText");
+        if (summaryEl) {
+          if (!allEntries.length) {
+            summaryEl.textContent = "No logs yet. Save today's fitness entry to start tracking intensity.";
+          } else {
+            summaryEl.textContent =
+              "Today: " + formatNumber(todayMetrics.totalHours, 2) + " hours" +
+              " • This Week: " + formatNumber(weekSummary.totalHours, 2) + " hours" +
+              " • Controlled Diet: " + weekSummary.controlledDays + "/" + weekSummary.count + " logged days" +
+              " • Avg Water: " + formatNumber(weekSummary.waterAverage, 2) + " liters";
+          }
+        }
+
+        var filteredEntries = clampRangeEntries(allEntries, rangeSelect.value, today);
+        var filteredSummary = summarizeEntries(filteredEntries);
+        var rangeSummaryEl = $("fitnessRangeSummary");
+
+        if (rangeSummaryEl) {
+          if (!filteredEntries.length) {
+            rangeSummaryEl.textContent = "No logs in this range yet.";
+          } else {
+            rangeSummaryEl.textContent =
+              "Entries: " + filteredSummary.count +
+              " • Total Hours: " + formatNumber(filteredSummary.totalHours, 2) +
+              " • Controlled Diet Days: " + filteredSummary.controlledDays +
+              " • Avg Water: " + formatNumber(filteredSummary.waterAverage, 2) + " liters";
+          }
+        }
+
+        tableBody.innerHTML = "";
+
+        if (!filteredEntries.length) {
+          var emptyRow = document.createElement("tr");
+          var emptyCell = document.createElement("td");
+          emptyCell.colSpan = 6;
+          emptyCell.className = "tracker-empty";
+          emptyCell.textContent = "No logs in this range yet.";
+          emptyRow.appendChild(emptyCell);
+          tableBody.appendChild(emptyRow);
+          return;
+        }
+
+        filteredEntries.forEach(function (row) {
+          var tr = document.createElement("tr");
+          if (row.date === todayKey) tr.className = "is-today";
+
+          var dateTd = document.createElement("td");
+          dateTd.textContent = formatLongDate(row.date);
+
+          var cardioTd = document.createElement("td");
+          cardioTd.textContent = formatNumber(row.metrics.cardioHours, 2);
+
+          var weightTd = document.createElement("td");
+          weightTd.textContent = formatNumber(row.metrics.weightHours, 2);
+
+          var totalTd = document.createElement("td");
+          totalTd.textContent = formatNumber(row.metrics.totalHours, 2);
+
+          var dietTd = document.createElement("td");
+          var badge = document.createElement("span");
+          badge.className = "diet-badge " + row.metrics.dietStatus;
+          badge.textContent = row.metrics.dietStatus;
+          dietTd.appendChild(badge);
+
+          var waterTd = document.createElement("td");
+          waterTd.textContent = formatNumber(row.metrics.waterLiters, 2) + " L";
+
+          tr.appendChild(dateTd);
+          tr.appendChild(cardioTd);
+          tr.appendChild(weightTd);
+          tr.appendChild(totalTd);
+          tr.appendChild(dietTd);
+          tr.appendChild(waterTd);
+          tableBody.appendChild(tr);
+        });
+      }
+
+      function exportCsv() {
+        var today = startOfDay(new Date());
+        var entries = clampRangeEntries(getSortedEntries(loadStore()), $("fitnessRange").value, today);
+        var rows = [["date", "cardio_hours", "weight_training_hours", "total_hours", "diet_status", "water_liters"]];
+
+        entries.slice().reverse().forEach(function (row) {
+          rows.push([
+            row.date,
+            formatNumber(row.metrics.cardioHours, 2),
+            formatNumber(row.metrics.weightHours, 2),
+            formatNumber(row.metrics.totalHours, 2),
+            row.metrics.dietStatus,
+            formatNumber(row.metrics.waterLiters, 2)
+          ]);
+        });
+
+        var csv = rows.map(function (line) { return line.join(","); }).join("\n");
+        downloadFile("intensity_fitness.csv", csv, "text/csv");
+      }
+
+      function exportJson() {
+        var today = startOfDay(new Date());
+        var entries = clampRangeEntries(getSortedEntries(loadStore()), $("fitnessRange").value, today);
+        downloadFile("intensity_fitness.json", JSON.stringify(entries, null, 2), "application/json");
+      }
+
+      function init() {
+        var form = $("fitnessForm");
+        var rangeSelect = $("fitnessRange");
+        var exportCsvBtn = $("fitnessExportCsvBtn");
+        var exportJsonBtn = $("fitnessExportJsonBtn");
+        var clearBtn = $("fitnessClearBtn");
+        if (!form) return;
+
+        render();
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          var now = new Date();
+          var today = startOfDay(now);
+          var todayKey = toDateKey(today);
+
+          var cardio = Number($("cardioHours").value || 0);
+          var weight = Number($("weightHours").value || 0);
+          var water = Number($("waterIntake").value || 0);
+          var diet = form.querySelector('input[name="diet_status"]:checked');
+
+          if (!diet) {
+            setStatus("Please select whether today's diet was controlled or uncontrolled.", "danger");
+            return;
+          }
+
+          if (!Number.isFinite(cardio) || cardio < 0 || !Number.isFinite(weight) || weight < 0 || !Number.isFinite(water) || water < 0) {
+            setStatus("Cardio, weight training, and water intake must be zero or positive numbers.", "danger");
+            return;
+          }
+
+          var store = loadStore();
+          store[todayKey] = {
+            cardioHours: cardio,
+            weightHours: weight,
+            dietStatus: diet.value,
+            waterLiters: water,
+            savedAt: new Date().toISOString()
+          };
+          saveStore(store);
+
+          setStatus("Saved today's intensity log for " + formatLongDate(todayKey) + ".", "success");
+          render();
+        });
+
+        if (rangeSelect) {
+          rangeSelect.addEventListener("change", render);
+        }
+
+        if (exportCsvBtn) {
+          exportCsvBtn.addEventListener("click", exportCsv);
+        }
+
+        if (exportJsonBtn) {
+          exportJsonBtn.addEventListener("click", exportJson);
+        }
+
+        if (clearBtn) {
+          clearBtn.addEventListener("click", function () {
+            if (!window.confirm("Clear all saved fitness logs from this browser?")) return;
+            localStorage.removeItem(STORAGE_KEY);
+            setStatus("Cleared all saved fitness logs.", "warning");
+            render();
+          });
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", init);
+    })();
+  </script>
+  <script src="js/back-nav.js"></script>
+  <script src="js/home-page-system.js"></script>
+  <script src="js/theme-toggle.js"></script>
+</body>
+</html>

@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Seventh Semester | Industry Transition</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="css/mobile-responsive.css">
+  <style>
+    :root {
+      --sem-accent: #bac964;
+      --sem-accent-2: #36a8ef;
+      --sem-panel: rgba(255,255,255,0.06);
+      --sem-panel-strong: rgba(255,255,255,0.09);
+      --sem-border: rgba(255,255,255,0.10);
+      --sem-text: rgba(255,255,255,0.78);
+      --sem-soft: rgba(255,255,255,0.48);
+      --sem-bg: #1d1d1d;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      color: #fff;
+      background:
+        radial-gradient(circle at top left, rgba(186, 201, 100, 0.10), transparent 22%),
+        radial-gradient(circle at top right, rgba(54, 168, 239, 0.10), transparent 22%),
+        radial-gradient(circle at bottom right, rgba(18, 203, 99, 0.06), transparent 20%),
+        var(--sem-bg);
+      overflow-x: hidden;
+    }
+
+    .sem-shell {
+      width: min(94vw, 1680px);
+      margin: 0 auto;
+    }
+
+    .sem-hero {
+      position: relative;
+      padding: 10.5rem 0 5rem;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 14% 14%, rgba(186, 201, 100, 0.16), transparent 16%),
+        radial-gradient(circle at 80% 18%, rgba(54, 168, 239, 0.12), transparent 18%),
+        linear-gradient(140deg, rgba(26,26,26,0.98), rgba(35,35,35,0.96));
+    }
+
+    .sem-hero:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.95), rgba(0,0,0,0.3));
+      pointer-events: none;
+    }
+
+    .sem-hero .sem-shell,
+    .semester-section .sem-shell {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-banner,
+    .hero-panel,
+    .subject-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 32px;
+      border: 1px solid var(--sem-border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      box-shadow: 0 28px 90px rgba(0,0,0,0.26);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-banner {
+      padding: clamp(1.9rem, 3vw, 2.8rem);
+      min-height: 440px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-banner:after,
+    .hero-panel:after,
+    .subject-card:after {
+      content: "";
+      position: absolute;
+      right: -42px;
+      bottom: -48px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(186, 201, 100, 0.18), rgba(186, 201, 100, 0.02) 70%, transparent 74%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .hero-kicker,
+    .section-kicker,
+    .panel-kicker,
+    .subject-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      color: var(--sem-accent);
+      border: 1px solid rgba(186, 201, 100, 0.28);
+      background: rgba(186, 201, 100, 0.08);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 5vw, 5rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin: 1.2rem 0 1.1rem;
+      font-weight: 200;
+    }
+
+    .hero-title strong {
+      font-weight: 700;
+    }
+
+    .hero-copy,
+    .panel-copy,
+    .section-copy,
+    .subject-copy {
+      color: var(--sem-text);
+      line-height: 1.85;
+      font-size: 1.08rem;
+    }
+
+    .hero-copy {
+      max-width: 50rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-metrics,
+    .subject-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-metrics {
+      margin-bottom: 1.5rem;
+    }
+
+    .metric-chip,
+    .subject-tag {
+      padding: 0.78rem 1rem;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.84);
+      font-weight: 700;
+    }
+
+    .hero-actions .btn,
+    .subject-footer .btn {
+      min-width: 180px;
+      margin-right: 12px;
+      margin-bottom: 12px;
+    }
+
+    .hero-panel {
+      padding: 1.7rem;
+      min-height: 440px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-panel:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(54, 168, 239, 0.16), transparent 18%),
+        radial-gradient(circle at 20% 86%, rgba(18, 203, 99, 0.12), transparent 18%);
+      pointer-events: none;
+    }
+
+    .panel-copy,
+    .hero-panel h3,
+    .hero-panel .stats-grid,
+    .hero-panel .panel-subject-route {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-panel h3 {
+      font-size: clamp(2rem, 2.7vw, 2.8rem);
+      letter-spacing: -0.04em;
+      margin: 0.9rem 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 1.4rem 0 1.5rem;
+    }
+
+    .stat-card {
+      border-radius: 18px;
+      padding: 1rem;
+      background: rgba(0,0,0,0.16);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .stat-label {
+      color: var(--sem-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .stat-value {
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      line-height: 1;
+      font-weight: 800;
+      color: var(--sem-accent);
+      margin-bottom: 0.35rem;
+    }
+
+    .stat-sub {
+      color: var(--sem-text);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .panel-subject-route {
+      border-radius: 22px;
+      padding: 1.2rem;
+      background: rgba(0,0,0,0.16);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .route-label {
+      color: var(--sem-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+
+    .route-title {
+      font-size: 1.38rem;
+      font-weight: 800;
+      margin-bottom: 0.45rem;
+    }
+
+    .route-copy {
+      color: var(--sem-text);
+      line-height: 1.75;
+      margin-bottom: 0;
+    }
+
+    .semester-section {
+      position: relative;
+      padding: 4.7rem 0 0;
+    }
+
+    .section-intro {
+      max-width: 52rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-kicker {
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(2.2rem, 3.4vw, 3.4rem);
+      letter-spacing: -0.04em;
+      margin-bottom: 0.85rem;
+    }
+
+    .subject-carousel {
+      position: relative;
+      padding: 0 4.8rem;
+    }
+
+    .subject-viewport {
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .subject-track {
+      display: flex;
+      gap: 24px;
+      align-items: stretch;
+      will-change: transform;
+      transition: transform 0.52s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .subject-card {
+      flex: 0 0 min(620px, calc(100vw - 10rem));
+      padding: 1.55rem;
+      min-height: 100%;
+      opacity: 0.74;
+      transform: scale(0.94);
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, opacity 0.35s ease;
+    }
+
+    .subject-card.is-active {
+      opacity: 1;
+      transform: scale(1);
+      border-color: rgba(186,201,100,0.18);
+      box-shadow: 0 26px 80px rgba(0,0,0,0.24);
+    }
+
+    .subject-card:hover {
+      border-color: rgba(186,201,100,0.18);
+    }
+
+    .subject-icon {
+      width: 74px;
+      height: 74px;
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(186,201,100,0.12);
+      border: 1px solid rgba(186,201,100,0.18);
+      color: var(--sem-accent);
+      font-size: 1.9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .subject-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .subject-header h3 {
+      font-size: clamp(2rem, 2.8vw, 2.8rem);
+      letter-spacing: -0.04em;
+      margin: 0 0 0.45rem;
+    }
+
+    .subject-code {
+      color: var(--sem-soft);
+      font-size: 0.92rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .subject-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      margin-top: 1.55rem;
+      padding-top: 1.15rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .subject-footer span {
+      color: var(--sem-text);
+      line-height: 1.7;
+      max-width: 25rem;
+    }
+
+    .subject-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 58px;
+      height: 58px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      font-size: 1.2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 2;
+      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    }
+
+    .subject-nav:hover {
+      transform: translateY(-50%) scale(1.04);
+      border-color: rgba(186,201,100,0.22);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .subject-nav.prev {
+      left: 0;
+    }
+
+    .subject-nav.next {
+      right: 0;
+    }
+
+    .subject-nav:disabled {
+      opacity: 0.32;
+      cursor: default;
+      transform: translateY(-50%);
+    }
+
+    .subject-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 1.25rem;
+    }
+
+    .subject-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.18);
+      border: 0;
+      padding: 0;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .subject-dot.is-active {
+      background: var(--sem-accent);
+      transform: scale(1.2);
+    }
+
+    .btn.is-disabled,
+    .btn.is-disabled:hover,
+    .btn.is-disabled:focus {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.10);
+      color: rgba(255,255,255,0.44);
+      cursor: default;
+      box-shadow: none;
+      pointer-events: none;
+    }
+
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal-up.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1199.98px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-panel,
+      .hero-banner {
+        min-height: auto;
+      }
+
+      .subject-card {
+        flex-basis: min(540px, calc(100vw - 8rem));
+      }
+    }
+
+    @media (max-width: 767.98px) {
+      .sem-hero {
+        padding-top: 8.8rem;
+        padding-bottom: 3.5rem;
+      }
+
+      .hero-banner,
+      .hero-panel,
+      .subject-card {
+        border-radius: 24px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions .btn,
+      .subject-footer .btn {
+        width: 100%;
+        margin-right: 0;
+      }
+
+      .subject-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .subject-carousel {
+        padding: 0 2.4rem;
+      }
+
+      .subject-card {
+        flex-basis: calc(100vw - 5.8rem);
+      }
+
+      .subject-nav {
+        width: 48px;
+        height: 48px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="css/home-page-system.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+</head>
+<body data-spy="scroll" data-target="#pb-navbar" data-offset="200">
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsSeventhSemesterHub" aria-controls="navbarsSeventhSemesterHub" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbarsSeventhSemesterHub">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="academic.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-overview">Overview</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-tracks">Tracks</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="sem-hero" id="section-overview">
+    <div class="sem-shell">
+      <div class="hero-grid">
+        <div class="hero-banner reveal-up">
+          <div>
+            <span class="hero-kicker">Semester 07</span>
+            <h1 class="hero-title">Industry <strong>Transition</strong></h1>
+            <p class="hero-copy">
+              Semester 07 was the phase where academic work stopped feeling isolated and started overlapping directly with real delivery. The semester combined Internship Capstone-II with the FTE Capstone, connecting structured academic execution with live business problem solving.
+            </p>
+            <div class="hero-metrics">
+              <div class="metric-chip">2 Parallel Tracks</div>
+              <div class="metric-chip">Internship + Capstone</div>
+              <div class="metric-chip">Crowe-Linked Semester</div>
+              <div class="metric-chip">Execution Under Delivery</div>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#section-tracks" class="btn btn-primary px-4 py-3">Open Track List</a>
+            <a href="experience-capstone-ii.html" class="btn btn-secondary px-4 py-3">Open Internship Track</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel reveal-up">
+          <div>
+            <div class="panel-kicker">Seventh Semester Journey</div>
+            <h3>Academic work started merging with live delivery!</h3>
+            <p class="panel-copy">
+              The semester moved in two directions at once. Internship Capstone-II introduced direct exposure to client work, project delivery, and NetSuite customisation, while the FTE Capstone carried the academic side of sustained execution, ownership, and longer-form build discipline.
+            </p>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-label">Tracks</div>
+              <div class="stat-value" id="statTracks">0</div>
+              <div class="stat-sub">Running in Semester 07</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Industry Link</div>
+              <div class="stat-value" id="statIndustry">0</div>
+              <div class="stat-sub">Track tied directly to the Experience Section</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Capstone</div>
+              <div class="stat-value" id="statCapstone">0</div>
+              <div class="stat-sub">Parallel Academic Execution Stream</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Focus</div>
+              <div class="stat-value" id="statFocus">0</div>
+              <div class="stat-sub">Parallel Builds that defined the Semester</div>
+            </div>
+          </div>
+
+          <div class="panel-subject-route">
+            <div class="route-label">Semester Focus</div>
+            <div class="route-title">Internship Capstone-II + FTE Capstone</div>
+            <p class="route-copy">Semester 07 connected academic learning with delivery pressure, turning the year into a bridge between classroom execution and industry-facing ownership.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section semester-section" id="section-tracks">
+    <div class="sem-shell">
+      <div class="section-intro reveal-up">
+        <div class="section-kicker">Tracks</div>
+        <h2 class="section-title">Tracks Running In Semester 07</h2>
+        <p class="section-copy">The current academic archive records two parallel tracks in Semester 07. Internship Capstone-II reflects the experience-linked delivery route, while the FTE Capstone represents the academic project stream running alongside it.</p>
+      </div>
+
+      <div class="subject-carousel reveal-up">
+        <button class="subject-nav prev" id="subjectPrev" type="button" aria-label="Previous track">
+          <span class="icon-chevron-left"></span>
+        </button>
+        <div class="subject-viewport" id="subjectViewport">
+          <div class="subject-track" id="subjectTrack"></div>
+        </div>
+        <button class="subject-nav next" id="subjectNext" type="button" aria-label="Next track">
+          <span class="icon-chevron-right"></span>
+        </button>
+      </div>
+      <div class="subject-dots reveal-up" id="subjectDots"></div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var TRACKS = [
+        {
+          number: '7.1',
+          title: 'Internship Capstone-II',
+          code: 'Track 01',
+          icon: 'icon-briefcase3',
+          copy: 'This track represented the direct industry-facing side of Semester 07 through Crowe Horwath. The work moved through multi-client NetSuite delivery, billable implementations, non-billable product development, and the first sustained exposure to live business problem solving.',
+          tags: ['Crowe Horwath', 'Billable + Non-Billable', 'Industry Delivery'],
+          footer: 'Open the Experience track to review the project tree, FDDs, scripts, and delivery journey connected to this semester.',
+          href: 'experience-capstone-ii.html',
+          cta: 'Open Experience'
+        },
+        {
+          number: '7.2',
+          title: 'FTE Capstone',
+          code: 'Track 02',
+          icon: 'icon-presentation',
+          copy: 'This capstone represented the academic execution stream of Semester 07. It ran in parallel with the internship track and focused on sustained build ownership, structured delivery, documentation, and applying technical learning in a long-form academic project.',
+          tags: ['Academic Capstone', 'Parallel Build', 'Revision Track'],
+          footer: 'Open the FTE Capstone page to review the course revision tracks and the subject folders that define the Semester 07 academic side.',
+          href: 'seventhSemester-fte-capstone.html',
+          cta: 'Open FTE Capstone'
+        }
+      ];
+
+      function $(id) {
+        return document.getElementById(id);
+      }
+
+      function escapeHtml(text) {
+        return String(text)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function renderTracks() {
+        var root = $('subjectTrack');
+        var dotsRoot = $('subjectDots');
+        if (!root || !dotsRoot) return;
+
+        root.innerHTML = TRACKS.map(function (track) {
+          var action = '<a href="' + escapeHtml(track.href) + '" class="btn btn-outline-primary">' + escapeHtml(track.cta) + '</a>';
+
+          return [
+            '<article class="subject-card">',
+              '<div class="subject-icon"><span class="', escapeHtml(track.icon), '"></span></div>',
+              '<div class="subject-header">',
+                '<div>',
+                  '<div class="subject-code">', escapeHtml(track.code), '</div>',
+                  '<h3>', escapeHtml(track.number), ' ', escapeHtml(track.title), '</h3>',
+                '</div>',
+                '<span class="subject-pill">Semester 07</span>',
+              '</div>',
+              '<p class="subject-copy">', escapeHtml(track.copy), '</p>',
+              '<div class="subject-meta">',
+                track.tags.map(function (tag) {
+                  return '<span class="subject-tag">' + escapeHtml(tag) + '</span>';
+                }).join(''),
+              '</div>',
+              '<div class="subject-footer">',
+                '<span>', escapeHtml(track.footer), '</span>',
+                action,
+              '</div>',
+            '</article>'
+          ].join('');
+        }).join('');
+
+        dotsRoot.innerHTML = TRACKS.map(function (_, index) {
+          return '<button class="subject-dot' + (index === 0 ? ' is-active' : '') + '" type="button" data-index="' + index + '" aria-label="Go to track ' + (index + 1) + '"></button>';
+        }).join('');
+      }
+
+      function animateValue(id, target) {
+        var el = $(id);
+        if (!el) return;
+
+        var next = Number(target);
+        if (!Number.isFinite(next)) return;
+
+        var start = null;
+        var duration = 720;
+
+        function frame(timestamp) {
+          if (start === null) start = timestamp;
+          var progress = Math.min((timestamp - start) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = String(Math.round(next * eased));
+          if (progress < 1) {
+            window.requestAnimationFrame(frame);
+          } else {
+            el.textContent = String(next);
+          }
+        }
+
+        window.requestAnimationFrame(frame);
+      }
+
+      function initStats() {
+        animateValue('statTracks', 2);
+        animateValue('statIndustry', 1);
+        animateValue('statCapstone', 1);
+        animateValue('statFocus', 2);
+      }
+
+      function initReveal() {
+        if (!('IntersectionObserver' in window)) {
+          Array.prototype.forEach.call(document.querySelectorAll('.reveal-up'), function (el) {
+            el.classList.add('is-visible');
+          });
+          return;
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          });
+        }, { threshold: 0.14 });
+
+        Array.prototype.forEach.call(document.querySelectorAll('.reveal-up'), function (el, index) {
+          el.style.transitionDelay = Math.min(index * 60, 420) + 'ms';
+          observer.observe(el);
+        });
+      }
+
+      function initCarousel() {
+        var viewport = $('subjectViewport');
+        var track = $('subjectTrack');
+        var prev = $('subjectPrev');
+        var next = $('subjectNext');
+        var dotsRoot = $('subjectDots');
+        if (!viewport || !track || !prev || !next || !dotsRoot) return;
+
+        var cards = Array.prototype.slice.call(track.querySelectorAll('.subject-card'));
+        var dots = Array.prototype.slice.call(dotsRoot.querySelectorAll('.subject-dot'));
+        var index = 0;
+        var pointerStartX = null;
+
+        function clamp(value, min, max) {
+          return Math.max(min, Math.min(max, value));
+        }
+
+        function sync(animate) {
+          cards = Array.prototype.slice.call(track.querySelectorAll('.subject-card'));
+          dots = Array.prototype.slice.call(dotsRoot.querySelectorAll('.subject-dot'));
+          if (!cards.length) return;
+
+          index = clamp(index, 0, cards.length - 1);
+          cards.forEach(function (card, cardIndex) {
+            card.classList.toggle('is-active', cardIndex === index);
+          });
+          dots.forEach(function (dot, dotIndex) {
+            dot.classList.toggle('is-active', dotIndex === index);
+          });
+
+          if (!animate) {
+            track.style.transition = 'none';
+          } else {
+            track.style.transition = 'transform 0.52s cubic-bezier(0.22, 1, 0.36, 1)';
+          }
+
+          var activeCard = cards[index];
+          var maxOffset = Math.max(track.scrollWidth - viewport.clientWidth, 0);
+          var desired = activeCard.offsetLeft - ((viewport.clientWidth - activeCard.offsetWidth) / 2);
+          var offset = clamp(desired, 0, maxOffset);
+          track.style.transform = 'translate3d(' + (-offset) + 'px, 0, 0)';
+
+          prev.disabled = index === 0;
+          next.disabled = index === cards.length - 1;
+        }
+
+        prev.addEventListener('click', function () {
+          index = clamp(index - 1, 0, cards.length - 1);
+          sync(true);
+        });
+
+        next.addEventListener('click', function () {
+          index = clamp(index + 1, 0, cards.length - 1);
+          sync(true);
+        });
+
+        dotsRoot.addEventListener('click', function (event) {
+          var dot = event.target.closest('.subject-dot');
+          if (!dot) return;
+          index = Number(dot.getAttribute('data-index')) || 0;
+          sync(true);
+        });
+
+        viewport.addEventListener('touchstart', function (event) {
+          pointerStartX = event.touches && event.touches[0] ? event.touches[0].clientX : null;
+        }, { passive: true });
+
+        viewport.addEventListener('touchend', function (event) {
+          if (pointerStartX === null) return;
+          var endX = event.changedTouches && event.changedTouches[0] ? event.changedTouches[0].clientX : pointerStartX;
+          var delta = endX - pointerStartX;
+          if (Math.abs(delta) > 44) {
+            index = clamp(index + (delta < 0 ? 1 : -1), 0, cards.length - 1);
+            sync(true);
+          }
+          pointerStartX = null;
+        }, { passive: true });
+
+        window.addEventListener('resize', function () {
+          sync(false);
+        });
+
+        sync(false);
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        renderTracks();
+        initStats();
+        initReveal();
+        initCarousel();
+      });
+    })();
+  </script>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+      <div class="row mb-5">
+        <div class="col-md-12 text-center">
+          <p>
+            <a href="https://www.facebook.com/m14chaitanya" class="social-item"><span class="icon-facebook2"></span></a>
+            <a href="#" class="social-item"><span class="icon-twitter"></span></a>
+            <a href="https://www.instagram.com/m17chaitanya/" class="social-item"><span class="icon-instagram2"></span></a>
+            <a href="https://www.linkedin.com/in/manuchaitanya/" class="social-item"><span class="icon-linkedin2"></span></a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="js/back-nav.js"></script>
+  <script src="js/home-page-system.js"></script>
+  <script src="js/theme-toggle.js"></script>
+</body>
+</html>

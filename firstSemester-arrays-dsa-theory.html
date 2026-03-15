@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Arrays DSA Theory</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/topic-pages.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+  <style>
+    :root{--page-accent:#7ce36b;--page-blue:#47b0ff;--page-green:#12cb63;}
+  </style>
+  <link rel="stylesheet" href="css/mobile-responsive.css">
+  <link rel="stylesheet" href="css/home-page-system.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+</head>
+<body data-spy="scroll" data-target="#pb-navbar" data-offset="200" class="theory-page">
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsArraysDsaTheory" aria-controls="navbarsArraysDsaTheory" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbarsArraysDsaTheory">
+        <ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="firstSemester-arrays-dsa.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li><li class="nav-item"><a class="nav-link" href="#section-arrays">Array Basics</a></li><li class="nav-item"><a class="nav-link" href="#section-creation">Creation Flow</a></li><li class="nav-item"><a class="nav-link" href="#section-operations">Operations</a></li><li class="nav-item"><a class="nav-link" href="#section-problem-bank">Practice Bank</a></li></ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="page-shell">
+      <div class="hero-bar reveal-up">
+        <div>
+          <span class="hero-kicker">Theory · Arrays DSA</span>
+          <h1>Theory: <strong>Arrays DSA</strong></h1>
+          <p>This page converts the source PDF into a structured lesson view. The reading flow stays centered on Array Structure, Creation Flow, Traversal Patterns, and the Problem-Bank Bridge into the Java source.</p>
+        </div>
+        <div class="hero-actions"><a href="assets/first-semester/arrays-dsa/theory.pdf" class="btn btn-primary px-4 py-3" target="_blank">Open PDF</a><a href="assets/first-semester/arrays-dsa/theory.pdf" class="btn btn-secondary px-4 py-3" download>Download PDF</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section pb-5">
+    <div class="page-shell">
+      <div class="page-board reveal-up">
+        <div class="board-grid">
+          <aside class="nav-card">
+            <div class="section-kicker">Reading Path</div>
+            <h3>Jump to any Theory Block</h3>
+            <a href="#section-arrays"><span>Array Basics</span><span class="icon-chevron-right"></span></a><a href="#section-creation"><span>Creation Flow</span><span class="icon-chevron-right"></span></a><a href="#section-operations"><span>Operations</span><span class="icon-chevron-right"></span></a><a href="#section-problem-bank"><span>Practice Bank</span><span class="icon-chevron-right"></span></a>
+            
+          </aside>
+          <div class="content-stack"><article class="info-card reveal-up" id="section-arrays">
+              <div class="section-kicker">Array Basics</div>
+              <h2>An array is a fixed-size indexed structure for same-type elements</h2>
+              <p>The theory frames arrays as one of the most used data structures in Java. They store elements of the same data type in sequential memory-style order and use indices for access.</p><p>That index-based access is the key idea: arrays are not just containers, they are containers with position. Once indexing matters, traversal strategy matters too.</p>
+              
+              <div class="callout-grid"><div class="mini-callout"><small>Indexing</small><strong>Indexing starts at zero</strong><span>Java arrays use zero-based indexing, so the first element sits at index `0`.</span></div><div class="mini-callout"><small>Nature</small><strong>Arrays are fixed-size after creation</strong><span>You choose the size during creation, and that size does not change afterward.</span></div></div>
+            </article><article class="info-card reveal-up" id="section-creation">
+              <div class="section-kicker">Creation Flow</div>
+              <h2>Declaration, creation, and initialization are separate mental steps</h2>
+              <p>The PDF and Java file repeatedly separate array work into declaration, creation, and initialization. That breakdown matters because beginners often blur them into one action.</p><p>You first declare the variable, then create the actual array object with a chosen size, and then initialize or access values by index. The same logic extends from one-dimensional arrays to matrices.</p>
+              
+              <div class="callout-grid"><div class="mini-callout"><small>1D array</small><strong>Single-row storage model</strong><span>Use it for sequences where each value is accessed by one index.</span></div><div class="mini-callout"><small>2D array</small><strong>Matrix-style storage model</strong><span>Use nested indices like `matrix[row][col]` when the structure has rows and columns.</span></div></div>
+            </article><article class="info-card reveal-up" id="section-operations">
+              <div class="section-kicker">Operations</div>
+              <h2>Traversal, length, and search patterns turn arrays into problem-solving tools</h2>
+              <p>The theory introduces `length` as the built-in size property you use to control loops safely. That becomes the bridge from fixed storage into algorithms such as traversal, comparison, aggregation, and searching.</p><p>In the Java source, those basics quickly expand into running sums, permutation building, doubling arrays, max-based comparisons, linear scanning, and binary search.</p>
+              
+              <div class="callout-grid"><div class="mini-callout"><small>Linear search</small><strong>Good for unsorted arrays</strong><span>Scan one element at a time when no ordering guarantee exists.</span></div><div class="mini-callout"><small>Binary search</small><strong>Good for sorted search spaces</strong><span>Reduce the search range by comparing against the midpoint in a sorted array.</span></div></div>
+            </article><article class="info-card reveal-up" id="section-problem-bank">
+              <div class="section-kicker">Practice Bank</div>
+              <h2>The code file evolves from theory into a large structured exercise bank</h2>
+              <p>Unlike the lighter topics, Arrays DSA comes with a long `Main.java` source that acts as a running notebook of solved problems. The file is explicitly divided into Exercise-2, Exercise-3, and Exercise-4 blocks.</p><p>That makes this topic the first one where the theory page and code page are tightly connected: the PDF gives the model, and the Java file becomes the larger practice lab.</p>
+              
+              <div class="callout-grid"><div class="mini-callout"><small>Exercise-2</small><strong>Core array and matrix patterns</strong><span>The first large block covers rearrangement, sums, comparisons, scanning, and search routines.</span></div><div class="mini-callout"><small>Exercise-4</small><strong>Harder problem progression</strong><span>The final block lists advanced problems such as intervals, DP-flavored tasks, and bounded-search setups.</span></div></div>
+            </article></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/vendor/popper.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/jquery.easing.1.3.js"></script>
+  <script src="js/vendor/jquery.stellar.min.js"></script>
+  <script src="js/vendor/jquery.waypoints.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="js/topic-pages.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      TopicPages.initReveal();
+
+    })();
+  </script>
+  <script src="js/back-nav.js"></script>
+  <script src="js/home-page-system.js"></script>
+  <script src="js/theme-toggle.js"></script>
+</body>
+</html>

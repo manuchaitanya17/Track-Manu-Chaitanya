@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Overview - Subscription Billing Automation</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/experience-pages.css">
+  <link rel="stylesheet" href="css/mobile-responsive.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="css/home-page-system.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+</head>
+<body class="experience-body" data-spy="scroll" data-target="#pb-navbar" data-offset="200">
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-subscription-billing-overview" aria-controls="nav-subscription-billing-overview" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-md-center" id="nav-subscription-billing-overview">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="experience-subscription-billing.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-overview-home">Overview</a></li><li class="nav-item"><a class="nav-link" href="#section-overview-content">Details</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <section class="experience-hero" id="section-overview-home">
+    <div class="experience-shell">
+      <div class="row align-items-center">
+        <div class="col-xl-7 col-lg-7 mb-5 mb-lg-0">
+          <span class="experience-pill reveal">Technical Overview</span>
+          <h1 class="experience-title reveal">Subscription Billing Automation <strong>Subscription Billing Automation</strong></h1>
+          <div class="experience-meta reveal"><div class="experience-meta-chip">Internship Capstone-II</div><div class="experience-meta-chip">Subscription Records</div><div class="experience-meta-chip">Recurring Invoice Automation</div></div>
+          <p class="experience-lead reveal">This overview is built from the project report and the live scripts in the package. It explains how one Sales Order turns into a durable subscription state and then into renewal invoices on the correct cadence.</p>
+          
+          <div class="experience-actions reveal"><a href="assets/experience/subscription-billing/Technical_Document.docx" class="btn btn-primary px-4 py-3">Download Technical Doc</a><a href="experience-subscription-billing-scripts.html" class="btn btn-secondary px-4 py-3">Open Scripts Explorer</a></div>
+        </div>
+        <div class="col-xl-5 col-lg-5">
+          <div class="experience-panel reveal">
+            <div class="panel-kicker">Automation Frame</div>
+            <h3>Recurring Billing With Clear State Between Runs</h3>
+            <p class="panel-copy">The key architectural decision in Subscription Billing is to persist each subscription line into a custom record with its own next date. That creates a stable state layer between order entry and invoice generation.</p>
+            <div class="experience-stats"><div class="experience-stat"><div class="experience-stat-label">Core Scripts</div><div class="experience-stat-value">3</div><div class="experience-stat-sub">UE create subscriptions, MR create invoice, and frequency library</div></div><div class="experience-stat"><div class="experience-stat-label">State Holder</div><div class="experience-stat-value">SUB</div><div class="experience-stat-sub">Custom subscription record carries start, end, rate, quantity, and next date</div></div><div class="experience-stat"><div class="experience-stat-label">Grouping Rule</div><div class="experience-stat-value">C+SO+ND</div><div class="experience-stat-sub">Invoices are grouped by customer, sales order, and next date</div></div><div class="experience-stat"><div class="experience-stat-label">Business Goal</div><div class="experience-stat-value">AUTO</div><div class="experience-stat-sub">Reduce manual renewal-order creation and renewal invoicing work</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<section class="experience-section" id="section-overview-content">
+    <div class="experience-shell">
+      <div class="fdd-overview reveal">
+        <aside class="fdd-sidebar">
+          <div class="panel-kicker">From the Report</div>
+          <h3>What the Package Covers</h3>
+          <p class="fdd-copy">The report and the scripts line up closely. The user event creates subscriptions. The map/reduce bills due subscriptions. The helper library computes the next dates using frequency metadata.</p>
+          <div class="experience-card-meta"><span class="experience-note-chip">Sales Order Trigger</span><span class="experience-note-chip">Custom Subscription Record</span><span class="experience-note-chip">Map/Reduce Billing</span><span class="experience-note-chip">Frequency Logic</span></div>
+          <ul class="fdd-list"><li><strong>Input Record</strong><span>Sales Order with subscription-marked item lines</span></li><li><strong>State Layer</strong><span>customrecord_crowe_subscription with next billing date</span></li><li><strong>Billing Run</strong><span>Due subscriptions are grouped and transformed into invoices</span></li><li><strong>Write Back</strong><span>Dates advance after successful invoice creation</span></li></ul>
+        </aside>
+        <div class="fdd-main">
+          <div class="surface-kicker">Technical Narrative</div>
+          <h3>How the Subscription Billing Automation Works</h3>
+          <div class="fdd-section"><h4>Business Problem</h4><p class="fdd-copy">The report makes the original problem simple: the business needed a way to let customers order once and then continue to receive invoices on a subscription basis without recreating renewal orders manually. Manual recurrence handling is slow, easy to mis-time, and fragile when quantities or frequencies vary across item lines.</p><p class="fdd-copy">The project solves that by separating order entry from renewal execution. The Sales Order becomes the origin point, but the ongoing billing logic is carried by a custom subscription record that persists the relevant fields and next billing date.</p></div><div class="fdd-section"><h4>Technical Flow</h4><p class="fdd-copy">The user event runs when the Sales Order is created or edited. It inspects each line, checks whether the subscription flag is set, and then creates a custom subscription record for every qualifying line. That record stores the customer, item, frequency, start date, end date, rate, quantity, amount, originating order, and computed next date.</p><p class="fdd-copy">The frequency library provides the date math. It looks up a frequency record, reads month and day offsets, and calculates the next billing date. That keeps the cadence logic centralized instead of hardcoding frequency rules into the user event or map/reduce.</p></div><div class="fdd-section"><h4>Renewal Invoice Generation</h4><p class="fdd-copy">The map/reduce then finds all due, active subscriptions, groups them by customer, originating Sales Order, and next date, and creates one invoice per group. That grouping rule matters because it keeps invoices aligned to the subscription state that actually became due together, rather than generating one invoice per line or one invoice across unrelated dates.</p><p class="fdd-copy">After a successful invoice save, the script writes back to the subscription records and advances the subscription dates. That completes the loop and turns the package into a real recurring-billing engine rather than a one-time document generator.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/vendor/popper.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/jquery.easing.1.3.js"></script>
+  <script src="js/vendor/jquery.stellar.min.js"></script>
+  <script src="js/vendor/jquery.waypoints.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="js/experience-pages.js"></script>
+  <script src="js/back-nav.js"></script>
+  
+  <script src="js/home-page-system.js"></script>
+  <script src="js/theme-toggle.js"></script>
+</body>
+</html>

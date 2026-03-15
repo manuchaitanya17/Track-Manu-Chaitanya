@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Strings DSA Exercise-1</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+  <style>
+    :root{
+      --quiz-accent: #bac964;
+      --quiz-green: #12cb63;
+      --quiz-red: #ff5f57;
+      --quiz-blue: #47b0ff;
+      --quiz-bg: #171717;
+      --quiz-muted: rgba(255,255,255,0.74);
+      --quiz-soft: rgba(255,255,255,0.48);
+      --quiz-border: rgba(255,255,255,0.1);
+    }
+
+    html{ scroll-behavior: smooth; }
+
+    body{
+      color: #fff;
+      background:
+        radial-gradient(circle at top left, rgba(71,176,255,0.1), transparent 18%),
+        radial-gradient(circle at bottom right, rgba(186,201,100,0.1), transparent 18%),
+        var(--quiz-bg);
+      overflow-x: hidden;
+    }
+
+    .quiz-shell{ width: min(94vw, 1340px); margin: 0 auto; }
+
+    .quiz-hero{
+      position: relative;
+      padding: 10rem 0 3rem;
+      background:
+        radial-gradient(circle at 18% 16%, rgba(71,176,255,0.12), transparent 18%),
+        linear-gradient(150deg, rgba(19,19,19,0.98), rgba(31,31,31,0.96));
+      overflow: hidden;
+    }
+
+    .quiz-hero:before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.024) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.024) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.95), rgba(0,0,0,0.28));
+      pointer-events: none;
+    }
+
+    .quiz-hero .quiz-shell,
+    .quiz-section .quiz-shell{ position: relative; z-index: 1; }
+
+    .hero-bar,
+    .score-board,
+    .question-card,
+    .source-card,
+    .code-slab{
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      border: 1px solid var(--quiz-border);
+      box-shadow: 0 24px 72px rgba(0,0,0,0.22);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-bar{
+      border-radius: 34px;
+      padding: 1.7rem 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .hero-kicker,
+    .section-kicker{
+      display: inline-flex;
+      align-items: center;
+      padding: 0.46rem 0.92rem;
+      border-radius: 999px;
+      color: var(--quiz-accent);
+      background: rgba(186,201,100,0.1);
+      border: 1px solid rgba(186,201,100,0.26);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.76rem;
+      font-weight: 700;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-bar h1{
+      font-size: clamp(2.3rem, 4vw, 4.2rem);
+      letter-spacing: -0.05em;
+      margin-bottom: 0.55rem;
+      line-height: 0.96;
+    }
+
+    .hero-bar p{ color: var(--quiz-muted); line-height: 1.8; margin-bottom: 0; max-width: 46rem; }
+
+    .hero-actions{ display: flex; flex-wrap: wrap; gap: 10px; }
+    .hero-actions .btn{ min-width: 180px; }
+
+    .quiz-section{ padding: 2rem 0 5rem; }
+
+    .quiz-grid{
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .score-board,
+    .source-card{
+      border-radius: 24px;
+      padding: 1.35rem;
+      margin-bottom: 18px;
+    }
+
+    .score-board h3,
+    .source-card h3{ font-size: 1.18rem; margin-bottom: 0.9rem; }
+
+    .score-strip{
+      display: grid;
+      gap: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .score-metric{
+      border-radius: 16px;
+      padding: 0.95rem 1rem;
+      background: rgba(0,0,0,0.16);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .score-metric small{
+      display: block;
+      color: var(--quiz-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.7rem;
+      margin-bottom: 0.35rem;
+      font-weight: 700;
+    }
+
+    .score-metric strong{
+      color: var(--quiz-accent);
+      font-size: 1.9rem;
+      line-height: 1;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .score-metric span,
+    .source-card p{ color: var(--quiz-muted); line-height: 1.7; display: block; margin-bottom: 0; }
+
+    .source-links{ display: grid; gap: 10px; margin-top: 1rem; }
+
+    .source-links .btn{ width: 100%; }
+
+    .question-list{ display: grid; gap: 18px; }
+
+    .question-card{
+      border-radius: 26px;
+      padding: 1.4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .question-card:before{
+      content: "";
+      position: absolute;
+      inset: auto -12% -34% auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(71,176,255,0.12), transparent 72%);
+      pointer-events: none;
+    }
+
+    .question-card > *{ position: relative; z-index: 1; }
+
+    .question-head{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 1rem;
+    }
+
+    .question-tag{
+      display: inline-flex;
+      align-items: center;
+      padding: 0.45rem 0.78rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.86);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .question-source{ color: var(--quiz-soft); font-size: 0.86rem; }
+
+    .question-title{
+      font-size: 1.22rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .code-slab{
+      border-radius: 18px;
+      padding: 1rem 1.05rem;
+      margin-bottom: 1rem;
+      background: rgba(9, 12, 16, 0.9);
+      border: 1px solid rgba(71,176,255,0.14);
+      overflow-x: auto;
+    }
+
+    .code-slab pre{ margin: 0; color: #d6e8ff; font-size: 0.92rem; line-height: 1.7; }
+
+    .options-grid{ display: grid; gap: 10px; }
+
+    .option-btn{
+      width: 100%;
+      text-align: left;
+      padding: 0.95rem 1rem;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #fff;
+      transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+      font-weight: 700;
+    }
+
+    .option-btn:hover:not(:disabled){
+      transform: translateX(3px);
+      border-color: rgba(186,201,100,0.22);
+    }
+
+    .option-btn:disabled{ cursor: default; opacity: 1; }
+
+    .option-btn.correct{
+      background: rgba(18,203,99,0.18);
+      border-color: rgba(18,203,99,0.4);
+      color: #dbffe9;
+    }
+
+    .option-btn.wrong{
+      background: rgba(255,95,87,0.16);
+      border-color: rgba(255,95,87,0.4);
+      color: #ffd9d6;
+    }
+
+    .answer-note{
+      margin-top: 0.95rem;
+      padding: 0.85rem 0.95rem;
+      border-radius: 14px;
+      background: rgba(0,0,0,0.16);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: var(--quiz-muted);
+      line-height: 1.7;
+    }
+
+    .answer-note strong{ color: #fff; }
+
+    .reveal-up{
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-up.is-visible{ opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 1199.98px){
+      .quiz-grid{ grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 767.98px){
+      .quiz-hero{ padding: 8.4rem 0 2.4rem; }
+      .hero-actions .btn{ width: 100%; }
+    }
+  </style>
+  <link rel="stylesheet" href="css/mobile-responsive.css">
+  <link rel="stylesheet" href="css/home-page-system.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+</head>
+<body data-spy="scroll" data-target="#pb-navbar" data-offset="200">
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsStringQuiz" aria-controls="navbarsStringQuiz" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbarsStringQuiz">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="firstSemester-string-dsa.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-quiz">Quiz</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="quiz-hero">
+    <div class="quiz-shell">
+      <div class="hero-bar reveal-up">
+        <div>
+          <span class="hero-kicker">Exercise-1 · String DSA</span>
+          <h1><strong>MCQ Practice</strong></h1>
+          <p>A question stream where each option click immediately reveals correctness.</p>
+        </div>
+        <div class="hero-actions">
+          <a href="assets/first-semester/string-dsa/exercise-1-i.pdf" class="btn btn-primary px-4 py-3" target="_blank">Open Exercise-1(I)</a>
+          <a href="assets/first-semester/string-dsa/exercise-1-ii.pdf" class="btn btn-secondary px-4 py-3" target="_blank">Open Exercise-1(II)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quiz-section" id="section-quiz">
+    <div class="quiz-shell">
+      <div class="quiz-grid">
+        <aside>
+          <div class="score-board reveal-up">
+            <div class="section-kicker">Scoreboard</div>
+            <h3>Live answer status</h3>
+            <div class="score-strip">
+              <div class="score-metric">
+                <small>Questions</small>
+                <strong id="metricQuestions">0</strong>
+                <span>Total Questions on this page.</span>
+              </div>
+              <div class="score-metric">
+                <small>Answered</small>
+                <strong id="metricAnswered">0</strong>
+                <span>Updates when a Question is locked.</span>
+              </div>
+              <div class="score-metric">
+                <small>Correct</small>
+                <strong id="metricCorrect">0</strong>
+                <span>Counts only right first-click answers.</span>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-block px-4 py-3" id="resetQuizBtn">Reset Quiz</button>
+          </div>
+
+          <div class="source-card reveal-up">
+            <div class="section-kicker">Source Material</div>
+            <h3>Exercise files retained</h3>
+            <p>The original PDFs are still attached here for direct reference.</p>
+            <div class="source-links">
+              <a href="assets/first-semester/string-dsa/exercise-1-i.pdf" class="btn btn-secondary px-4 py-3" download>Download Exercise-1(I)</a>
+              <a href="assets/first-semester/string-dsa/exercise-1-ii.pdf" class="btn btn-secondary px-4 py-3" download>Download Exercise-1(II)</a>
+            </div>
+          </div>
+        </aside>
+
+        <div class="question-list" id="questionList"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/vendor/popper.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/jquery.easing.1.3.js"></script>
+  <script src="js/vendor/jquery.stellar.min.js"></script>
+  <script src="js/vendor/jquery.waypoints.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script>
+    (function () {
+      "use strict";
+
+      var QUESTIONS = [
+        {
+          tag: "Q1",
+          source: "Theory.pdf",
+          prompt: "Which statement best describes a Java String?",
+          options: [
+            "A primitive type for storing text",
+            "An object that represents a sequence of characters",
+            "A mutable array that always lives on the stack",
+            "A class used only for file names"
+          ],
+          correct: 1,
+          explanation: "The theory PDF defines String as an object that represents a sequence of characters."
+        },
+        {
+          tag: "Q2",
+          source: "Theory.pdf",
+          prompt: "Which interface is implemented by String, StringBuffer, and StringBuilder?",
+          options: [
+            "Iterable",
+            "ComparableList",
+            "CharSequence",
+            "CloneableText"
+          ],
+          correct: 2,
+          explanation: "The source explicitly introduces CharSequence as the common interface-level abstraction for these text containers."
+        },
+        {
+          tag: "Q3",
+          source: "Theory.pdf",
+          prompt: "What does `new String(\"Hello\")` guarantee when executed in Java?",
+          code: 'String text = new String("Hello");',
+          options: [
+            "It always reuses the pooled literal and never allocates",
+            "It always creates a new object in heap memory",
+            "It stores the String on the stack only",
+            "It mutates the existing pooled String"
+          ],
+          correct: 1,
+          explanation: "The theory distinguishes literal reuse from `new`, and states that `new` always creates a new heap object."
+        },
+        {
+          tag: "Q4",
+          source: "Theory.pdf",
+          prompt: "What is the role of `intern()` in String handling?",
+          options: [
+            "It converts every String into uppercase",
+            "It deletes duplicate heap Strings automatically",
+            "It returns the pooled reference and can place the String into the pool if needed",
+            "It compares two Strings without case sensitivity"
+          ],
+          correct: 2,
+          explanation: "Manual interning is used to resolve a String to the pool-backed reference path."
+        },
+        {
+          tag: "Q5",
+          source: "Theory.pdf",
+          prompt: "Which method should be used to compare two Strings by content?",
+          options: [
+            "==",
+            "equals()",
+            "compareByReference()",
+            "same()"
+          ],
+          correct: 1,
+          explanation: "`equals()` checks character content, while `==` checks reference identity."
+        },
+        {
+          tag: "Q6",
+          source: "Theory.pdf",
+          prompt: "What does `trim()` do?",
+          options: [
+            "Removes all spaces from the String",
+            "Removes only spaces between words",
+            "Removes leading and trailing whitespace",
+            "Cuts the String to half length"
+          ],
+          correct: 2,
+          explanation: "The method description in the theory PDF specifically covers leading and trailing whitespace removal."
+        },
+        {
+          tag: "Q7",
+          source: "Theory.pdf",
+          prompt: "What is the output type of `String.valueOf(true)`?",
+          options: [
+            "boolean",
+            "char[]",
+            "String",
+            "StringBuilder"
+          ],
+          correct: 2,
+          explanation: "`valueOf()` converts supported input types into a String representation."
+        },
+        {
+          tag: "Q8",
+          source: "Exercise-1(II).pdf",
+          prompt: "Which class is mutable and designed for thread-safe string operations?",
+          options: [
+            "String",
+            "StringBuffer",
+            "StringPool",
+            "CharSequence"
+          ],
+          correct: 1,
+          explanation: "`StringBuffer` is mutable and synchronized, unlike immutable `String` and unsynchronized `StringBuilder`."
+        },
+        {
+          tag: "Q9",
+          source: "Theory.pdf",
+          prompt: "What does `split(\" \")` return?",
+          options: [
+            "A single trimmed String",
+            "A character array",
+            "An array of strings",
+            "A boolean indicating a successful split"
+          ],
+          correct: 2,
+          explanation: "The theory page defines `split()` as returning an array of strings based on the supplied regex."
+        },
+        {
+          tag: "Q10",
+          source: "Exercise-1(I).pdf",
+          prompt: "What gets printed here?",
+          code: [
+            'String s1 = new String("Hello");',
+            'String s2 = new String("Hellow");',
+            'System.out.println(s1 = s2);'
+          ].join('\n'),
+          options: [
+            "Hello",
+            "Hellow",
+            "Compilation error",
+            "Throws an exception"
+          ],
+          correct: 1,
+          explanation: "The statement uses assignment, not comparison. `s1` is assigned the value of `s2`, so `Hellow` is printed."
+        },
+        {
+          tag: "Q11",
+          source: "Exercise-1(II).pdf",
+          prompt: "Why are Strings commonly used as HashMap keys?",
+          options: [
+            "Because their values are immutable and produce stable lookup behavior",
+            "Because Strings are always stored on the stack",
+            "Because Strings automatically encrypt themselves",
+            "Because String keys skip hash code calculation"
+          ],
+          correct: 0,
+          explanation: "The interview PDF notes that immutability keeps String keys stable, which is critical for consistent hashing and retrieval."
+        },
+        {
+          tag: "Q12",
+          source: "Theory.pdf",
+          prompt: "Which method returns a newly created character array from a String?",
+          options: [
+            "substring()",
+            "split()",
+            "toCharArray()",
+            "contains()"
+          ],
+          correct: 2,
+          explanation: "`toCharArray()` converts the String into a new character array."
+        }
+      ];
+
+      function $(id) { return document.getElementById(id); }
+
+      function escapeHtml(text) {
+        return String(text)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/\"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function renderQuestions() {
+        var root = $("questionList");
+        if (!root) return;
+
+        root.innerHTML = QUESTIONS.map(function (question, index) {
+          var codeBlock = question.code ? [
+            '<div class="code-slab"><pre><code>', escapeHtml(question.code), '</code></pre></div>'
+          ].join("") : "";
+
+          var options = question.options.map(function (option, optionIndex) {
+            return [
+              '<button class="option-btn" type="button" data-question="', index, '" data-option="', optionIndex, '">',
+                escapeHtml(option),
+              '</button>'
+            ].join("");
+          }).join("");
+
+          return [
+            '<article class="question-card reveal-up" data-question-card="', index, '">',
+              '<div class="question-head">',
+                '<div class="question-tag">', escapeHtml(question.tag), '</div>',
+                '<div class="question-source">', escapeHtml(question.source), '</div>',
+              '</div>',
+              '<h2 class="question-title">', escapeHtml(question.prompt), '</h2>',
+              codeBlock,
+              '<div class="options-grid">', options, '</div>',
+              '<div class="answer-note" hidden><strong>Explanation:</strong> <span>', escapeHtml(question.explanation), '</span></div>',
+            '</article>'
+          ].join("");
+        }).join("");
+      }
+
+      function updateMetrics() {
+        var answered = 0;
+        var correct = 0;
+
+        Array.prototype.forEach.call(document.querySelectorAll("[data-question-card]"), function (card) {
+          if (card.getAttribute("data-locked") === "true") {
+            answered += 1;
+            if (card.getAttribute("data-correct") === "true") correct += 1;
+          }
+        });
+
+        $("metricQuestions").textContent = String(QUESTIONS.length);
+        $("metricAnswered").textContent = String(answered);
+        $("metricCorrect").textContent = String(correct);
+      }
+
+      function handleOptionClick(event) {
+        var button = event.target.closest(".option-btn");
+        if (!button) return;
+
+        var questionIndex = Number(button.getAttribute("data-question"));
+        var selectedIndex = Number(button.getAttribute("data-option"));
+        var question = QUESTIONS[questionIndex];
+        var card = button.closest("[data-question-card]");
+        if (!question || !card || card.getAttribute("data-locked") === "true") return;
+
+        var buttons = card.querySelectorAll(".option-btn");
+        Array.prototype.forEach.call(buttons, function (optionButton, index) {
+          optionButton.disabled = true;
+          if (index === question.correct) optionButton.classList.add("correct");
+          if (index === selectedIndex && selectedIndex !== question.correct) optionButton.classList.add("wrong");
+        });
+
+        card.setAttribute("data-locked", "true");
+        card.setAttribute("data-correct", String(selectedIndex === question.correct));
+        card.querySelector(".answer-note").hidden = false;
+        updateMetrics();
+      }
+
+      function resetQuiz() {
+        renderQuestions();
+        updateMetrics();
+        initReveal();
+      }
+
+      function initReveal() {
+        var elements = document.querySelectorAll(".reveal-up");
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          });
+        }, { threshold: 0.14 });
+
+        Array.prototype.forEach.call(elements, function (el, index) {
+          el.style.transitionDelay = Math.min(index * 45, 420) + "ms";
+          observer.observe(el);
+        });
+      }
+
+      function init() {
+        renderQuestions();
+        updateMetrics();
+        initReveal();
+        document.addEventListener("click", handleOptionClick);
+        $("resetQuizBtn").addEventListener("click", resetQuiz);
+      }
+
+      document.addEventListener("DOMContentLoaded", init);
+    })();
+  </script>
+  <script src="js/back-nav.js"></script>
+  <script src="js/home-page-system.js"></script>
+  <script src="js/theme-toggle.js"></script>
+</body>
+</html>

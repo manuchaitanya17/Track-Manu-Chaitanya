@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>First Semester | 1.1 Introduction To Programming</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+  <style>
+    :root{
+      --semester-accent: #bac964;
+      --semester-green: #12cb63;
+      --semester-blue: #36a8ef;
+      --semester-ink: #1f1f1f;
+      --semester-panel: rgba(255,255,255,0.06);
+      --semester-panel-strong: rgba(255,255,255,0.09);
+      --semester-border: rgba(255,255,255,0.10);
+      --semester-muted: rgba(255,255,255,0.72);
+      --semester-soft: rgba(255,255,255,0.46);
+    }
+
+    html{
+      scroll-behavior: smooth;
+    }
+
+    body{
+      color: #fff;
+      background:
+        radial-gradient(circle at top left, rgba(186, 201, 100, 0.10), transparent 22%),
+        radial-gradient(circle at top right, rgba(54, 168, 239, 0.10), transparent 22%),
+        radial-gradient(circle at bottom right, rgba(18, 203, 99, 0.06), transparent 20%),
+        #1d1d1d;
+      overflow-x: hidden;
+    }
+
+    .first-sem-shell{
+      width: min(94vw, 1680px);
+      margin: 0 auto;
+    }
+
+    .first-sem-hero{
+      position: relative;
+      padding: 10.5rem 0 5rem;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 14% 14%, rgba(186, 201, 100, 0.16), transparent 16%),
+        radial-gradient(circle at 80% 18%, rgba(54, 168, 239, 0.12), transparent 18%),
+        linear-gradient(140deg, rgba(26,26,26,0.98), rgba(35,35,35,0.96));
+    }
+
+    .first-sem-hero:before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.95), rgba(0,0,0,0.3));
+      pointer-events: none;
+    }
+
+    .first-sem-hero .first-sem-shell{
+      position: relative;
+      z-index: 1;
+    }
+
+    .semester-banner{
+      position: relative;
+      min-height: 230px;
+      border-radius: 42px;
+      padding: clamp(1.8rem, 3vw, 2.8rem);
+      background:
+        radial-gradient(circle at 78% 26%, rgba(18, 203, 99, 0.12), transparent 22%),
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 28px 90px rgba(0,0,0,0.26);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .semester-banner:after{
+      content: "";
+      position: absolute;
+      right: -36px;
+      bottom: -40px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(186, 201, 100, 0.22), rgba(186, 201, 100, 0.02) 70%, transparent 74%);
+      animation: pulseBanner 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes pulseBanner{
+      0%, 100%{ transform: scale(1); opacity: 0.55; }
+      50%{ transform: scale(1.08); opacity: 0.96; }
+    }
+
+    .semester-banner-kicker{
+      display: inline-flex;
+      align-items: center;
+      padding: 0.48rem 0.98rem;
+      border-radius: 999px;
+      color: var(--semester-accent);
+      border: 1px solid rgba(186, 201, 100, 0.28);
+      background: rgba(186, 201, 100, 0.08);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .semester-banner h1{
+      font-size: clamp(3rem, 5vw, 5rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin-bottom: 0;
+      font-weight: 200;
+    }
+
+    .semester-banner h1 strong{
+      font-weight: 700;
+    }
+
+    .course-overview{
+      margin-top: 2.2rem;
+    }
+
+    .course-overview-title{
+      font-size: clamp(2.1rem, 3vw, 3rem);
+      letter-spacing: -0.03em;
+      margin-bottom: 0.9rem;
+    }
+
+    .course-overview-copy{
+      color: var(--semester-muted);
+      font-size: 1.12rem;
+      line-height: 1.9;
+      max-width: 48rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .course-metrics{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 1.6rem;
+    }
+
+    .metric-chip{
+      padding: 0.78rem 1rem;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.84);
+      font-weight: 700;
+    }
+
+    .hero-actions .btn{
+      min-width: 180px;
+      margin-right: 12px;
+      margin-bottom: 12px;
+    }
+
+    .overview-panel{
+      position: relative;
+      border-radius: 28px;
+      padding: 1.7rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 20px 64px rgba(0,0,0,0.24);
+      overflow: hidden;
+    }
+
+    .overview-panel:before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(54, 168, 239, 0.16), transparent 18%),
+        radial-gradient(circle at 20% 86%, rgba(18, 203, 99, 0.12), transparent 18%);
+      pointer-events: none;
+    }
+
+    .panel-kicker{
+      color: var(--semester-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 0.85rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .overview-panel h3,
+    .section-title{
+      position: relative;
+      z-index: 1;
+    }
+
+    .overview-panel-copy{
+      color: var(--semester-muted);
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .week-grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 1.2rem;
+    }
+
+    .week-chip{
+      min-height: 112px;
+      border-radius: 16px;
+      padding: 1rem;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .week-chip small{
+      color: var(--semester-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.7rem;
+    }
+
+    .week-chip span{
+      color: #fff;
+      font-weight: 700;
+      line-height: 1.16;
+      font-size: 0.98rem;
+    }
+
+    .overview-stats{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .overview-stat{
+      border-radius: 16px;
+      padding: 1rem;
+      background: rgba(0,0,0,0.16);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .overview-stat-label{
+      color: var(--semester-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.76rem;
+    }
+
+    .overview-stat-value{
+      margin-top: 0.45rem;
+      color: var(--semester-accent);
+      font-size: 1.95rem;
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    .overview-stat-sub{
+      margin-top: 0.42rem;
+      color: var(--semester-soft);
+      font-size: 0.84rem;
+    }
+
+    .first-sem-section{
+      padding: 0 0 5.5rem;
+    }
+
+    .section-intro{
+      margin-bottom: 2rem;
+    }
+
+    .section-kicker{
+      color: var(--semester-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+    }
+
+    .section-title{
+      font-size: clamp(2rem, 3vw, 3.2rem);
+      letter-spacing: -0.04em;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-copy{
+      color: var(--semester-muted);
+      line-height: 1.85;
+      max-width: 52rem;
+      margin-bottom: 0;
+    }
+
+    .topics-shell{
+      position: relative;
+      border-radius: 34px;
+      padding: clamp(1.6rem, 2.8vw, 2.5rem);
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 24px 72px rgba(0,0,0,0.20);
+      overflow: hidden;
+    }
+
+    .topics-grid{
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .topic-card{
+      position: relative;
+      min-height: 240px;
+      padding: 1.5rem 1.3rem 1.4rem;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.20), rgba(0,0,0,0.10));
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+      overflow: hidden;
+    }
+
+    .topic-card.is-linked{
+      cursor: pointer;
+    }
+
+    .topic-card:hover{
+      transform: translateY(-8px);
+      border-color: rgba(186, 201, 100, 0.20);
+      box-shadow: 0 22px 56px rgba(0,0,0,0.24);
+    }
+
+    .topic-card:before{
+      content: "";
+      position: absolute;
+      inset: auto -10% -35% auto;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(18, 203, 99, 0.10), transparent 70%);
+      pointer-events: none;
+    }
+
+    .folder-icon{
+      position: relative;
+      width: 92px;
+      height: 66px;
+      margin-bottom: 1.35rem;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #73d6ff, #3fa8dc);
+      box-shadow: inset 0 -5px 0 rgba(0,0,0,0.08), 0 10px 22px rgba(0,0,0,0.16);
+    }
+
+    .folder-icon:before{
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: -10px;
+      width: 34px;
+      height: 18px;
+      border-radius: 10px 10px 0 0;
+      background: linear-gradient(180deg, #52c0f7, #3199d3);
+    }
+
+    .topic-number{
+      color: rgba(255,255,255,0.48);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      margin-bottom: 0.55rem;
+    }
+
+    .topic-title{
+      font-size: 1.35rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 0;
+    }
+
+    .topic-bar{
+      margin-top: 1.2rem;
+      width: 58px;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--semester-accent);
+    }
+
+    .topic-open-pill{
+      position: absolute;
+      right: 1rem;
+      bottom: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.42rem 0.72rem;
+      border-radius: 999px;
+      background: rgba(186, 201, 100, 0.12);
+      border: 1px solid rgba(186, 201, 100, 0.22);
+      color: var(--semester-accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .split-panel{
+      position: relative;
+      border-radius: 34px;
+      padding: clamp(1.6rem, 2.8vw, 2.5rem);
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 24px 72px rgba(0,0,0,0.20);
+      overflow: hidden;
+    }
+
+    .certificate-preview-wrap{
+      position: relative;
+      border-radius: 24px;
+      padding: 1rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 18px 46px rgba(0,0,0,0.18);
+      animation: floatPreview 6.5s ease-in-out infinite;
+    }
+
+    @keyframes floatPreview{
+      0%, 100%{ transform: translateY(0); }
+      50%{ transform: translateY(-8px); }
+    }
+
+    .certificate-preview{
+      width: 100%;
+      border-radius: 18px;
+      display: block;
+    }
+
+    .meta-grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 1.4rem 0 1.5rem;
+    }
+
+    .meta-card{
+      border-radius: 16px;
+      padding: 1rem;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .meta-card small{
+      color: var(--semester-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      display: block;
+      margin-bottom: 0.45rem;
+    }
+
+    .meta-card strong{
+      color: #fff;
+      font-size: 1rem;
+      line-height: 1.35;
+      display: block;
+    }
+
+    .section-actions .btn{
+      min-width: 180px;
+      margin-right: 12px;
+      margin-bottom: 12px;
+    }
+
+    .report-panel{
+      position: relative;
+      border-radius: 34px;
+      padding: clamp(1.6rem, 2.8vw, 2.5rem);
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 24px 72px rgba(0,0,0,0.20);
+    }
+
+    .report-summary{
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 1.5rem;
+    }
+
+    .summary-card{
+      border-radius: 18px;
+      padding: 1rem;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .summary-card small{
+      color: var(--semester-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      display: block;
+      margin-bottom: 0.45rem;
+    }
+
+    .summary-card strong{
+      color: var(--semester-accent);
+      font-size: 1.9rem;
+      line-height: 1;
+      display: block;
+      margin-bottom: 0.42rem;
+    }
+
+    .summary-card span{
+      color: rgba(255,255,255,0.82);
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .report-note{
+      color: var(--semester-soft);
+      margin-bottom: 1.2rem;
+    }
+
+    .report-table-wrap{
+      overflow-x: auto;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.16);
+      margin-bottom: 1.5rem;
+    }
+
+    .report-table{
+      width: 100%;
+      min-width: 920px;
+      border-collapse: collapse;
+    }
+
+    .report-table th,
+    .report-table td{
+      padding: 1rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      vertical-align: top;
+    }
+
+    .report-table th{
+      color: rgba(255,255,255,0.86);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      background: rgba(255,255,255,0.03);
+      white-space: nowrap;
+    }
+
+    .report-table tbody tr:last-child td{
+      border-bottom: 0;
+    }
+
+    .report-table td:first-child,
+    .report-table td:nth-child(2){
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .status-pill{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 62px;
+      padding: 0.4rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.88);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .status-pill.status-d{
+      box-shadow: inset 0 0 0 1px rgba(18, 203, 99, 0.24);
+    }
+
+    .status-pill.status-p{
+      box-shadow: inset 0 0 0 1px rgba(186, 201, 100, 0.24);
+    }
+
+    .status-pill.status-na{
+      color: rgba(255,255,255,0.54);
+    }
+
+    .documents-grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 1.5rem;
+    }
+
+    .document-status{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border-radius: 18px;
+      padding: 1rem 1.1rem;
+      background: rgba(0,0,0,0.16);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .document-status strong{
+      font-size: 1rem;
+      line-height: 1.35;
+    }
+
+    .cheatsheet-panel{
+      position: relative;
+      border-radius: 34px;
+      padding: clamp(1.8rem, 3vw, 2.8rem);
+      background:
+        radial-gradient(circle at 86% 24%, rgba(54, 168, 239, 0.14), transparent 18%),
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 24px 72px rgba(0,0,0,0.20);
+      overflow: hidden;
+    }
+
+    .cheatsheet-panel:after{
+      content: "";
+      position: absolute;
+      right: -40px;
+      bottom: -40px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(186, 201, 100, 0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .download-card{
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      border-radius: 22px;
+      padding: 1.15rem 1.2rem;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 18px 46px rgba(0,0,0,0.16);
+      margin-bottom: 1.4rem;
+      max-width: 540px;
+    }
+
+    .download-card-icon{
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(186, 201, 100, 0.12);
+      color: var(--semester-accent);
+      font-size: 1.5rem;
+      flex: 0 0 auto;
+    }
+
+    .download-card strong{
+      display: block;
+      font-size: 1.05rem;
+      line-height: 1.35;
+    }
+
+    .download-card span{
+      display: block;
+      margin-top: 0.25rem;
+      color: var(--semester-soft);
+      line-height: 1.5;
+    }
+
+    .reveal-up{
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-up.is-visible{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1399.98px){
+      .topics-grid{
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .report-summary{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 1199.98px){
+      .topics-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .documents-grid{
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 991.98px){
+      .first-sem-hero{
+        padding-top: 9rem;
+      }
+
+      .overview-panel{
+        margin-top: 1.5rem;
+      }
+
+      .certificate-preview-wrap{
+        margin-bottom: 1.5rem;
+      }
+
+    }
+
+    @media (max-width: 767.98px){
+      .first-sem-hero{
+        padding: 8rem 0 4.2rem;
+      }
+
+      .course-metrics,
+      .hero-actions .btn,
+      .section-actions .btn,
+      .metric-chip{
+        width: 100%;
+      }
+
+      .week-grid,
+      .overview-stats,
+      .report-summary,
+      .topics-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .semester-banner{
+        border-radius: 28px;
+        min-height: 200px;
+      }
+
+      .topic-card{
+        min-height: 0;
+      }
+
+      .meta-grid{
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="css/mobile-responsive.css">
+  <link rel="stylesheet" href="css/home-page-system.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+</head>
+<body data-spy="scroll" data-target="#pb-navbar" data-offset="200">
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsFirstSemester" aria-controls="navbarsFirstSemester" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbarsFirstSemester">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="firstSemester.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-overview">Overview</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-topics">Topics</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-certificate">Certificate</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-report">Report</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-cheatsheet">Cheatsheet</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="first-sem-hero" id="section-overview">
+    <div class="first-sem-shell">
+      <div class="semester-banner reveal-up">
+        <div>
+          <span class="semester-banner-kicker">First Semester</span>
+          <h1><strong>Academic Foundation</strong></h1>
+        </div>
+      </div>
+
+      <div class="course-overview">
+        <div class="row align-items-start">
+          <div class="col-xl-7 col-lg-7 mb-5 mb-lg-0">
+            <h2 class="course-overview-title reveal-up">Introduction To Programming</h2>
+            <p class="course-overview-copy reveal-up">
+              The planner centers this subject around Java-First Programming Fundamentals, a 10-week completion window, and repeated exercise work across Control Flow, Strings, Arrays, Methods, and Recursion.
+            </p>
+            <div class="course-metrics reveal-up">
+              <div class="metric-chip">8 Core Topics</div>
+              <div class="metric-chip">10-Week Completion Track</div>
+              <div class="metric-chip">Java-First Foundation</div>
+              <div class="metric-chip">240 Planned Practice Questions</div>
+            </div>
+            <div class="hero-actions reveal-up">
+              <a href="#section-topics" class="btn btn-primary px-4 py-3">View Topics</a>
+              <a href="#section-report" class="btn btn-secondary px-4 py-3">Open Report</a>
+            </div>
+          </div>
+
+          <div class="col-xl-5 col-lg-5">
+            <div class="overview-panel reveal-up">
+              <div class="panel-kicker">Course Snapshot</div>
+              <h3>Planner-Backed Study Structure</h3>
+              <p class="overview-panel-copy">
+              </p>
+                 <br/>
+
+              <div class="week-grid" id="weekGrid"></div>
+
+              <div class="overview-stats">
+                <div class="overview-stat">
+                  <div class="overview-stat-label">Topics</div>
+                  <div class="overview-stat-value" id="statTopics">0</div>
+                  <div class="overview-stat-sub">Modules Surfaced on this Page</div>
+                </div>
+                <div class="overview-stat">
+                  <div class="overview-stat-label">Weeks</div>
+                  <div class="overview-stat-value" id="statWeeks">0</div>
+                  <div class="overview-stat-sub">Stated Completion Duration</div>
+                </div>
+                <div class="overview-stat">
+                  <div class="overview-stat-label">Practice</div>
+                  <div class="overview-stat-value" id="statPractice">0</div>
+                  <div class="overview-stat-sub">Planned LeetCode + GFG Questions</div>
+                </div>
+                <div class="overview-stat">
+                  <div class="overview-stat-label">Documents</div>
+                  <div class="overview-stat-value" id="statDocs">0</div>
+                  <div class="overview-stat-sub">Certificate, Report, Cheatsheet</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section first-sem-section" id="section-topics">
+    <div class="first-sem-shell">
+      <div class="section-intro reveal-up">
+        <div class="section-kicker">Topics</div>
+        <h2 class="section-title">Course Topic Map</h2>
+        <p class="section-copy">Introduction to Programming all topics were completed in the First Semester of the academics. It was conducted by Prof. Jagendra Mishra.</p>
+      </div>
+
+      <div class="topics-shell reveal-up">
+        <div class="topics-grid" id="topicsGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section first-sem-section pt-0" id="section-certificate">
+    <div class="first-sem-shell">
+      <div class="section-intro reveal-up">
+        <div class="section-kicker">Certificate</div>
+        <h2 class="section-title">Certificate File</h2>
+        <p class="section-copy">The certificate file inside this semester folder is surfaced as-is. The PDF itself is a LearnQuest/Coursera certificate for <strong>Introduction to Java</strong>.</p>
+      </div>
+
+      <div class="split-panel reveal-up">
+        <div class="row align-items-center">
+          <div class="col-lg-7 mb-4 mb-lg-0">
+            <div class="certificate-preview-wrap">
+              <img src="images/first-semester/certificate-preview.png" alt="Certificate preview" class="certificate-preview">
+            </div>
+          </div>
+
+          <div class="col-lg-5">
+            <div class="panel-kicker">Provided File</div>
+            <h3 class="section-title" style="font-size: clamp(1.8rem, 2.4vw, 2.5rem); margin-bottom: 0.8rem;">LearnQuest Course Certificate</h3>
+            <p class="section-copy" style="margin-bottom: 0; max-width: none;">
+              This asset belongs to the same semester folder and acts as the certificate artifact for the page. The preview is shown here for quick access, while the original PDF remains available for direct opening and download.
+            </p>
+
+            <div class="meta-grid">
+              <div class="meta-card">
+                <small>Recipient</small>
+                <strong>Manu Chaitanya</strong>
+              </div>
+              <div class="meta-card">
+                <small>Issued On</small>
+                <strong>June 8, 2023</strong>
+              </div>
+              <div class="meta-card">
+                <small>Course In File</small>
+                <strong>Introduction to Java</strong>
+              </div>
+              <div class="meta-card">
+                <small>Platform</small>
+                <strong>LearnQuest via Coursera</strong>
+              </div>
+            </div>
+
+            <div class="section-actions">
+              <a href="assets/first-semester/certificate-learnquest.pdf" class="btn btn-primary px-4 py-3" target="_blank">Open Certificate</a>
+              <a href="assets/first-semester/certificate-learnquest.pdf" class="btn btn-secondary px-4 py-3" download>Download PDF</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section first-sem-section pt-0" id="section-report">
+    <div class="first-sem-shell">
+      <div class="section-intro reveal-up">
+        <div class="section-kicker">Course Report</div>
+        <h2 class="section-title">Course Completion Report</h2>
+        <p class="section-copy">This Sections represents the completion track of this course. Please get it done 100% to crack MAANG interviews.
+</p>
+      </div>
+
+      <div class="report-panel reveal-up">
+        <div class="report-summary">
+          <div class="summary-card">
+            <small>Chapters</small>
+            <strong>8</strong>
+          </div>
+          <div class="summary-card">
+            <small>Documents</small>
+            <strong>8</strong>
+          </div>
+          <div class="summary-card">
+            <small>Weeks</small>
+            <strong>10</strong>
+          </div>
+          <div class="summary-card">
+            <small>Status Codes</small>
+            <strong>P / D</strong>
+          </div>
+        </div>
+
+        <p class="report-note">Original report notation is preserved exactly. `N/A` also remains unchanged where the document marks an item as not applicable.</p>
+
+        <div class="report-table-wrap">
+          <table class="report-table">
+            <thead>
+              <tr>
+                <th>Sno.</th>
+                <th>Chapter</th>
+                <th>Theory</th>
+                <th>Exercise-1</th>
+                <th>Exercise-2</th>
+                <th>Exercise-3</th>
+                <th>Exercise-4</th>
+              </tr>
+            </thead>
+            <tbody id="reportRows"></tbody>
+          </table>
+        </div>
+
+        <div class="documents-grid" id="documentRows"></div>
+
+        <div class="section-actions">
+          <a href="assets/first-semester/course-completion-report-introduction-to-programming.docx" class="btn btn-primary px-4 py-3" download>Download Report</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section first-sem-section pt-0" id="section-cheatsheet">
+    <div class="first-sem-shell">
+      <div class="section-intro reveal-up">
+        <div class="section-kicker">Cheatsheet</div>
+        <h2 class="section-title">Cheatsheet Download</h2>
+        <p class="section-copy">The semester folder also contains an interview cheatsheet document for fresher-level preparation. This section keeps it lightweight and download-focused, matching the note sketch.</p>
+      </div>
+
+      <div class="cheatsheet-panel reveal-up">
+        <div class="panel-kicker">Support Document</div>
+        <h3 class="section-title" style="font-size: clamp(1.8rem, 2.4vw, 2.5rem); margin-bottom: 0.8rem;">Introduction To Programming Interview Cheatsheet</h3>
+        <p class="section-copy" style="margin-bottom: 1.4rem; max-width: 48rem;">
+          The cheatsheet remains a pure download artifact here. The page does not preview or summarize it inside a separate quick-view box anymore.
+        </p>
+        <div class="download-card">
+          <div class="download-card-icon"><span class="icon-file-text2"></span></div>
+          <div>
+            <strong>Cheatsheet-Introduction to Programming.docx</strong>
+            <span>Interview revision document for fresher-level preparation.</span>
+          </div>
+        </div>
+        <div class="section-actions">
+          <a href="assets/first-semester/cheatsheet-introduction-to-programming.docx" class="btn btn-primary px-4 py-3" download>Download Cheatsheet</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+
+      <div class="row mb-5">
+        <div class="col-md-12 text-center">
+          <p>
+            <a href="https://www.facebook.com/m14chaitanya" class="social-item"><span class="icon-facebook2"></span></a>
+            <a href="#" class="social-item"><span class="icon-twitter"></span></a>
+            <a href="https://www.instagram.com/m17chaitanya/" class="social-item"><span class="icon-instagram2"></span></a>
+            <a href="https://www.linkedin.com/in/manuchaitanya/" class="social-item"><span class="icon-linkedin2"></span></a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/vendor/popper.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/jquery.easing.1.3.js"></script>
+  <script src="js/vendor/jquery.stellar.min.js"></script>
+  <script src="js/vendor/jquery.waypoints.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script>
+    (function () {
+      "use strict";
+
+      var TOPICS = [
+        { number: "01", title: "Introduction to Programming" },
+        { number: "02", title: "Introduction to Java" },
+        { number: "03", title: "Variables, Data Types and Operations", page: "firstSemester-variables.html" },
+        { number: "04", title: "Control Statements", page: "firstSemester-control-statements.html" },
+        { number: "05", title: "Strings DSA", page: "firstSemester-string-dsa.html" },
+        { number: "06", title: "Arrays DSA", page: "firstSemester-arrays-dsa.html" },
+        { number: "07", title: "Methods", page: "firstSemester-methods.html" },
+        { number: "08", title: "Recursion", page: "firstSemester-recursion.html" }
+      ];
+
+      var REPORT = [
+        { sno: "1", chapter: "Introduction to Programming", theory: "P", ex1: "P", ex2: "N/A", ex3: "N/A", ex4: "N/A" },
+        { sno: "2", chapter: "Introduction to Java", theory: "P", ex1: "P", ex2: "N/A", ex3: "N/A", ex4: "N/A" },
+        { sno: "3", chapter: "Variables, Data Types and Operations", theory: "D", ex1: "D", ex2: "N/A", ex3: "N/A", ex4: "N/A" },
+        { sno: "4", chapter: "Control Statements", theory: "D", ex1: "D", ex2: "D", ex3: "N/A", ex4: "N/A" },
+        { sno: "5", chapter: "Strings DSA", theory: "D", ex1: "D", ex2: "D (25/25)", ex3: "D (20/20)", ex4: "P (6/6)" },
+        { sno: "6", chapter: "Arrays DSA", theory: "D", ex1: "D", ex2: "D (75/75)", ex3: "D (28/28)", ex4: "P (35/35)" },
+        { sno: "7", chapter: "Methods", theory: "D", ex1: "D", ex2: "N/A", ex3: "N/A", ex4: "N/A" },
+        { sno: "8", chapter: "Recursion", theory: "D", ex1: "P", ex2: "D (24/24)", ex3: "D (21/21)", ex4: "P (6/6)" }
+      ];
+
+      var DOCUMENTS = [
+        { item: "Revision Cheat Sheet", status: "P" },
+        { item: "Certificates", status: "D" },
+        { item: "Course Planner", status: "D" },
+        { item: "Course Completion Report", status: "D" },
+        { item: "GitHub Push (Updated)", status: "P" },
+        { item: "6M Capstone Revision", status: "D" },
+        { item: "FTE Capstone Revision", status: "D" },
+        { item: "After Academic Revision", status: "P" }
+      ];
+
+      var WEEK_CHIPS = [
+        { label: "W1-W2", value: "Programming Basics" },
+        { label: "W3-W4", value: "Variables + Control" },
+        { label: "W5-W6", value: "Strings + Arrays" },
+        { label: "W7-W8", value: "Methods" },
+        { label: "W9-W10", value: "Recursion + Revision" }
+      ];
+
+      function $(id) {
+        return document.getElementById(id);
+      }
+
+      function escapeHtml(text) {
+        return String(text)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/\"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function renderTopics() {
+        var root = $("topicsGrid");
+        if (!root) return;
+
+        root.innerHTML = TOPICS.map(function (topic) {
+          var linkedClass = topic.page ? " is-linked" : "";
+          var attrs = topic.page ? ' data-page="' + escapeHtml(topic.page) + '" tabindex="0" role="link"' : "";
+          var openPill = topic.page ? '<div class="topic-open-pill">Open Topic <span class="icon-chevron-right"></span></div>' : "";
+          return [
+            '<article class="topic-card reveal-up', linkedClass, '"', attrs, '>',
+              '<div class="folder-icon"></div>',
+              '<div class="topic-number">Topic ', escapeHtml(topic.number), '</div>',
+              '<h3 class="topic-title">', escapeHtml(topic.title), '</h3>',
+              '<div class="topic-bar"></div>',
+              openPill,
+            '</article>'
+          ].join("");
+        }).join("");
+      }
+
+      function initTopicLinks() {
+        function openTopic(card) {
+          var page = card && card.getAttribute("data-page");
+          if (!page) return;
+          window.location.href = page;
+        }
+
+        Array.prototype.forEach.call(document.querySelectorAll(".topic-card[data-page]"), function (card) {
+          card.addEventListener("click", function () {
+            openTopic(card);
+          });
+
+          card.addEventListener("keydown", function (event) {
+            if (event.key !== "Enter" && event.key !== " ") return;
+            event.preventDefault();
+            openTopic(card);
+          });
+        });
+      }
+
+      function renderWeeks() {
+        var root = $("weekGrid");
+        if (!root) return;
+
+        root.innerHTML = WEEK_CHIPS.map(function (item) {
+          return [
+            '<div class="week-chip">',
+              '<small>', escapeHtml(item.label), '</small>',
+              '<span>', escapeHtml(item.value), '</span>',
+            '</div>'
+          ].join("");
+        }).join("");
+      }
+
+      function statusClass(value) {
+        if (value === "N/A") return "status-na";
+        if (value.indexOf("D") === 0) return "status-d";
+        return "status-p";
+      }
+
+      function renderReport() {
+        var reportRoot = $("reportRows");
+        var docsRoot = $("documentRows");
+        if (reportRoot) {
+          reportRoot.innerHTML = REPORT.map(function (row) {
+            function cell(value) {
+              return '<span class="status-pill ' + statusClass(value) + '">' + escapeHtml(value) + '</span>';
+            }
+
+            return [
+              '<tr>',
+                '<td>', escapeHtml(row.sno), '</td>',
+                '<td>', escapeHtml(row.chapter), '</td>',
+                '<td>', cell(row.theory), '</td>',
+                '<td>', cell(row.ex1), '</td>',
+                '<td>', cell(row.ex2), '</td>',
+                '<td>', cell(row.ex3), '</td>',
+                '<td>', cell(row.ex4), '</td>',
+              '</tr>'
+            ].join("");
+          }).join("");
+        }
+
+        if (docsRoot) {
+          docsRoot.innerHTML = DOCUMENTS.map(function (item) {
+            return [
+              '<div class="document-status">',
+                '<strong>', escapeHtml(item.item), '</strong>',
+                '<span class="status-pill ', statusClass(item.status), '">', escapeHtml(item.status), '</span>',
+              '</div>'
+            ].join("");
+          }).join("");
+        }
+      }
+
+      function animateValue(id, target, digits) {
+        var el = $(id);
+        if (!el) return;
+
+        var next = Number(target);
+        if (!Number.isFinite(next)) return;
+
+        var start = null;
+        var duration = 720;
+
+        function frame(timestamp) {
+          if (start === null) start = timestamp;
+          var progress = Math.min((timestamp - start) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          var current = next * eased;
+          el.textContent = digits ? current.toFixed(digits).replace(/\.0+$/, "") : String(Math.round(current));
+          if (progress < 1) {
+            window.requestAnimationFrame(frame);
+          } else {
+            el.textContent = digits ? next.toFixed(digits).replace(/\.0+$/, "") : String(next);
+          }
+        }
+
+        window.requestAnimationFrame(frame);
+      }
+
+      function initStats() {
+        animateValue("statTopics", TOPICS.length, 0);
+        animateValue("statWeeks", 10, 0);
+        animateValue("statPractice", 240, 0);
+        animateValue("statDocs", 3, 0);
+      }
+
+      function initReveal() {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          });
+        }, {
+          threshold: 0.14
+        });
+
+        Array.prototype.forEach.call(document.querySelectorAll(".reveal-up"), function (el, index) {
+          el.style.transitionDelay = Math.min(index * 60, 480) + "ms";
+          observer.observe(el);
+        });
+      }
+
+      function init() {
+        renderWeeks();
+        renderTopics();
+        renderReport();
+        initStats();
+        initTopicLinks();
+        initReveal();
+      }
+
+      document.addEventListener("DOMContentLoaded", init);
+    })();
+  </script>
+  <script src="js/back-nav.js"></script>
+  <script src="js/home-page-system.js"></script>
+  <script src="js/theme-toggle.js"></script>
+</body>
+</html>

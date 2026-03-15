@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Arrays DSA Exercise-1</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/topic-pages.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+  <style>
+    :root{--page-accent:#7ce36b;--page-blue:#47b0ff;--page-green:#12cb63;}
+  </style>
+  <link rel="stylesheet" href="css/mobile-responsive.css">
+  <link rel="stylesheet" href="css/home-page-system.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+</head>
+<body data-spy="scroll" data-target="#pb-navbar" data-offset="200" class="quiz-page">
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsArraysDsaQuiz" aria-controls="navbarsArraysDsaQuiz" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbarsArraysDsaQuiz">
+        <ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="firstSemester-arrays-dsa.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li><li class="nav-item"><a class="nav-link" href="#section-quiz">Quiz</a></li></ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="page-shell">
+      <div class="hero-bar reveal-up">
+        <div>
+          <span class="hero-kicker">Exercise-1 · Arrays DSA</span>
+          <h1><strong>MCQ Practice</strong></h1>
+          <p>A question stream for Array Basics, Indexing, Traversal, and Search Logic where each click immediately reveals correctness.</p>
+        </div>
+        <div class="hero-actions"><a href="assets/first-semester/arrays-dsa/exercise-1.pdf" class="btn btn-primary px-4 py-3" target="_blank">Open Exercise-1</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section" id="section-quiz">
+    <div class="page-shell">
+      <div class="quiz-grid">
+        <aside>
+          <div class="score-board reveal-up">
+            <div class="section-kicker">Scoreboard</div>
+            <h3>Live Answer Status</h3>
+            <div class="score-strip">
+              <div class="score-metric"><small>Questions</small><strong id="metricQuestions">8</strong><span></span></div>
+              <div class="score-metric"><small>Answered</small><strong id="metricAnswered">0</strong><span></span></div>
+              <div class="score-metric"><small>Correct</small><strong id="metricCorrect">0</strong><span></span></div>
+            </div>
+            <button class="btn btn-primary btn-block px-4 py-3" id="resetQuizBtn">Reset Quiz</button>
+          </div>
+
+          <div class="source-card reveal-up">
+            <div class="section-kicker">Source Material</div>
+            <h3>Exercise Files Retained</h3>
+            <p>The original PDF is still attached here for direct reference.</p>
+            <div class="source-links"><a href="assets/first-semester/arrays-dsa/exercise-1.pdf" class="btn btn-secondary px-4 py-3" download>Download Exercise-1</a></div>
+          </div>
+        </aside>
+
+        <div class="question-list" id="questionList"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/vendor/popper.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/jquery.easing.1.3.js"></script>
+  <script src="js/vendor/jquery.stellar.min.js"></script>
+  <script src="js/vendor/jquery.waypoints.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="js/topic-pages.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      TopicPages.initReveal();
+      TopicPages.renderQuiz({ questions: [{"prompt": "What kind of elements does a Java array store?", "options": ["Any random mix with no type relation", "Only strings", "Elements of the same declared type", "Only primitive values"], "answer": 2, "explanation": "Arrays are defined to store similar typed elements under one declared array type.", "source": "Theory"}, {"prompt": "What is the first valid index of an array?", "options": ["1", "-1", "0", "Depends on the size"], "answer": 2, "explanation": "Java arrays are zero-indexed.", "source": "Theory"}, {"prompt": "Which property gives the length of an array?", "options": ["size()", "count", "length", "length()"], "answer": 2, "explanation": "For arrays in Java, `length` is a field-like property, not a method call.", "source": "Theory + Main.java"}, {"prompt": "Which statement is true about array size after creation?", "options": ["It grows automatically when full", "It is fixed after creation", "It changes every loop", "It depends on the data value"], "answer": 1, "explanation": "An array’s size is fixed once the array object is created.", "source": "Theory"}, {"prompt": "Which search is appropriate for a sorted array when you want better than linear scanning?", "options": ["Breadth-first search", "Binary search", "Hash search", "Selection search"], "answer": 1, "explanation": "Binary search uses the sorted property to cut the search space repeatedly.", "source": "Main.java + theory"}, {"prompt": "What does a 2D array represent in basic Java usage?", "options": ["A boolean flag", "A matrix-like row/column structure", "A string pool", "A method overload"], "answer": 1, "explanation": "A two-dimensional array models rows and columns with nested indexing.", "source": "Theory + Main.java"}, {"prompt": "Why is `length` important in array traversal?", "options": ["It creates the array", "It prevents out-of-bound loop limits when used correctly", "It changes values automatically", "It sorts the array"], "answer": 1, "explanation": "Looping up to `length` gives safe boundaries for valid index access.", "source": "Theory"}, {"prompt": "Which statement best matches the file structure of this topic?", "options": ["Only one PDF exists", "There are no exercises after theory", "Main.java is divided into Exercise-2, Exercise-3, and Exercise-4 blocks", "The topic has no Java source"], "answer": 2, "explanation": "The source file is explicitly partitioned into three larger coding exercise blocks.", "source": "Main.java"}] });
+    })();
+  </script>
+  <script src="js/back-nav.js"></script>
+  <script src="js/home-page-system.js"></script>
+  <script src="js/theme-toggle.js"></script>
+</body>
+</html>

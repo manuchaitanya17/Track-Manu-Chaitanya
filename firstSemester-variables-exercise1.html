@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Variables, Data Types &amp; Operations Exercise-1</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/topic-pages.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+  <style>
+    :root{--page-accent:#7fd4ff;--page-blue:#47b0ff;--page-green:#35d27c;}
+  </style>
+  <link rel="stylesheet" href="css/mobile-responsive.css">
+  <link rel="stylesheet" href="css/home-page-system.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+</head>
+<body data-spy="scroll" data-target="#pb-navbar" data-offset="200" class="quiz-page">
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsVariablesQuiz" aria-controls="navbarsVariablesQuiz" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbarsVariablesQuiz">
+        <ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="firstSemester-variables.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li><li class="nav-item"><a class="nav-link" href="#section-quiz">Quiz</a></li></ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="page-shell">
+      <div class="hero-bar reveal-up">
+        <div>
+          <span class="hero-kicker">Exercise-1 · Variables, Data Types &amp; Operations</span>
+          <h1><strong>MCQ Practice</strong></h1>
+          <p>A question stream for Declaration Rules, Data Types, Type Conversion, and Operator Logic where each click immediately reveals correctness.</p>
+        </div>
+        <div class="hero-actions"><a href="assets/first-semester/variables/exercise-1-p1.pdf" class="btn btn-primary px-4 py-3" target="_blank">Open Exercise-1(P1)</a><a href="assets/first-semester/variables/exercise-1-p2.pdf" class="btn btn-secondary px-4 py-3" target="_blank">Open Exercise-1(P2)</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section" id="section-quiz">
+    <div class="page-shell">
+      <div class="quiz-grid">
+        <aside>
+          <div class="score-board reveal-up">
+            <div class="section-kicker">Scoreboard</div>
+            <h3>Live answer status</h3>
+            <div class="score-strip">
+              <div class="score-metric"><small>Questions</small><strong id="metricQuestions">8</strong><span>Total cards on this page.</span></div>
+              <div class="score-metric"><small>Answered</small><strong id="metricAnswered">0</strong><span>Updates when a card is locked.</span></div>
+              <div class="score-metric"><small>Correct</small><strong id="metricCorrect">0</strong><span>Counts right first-click answers.</span></div>
+            </div>
+            <button class="btn btn-primary btn-block px-4 py-3" id="resetQuizBtn">Reset Quiz</button>
+          </div>
+
+          <div class="source-card reveal-up">
+            <div class="section-kicker">Source Material</div>
+            <h3>Exercise files retained</h3>
+            <p>The original PDFs are still attached here for direct reference.</p>
+            <div class="source-links"><a href="assets/first-semester/variables/exercise-1-p1.pdf" class="btn btn-secondary px-4 py-3" download>Download Exercise-1(P1)</a><a href="assets/first-semester/variables/exercise-1-p2.pdf" class="btn btn-secondary px-4 py-3" download>Download Exercise-1(P2)</a></div>
+          </div>
+        </aside>
+
+        <div class="question-list" id="questionList"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/vendor/popper.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/jquery.easing.1.3.js"></script>
+  <script src="js/vendor/jquery.stellar.min.js"></script>
+  <script src="js/vendor/jquery.waypoints.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="js/topic-pages.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      TopicPages.initReveal();
+      TopicPages.renderQuiz({ questions: [{"prompt": "Which identifier is invalid in Java?", "options": ["student_count", "2marks", "avgValue", "$salary"], "answer": 1, "explanation": "A Java variable name cannot start with a digit.", "source": "Exercise-1 / theory"}, {"prompt": "Which statement about reference types is correct?", "options": ["They always store raw values directly", "They are limited to numeric data only", "They store references to objects", "They cannot be assigned to variables"], "answer": 2, "explanation": "Reference variables store a reference that points to the object rather than the full object content.", "source": "Theory"}, {"prompt": "What is the correct way to write a float literal in Java?", "options": ["12.5", "12.5f", "float(12.5)", "12.5L"], "answer": 1, "explanation": "A float literal normally uses the `f` suffix; without it, the literal is treated as a double.", "source": "Theory + Main.java"}, {"prompt": "What happens when an `int` overflows past its maximum value?", "options": ["It becomes 0 permanently", "It rolls over to the minimum int value", "It becomes Infinity", "It throws a compile-time error"], "answer": 1, "explanation": "Integer overflow wraps around to the minimum side of the type range.", "source": "Theory"}, {"prompt": "When is automatic type conversion valid?", "options": ["Only when both types are incompatible", "When the destination type is smaller", "When the types are compatible and the destination is wider", "Only when the programmer writes a cast"], "answer": 2, "explanation": "Widening conversion is automatic when compatibility and target size both support it.", "source": "Theory"}, {"prompt": "Which operator category includes `instanceof`?", "options": ["Arithmetic", "Relational", "Assignment", "Shift"], "answer": 1, "explanation": "`instanceof` is grouped with relational/comparison-style operators.", "source": "Theory + Main.java"}, {"prompt": "What does the ternary operator return?", "options": ["A loop count", "One of two values based on a boolean condition", "Only boolean values", "A new object reference"], "answer": 1, "explanation": "The ternary operator picks one of two expressions depending on the condition result.", "source": "Theory + Main.java"}, {"prompt": "Which expression is evaluated first in `2 + 3 * 4`?", "options": ["2 + 3", "3 * 4", "All parts at once", "Depends on variable names"], "answer": 1, "explanation": "Multiplication has higher precedence than addition.", "source": "Theory"}] });
+    })();
+  </script>
+  <script src="js/back-nav.js"></script>
+  <script src="js/home-page-system.js"></script>
+  <script src="js/theme-toggle.js"></script>
+</body>
+</html>

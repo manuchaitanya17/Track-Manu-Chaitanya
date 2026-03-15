@@ -1,0 +1,1949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Academic Journey | Manu Chaitanya</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+  <style>
+    :root{
+      --academic-accent: #bac964;
+      --academic-core: #09c15c;
+      --academic-milestone: #ff2b16;
+      --academic-launch: #f4eb16;
+      --academic-bg: #1f1f1f;
+      --academic-panel: rgba(255, 255, 255, 0.05);
+      --academic-panel-strong: rgba(255, 255, 255, 0.09);
+      --academic-border: rgba(255, 255, 255, 0.12);
+      --academic-muted: rgba(255, 255, 255, 0.70);
+      --academic-soft: rgba(255, 255, 255, 0.45);
+      --academic-paper: #ebebeb;
+      --academic-paper-border: #d9d9d9;
+      --academic-paper-text: #121212;
+      --academic-paper-muted: rgba(18, 18, 18, 0.76);
+    }
+
+    html{
+      scroll-behavior: smooth;
+    }
+
+    body{
+      background:
+        radial-gradient(circle at top left, rgba(186, 201, 100, 0.10), transparent 26%),
+        radial-gradient(circle at bottom right, rgba(9, 193, 92, 0.06), transparent 24%),
+        var(--academic-bg);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .academic-wide-shell{
+      width: min(96vw, 1920px);
+      margin: 0 auto;
+    }
+
+    .academic-hero{
+      position: relative;
+      padding: 11rem 0 6rem;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 14% 18%, rgba(186, 201, 100, 0.18), transparent 16%),
+        radial-gradient(circle at 83% 20%, rgba(9, 193, 92, 0.10), transparent 18%),
+        linear-gradient(145deg, rgba(28, 28, 28, 0.98), rgba(36, 36, 36, 0.98));
+    }
+
+    .academic-hero:before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.95), rgba(0,0,0,0.30));
+      pointer-events: none;
+    }
+
+    .academic-hero:after{
+      content: "";
+      position: absolute;
+      right: -120px;
+      top: 90px;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(186, 201, 100, 0.18), rgba(186, 201, 100, 0.02) 68%, transparent 72%);
+      animation: academicPulse 7s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes academicPulse{
+      0%, 100%{ transform: scale(1); opacity: 0.56; }
+      50%{ transform: scale(1.06); opacity: 1; }
+    }
+
+    .academic-hero .academic-wide-shell{
+      position: relative;
+      z-index: 1;
+    }
+
+    .academic-brand-mark{
+      position: absolute;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+      opacity: 0.16;
+      mix-blend-mode: screen;
+    }
+
+    .academic-brand-mark--times{
+      right: clamp(28px, 4.5vw, 88px);
+      top: 118px;
+      width: clamp(250px, 27vw, 430px);
+    }
+
+    .academic-brand-mark--times img{
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: blur(0.25px) drop-shadow(0 0 34px rgba(186, 201, 100, 0.16));
+      opacity: 0.68;
+      -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 52%, rgba(0,0,0,0.64) 76%, transparent 100%);
+      mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 52%, rgba(0,0,0,0.64) 76%, transparent 100%);
+    }
+
+    .academic-brand-mark:after{
+      content: "";
+      position: absolute;
+      inset: -18%;
+      background:
+        radial-gradient(circle at center, transparent 44%, rgba(31,31,31,0.16) 72%, rgba(31,31,31,0.9) 100%),
+        linear-gradient(90deg, rgba(31,31,31,0.88), transparent 16%, transparent 84%, rgba(31,31,31,0.88));
+      filter: blur(18px);
+    }
+
+    @media (max-width: 991.98px){
+      .academic-brand-mark--times{
+        right: 18px;
+        top: 120px;
+        width: clamp(220px, 34vw, 320px);
+        opacity: 0.11;
+      }
+    }
+
+    @media (max-width: 767.98px){
+      .academic-brand-mark--times{
+        right: -18px;
+        top: 112px;
+        width: 220px;
+        opacity: 0.09;
+      }
+    }
+
+    .academic-pill{
+      display: inline-flex;
+      align-items: center;
+      padding: 0.48rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(186, 201, 100, 0.28);
+      background: rgba(186, 201, 100, 0.10);
+      color: var(--academic-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 1.35rem;
+    }
+
+    .academic-hero h1{
+      font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 200;
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    .academic-hero h1 strong{
+      display: block;
+      font-weight: 700;
+    }
+
+    .academic-hero .lead{
+      max-width: 49rem;
+      color: rgba(255,255,255,0.76);
+      font-size: 1.16rem;
+      line-height: 1.85;
+      margin-bottom: 2rem;
+    }
+
+    .academic-meta{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 1.8rem;
+    }
+
+    .academic-meta-chip{
+      padding: 0.76rem 1rem;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.82);
+      font-weight: 600;
+    }
+
+    .academic-actions .btn{
+      min-width: 180px;
+      margin-right: 12px;
+      margin-bottom: 12px;
+    }
+
+    .journey-panel{
+      position: relative;
+      border-radius: 26px;
+      padding: 1.8rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.28);
+      backdrop-filter: blur(10px);
+      overflow: hidden;
+    }
+
+    .journey-panel:before{
+      content: "";
+      position: absolute;
+      right: -40px;
+      bottom: -40px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(186, 201, 100, 0.20), transparent 72%);
+      pointer-events: none;
+    }
+
+    .panel-kicker{
+      color: var(--academic-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .journey-panel h3{
+      font-size: 1.8rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .journey-panel-copy{
+      color: var(--academic-muted);
+      line-height: 1.8;
+      margin-bottom: 1.35rem;
+    }
+
+    .hero-strip{
+      display: grid;
+      grid-template-columns: repeat(4, minmax(110px, 1fr));
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-strip-node{
+      min-height: 96px;
+      border-radius: 16px;
+      padding: 0.9rem 0.9rem;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.28s ease, border-color 0.28s ease;
+    }
+
+    .hero-strip-node:hover{
+      transform: translateY(-4px);
+      border-color: rgba(186, 201, 100, 0.20);
+    }
+
+    .hero-strip-label{
+      color: var(--academic-soft);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-strip-dot{
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      box-shadow: 0 0 0 6px rgba(255,255,255,0.02);
+    }
+
+    .hero-strip-dot.core{ background: var(--academic-core); }
+    .hero-strip-dot.milestone{ background: var(--academic-milestone); }
+    .hero-strip-dot.launch{ background: var(--academic-launch); }
+
+    .hero-strip-title{
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    #section-semesters .academic-wide-shell{
+      width: min(92vw, 1760px);
+    }
+
+    .journey-stats{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .journey-stat{
+      border-radius: 16px;
+      padding: 1rem;
+      background: rgba(0,0,0,0.16);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .journey-stat-label{
+      color: var(--academic-muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    .journey-stat-value{
+      margin-top: 0.45rem;
+      color: var(--academic-accent);
+      font-size: 1.95rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .journey-stat-sub{
+      margin-top: 0.42rem;
+      color: var(--academic-soft);
+      font-size: 0.84rem;
+    }
+
+    .academic-section{
+      position: relative;
+    }
+
+    .section-heading p{
+      color: var(--academic-muted);
+      max-width: 52rem;
+      margin: 1rem auto 0;
+      line-height: 1.8;
+    }
+
+    .timeline-artboard{
+      position: relative;
+      border-radius: 34px;
+      padding: clamp(1.6rem, 2vw, 2.6rem);
+      background: linear-gradient(180deg, #f0f0f0, #e5e5e5);
+      border: 1px solid var(--academic-paper-border);
+      box-shadow: 0 24px 90px rgba(0,0,0,0.24);
+      overflow: hidden;
+    }
+
+    .timeline-artboard:before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px);
+      background-size: 46px 46px;
+      opacity: 0.32;
+      pointer-events: none;
+    }
+
+    .timeline-artboard-header,
+    .timeline-viewport,
+    .timeline-legend,
+    .timeline-detail{
+      position: relative;
+      z-index: 1;
+    }
+
+    .timeline-artboard-header{
+      text-align: center;
+      padding: 0.8rem 0 1.2rem;
+    }
+
+    .timeline-artboard-kicker{
+      color: rgba(18,18,18,0.56);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 0.65rem;
+    }
+
+    .timeline-artboard-title{
+      color: var(--academic-paper-text);
+      font-size: clamp(2.5rem, 5.8vw, 5.6rem);
+      line-height: 0.94;
+      font-weight: 900;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .timeline-artboard-title span{
+      display: block;
+      font-size: clamp(1.4rem, 3vw, 2.6rem);
+      letter-spacing: -0.04em;
+      margin-bottom: 0.7rem;
+    }
+
+    .timeline-viewport{
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 1.4rem 0 0.8rem;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(18,18,18,0.22) transparent;
+    }
+
+    .timeline-viewport.is-scaled{
+      overflow-x: hidden;
+    }
+
+    .timeline-viewport::-webkit-scrollbar{
+      height: 8px;
+    }
+
+    .timeline-viewport::-webkit-scrollbar-thumb{
+      background: rgba(18,18,18,0.22);
+      border-radius: 999px;
+    }
+
+    .timeline-track{
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      min-width: 1840px;
+      width: max-content;
+      padding: 6.4rem 1.2rem 10.2rem;
+    }
+
+    .timeline-scale-wrap{
+      position: relative;
+      width: max-content;
+    }
+
+    .timeline-semester-unit{
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .timeline-semester-unit.will-reveal{
+      opacity: 0;
+      transform: translateY(34px);
+    }
+
+    .timeline-semester-unit.is-visible{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .timeline-semester{
+      position: relative;
+      flex: 0 0 auto;
+      width: 116px;
+      height: 116px;
+      margin-right: 16px;
+    }
+
+    .timeline-semester-button{
+      position: relative;
+      width: 116px;
+      height: 116px;
+      border: 0;
+      border-radius: 50%;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+      transition: transform 0.28s ease;
+    }
+
+    .timeline-semester-button:hover{
+      transform: translateY(-6px);
+    }
+
+    .timeline-semester-ring,
+    .timeline-semester-core{
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+    }
+
+    .timeline-semester-ring{
+      border: 4px solid #101010;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.65) inset;
+      background: rgba(255,255,255,0.10);
+    }
+
+    .timeline-semester-core{
+      inset: 26px;
+      border: 4px solid #101010;
+      background: rgba(255,255,255,0.18);
+      transition: transform 0.28s ease, background 0.28s ease, box-shadow 0.28s ease;
+    }
+
+    .timeline-semester.is-active .timeline-semester-core{
+      transform: scale(1.06);
+      background: rgba(186, 201, 100, 0.22);
+      box-shadow: 0 0 0 9px rgba(186, 201, 100, 0.10);
+    }
+
+    .timeline-semester-title{
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 12px);
+      transform: translateX(-50%);
+      color: var(--academic-paper-text);
+      font-size: 1rem;
+      line-height: 1;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: -0.01em;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      white-space: nowrap;
+      height: 124px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      pointer-events: none;
+    }
+
+    .timeline-semester-index{
+      position: absolute;
+      left: 50%;
+      bottom: -50px;
+      transform: translateX(-50%);
+      color: rgba(18,18,18,0.50);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .timeline-subject-cluster{
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-right: 18px;
+      min-height: 120px;
+    }
+
+    .timeline-subject{
+      position: relative;
+      flex: 0 0 auto;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 3px solid #111;
+      box-shadow: 0 0 0 6px rgba(0,0,0,0.03);
+      transition: transform 0.28s ease, box-shadow 0.28s ease, filter 0.28s ease;
+    }
+
+    .timeline-subject.core{ background: var(--academic-core); }
+    .timeline-subject.milestone{ background: var(--academic-milestone); }
+    .timeline-subject.launch{ background: var(--academic-launch); }
+
+    .timeline-semester-unit.is-active .timeline-subject{
+      box-shadow: 0 0 0 8px rgba(186, 201, 100, 0.16);
+      filter: saturate(1.05);
+    }
+
+    .timeline-semester-unit.is-active .timeline-subject:nth-child(odd){
+      transform: translateY(-6px);
+    }
+
+    .timeline-subject-label{
+      position: absolute;
+      left: 50%;
+      top: calc(100% + 14px);
+      transform: translateX(-50%);
+      color: rgba(18,18,18,0.86);
+      font-size: 0.96rem;
+      line-height: 1;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      text-align: center;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      white-space: nowrap;
+      height: 150px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      pointer-events: none;
+    }
+
+    .timeline-legend{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 1.25rem;
+    }
+
+    .timeline-legend-item{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.72rem 0.95rem;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.05);
+      border: 1px solid rgba(18,18,18,0.08);
+      color: rgba(18,18,18,0.82);
+      font-weight: 700;
+      font-size: 0.84rem;
+    }
+
+    .timeline-legend-dot{
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .timeline-legend-dot.core{ background: var(--academic-core); }
+    .timeline-legend-dot.milestone{ background: var(--academic-milestone); }
+    .timeline-legend-dot.launch{ background: var(--academic-launch); }
+
+    .timeline-detail{
+      margin-top: 2rem;
+      border-radius: 24px;
+      padding: clamp(1.4rem, 2vw, 2rem);
+      background: linear-gradient(180deg, rgba(15,15,15,0.90), rgba(28,28,28,0.92));
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 18px 56px rgba(0,0,0,0.18);
+      color: #fff;
+    }
+
+    .detail-phase{
+      display: inline-flex;
+      align-items: center;
+      padding: 0.42rem 0.82rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.9rem;
+    }
+
+    .detail-phase.core{
+      background: var(--academic-core);
+      color: #10230f;
+    }
+
+    .detail-phase.milestone{
+      background: var(--academic-milestone);
+      color: #fff;
+    }
+
+    .detail-phase.launch{
+      background: var(--academic-launch);
+      color: #141414;
+    }
+
+    .detail-title{
+      font-size: clamp(2rem, 3vw, 3rem);
+      margin-bottom: 0.9rem;
+    }
+
+    .detail-copy{
+      color: var(--academic-muted);
+      line-height: 1.9;
+      margin-bottom: 0;
+      max-width: 40rem;
+    }
+
+    .detail-kicker{
+      color: var(--academic-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 0.85rem;
+    }
+
+    .detail-subjects{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .detail-action{
+      margin-top: 1rem;
+    }
+
+    .detail-link,
+    .semester-card-action{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0.8rem 1rem;
+      border-radius: 14px;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+    }
+
+    .detail-link:hover,
+    .detail-link:focus,
+    .semester-card-action:hover,
+    .semester-card-action:focus{
+      color: #fff;
+      text-decoration: none;
+      transform: translateY(-2px);
+      border-color: rgba(186, 201, 100, 0.26);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.18);
+    }
+
+    .detail-chip{
+      display: inline-flex;
+      align-items: center;
+      min-height: 52px;
+      padding: 0.8rem 0.95rem;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.88);
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .detail-chip.core{ box-shadow: inset 0 0 0 1px rgba(9, 193, 92, 0.28); }
+    .detail-chip.milestone{ box-shadow: inset 0 0 0 1px rgba(255, 43, 22, 0.30); }
+    .detail-chip.launch{ box-shadow: inset 0 0 0 1px rgba(244, 235, 22, 0.32); }
+
+    .semester-carousel-shell{
+      position: relative;
+    }
+
+    .semester-carousel-shell:before,
+    .semester-carousel-shell:after{
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 62px;
+      width: 120px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .semester-carousel-shell:before{
+      left: 0;
+      background: linear-gradient(90deg, var(--academic-bg) 0%, rgba(31,31,31,0) 100%);
+    }
+
+    .semester-carousel-shell:after{
+      right: 0;
+      background: linear-gradient(270deg, var(--academic-bg) 0%, rgba(31,31,31,0) 100%);
+    }
+
+    .semester-carousel-viewport{
+      overflow-x: auto;
+      overflow-y: visible;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      overscroll-behavior-x: contain;
+      cursor: grab;
+      touch-action: pan-y;
+    }
+
+    .semester-carousel-viewport::-webkit-scrollbar{
+      display: none;
+    }
+
+    .semester-carousel-viewport.is-dragging{
+      cursor: grabbing;
+      scroll-behavior: auto;
+      scroll-snap-type: none;
+    }
+
+    .semester-grid{
+      --semester-side-pad: 48px;
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      gap: 24px;
+      width: max-content;
+      padding: 18px var(--semester-side-pad) 28px;
+    }
+
+    .semester-card{
+      position: relative;
+      flex: 0 0 min(920px, 78vw);
+      max-width: min(920px, 78vw);
+      display: flex;
+      flex-direction: column;
+      min-height: 360px;
+      border-radius: 34px;
+      padding: 2rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.085), rgba(255,255,255,0.035));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 26px 72px rgba(0,0,0,0.18);
+      opacity: 0.42;
+      transform: scale(0.9);
+      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.42s ease, border-color 0.32s ease, box-shadow 0.42s ease;
+      cursor: pointer;
+      overflow: hidden;
+      scroll-snap-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .semester-card:before{
+      content: "";
+      position: absolute;
+      inset: auto auto -34% -14%;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1), transparent 72%);
+      opacity: 0;
+      transform: scale(0.88);
+      transition: opacity 0.42s ease, transform 0.42s ease;
+      pointer-events: none;
+    }
+
+    .semester-card.core:before{ background: radial-gradient(circle, rgba(9, 193, 92, 0.18), transparent 72%); }
+    .semester-card.milestone:before{ background: radial-gradient(circle, rgba(255, 43, 22, 0.18), transparent 72%); }
+    .semester-card.launch:before{ background: radial-gradient(circle, rgba(244, 235, 22, 0.18), transparent 72%); }
+
+    .semester-card.will-reveal{
+      opacity: 0;
+      transform: translateY(28px);
+    }
+
+    .semester-card.is-visible{
+      opacity: 1;
+      transform: scale(0.9);
+    }
+
+    .semester-card.is-current{
+      opacity: 1;
+      transform: scale(1);
+      box-shadow: 0 36px 92px rgba(0,0,0,0.24);
+    }
+
+    .semester-card.is-current:before{
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .semester-card:hover,
+    .semester-card.is-active{
+      border-color: rgba(186, 201, 100, 0.24);
+      box-shadow: 0 36px 92px rgba(0,0,0,0.24);
+    }
+
+    .semester-card:hover:before,
+    .semester-card.is-active:before{
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .semester-card-head{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 1.2rem;
+    }
+
+    .semester-number{
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.05);
+      border: 2px solid rgba(255,255,255,0.12);
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: 700;
+      flex: 0 0 auto;
+    }
+
+    .semester-phase{
+      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .semester-phase.core{
+      color: #10230f;
+      background: var(--academic-core);
+    }
+
+    .semester-phase.milestone{
+      color: #fff;
+      background: var(--academic-milestone);
+    }
+
+    .semester-phase.launch{
+      color: #141414;
+      background: var(--academic-launch);
+    }
+
+    .semester-title{
+      font-size: clamp(2rem, 2.6vw, 2.8rem);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+      margin-bottom: 0.45rem;
+    }
+
+    .semester-theme{
+      color: var(--academic-accent);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: 0.01em;
+      font-size: 1.1rem;
+    }
+
+    .semester-copy{
+      color: var(--academic-muted);
+      line-height: 1.88;
+      font-size: 1.05rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .semester-subjects{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    .semester-card-action{
+      margin-top: 1.2rem;
+      align-self: flex-start;
+    }
+
+    .semester-subject-chip{
+      padding: 0.72rem 0.96rem;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.88);
+      font-size: 0.96rem;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .semester-subject-chip.core{ box-shadow: inset 0 0 0 1px rgba(9, 193, 92, 0.28); }
+    .semester-subject-chip.milestone{ box-shadow: inset 0 0 0 1px rgba(255, 43, 22, 0.30); }
+    .semester-subject-chip.launch{ box-shadow: inset 0 0 0 1px rgba(244, 235, 22, 0.32); }
+
+    .semester-nav{
+      position: absolute;
+      top: calc(50% - 34px);
+      z-index: 3;
+      width: 56px;
+      height: 56px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50%;
+      background: rgba(18,18,18,0.66);
+      color: #fff;
+      backdrop-filter: blur(12px);
+      transform: translateY(-50%);
+      transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+    }
+
+    .semester-nav:hover{
+      transform: translateY(-50%) scale(1.05);
+      background: rgba(38,38,38,0.84);
+      border-color: rgba(186,201,100,0.24);
+    }
+
+    .semester-nav[disabled]{
+      opacity: 0.32;
+      pointer-events: none;
+    }
+
+    .semester-nav--prev{ left: 8px; }
+    .semester-nav--next{ right: 8px; }
+
+    .semester-nav .icon-chevron-left,
+    .semester-nav .icon-chevron-right{
+      font-size: 1.2rem;
+    }
+
+    .semester-controls{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    #semesterIndicators{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .semester-indicator{
+      width: 12px;
+      height: 12px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+      transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .semester-indicator.is-active{
+      background: var(--academic-accent);
+      box-shadow: 0 0 0 5px rgba(186,201,100,0.14);
+      transform: scale(1.1);
+    }
+
+    .semester-status{
+      margin-left: 0.5rem;
+      color: var(--academic-soft);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .reveal{
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.will-reveal{
+      opacity: 0;
+      transform: translateY(28px);
+    }
+
+    .reveal.is-visible{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1399.98px){
+      .hero-strip{
+        grid-template-columns: repeat(4, minmax(96px, 1fr));
+      }
+    }
+
+    @media (max-width: 1199.98px){
+      .semester-carousel-shell:before,
+      .semester-carousel-shell:after{
+        width: 88px;
+      }
+
+      .semester-card{
+        flex-basis: min(860px, 84vw);
+        max-width: min(860px, 84vw);
+      }
+    }
+
+    @media (max-width: 991.98px){
+      .academic-hero{
+        padding-top: 9rem;
+      }
+
+      .timeline-detail .row > div + div{
+        margin-top: 1.5rem;
+      }
+
+      .semester-nav{
+        width: 52px;
+        height: 52px;
+      }
+
+      .semester-card{
+        flex-basis: min(760px, 88vw);
+        max-width: min(760px, 88vw);
+      }
+    }
+
+    @media (max-width: 767.98px){
+      .academic-hero{
+        padding: 8rem 0 4.5rem;
+      }
+
+      .academic-meta-chip,
+      .academic-actions .btn{
+        width: 100%;
+      }
+
+      .hero-strip,
+      .journey-stats{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .timeline-artboard{
+        border-radius: 26px;
+      }
+
+      .timeline-track{
+        min-width: 1740px;
+        padding-bottom: 7rem;
+      }
+
+      .timeline-semester-title,
+      .timeline-subject-label{
+        font-size: 0.9rem;
+      }
+
+      .detail-title{
+        font-size: 1.9rem;
+      }
+
+      .semester-carousel-shell:before,
+      .semester-carousel-shell:after{
+        display: none;
+      }
+
+      .semester-grid{
+        gap: 16px;
+      }
+
+      .semester-card{
+        flex-basis: calc(100vw - 42px);
+        max-width: calc(100vw - 42px);
+        padding: 1.4rem;
+        min-height: 0;
+      }
+
+      .semester-nav{
+        top: auto;
+        bottom: -10px;
+        transform: none;
+      }
+
+      .semester-nav:hover{
+        transform: scale(1.04);
+      }
+
+      .semester-nav--prev{
+        left: calc(50% - 70px);
+      }
+
+      .semester-nav--next{
+        right: calc(50% - 70px);
+      }
+
+      .semester-controls{
+        margin-top: 1.8rem;
+        flex-wrap: wrap;
+      }
+
+      .semester-status{
+        width: 100%;
+        margin-left: 0;
+        text-align: center;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="css/mobile-responsive.css">
+  <link rel="stylesheet" href="css/home-page-system.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+</head>
+<body data-spy="scroll" data-target="#pb-navbar" data-offset="200">
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsAcademic" aria-controls="navbarsAcademic" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbarsAcademic">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="index.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-academic">Overview</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-timeline">Timeline</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-semesters">Semesters</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="academic-hero" id="section-academic">
+    <div class="academic-wide-shell">
+      <div class="academic-brand-mark academic-brand-mark--times" aria-hidden="true">
+        <img src="images/timesGroupLogo.jpeg" alt="">
+      </div>
+      <div class="row align-items-center">
+        <div class="col-xl-7 col-lg-7 mb-5 mb-lg-0">
+          <span class="academic-pill reveal">Academic Journey</span>
+          <h1 class="reveal">My Journey <strong>Bennett University</strong></h1>
+          <div class="academic-meta reveal">
+            <div class="academic-meta-chip">Feb 2022 - Feb 2026</div>
+            <div class="academic-meta-chip">Bachelor of Technology, Computer Science</div>
+            <div class="academic-meta-chip">CGPA 9.12</div>
+          </div>
+          <p class="lead reveal">
+            This page provides a structured overview of the subjects, projects, and key learnings from each semester of my academic journey.
+          </p>
+          <div class="academic-actions reveal">
+            <a href="#section-timeline" class="btn btn-primary px-4 py-3">Open Timeline</a>
+            <a href="#section-semesters" class="btn btn-secondary px-4 py-3">See Semesters</a>
+          </div>
+        </div>
+
+        <div class="col-xl-5 col-lg-5">
+          <div class="journey-panel reveal">
+            <div class="panel-kicker">Degree Snapshot</div>
+            <h3>Foundation to Industry Transition</h3>
+            <p class="journey-panel-copy">Eight semesters moving from Programming Basics to Capstones and Internship Delivery, with the timeline below arranged to match the PDF spacing instead of compressing everything into a small panel.</p>
+            <div class="hero-strip" id="heroStrip"></div>
+            <div class="journey-stats">
+              <div class="journey-stat">
+                <div class="journey-stat-label">Semesters</div>
+                <div class="journey-stat-value" id="statSemesters">0</div>
+                <div class="journey-stat-sub">Complete Academic Arc</div>
+              </div>
+              <div class="journey-stat">
+                <div class="journey-stat-label">Final CGPA</div>
+                <div class="journey-stat-value" id="statCgpa">0</div>
+                <div class="journey-stat-sub">Making your academic strong!</div>
+              </div>
+              <div class="journey-stat">
+                <div class="journey-stat-label">Milestones</div>
+                <div class="journey-stat-value" id="statMilestones">0</div>
+                <div class="journey-stat-sub">Capstones + Internships</div>
+              </div>
+              <div class="journey-stat">
+                <div class="journey-stat-label">Subjects</div>
+                <div class="journey-stat-value" id="statSubjects">0</div>
+                <div class="journey-stat-sub">The one you studied in Bennett University</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section academic-section" id="section-timeline">
+    <div class="academic-wide-shell">
+      <div class="row">
+        <div class="col-12 mb-5">
+          <div class="section-heading text-center reveal">
+            <h2>Eight Semester <strong>Timeline</strong></h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-artboard reveal">
+        <div class="timeline-artboard-header">
+          <h3 class="timeline-artboard-title"><span>Eight Semester's</span>Timeline</h3>
+        </div>
+
+        <div class="timeline-viewport" id="timelineViewport">
+          <div class="timeline-scale-wrap" id="timelineScaleWrap">
+            <div class="timeline-track" id="timelineTrack"></div>
+          </div>
+        </div>
+
+        <div class="timeline-legend">
+          <div class="timeline-legend-item"><span class="timeline-legend-dot core"></span> Core Learning</div>
+          <div class="timeline-legend-item"><span class="timeline-legend-dot milestone"></span> Major Milestone</div>
+          <div class="timeline-legend-item"><span class="timeline-legend-dot launch"></span> Final Internship</div>
+        </div>
+
+        <div class="timeline-detail" id="timelineDetail">
+          <div class="row align-items-start">
+            <div class="col-lg-7">
+              <div class="detail-phase core" id="detailPhase">Foundation</div>
+              <h3 class="detail-title" id="detailTitle">First Semester</h3>
+              <p class="detail-copy" id="detailCopy">Loading semester details.</p>
+            </div>
+            <div class="col-lg-5">
+              <div class="detail-kicker">Key Subjects</div>
+              <div class="detail-subjects" id="detailSubjects"></div>
+              <div class="detail-action" id="detailAction"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section pt-0 academic-section" id="section-semesters">
+    <div class="academic-wide-shell">
+      <div class="row">
+        <div class="col-12 mb-5">
+          <div class="section-heading text-center reveal">
+            <h2>Semester <strong>Breakdown</strong></h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="semester-carousel-shell reveal">
+        <button class="semester-nav semester-nav--prev" id="semesterPrev" type="button" aria-label="Previous semester">
+          <span class="icon-chevron-left"></span>
+        </button>
+        <div class="semester-carousel-viewport" id="semesterViewport">
+          <div class="semester-grid" id="semesterGrid"></div>
+        </div>
+        <button class="semester-nav semester-nav--next" id="semesterNext" type="button" aria-label="Next semester">
+          <span class="icon-chevron-right"></span>
+        </button>
+        <div class="semester-controls">
+          <div id="semesterIndicators"></div>
+          <div class="semester-status" id="semesterStatus">Semester 01</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+
+      <div class="row mb-5">
+        <div class="col-md-12 text-center">
+          <p>
+            <a href="https://www.facebook.com/m14chaitanya" class="social-item"><span class="icon-facebook2"></span></a>
+            <a href="#" class="social-item"><span class="icon-twitter"></span></a>
+            <a href="https://www.instagram.com/m17chaitanya/" class="social-item"><span class="icon-instagram2"></span></a>
+            <a href="https://www.linkedin.com/in/manuchaitanya/" class="social-item"><span class="icon-linkedin2"></span></a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/vendor/popper.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/jquery.easing.1.3.js"></script>
+  <script src="js/vendor/jquery.stellar.min.js"></script>
+  <script src="js/vendor/jquery.waypoints.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script>
+    (function () {
+      "use strict";
+
+      var SEMESTERS = [
+        {
+          id: "semester-1",
+          number: "01",
+          title: "First Semester",
+          phase: "core",
+          phaseLabel: "Foundation",
+          theme: "Programming Baseline",
+          copy: "The First Semester established the starting layer: learning syntax, logic, and the discipline required to think through code clearly.",
+          page: "firstSemester.html",
+          subjects: [
+            { label: "Introduction to Programming", tone: "core" }
+          ]
+        },
+        {
+          id: "semester-2",
+          number: "02",
+          title: "Second Semester",
+          phase: "core",
+          phaseLabel: "Foundation",
+          theme: "Frontend, OOP, and DBMS",
+          copy: "This phase widened the base through Frontend Fundamentals, Object Oriented Programming, and Structured Database understanding.",
+          page: "secondSemester.html",
+          subjects: [
+            { label: "Basic Frontend Development", tone: "core" },
+            { label: "Object Oriented Programming", tone: "core" },
+            { label: "Database Management System", tone: "core" }
+          ]
+        },
+        {
+          id: "semester-3",
+          number: "03",
+          title: "Third Semester",
+          phase: "core",
+          phaseLabel: "Systems Base",
+          theme: "Algorithms and backend grounding",
+          copy: "The Third Semester moved from Basic Coding into the Structure behind Software with Data Structures, Backend Foundations, and Computer Networks.",
+          subjects: [
+            { label: "Basic Data Structures Algorithms", tone: "core" },
+            { label: "Basic Backend Development", tone: "core" },
+            { label: "Computer Networks", tone: "core" }
+          ]
+        },
+        {
+          id: "semester-4",
+          number: "04",
+          title: "Fourth Semester",
+          phase: "core",
+          phaseLabel: "Depth",
+          theme: "Advanced Problem Solving",
+          copy: "Here the work deepened into Advanced Frontend Development, Advanced Data Structures and Algorithms, and Microprocessor Architecture.",
+          subjects: [
+            { label: "Advanced Frontend Development", tone: "core" },
+            { label: "Advanced Data Structures Algorithms", tone: "core" },
+            { label: "Microprocessor Architecture", tone: "core" }
+          ]
+        },
+        {
+          id: "semester-5",
+          number: "05",
+          title: "Fifth Semester",
+          phase: "milestone",
+          phaseLabel: "Specialization",
+          theme: "Backend Depth and Systems",
+          copy: "The track shifted toward stronger specialization with Advanced Backend Development and Operating System level understanding.",
+          subjects: [
+            { label: "Advanced Backend Development", tone: "milestone" },
+            { label: "Operating System", tone: "core" }
+          ]
+        },
+        {
+          id: "semester-6",
+          number: "06",
+          title: "Sixth Semester",
+          phase: "core",
+          phaseLabel: "Applied Build",
+          theme: "Capstone Execution",
+          copy: "This semester compressed learning into a deliverable build cycle through the 6M Capstone, turning theory into execution.",
+          subjects: [
+            { label: "6M Capstone", tone: "core" }
+          ]
+        },
+        {
+          id: "semester-7",
+          number: "07",
+          title: "Seventh Semester",
+          phase: "milestone",
+          phaseLabel: "Industry Transition",
+          theme: "Internship Plus Capstone",
+          copy: "Academic work started merging directly into delivery through Internship Capstone-II alongside the FTE Capstone.",
+          page: "seventhSemester.html",
+          subjects: [
+            { label: "Internship Capstone-II", tone: "core" },
+            { label: "FTE Capstone", tone: "milestone" }
+          ]
+        },
+        {
+          id: "semester-8",
+          number: "08",
+          title: "Eighth Semester",
+          phase: "launch",
+          phaseLabel: "Launch",
+          theme: "Final Internship Cycle",
+          copy: "The Final Semester completed the transition into industry immersion through Internship Program-II.",
+          subjects: [
+            { label: "Internship Program-II", tone: "launch" }
+          ]
+        }
+      ];
+
+      function $(id) {
+        return document.getElementById(id);
+      }
+
+      function escapeHtml(text) {
+        return String(text)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/\"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function animateValue(id, target, digits) {
+        var el = $(id);
+        if (!el) return;
+
+        var next = Number(target);
+        if (!Number.isFinite(next)) return;
+
+        var start = null;
+        var duration = 750;
+        var previous = 0;
+
+        function frame(timestamp) {
+          if (start === null) start = timestamp;
+          var progress = Math.min((timestamp - start) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          var current = previous + (next - previous) * eased;
+          el.textContent = digits ? current.toFixed(digits).replace(/\.0+$/, "") : String(Math.round(current));
+          if (progress < 1) {
+            window.requestAnimationFrame(frame);
+          } else {
+            el.textContent = digits ? next.toFixed(digits).replace(/\.0+$/, "") : String(next);
+          }
+        }
+
+        window.requestAnimationFrame(frame);
+      }
+
+      function buildHeroStrip() {
+        var root = $("heroStrip");
+        if (!root) return;
+
+        root.innerHTML = SEMESTERS.map(function (semester) {
+          return [
+            '<div class="hero-strip-node">',
+              '<div class="hero-strip-label">S', escapeHtml(semester.number), '</div>',
+              '<div class="hero-strip-dot ', escapeHtml(semester.phase), '"></div>',
+              '<div class="hero-strip-title">', escapeHtml(semester.title.replace(' Semester', '')), '</div>',
+            '</div>'
+          ].join("");
+        }).join("");
+      }
+
+      function buildTimeline() {
+        var root = $("timelineTrack");
+        if (!root) return;
+
+        root.innerHTML = SEMESTERS.map(function (semester) {
+          var subjects = semester.subjects.map(function (subject) {
+            return [
+              '<div class="timeline-subject ', escapeHtml(subject.tone), '">',
+                '<div class="timeline-subject-label">', escapeHtml(subject.label), '</div>',
+              '</div>'
+            ].join("");
+          }).join("");
+
+          return [
+            '<div class="timeline-semester-unit" data-semester-id="', escapeHtml(semester.id), '">',
+              '<div class="timeline-semester ', escapeHtml(semester.phase), '">',
+                '<button class="timeline-semester-button" type="button" data-semester-id="', escapeHtml(semester.id), '" aria-label="Open ', escapeHtml(semester.title), '">',
+                  '<span class="timeline-semester-ring"></span>',
+                  '<span class="timeline-semester-core"></span>',
+                  '<span class="timeline-semester-title">', escapeHtml(semester.title), '</span>',
+                  '<span class="timeline-semester-index">Semester ', escapeHtml(semester.number), '</span>',
+                '</button>',
+              '</div>',
+              '<div class="timeline-subject-cluster">', subjects, '</div>',
+            '</div>'
+          ].join("");
+        }).join("");
+      }
+
+      function buildSemesterCards() {
+        var root = $("semesterGrid");
+        if (!root) return;
+
+        root.innerHTML = SEMESTERS.map(function (semester) {
+          var subjectHtml = semester.subjects.map(function (subject) {
+            return '<span class="semester-subject-chip ' + escapeHtml(subject.tone) + '">' + escapeHtml(subject.label) + '</span>';
+          }).join("");
+          var actionHtml = semester.page
+            ? '<a href="' + escapeHtml(semester.page) + '" class="semester-card-action">Open Semester Page</a>'
+            : "";
+
+          return [
+            '<article class="semester-card reveal ', escapeHtml(semester.phase), '" id="', escapeHtml(semester.id), '" data-semester-id="', escapeHtml(semester.id), '" data-semester-index="', escapeHtml(SEMESTERS.indexOf(semester)), '" data-semester-page="', escapeHtml(semester.page || ""), '">',
+              '<div class="semester-card-head">',
+                '<div class="semester-number">', escapeHtml(semester.number), '</div>',
+                '<div class="semester-phase ', escapeHtml(semester.phase), '">', escapeHtml(semester.phaseLabel), '</div>',
+              '</div>',
+              '<h3 class="semester-title">', escapeHtml(semester.title), '</h3>',
+              '<div class="semester-theme">', escapeHtml(semester.theme), '</div>',
+              '<p class="semester-copy">', escapeHtml(semester.copy), '</p>',
+              '<div class="semester-subjects">', subjectHtml, '</div>',
+              actionHtml,
+            '</article>'
+          ].join("");
+        }).join("");
+      }
+
+      var semesterCarousel = null;
+
+      function initSemesterCarousel() {
+        var viewport = $("semesterViewport");
+        var track = $("semesterGrid");
+        var prev = $("semesterPrev");
+        var next = $("semesterNext");
+        var indicators = $("semesterIndicators");
+        var status = $("semesterStatus");
+
+        if (!viewport || !track || !prev || !next || !indicators || !status) return;
+
+        var cards = Array.prototype.slice.call(track.querySelectorAll(".semester-card"));
+        if (!cards.length) return;
+
+        var dragState = {
+          active: false,
+          pointerId: null,
+          startX: 0,
+          startScrollLeft: 0,
+          moved: false
+        };
+
+        semesterCarousel = {
+          viewport: viewport,
+          track: track,
+          prev: prev,
+          next: next,
+          indicators: indicators,
+          status: status,
+          cards: cards,
+          currentIndex: 0,
+          scrollTimer: null
+        };
+
+        indicators.innerHTML = cards.map(function (_, index) {
+          return '<button class="semester-indicator" type="button" data-semester-index="' + index + '" aria-label="Go to semester ' + (index + 1) + '"></button>';
+        }).join("");
+
+        semesterCarousel.dots = Array.prototype.slice.call(indicators.querySelectorAll(".semester-indicator"));
+
+        function updatePadding() {
+          var firstCard = semesterCarousel.cards[0];
+          if (!firstCard) return;
+          var viewportWidth = viewport.clientWidth;
+          var cardWidth = firstCard.getBoundingClientRect().width;
+          var sidePad = Math.max((viewportWidth - cardWidth) / 2, 18);
+          track.style.setProperty("--semester-side-pad", sidePad + "px");
+        }
+
+        function getCardCenter(card) {
+          return card.offsetLeft + (card.offsetWidth / 2);
+        }
+
+        function getViewportCenter() {
+          return viewport.scrollLeft + (viewport.clientWidth / 2);
+        }
+
+        function findNearestIndex() {
+          var viewportCenter = getViewportCenter();
+          var nearestIndex = 0;
+          var nearestDistance = Infinity;
+
+          semesterCarousel.cards.forEach(function (card, index) {
+            var distance = Math.abs(getCardCenter(card) - viewportCenter);
+            if (distance < nearestDistance) {
+              nearestDistance = distance;
+              nearestIndex = index;
+            }
+          });
+
+          return nearestIndex;
+        }
+
+        function updateVisualState(index) {
+          semesterCarousel.currentIndex = index;
+          semesterCarousel.cards.forEach(function (card, cardIndex) {
+            card.classList.toggle("is-current", cardIndex === index);
+          });
+          semesterCarousel.dots.forEach(function (dot, dotIndex) {
+            dot.classList.toggle("is-active", dotIndex === index);
+          });
+          semesterCarousel.status.textContent = SEMESTERS[index].title;
+          semesterCarousel.prev.disabled = index <= 0;
+          semesterCarousel.next.disabled = index >= semesterCarousel.cards.length - 1;
+        }
+
+        function scrollToIndex(index, behavior, skipSelectionSync) {
+          var boundedIndex = Math.max(0, Math.min(index, semesterCarousel.cards.length - 1));
+          var card = semesterCarousel.cards[boundedIndex];
+          if (!card) return;
+          var targetLeft = card.offsetLeft - ((viewport.clientWidth - card.offsetWidth) / 2);
+          viewport.scrollTo({
+            left: Math.max(targetLeft, 0),
+            behavior: behavior || "smooth"
+          });
+          updateVisualState(boundedIndex);
+          if (!skipSelectionSync) {
+            setActiveSemester(SEMESTERS[boundedIndex].id, {
+              behavior: behavior || "smooth",
+              skipCarousel: true
+            });
+          }
+        }
+
+        function syncFromScroll() {
+          var nextIndex = findNearestIndex();
+          if (nextIndex !== semesterCarousel.currentIndex) {
+            updateVisualState(nextIndex);
+          }
+        }
+
+        semesterCarousel.scrollToSemester = function (semesterId, behavior) {
+          var nextIndex = SEMESTERS.findIndex(function (semester) {
+            return semester.id === semesterId;
+          });
+          if (nextIndex === -1) return;
+          scrollToIndex(nextIndex, behavior, true);
+        };
+
+        semesterCarousel.refresh = function () {
+          updatePadding();
+          scrollToIndex(semesterCarousel.currentIndex, "auto", true);
+        };
+
+        prev.addEventListener("click", function () {
+          scrollToIndex(semesterCarousel.currentIndex - 1);
+        });
+
+        next.addEventListener("click", function () {
+          scrollToIndex(semesterCarousel.currentIndex + 1);
+        });
+
+        semesterCarousel.dots.forEach(function (dot) {
+          dot.addEventListener("click", function () {
+            scrollToIndex(Number(dot.getAttribute("data-semester-index")));
+          });
+        });
+
+        viewport.addEventListener("scroll", function () {
+          syncFromScroll();
+          window.clearTimeout(semesterCarousel.scrollTimer);
+          semesterCarousel.scrollTimer = window.setTimeout(function () {
+            scrollToIndex(findNearestIndex());
+          }, 120);
+        }, { passive: true });
+
+        viewport.addEventListener("pointerdown", function (event) {
+          if (event.pointerType === "mouse" && event.button !== 0) return;
+          dragState.active = true;
+          dragState.pointerId = event.pointerId;
+          dragState.startX = event.clientX;
+          dragState.startScrollLeft = viewport.scrollLeft;
+          dragState.moved = false;
+          viewport.classList.add("is-dragging");
+          viewport.setPointerCapture(event.pointerId);
+        });
+
+        viewport.addEventListener("pointermove", function (event) {
+          if (!dragState.active || dragState.pointerId !== event.pointerId) return;
+          var delta = event.clientX - dragState.startX;
+          if (Math.abs(delta) > 4) dragState.moved = true;
+          viewport.scrollLeft = dragState.startScrollLeft - delta;
+        });
+
+        function releasePointer(event) {
+          if (!dragState.active || dragState.pointerId !== event.pointerId) return;
+          dragState.active = false;
+          viewport.classList.remove("is-dragging");
+          if (viewport.hasPointerCapture(event.pointerId)) {
+            viewport.releasePointerCapture(event.pointerId);
+          }
+          syncFromScroll();
+          scrollToIndex(findNearestIndex());
+        }
+
+        viewport.addEventListener("pointerup", releasePointer);
+        viewport.addEventListener("pointercancel", releasePointer);
+        viewport.addEventListener("pointerleave", function (event) {
+          if (dragState.active && event.pointerType === "mouse") {
+            releasePointer(event);
+          }
+        });
+
+        viewport.addEventListener("click", function (event) {
+          if (dragState.moved) {
+            event.preventDefault();
+            dragState.moved = false;
+          }
+        }, true);
+
+        semesterCarousel.refresh();
+      }
+
+      function setActiveSemester(id, options) {
+        var behavior = (options && options.behavior) || "smooth";
+        var skipCarousel = Boolean(options && options.skipCarousel);
+        var selected = SEMESTERS.find(function (semester) { return semester.id === id; }) || SEMESTERS[0];
+
+        Array.prototype.forEach.call(document.querySelectorAll(".timeline-semester-unit"), function (unit) {
+          var match = unit.getAttribute("data-semester-id") === selected.id;
+          unit.classList.toggle("is-active", match);
+          var semesterEl = unit.querySelector(".timeline-semester");
+          if (semesterEl) semesterEl.classList.toggle("is-active", match);
+        });
+
+        Array.prototype.forEach.call(document.querySelectorAll(".semester-card"), function (card) {
+          card.classList.toggle("is-active", card.getAttribute("data-semester-id") === selected.id);
+        });
+
+        if (!skipCarousel && semesterCarousel && typeof semesterCarousel.scrollToSemester === "function") {
+          semesterCarousel.scrollToSemester(selected.id, behavior);
+        }
+
+        var phase = $("detailPhase");
+        var title = $("detailTitle");
+        var copy = $("detailCopy");
+        var subjects = $("detailSubjects");
+        var action = $("detailAction");
+
+        if (phase) {
+          phase.className = "detail-phase " + selected.phase;
+          phase.textContent = selected.phaseLabel;
+        }
+        if (title) title.textContent = selected.title;
+        if (copy) copy.textContent = selected.copy;
+        if (subjects) {
+          subjects.innerHTML = selected.subjects.map(function (subject) {
+            return '<span class="detail-chip ' + escapeHtml(subject.tone) + '">' + escapeHtml(subject.label) + '</span>';
+          }).join("");
+        }
+        if (action) {
+          action.innerHTML = selected.page
+            ? '<a href="' + escapeHtml(selected.page) + '" class="detail-link">Open Semester Page</a>'
+            : "";
+        }
+
+        var activeButton = document.querySelector('.timeline-semester-button[data-semester-id="' + selected.id + '"]');
+        if (activeButton && window.innerWidth > 767) {
+          activeButton.scrollIntoView({ behavior: behavior, block: "nearest", inline: "center" });
+        }
+      }
+
+      function bindInteractions() {
+        Array.prototype.forEach.call(document.querySelectorAll(".timeline-semester-button"), function (button) {
+          button.addEventListener("click", function () {
+            setActiveSemester(button.getAttribute("data-semester-id"));
+          });
+
+          button.addEventListener("mouseenter", function () {
+            setActiveSemester(button.getAttribute("data-semester-id"), { behavior: "auto" });
+          });
+        });
+
+        Array.prototype.forEach.call(document.querySelectorAll(".semester-card"), function (card) {
+          card.addEventListener("click", function () {
+            var id = card.getAttribute("data-semester-id");
+            var page = card.getAttribute("data-semester-page");
+            if (page) {
+              window.location.href = page;
+              return;
+            }
+            setActiveSemester(id);
+            var track = $("section-timeline");
+            if (track) track.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+        });
+
+        Array.prototype.forEach.call(document.querySelectorAll(".semester-card-action"), function (link) {
+          link.addEventListener("click", function (event) {
+            event.stopPropagation();
+          });
+        });
+      }
+
+      function fitTimeline() {
+        var viewport = $("timelineViewport");
+        var wrap = $("timelineScaleWrap");
+        var track = $("timelineTrack");
+        if (!viewport || !wrap || !track) return;
+
+        track.style.transform = "";
+        track.style.transformOrigin = "";
+        wrap.style.height = "";
+        wrap.style.width = "";
+        viewport.classList.remove("is-scaled");
+
+        if (window.innerWidth <= 991) return;
+
+        var available = viewport.clientWidth;
+        var naturalWidth = track.scrollWidth;
+        var naturalHeight = track.offsetHeight;
+
+        if (!naturalWidth || naturalWidth <= available) return;
+
+        var scale = available / naturalWidth;
+        track.style.transform = "scale(" + scale + ")";
+        track.style.transformOrigin = "left top";
+        wrap.style.width = available + "px";
+        wrap.style.height = naturalHeight * scale + "px";
+        viewport.classList.add("is-scaled");
+      }
+
+      function initStats() {
+        var subjectCount = SEMESTERS.reduce(function (sum, semester) {
+          return sum + semester.subjects.length;
+        }, 0);
+
+        var milestoneCount = SEMESTERS.reduce(function (sum, semester) {
+          return sum + semester.subjects.filter(function (subject) {
+            return subject.tone !== "core";
+          }).length;
+        }, 0);
+
+        animateValue("statSemesters", 8, 0);
+        animateValue("statCgpa", 9.12, 2);
+        animateValue("statMilestones", milestoneCount, 0);
+        animateValue("statSubjects", subjectCount, 0);
+      }
+
+      function initReveal() {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          });
+        }, {
+          threshold: 0.14
+        });
+
+        Array.prototype.forEach.call(document.querySelectorAll(".reveal, .timeline-semester-unit"), function (el, index) {
+          el.classList.add("will-reveal");
+          el.style.transitionDelay = Math.min(index * 55, 420) + "ms";
+          observer.observe(el);
+        });
+      }
+
+      function init() {
+        buildHeroStrip();
+        buildTimeline();
+        buildSemesterCards();
+        initSemesterCarousel();
+        bindInteractions();
+        fitTimeline();
+        initStats();
+        initReveal();
+        setActiveSemester(SEMESTERS[0].id, { behavior: "auto" });
+        window.addEventListener("resize", function () {
+          fitTimeline();
+          if (semesterCarousel && typeof semesterCarousel.refresh === "function") {
+            semesterCarousel.refresh();
+          }
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", init);
+    })();
+  </script>
+  <script src="js/back-nav.js"></script>
+  <script src="js/home-page-system.js"></script>
+  <script src="js/theme-toggle.js"></script>
+</body>
+</html>

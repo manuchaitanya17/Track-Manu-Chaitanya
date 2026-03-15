@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Methods Exercise-1</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/topic-pages.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+  <style>
+    :root{--page-accent:#c1d870;--page-blue:#47b0ff;--page-green:#12cb63;}
+  </style>
+  <link rel="stylesheet" href="css/mobile-responsive.css">
+  <link rel="stylesheet" href="css/home-page-system.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+</head>
+<body data-spy="scroll" data-target="#pb-navbar" data-offset="200" class="quiz-page">
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsMethodsQuiz" aria-controls="navbarsMethodsQuiz" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbarsMethodsQuiz">
+        <ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="firstSemester-methods.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li><li class="nav-item"><a class="nav-link" href="#section-quiz">Quiz</a></li></ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="page-shell">
+      <div class="hero-bar reveal-up">
+        <div>
+          <span class="hero-kicker">Exercise-1 · Methods</span>
+          <h1><strong>MCQ Practice</strong></h1>
+          <p>A question stream for Signatures, Overloading, Static vs Instance Calls, and Java's Calling Model where each click immediately reveals correctness.</p>
+        </div>
+        <div class="hero-actions"><a href="assets/first-semester/methods/exercise-1.pdf" class="btn btn-primary px-4 py-3" target="_blank">Open Exercise-1</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section" id="section-quiz">
+    <div class="page-shell">
+      <div class="quiz-grid">
+        <aside>
+          <div class="score-board reveal-up">
+            <div class="section-kicker">Scoreboard</div>
+            <h3>Live answer status</h3>
+            <div class="score-strip">
+              <div class="score-metric"><small>Questions</small><strong id="metricQuestions">8</strong><span>Total cards on this page.</span></div>
+              <div class="score-metric"><small>Answered</small><strong id="metricAnswered">0</strong><span>Updates when a card is locked.</span></div>
+              <div class="score-metric"><small>Correct</small><strong id="metricCorrect">0</strong><span>Counts right first-click answers.</span></div>
+            </div>
+            <button class="btn btn-primary btn-block px-4 py-3" id="resetQuizBtn">Reset Quiz</button>
+          </div>
+
+          <div class="source-card reveal-up">
+            <div class="section-kicker">Source Material</div>
+            <h3>Exercise files retained</h3>
+            <p>The original PDF is still attached here for direct reference.</p>
+            <div class="source-links"><a href="assets/first-semester/methods/exercise-1.pdf" class="btn btn-secondary px-4 py-3" download>Download Exercise-1</a></div>
+          </div>
+        </aside>
+
+        <div class="question-list" id="questionList"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/vendor/popper.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/jquery.easing.1.3.js"></script>
+  <script src="js/vendor/jquery.stellar.min.js"></script>
+  <script src="js/vendor/jquery.waypoints.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="js/topic-pages.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      TopicPages.initReveal();
+      TopicPages.renderQuiz({ questions: [{"prompt": "What is included in a Java method signature?", "options": ["Name, parameter list, and return type", "Only the method body", "Method name and parameter list", "Access modifier and return type only"], "answer": 2, "explanation": "The theory defines signature as only the identifier and parameter list.", "source": "Theory"}, {"prompt": "How do you call a static method?", "options": ["Only through an object", "By using the class name with dot operator", "Only from `main()`", "By casting it to void"], "answer": 1, "explanation": "Static methods belong to the class and are called with the class name.", "source": "Theory + Main.java"}, {"prompt": "What is required before calling an instance method?", "options": ["A switch statement", "An object of the class", "A second return type", "A loop variable"], "answer": 1, "explanation": "Instance methods require an object reference for invocation.", "source": "Theory + Main.java"}, {"prompt": "Which change can create a valid overloaded method?", "options": ["Changing only the return type", "Changing the parameter list", "Changing comments only", "Changing whitespace"], "answer": 1, "explanation": "Overloading depends on parameter-list differences, not return type alone.", "source": "Theory"}, {"prompt": "When is overloading bound according to the notes?", "options": ["At runtime only", "At compile time", "After garbage collection", "Only in recursion"], "answer": 1, "explanation": "Overloading uses static binding at compile time.", "source": "Theory"}, {"prompt": "How are arguments passed in Java?", "options": ["Always by reference", "Always by value", "Only primitives by value", "Only objects by reference"], "answer": 1, "explanation": "Java is strictly pass-by-value, even for object references.", "source": "Theory"}, {"prompt": "What stores method frames during execution?", "options": ["String pool", "Heap only", "Stack memory", "Unicode table"], "answer": 2, "explanation": "Method frames are stored in stack memory and follow LIFO order.", "source": "Theory"}, {"prompt": "Why is `main()` declared static?", "options": ["To force object creation", "So the JVM can invoke it without creating an instance", "To return strings", "To disable parameters"], "answer": 1, "explanation": "The JVM can start execution through `main()` without first creating an object.", "source": "Theory"}] });
+    })();
+  </script>
+  <script src="js/back-nav.js"></script>
+  <script src="js/home-page-system.js"></script>
+  <script src="js/theme-toggle.js"></script>
+</body>
+</html>

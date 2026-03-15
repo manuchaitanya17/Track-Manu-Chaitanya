@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Control Statements Theory</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/topic-pages.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+  <style>
+    :root{--page-accent:#ffb86a;--page-blue:#47b0ff;--page-green:#12cb63;}
+  </style>
+  <link rel="stylesheet" href="css/mobile-responsive.css">
+  <link rel="stylesheet" href="css/home-page-system.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+</head>
+<body data-spy="scroll" data-target="#pb-navbar" data-offset="200" class="theory-page">
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsControlStatementsTheory" aria-controls="navbarsControlStatementsTheory" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbarsControlStatementsTheory">
+        <ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="firstSemester-control-statements.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li><li class="nav-item"><a class="nav-link" href="#section-foundation">Flow Model</a></li><li class="nav-item"><a class="nav-link" href="#section-selection">Selection Statements</a></li><li class="nav-item"><a class="nav-link" href="#section-iteration">Loops</a></li><li class="nav-item"><a class="nav-link" href="#section-jumps">Jump Statements</a></li></ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="page-shell">
+      <div class="hero-bar reveal-up">
+        <div>
+          <span class="hero-kicker">Theory · Control Statements</span>
+          <h1>Theory: <strong>Control Statements</strong></h1>
+          <p>This page converts the source PDF into a structured lesson view. The reading flow stays centered on Selection Logic, Loop Structures, and Jump Statements instead of a flat PDF pass-through.</p>
+        </div>
+        <div class="hero-actions"><a href="assets/first-semester/control-statements/theory.pdf" class="btn btn-primary px-4 py-3" target="_blank">Open PDF</a><a href="assets/first-semester/control-statements/theory.pdf" class="btn btn-secondary px-4 py-3" download>Download PDF</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section pb-5">
+    <div class="page-shell">
+      <div class="page-board reveal-up">
+        <div class="board-grid">
+          <aside class="nav-card">
+            <div class="section-kicker">Reading Path</div>
+            <h3>Jump to any theory block</h3>
+            <a href="#section-foundation"><span>Flow Model</span><span class="icon-chevron-right"></span></a><a href="#section-selection"><span>Selection Statements</span><span class="icon-chevron-right"></span></a><a href="#section-iteration"><span>Loops</span><span class="icon-chevron-right"></span></a><a href="#section-jumps"><span>Jump Statements</span><span class="icon-chevron-right"></span></a>
+            
+          </aside>
+          <div class="content-stack"><article class="info-card reveal-up" id="section-foundation">
+              <div class="section-kicker">Flow Model</div>
+              <h2>Control statements change the default top-to-bottom execution path</h2>
+              <p>The theory introduces control flow as the sequencing system behind a Java program. Without control statements, code runs once from top to bottom. With them, the same block may be skipped, repeated, or terminated early.</p><p>From there the topic splits Java flow control into three categories: selection statements, iterative statements, and jump statements.</p>
+              
+              <div class="callout-grid"><div class="mini-callout"><small>Selection</small><strong>Choose one path</strong><span>Use conditions to decide which block executes.</span></div><div class="mini-callout"><small>Iteration</small><strong>Repeat while a condition holds</strong><span>Looping constructs execute blocks multiple times under controlled rules.</span></div></div>
+            </article><article class="info-card reveal-up" id="section-selection">
+              <div class="section-kicker">Selection Statements</div>
+              <h2>if-based branching and switch-based dispatch solve different readability problems</h2>
+              <p>The PDF groups decision-making into the `if` family and `switch`. `if`, `if-else`, `if-else-if`, and nested `if` are useful when branches depend on flexible boolean expressions.</p><p>`switch` becomes useful when one expression is matched against a fixed set of constant cases. It improves readability when a long `if-else-if` chain becomes repetitive.</p>
+              <ul><li>`default` in a switch block is optional.</li><li>`break` is usually used to stop fall-through once a case is handled.</li><li>Nested `if` means a full `if` or `if-else` lives inside another condition block.</li></ul>
+              <div class="callout-grid"><div class="mini-callout"><small>if ladder</small><strong>Best for condition trees</strong><span>Useful when each branch has a different boolean condition.</span></div><div class="mini-callout"><small>switch</small><strong>Best for fixed case matching</strong><span>Cases must be non-duplicate and of a supported type such as int, char, enum, or String.</span></div></div>
+            </article><article class="info-card reveal-up" id="section-iteration">
+              <div class="section-kicker">Loops</div>
+              <h2>Choose the loop type based on when the condition is checked</h2>
+              <p>The theory distinguishes `for`, `while`, and `do-while` not by capability but by usage pattern. `for` works well when iteration count is known, while `while` works better when the stop condition is driven by runtime state.</p><p>`do-while` is the exit-controlled version, which means the body runs first and the condition is checked afterward. That guarantees at least one execution.</p>
+              
+              <div class="callout-grid"><div class="mini-callout"><small>for</small><strong>Known iteration count</strong><span>Initialization, condition, and increment or decrement are grouped in one place.</span></div><div class="mini-callout"><small>while / do-while</small><strong>Unknown iteration count</strong><span>`while` checks first; `do-while` checks later and therefore runs once before testing.</span></div></div>
+            </article><article class="info-card reveal-up" id="section-jumps">
+              <div class="section-kicker">Jump Statements</div>
+              <h2>break, continue, and return transfer control in different ways</h2>
+              <p>`break` exits the current loop or switch. `continue` skips the remaining statements in the current iteration and jumps to the next cycle. `return` exits the current method entirely and optionally hands back a value.</p><p>The source PDF also highlights a subtle point: in `for` loops, `continue` still moves to the increment step, but in `while` loops you must manage increment logic carefully or risk an infinite loop.</p>
+              
+              <div class="callout-grid"><div class="mini-callout"><small>break</small><strong>Stop the current loop or switch</strong><span>Only the nearest enclosing loop or switch is affected.</span></div><div class="mini-callout"><small>return</small><strong>Exit the method, not just the loop</strong><span>Once `return` runs, the rest of that method body is ignored.</span></div></div>
+            </article></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/vendor/popper.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/jquery.easing.1.3.js"></script>
+  <script src="js/vendor/jquery.stellar.min.js"></script>
+  <script src="js/vendor/jquery.waypoints.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="js/topic-pages.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      TopicPages.initReveal();
+
+    })();
+  </script>
+  <script src="js/back-nav.js"></script>
+  <script src="js/home-page-system.js"></script>
+  <script src="js/theme-toggle.js"></script>
+</body>
+</html>

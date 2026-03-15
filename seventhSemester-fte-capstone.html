@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Seventh Semester | FTE Capstone</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="css/mobile-responsive.css">
+  <style>
+    :root{
+      --capstone-accent: #bac964;
+      --capstone-green: #12cb63;
+      --capstone-blue: #36a8ef;
+      --capstone-panel: rgba(255,255,255,0.06);
+      --capstone-border: rgba(255,255,255,0.10);
+      --capstone-muted: rgba(255,255,255,0.72);
+      --capstone-soft: rgba(255,255,255,0.46);
+    }
+
+    html{
+      scroll-behavior: smooth;
+    }
+
+    body{
+      color: #fff;
+      background:
+        radial-gradient(circle at top left, rgba(186, 201, 100, 0.10), transparent 22%),
+        radial-gradient(circle at top right, rgba(54, 168, 239, 0.10), transparent 22%),
+        radial-gradient(circle at bottom right, rgba(18, 203, 99, 0.06), transparent 20%),
+        #1d1d1d;
+      overflow-x: hidden;
+    }
+
+    .capstone-shell{
+      width: min(94vw, 1680px);
+      margin: 0 auto;
+    }
+
+    .capstone-hero{
+      position: relative;
+      padding: 10.5rem 0 5rem;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 14% 14%, rgba(186, 201, 100, 0.16), transparent 16%),
+        radial-gradient(circle at 80% 18%, rgba(54, 168, 239, 0.12), transparent 18%),
+        linear-gradient(140deg, rgba(26,26,26,0.98), rgba(35,35,35,0.96));
+    }
+
+    .capstone-hero:before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.95), rgba(0,0,0,0.3));
+      pointer-events: none;
+    }
+
+    .capstone-hero .capstone-shell,
+    .capstone-section .capstone-shell{
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-grid{
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-banner,
+    .overview-panel,
+    .topics-shell{
+      position: relative;
+      overflow: hidden;
+      border-radius: 34px;
+      border: 1px solid var(--capstone-border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      box-shadow: 0 28px 90px rgba(0,0,0,0.26);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-banner{
+      padding: clamp(1.9rem, 3vw, 2.8rem);
+      min-height: 440px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-banner:after,
+    .overview-panel:after,
+    .topic-card:before{
+      content: "";
+      position: absolute;
+      right: -42px;
+      bottom: -48px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(186, 201, 100, 0.18), rgba(186, 201, 100, 0.02) 70%, transparent 74%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .hero-kicker,
+    .panel-kicker,
+    .section-kicker{
+      display: inline-flex;
+      align-items: center;
+      padding: 0.48rem 0.98rem;
+      border-radius: 999px;
+      color: var(--capstone-accent);
+      border: 1px solid rgba(186, 201, 100, 0.28);
+      background: rgba(186, 201, 100, 0.08);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title{
+      font-size: clamp(3rem, 5vw, 5rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin: 0 0 1rem;
+      font-weight: 200;
+    }
+
+    .hero-title strong{
+      font-weight: 700;
+    }
+
+    .hero-copy,
+    .overview-panel-copy,
+    .section-copy{
+      color: var(--capstone-muted);
+      font-size: 1.08rem;
+      line-height: 1.85;
+    }
+
+    .hero-copy{
+      max-width: 50rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-metrics{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 1.6rem;
+    }
+
+    .metric-chip{
+      padding: 0.78rem 1rem;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.84);
+      font-weight: 700;
+    }
+
+    .hero-actions .btn{
+      min-width: 180px;
+      margin-right: 12px;
+      margin-bottom: 12px;
+    }
+
+    .overview-panel{
+      padding: 1.7rem;
+      min-height: 440px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .overview-panel:before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(54, 168, 239, 0.16), transparent 18%),
+        radial-gradient(circle at 20% 86%, rgba(18, 203, 99, 0.12), transparent 18%);
+      pointer-events: none;
+    }
+
+    .overview-panel > *{
+      position: relative;
+      z-index: 1;
+    }
+
+    .overview-panel h3{
+      font-size: clamp(2rem, 2.7vw, 2.8rem);
+      letter-spacing: -0.04em;
+      margin: 0.2rem 0 0.9rem;
+    }
+
+    .week-grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 1.3rem 0;
+    }
+
+    .week-chip{
+      min-height: 112px;
+      border-radius: 16px;
+      padding: 1rem;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .week-chip small{
+      color: var(--capstone-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.7rem;
+    }
+
+    .week-chip span{
+      color: #fff;
+      font-weight: 700;
+      line-height: 1.18;
+      font-size: 0.98rem;
+    }
+
+    .overview-stats{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .overview-stat{
+      border-radius: 16px;
+      padding: 1rem;
+      background: rgba(0,0,0,0.16);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .overview-stat-label{
+      color: var(--capstone-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.76rem;
+    }
+
+    .overview-stat-value{
+      margin-top: 0.45rem;
+      color: var(--capstone-accent);
+      font-size: 1.95rem;
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    .overview-stat-sub{
+      margin-top: 0.42rem;
+      color: var(--capstone-soft);
+      font-size: 0.84rem;
+    }
+
+    .capstone-section{
+      padding: 0 0 5.5rem;
+    }
+
+    .section-intro{
+      margin-bottom: 2rem;
+    }
+
+    .section-title{
+      font-size: clamp(2rem, 3vw, 3.2rem);
+      letter-spacing: -0.04em;
+      margin-bottom: 0.8rem;
+    }
+
+    .topics-shell{
+      padding: clamp(1.6rem, 2.8vw, 2.5rem);
+    }
+
+    .topics-grid{
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .topic-card{
+      position: relative;
+      display: block;
+      min-height: 240px;
+      padding: 1.5rem 1.3rem 1.4rem;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.20), rgba(0,0,0,0.10));
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+      overflow: hidden;
+    }
+
+    a.topic-card{
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topic-card.is-linked{
+      cursor: pointer;
+    }
+
+    .topic-card:hover{
+      transform: translateY(-8px);
+      border-color: rgba(186, 201, 100, 0.20);
+      box-shadow: 0 22px 56px rgba(0,0,0,0.24);
+    }
+
+    .topic-card:before{
+      inset: auto -10% -35% auto;
+      width: 180px;
+      height: 180px;
+    }
+
+    .folder-icon{
+      position: relative;
+      width: 92px;
+      height: 66px;
+      margin-bottom: 1.35rem;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #73d6ff, #3fa8dc);
+      box-shadow: inset 0 -5px 0 rgba(0,0,0,0.08), 0 10px 22px rgba(0,0,0,0.16);
+    }
+
+    .folder-icon:before{
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: -10px;
+      width: 34px;
+      height: 18px;
+      border-radius: 10px 10px 0 0;
+      background: linear-gradient(180deg, #52c0f7, #3199d3);
+    }
+
+    .topic-number{
+      color: rgba(255,255,255,0.48);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      margin-bottom: 0.55rem;
+    }
+
+    .topic-title{
+      font-size: 1.35rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+    }
+
+    .topic-copy{
+      color: var(--capstone-muted);
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    .topic-bar{
+      margin-top: 1.2rem;
+      width: 58px;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--capstone-accent);
+    }
+
+    .topic-open-pill{
+      position: absolute;
+      right: 1rem;
+      bottom: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.42rem 0.72rem;
+      border-radius: 999px;
+      background: rgba(186, 201, 100, 0.12);
+      border: 1px solid rgba(186, 201, 100, 0.22);
+      color: var(--capstone-accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .topic-open-pill.is-muted{
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.54);
+    }
+
+    .reveal-up{
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal-up.is-visible{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1199.98px){
+      .hero-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .topics-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-banner,
+      .overview-panel{
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 767.98px){
+      .capstone-hero{
+        padding-top: 8.8rem;
+        padding-bottom: 3.5rem;
+      }
+
+      .hero-banner,
+      .overview-panel,
+      .topics-shell,
+      .topic-card{
+        border-radius: 24px;
+      }
+
+      .overview-stats,
+      .week-grid,
+      .topics-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions .btn{
+        width: 100%;
+        margin-right: 0;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="css/home-page-system.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+</head>
+<body data-spy="scroll" data-target="#pb-navbar" data-offset="200">
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsFteCapstone" aria-controls="navbarsFteCapstone" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbarsFteCapstone">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="seventhSemester.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-overview">Overview</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-topics">Course Topics</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="capstone-hero" id="section-overview">
+    <div class="capstone-shell">
+      <div class="hero-grid">
+        <div class="hero-banner reveal-up">
+          <div>
+            <span class="hero-kicker">7.2 FTE Capstone</span>
+            <h1 class="hero-title">Revision-Heavy <strong>Execution</strong></h1>
+            <p class="hero-copy">
+              FTE Capstone was the structured revision and execution track running through Semester 07. The course revisited programming, frontend, Data Structures and Algorithms, Object Oriented Programming, and Database Management System, turning prior semesters into one interview-focused capstone flow.
+            </p>
+            <div class="hero-metrics">
+              <div class="metric-chip">4 Course Modules</div>
+              <div class="metric-chip">25-Week Track</div>
+              <div class="metric-chip">Revision + Assessment</div>
+              <div class="metric-chip">Interview Preparation</div>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#section-topics" class="btn btn-primary px-4 py-3">Open Course Topics</a>
+            <a href="seventhSemester.html" class="btn btn-secondary px-4 py-3">Back To Semester 07</a>
+          </div>
+        </div>
+
+        <aside class="overview-panel reveal-up">
+          <div>
+            <div class="panel-kicker">Course Overview</div>
+            <h3>One capstone, multiple academic streams!
+            </h3>
+            <p class="overview-panel-copy">
+              ECSE743L - FTE Capstone brought earlier coursework back into one disciplined revision cycle. The emphasis was not on starting new subjects, but on reconnecting prior foundations into a practical, interview-ready, and problem-solving oriented academic track.
+            </p>
+          </div>
+
+          <div class="week-grid">
+            <div class="week-chip">
+              <small>Module 1</small>
+              <span>Basic Frontend Development + Advanced Frontend Development</span>
+            </div>
+            <div class="week-chip">
+              <small>Module 2</small>
+              <span>Introduction To Programming + Advanced Data Structures and Algorithms</span>
+            </div>
+            <div class="week-chip">
+              <small>Module 3</small>
+              <span>Object Oriented Programming + Basic Data Structures and Algorithms</span>
+            </div>
+            <div class="week-chip">
+              <small>Module 4</small>
+              <span>Database Management System + Interview-Focused Revision</span>
+            </div>
+          </div>
+
+          <div class="overview-stats">
+            <div class="overview-stat">
+              <div class="overview-stat-label">Revision Tracks</div>
+              <div class="overview-stat-value">7</div>
+              <div class="overview-stat-sub">Core Academic areas revised through the capstone.</div>
+            </div>
+            <div class="overview-stat">
+              <div class="overview-stat-label">Learning Outcome</div>
+              <div class="overview-stat-value">1</div>
+              <div class="overview-stat-sub">Course Objective focused on integrated technical revision.</div>
+            </div>
+            <div class="overview-stat">
+              <div class="overview-stat-label">Interview Modes</div>
+              <div class="overview-stat-value">3</div>
+              <div class="overview-stat-sub">MCQ, Coding Rounds, and Technical or HR Interviews.</div>
+            </div>
+            <div class="overview-stat">
+              <div class="overview-stat-label">Course Type</div>
+              <div class="overview-stat-value">5</div>
+              <div class="overview-stat-sub">Credits in a Core Revision-Oriented Capstone format.</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section capstone-section" id="section-topics">
+    <div class="capstone-shell">
+      <div class="section-intro reveal-up">
+        <div class="section-kicker">Course Topics</div>
+        <h2 class="section-title">Revision Tracks Inside FTE Capstone</h2>
+        <p class="section-copy">
+          The course topics below come directly from the FTE Capstone document. Together they represent the revision map used to bring earlier semesters into one consolidated academic and interview-preparation track.
+        </p>
+      </div>
+
+      <div class="topics-shell reveal-up">
+        <div class="topics-grid" id="topicsGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var TOPICS = [
+        {
+          number: '01',
+          title: 'Basic Frontend Development',
+          copy: 'Revision of Hypertext Markup Language, Cascading Style Sheet fundamentals, layout, responsiveness, and JavaScript basics used in browser-side development.',
+          href: ''
+        },
+        {
+          number: '02',
+          title: 'Advanced Frontend Development',
+          copy: 'Revision of browser-side JavaScript depth, asynchronous programming, JavaScript APIs, and React JS level understanding.',
+          href: ''
+        },
+        {
+          number: '03',
+          title: 'Introduction To Programming',
+          copy: 'Revision of variables, data types and operations, control flow, strings, arrays, methods, and recursion from the first programming foundation.',
+          href: 'firstSemester-introduction-to-programming.html'
+        },
+        {
+          number: '04',
+          title: 'Advanced Data Structures And Algorithms',
+          copy: 'Revision of Trees, Heaps, Graphs, and Tries as higher-order problem-solving structures within the capstone track.',
+          href: ''
+        },
+        {
+          number: '05',
+          title: 'Object Oriented Programming',
+          copy: 'Revision of programming paradigms, objects and classes, constructors, wrapper classes, packages, interfaces, generics, and access control.',
+          href: ''
+        },
+        {
+          number: '06',
+          title: 'Basic Data Structures And Algorithms',
+          copy: 'Revision of complexity, mathematics for problem solving, ArrayList, Vectors, LinkedList, Hash-based structures, Stacks, and Queues.',
+          href: ''
+        },
+        {
+          number: '07',
+          title: 'Database Management System',
+          copy: 'Revision of DBMS fundamentals including data abstraction, data models, architecture, entity-relationship mapping, relational algebra, normalization, and transaction state.',
+          href: ''
+        }
+      ];
+
+      function escapeHtml(text) {
+        return String(text)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function renderTopics() {
+        var root = document.getElementById('topicsGrid');
+        if (!root) return;
+
+        root.innerHTML = TOPICS.map(function (topic) {
+          var linked = Boolean(topic.href);
+          var tag = linked
+            ? '<span class="topic-open-pill">Open Folder <span class="icon-chevron-right"></span></span>'
+            : '<span class="topic-open-pill is-muted">Folder Ready</span>';
+          var open = linked ? '<a href="' + escapeHtml(topic.href) + '" class="topic-card is-linked">' : '<article class="topic-card">';
+          var close = linked ? '</a>' : '</article>';
+
+          return [
+            open,
+              '<div class="folder-icon" aria-hidden="true"></div>',
+              '<div class="topic-number">Folder ', escapeHtml(topic.number), '</div>',
+              '<h3 class="topic-title">', escapeHtml(topic.title), '</h3>',
+              '<p class="topic-copy">', escapeHtml(topic.copy), '</p>',
+              '<div class="topic-bar"></div>',
+              tag,
+            close
+          ].join('');
+        }).join('');
+      }
+
+      function initReveal() {
+        if (!('IntersectionObserver' in window)) {
+          Array.prototype.forEach.call(document.querySelectorAll('.reveal-up'), function (el) {
+            el.classList.add('is-visible');
+          });
+          return;
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          });
+        }, { threshold: 0.14 });
+
+        Array.prototype.forEach.call(document.querySelectorAll('.reveal-up'), function (el, index) {
+          el.style.transitionDelay = Math.min(index * 60, 420) + 'ms';
+          observer.observe(el);
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        renderTopics();
+        initReveal();
+      });
+    })();
+  </script>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+      <div class="row mb-5">
+        <div class="col-md-12 text-center">
+          <p>
+            <a href="https://www.facebook.com/m14chaitanya" class="social-item"><span class="icon-facebook2"></span></a>
+            <a href="#" class="social-item"><span class="icon-twitter"></span></a>
+            <a href="https://www.instagram.com/m17chaitanya/" class="social-item"><span class="icon-instagram2"></span></a>
+            <a href="https://www.linkedin.com/in/manuchaitanya/" class="social-item"><span class="icon-linkedin2"></span></a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="js/back-nav.js"></script>
+  <script src="js/home-page-system.js"></script>
+  <script src="js/theme-toggle.js"></script>
+</body>
+</html>

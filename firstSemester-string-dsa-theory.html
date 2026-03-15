@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Strings DSA Theory</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+  <style>
+    :root{
+      --theory-accent: #bac964;
+      --theory-blue: #47b0ff;
+      --theory-bg: #181818;
+      --theory-muted: rgba(255,255,255,0.74);
+      --theory-soft: rgba(255,255,255,0.48);
+      --theory-border: rgba(255,255,255,0.1);
+    }
+
+    html{ scroll-behavior: smooth; }
+
+    body{
+      color: #fff;
+      background:
+        radial-gradient(circle at top left, rgba(71,176,255,0.1), transparent 18%),
+        radial-gradient(circle at bottom right, rgba(186,201,100,0.1), transparent 18%),
+        #171717;
+      overflow-x: hidden;
+    }
+
+    .theory-shell{ width: min(94vw, 1360px); margin: 0 auto; }
+
+    .theory-hero{
+      position: relative;
+      padding: 10rem 0 3rem;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(71,176,255,0.12), transparent 18%),
+        linear-gradient(150deg, rgba(19,19,19,0.98), rgba(31,31,31,0.96));
+      overflow: hidden;
+    }
+
+    .theory-hero:before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.94), rgba(0,0,0,0.3));
+      pointer-events: none;
+    }
+
+    .theory-hero .theory-shell,
+    .theory-section .theory-shell{ position: relative; z-index: 1; }
+
+    .hero-bar,
+    .theory-board,
+    .info-card,
+    .method-card,
+    .nav-card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      border: 1px solid var(--theory-border);
+      box-shadow: 0 24px 72px rgba(0,0,0,0.22);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-bar{
+      border-radius: 34px;
+      padding: 1.7rem 1.8rem;
+      margin-bottom: 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .hero-kicker,
+    .section-kicker{
+      display: inline-flex;
+      align-items: center;
+      padding: 0.46rem 0.92rem;
+      border-radius: 999px;
+      color: var(--theory-accent);
+      background: rgba(186,201,100,0.1);
+      border: 1px solid rgba(186,201,100,0.26);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.76rem;
+      font-weight: 700;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-bar h1{
+      font-size: clamp(2.4rem, 4vw, 4.4rem);
+      letter-spacing: -0.05em;
+      margin-bottom: 0.55rem;
+      line-height: 0.96;
+    }
+
+    .hero-bar p{
+      color: var(--theory-muted);
+      line-height: 1.8;
+      margin-bottom: 0;
+      max-width: 48rem;
+    }
+
+    .hero-actions{ display: flex; flex-wrap: wrap; gap: 10px; }
+    .hero-actions .btn{ min-width: 180px; }
+
+    .theory-board{
+      border-radius: 38px;
+      padding: clamp(1.7rem, 3vw, 2.7rem);
+      overflow: hidden;
+    }
+
+    .board-grid{
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .nav-card{
+      border-radius: 24px;
+      padding: 1.3rem;
+      position: sticky;
+      top: 110px;
+    }
+
+    .nav-card h3{
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-card a{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 0.9rem;
+      border-radius: 14px;
+      color: #fff;
+      text-decoration: none;
+      background: rgba(0,0,0,0.16);
+      border: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 10px;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .nav-card a:hover,
+    .nav-card a:focus{
+      transform: translateX(4px);
+      border-color: rgba(186,201,100,0.24);
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .content-stack{ display: grid; gap: 22px; }
+
+    .info-card{
+      border-radius: 28px;
+      padding: 1.6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .info-card:before{
+      content: "";
+      position: absolute;
+      inset: auto -12% -34% auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(71,176,255,0.12), transparent 72%);
+      pointer-events: none;
+    }
+
+    .info-card > *{ position: relative; z-index: 1; }
+
+    .info-card h2{
+      font-size: clamp(1.8rem, 2.7vw, 2.8rem);
+      letter-spacing: -0.04em;
+      margin-bottom: 0.8rem;
+    }
+
+    .info-card p,
+    .info-card li{
+      color: var(--theory-muted);
+      line-height: 1.82;
+      font-size: 1rem;
+    }
+
+    .info-card ul{ margin-bottom: 0; padding-left: 1.2rem; }
+
+    .callout-grid,
+    .method-grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 1.2rem;
+    }
+
+    .mini-callout,
+    .method-card{
+      border-radius: 18px;
+      padding: 1rem 1.05rem;
+      background: rgba(0,0,0,0.16);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .mini-callout small,
+    .method-card small{
+      color: var(--theory-soft);
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.7rem;
+      margin-bottom: 0.4rem;
+      font-weight: 700;
+    }
+
+    .mini-callout strong,
+    .method-card strong{
+      display: block;
+      font-size: 1rem;
+      line-height: 1.38;
+      margin-bottom: 0.45rem;
+    }
+
+    .mini-callout span,
+    .method-card span{
+      color: var(--theory-muted);
+      line-height: 1.65;
+      display: block;
+    }
+
+    .method-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .reveal-up{
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-up.is-visible{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1199.98px){
+      .board-grid{ grid-template-columns: 1fr; }
+      .nav-card{ position: static; }
+      .method-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 767.98px){
+      .theory-hero{ padding: 8.4rem 0 2.4rem; }
+      .callout-grid,
+      .method-grid{ grid-template-columns: 1fr; }
+      .hero-actions .btn{ width: 100%; }
+    }
+  </style>
+  <link rel="stylesheet" href="css/mobile-responsive.css">
+  <link rel="stylesheet" href="css/home-page-system.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+</head>
+<body data-spy="scroll" data-target="#pb-navbar" data-offset="200">
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsStringTheory" aria-controls="navbarsStringTheory" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbarsStringTheory">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="firstSemester-string-dsa.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-core">Core</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-memory">Memory</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-immutability">Immutability</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-methods">Methods</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="theory-hero">
+    <div class="theory-shell">
+      <div class="hero-bar reveal-up">
+        <div>
+          <span class="hero-kicker">Theory · String DSA</span>
+          <h1>Theory: <strong>String DSA</strong></h1>
+          <p>This page converts the source PDF into a structured lesson view. The original file stays available, but the reading experience is now broken into meaningful theory sections instead of a flat document.</p>
+        </div>
+        <div class="hero-actions">
+          <a href="assets/first-semester/string-dsa/theory.pdf" class="btn btn-primary px-4 py-3" target="_blank">Open PDF</a>
+          <a href="assets/first-semester/string-dsa/theory.pdf" class="btn btn-secondary px-4 py-3" download>Download PDF</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="theory-section pb-5">
+    <div class="theory-shell">
+      <div class="theory-board reveal-up">
+        <div class="board-grid">
+          <aside class="nav-card">
+            <div class="section-kicker">Reading Path</div>
+            <h3>Jump to any theory block</h3>
+            <a href="#section-core"><span>Core Foundations</span><span class="icon-chevron-right"></span></a>
+            <a href="#section-memory"><span>Memory Management</span><span class="icon-chevron-right"></span></a>
+            <a href="#section-pool"><span>Pool and Interning</span><span class="icon-chevron-right"></span></a>
+            <a href="#section-immutability"><span>Immutability and GC</span><span class="icon-chevron-right"></span></a>
+            <a href="#section-methods"><span>Methods Toolbox</span><span class="icon-chevron-right"></span></a>
+          </aside>
+
+          <div class="content-stack">
+            <article class="info-card reveal-up" id="section-core">
+              <div class="section-kicker">Core Foundations</div>
+              <h2>What a Java String actually is?</h2>
+              <p>In the source theory, String is introduced as an object that represents a sequence of characters. It is implemented by the `String` class from `java.lang`, and that matters because it gives you object behavior, built-in methods, and interoperability with interfaces like `Serializable`, `Comparable`, and `CharSequence`.</p>
+              <p>The same file also frames `CharSequence` as the interface-level idea behind sequential character data. In practical terms, this is why `String`, `StringBuffer`, and `StringBuilder` can all participate in similar text-oriented workflows even though their mutability and threading behavior differ.</p>
+              <div class="callout-grid">
+                <div class="mini-callout">
+                  <small>Definition</small>
+                  <strong>String = object, not primitive text</strong>
+                  <span>It stores a sequence of characters and exposes a method-heavy API for comparison, slicing, searching, and transformation.</span>
+                </div>
+                <div class="mini-callout">
+                  <small>Interface Layer</small>
+                  <strong>CharSequence unifies text containers</strong>
+                  <span>`String`, `StringBuffer`, and `StringBuilder` all sit under the same character-sequence abstraction.</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="info-card reveal-up" id="section-memory">
+              <div class="section-kicker">Memory Management</div>
+              <h2>Literal Creation, Object Creation, and where Strings live?</h2>
+              <p>The theory distinguishes two creation styles. A string literal such as `"Manu Chaitanya"` is checked against the String Constant Pool first. If the same literal already exists, Java reuses that pooled object reference. When the literal is missing, the JVM creates it and stores it inside the pool for later reuse.</p>
+              <p>By contrast, `new String("Manu Chaitanya")` always creates a new object in heap memory. That is the central memory difference repeated across the theory file: literal-based creation is reuse-friendly, while `new` forces a distinct heap object even when the text is the same.</p>
+              <div class="callout-grid">
+                <div class="mini-callout">
+                  <small>String Literal</small>
+                  <strong>Pool-first creation path</strong>
+                  <span>Java checks the String Constant Pool before allocating a new literal object.</span>
+                </div>
+                <div class="mini-callout">
+                  <small>new String()</small>
+                  <strong>Always creates a heap object</strong>
+                  <span>Useful when you explicitly want a separate object, but not when reuse is the goal.</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="info-card reveal-up" id="section-pool">
+              <div class="section-kicker">Pool and Interning</div>
+              <h2>Why the String Constant Pool matters?</h2>
+              <p>The source document explains the pool as a memory optimization strategy. If many strings share the same literal value, storing one pooled copy is far cheaper than creating repeated duplicates. That is why automatic interning exists for literals and why `intern()` can be called manually when you want a heap-created string to resolve to its pooled equivalent.</p>
+              <p>This section also supports the classic `==` versus `equals()` distinction. Two pooled references can match under `==`, but two separately created heap objects usually will not. Content checks should still use `equals()` because it compares characters rather than reference identity.</p>
+              <div class="callout-grid">
+                <div class="mini-callout">
+                  <small>Automatic Interning</small>
+                  <strong>Literals are reused by default</strong>
+                  <span>When a literal already exists in the pool, Java returns the old reference instead of allocating again.</span>
+                </div>
+                <div class="mini-callout">
+                  <small>Manual Interning</small>
+                  <strong>`intern()` returns the pooled reference</strong>
+                  <span>This bridges a heap object back into the pool-based lookup path.</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="info-card reveal-up" id="section-immutability">
+              <div class="section-kicker">Immutability and GC</div>
+              <h2>Why String immutability keeps showing up?</h2>
+              <p>The theory emphasizes that Strings are immutable: once created, the internal sequence of characters does not change. Operations like concatenation, replacement, and substring extraction create new string objects instead of mutating the original one. This behavior is what makes safe pooling and predictable reuse practical.</p>
+              <p>The same document also notes the JVM storage shift after Java 7, where pooled strings moved into the regular heap and became eligible for garbage collection. That reduces the long-term memory risk that existed when pooled strings sat in the older fixed-size `PermGen` space.</p>
+              <ul>
+                <li>Changing a variable reference is not the same thing as mutating the original String object.</li>
+                <li>Immutability supports safe sharing of pooled literals across many references.</li>
+                <li>GC behavior after Java 7 reduces the risk of permanent pool growth.</li>
+              </ul>
+            </article>
+
+            <article class="info-card reveal-up" id="section-methods">
+              <div class="section-kicker">Methods Toolbox</div>
+              <h2>Core String Methods</h2>
+              <p>The final pages of the PDF shift from concepts into the basic method toolkit. The grid below keeps those methods visible in a study-friendly format so you can scan behavior quickly before returning to the coding exercises.</p>
+              <div class="method-grid">
+                <div class="method-card"><small>Method 01</small><strong>toUpperCase() / toLowerCase()</strong><span>Convert the String into upper or lower case text.</span></div>
+                <div class="method-card"><small>Method 02</small><strong>trim()</strong><span>Removes leading and trailing whitespace.</span></div>
+                <div class="method-card"><small>Method 03</small><strong>startsWith() / endsWith()</strong><span>Checks prefix and suffix matches.</span></div>
+                <div class="method-card"><small>Method 04</small><strong>charAt()</strong><span>Returns the character at a specified index.</span></div>
+                <div class="method-card"><small>Method 05</small><strong>length()</strong><span>Returns the number of characters in the String.</span></div>
+                <div class="method-card"><small>Method 06</small><strong>valueOf()</strong><span>Converts primitives and other values into a String representation.</span></div>
+                <div class="method-card"><small>Method 07</small><strong>concat()</strong><span>Appends another String and returns a new combined object.</span></div>
+                <div class="method-card"><small>Method 08</small><strong>contains()</strong><span>Checks whether a character sequence exists inside the String.</span></div>
+                <div class="method-card"><small>Method 09</small><strong>equals()</strong><span>Compares String content character by character.</span></div>
+                <div class="method-card"><small>Method 10</small><strong>equalsIgnoreCase()</strong><span>Compares content without case sensitivity.</span></div>
+                <div class="method-card"><small>Method 11</small><strong>indexOf()</strong><span>Finds the first occurrence of a character or substring.</span></div>
+                <div class="method-card"><small>Method 12</small><strong>isEmpty()</strong><span>Checks whether the String length is zero.</span></div>
+                <div class="method-card"><small>Method 13</small><strong>lastIndexOf()</strong><span>Returns the last matching index of a character or substring.</span></div>
+                <div class="method-card"><small>Method 14</small><strong>replace()</strong><span>Replaces characters or character sequences and returns a new String.</span></div>
+                <div class="method-card"><small>Method 15</small><strong>substring()</strong><span>Returns a selected range from the original String.</span></div>
+                <div class="method-card"><small>Method 16</small><strong>toCharArray()</strong><span>Converts the String into a newly created character array.</span></div>
+                <div class="method-card"><small>Method 17</small><strong>split()</strong><span>Splits the String using a regex and returns an array of strings.</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/vendor/popper.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/jquery.easing.1.3.js"></script>
+  <script src="js/vendor/jquery.stellar.min.js"></script>
+  <script src="js/vendor/jquery.waypoints.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script>
+    (function () {
+      "use strict";
+
+      function initReveal() {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          });
+        }, { threshold: 0.14 });
+
+        Array.prototype.forEach.call(document.querySelectorAll(".reveal-up"), function (el, index) {
+          el.style.transitionDelay = Math.min(index * 55, 420) + "ms";
+          observer.observe(el);
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", initReveal);
+    })();
+  </script>
+  <script src="js/back-nav.js"></script>
+  <script src="js/home-page-system.js"></script>
+  <script src="js/theme-toggle.js"></script>
+</body>
+</html>
