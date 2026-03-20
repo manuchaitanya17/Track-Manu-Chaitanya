@@ -1,0 +1,26 @@
+[
+    {
+        "cirId": "6",
+        "isValid": true
+    },
+    {
+        "cirId": "7",
+        "isValid": false
+    },
+    {
+        "cirId": "8",
+        "isValid": false
+    },
+    {
+        "cirId": "9",
+        "isValid": true
+    },
+    {
+        "cirId": "10",
+        "isValid": true
+    },
+    {
+        "cirId": "11",
+        "isValid": true
+    }
+]

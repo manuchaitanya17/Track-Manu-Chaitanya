@@ -1,0 +1,142 @@
+{
+    "invoice": [
+        {
+            "invoiceNumber": "BSP-QTP-1255",
+            "journalSubtitle": "tjl2",
+            "journalTitle": "test journal live 2",
+            "referenceNumber": "TPBMS-tjl2-2024-25",
+            "manuscriptPublishingYear": "---",
+            "invoiceDate": "03-11-2024",
+            "invoiceTo": "Aimun Tahir",
+            "emailAddress": "aimun1@xolva.com",
+            "billingAddress": "Sioen Industries (Belgium), Department of physics, Belgium",
+            "shippingAddress": "Sioen Industries (Belgium), Department of physics, Belgium",
+            "totalAmount_before_vat": "330",
+            "vat": "0%",
+            "totalAmount": "330",
+            "paymentStatus": "Complete",
+            "transactionDate": "--",
+            "country": "Belgium",
+            "paymentMode": "CC",
+            "services": [
+                {
+                    "serviceName": "Quick Track Publication Fee",
+                    "serviceDescription": "Quick Track Publication Fee",
+                    "servicePrice": "330.00000",
+                    "serviceDiscountedAmount": "0"
+                }
+            ]
+        },
+        {
+            "invoiceNumber": "BSP-1122",
+            "journalSubtitle": "TJL",
+            "journalTitle": "Test Journal Live",
+            "referenceNumber": "TPBMS-TJL-2023-285",
+            "manuscriptPublishingYear": "---",
+            "invoiceDate": "10-31-2023",
+            "invoiceTo": "Sarah Saleem",
+            "emailAddress": "sarah@xolva.com",
+            "billingAddress": "Kingdom University, ce, Bahrain",
+            "shippingAddress": "Kingdom University, ce, Bahrain",
+            "totalAmount": "2366",
+            "paymentStatus": "Pending",
+            "transactionDate": "--",
+            "country": "Bahrain",
+            "paymentMode": "0",
+            "services": [
+                {
+                    "serviceName": "Article Processing Charges",
+                    "serviceDescription": "Article Processing Charges (Open Access Plus)",
+                    "servicePrice": "1005.00000",
+                    "serviceDiscountedAmount": "0"
+                },
+                {
+                    "serviceName": "ANIMATED VIDEO",
+                    "serviceDescription": "ANIMATED VIDEO",
+                    "servicePrice": "1260.00000",
+                    "serviceDiscountedAmount": "0"
+                },
+                {
+                    "serviceName": "Quick Track Publication Fee",
+                    "serviceDescription": "Quick Track Publication Fee",
+                    "servicePrice": "101.00000",
+                    "serviceDiscountedAmount": "0"
+                }
+            ]
+        },
+        {
+            "invoiceNumber": "BSP-1113",
+            "journalSubtitle": "tjl2",
+            "journalTitle": "test journal live 2",
+            "referenceNumber": "TPBMS-tjl2-2023-50",
+            "manuscriptPublishingYear": "---",
+            "invoiceDate": "10-30-2023",
+            "invoiceTo": "Aimun Tahir",
+            "emailAddress": "aimun@xolva.com",
+            "billingAddress": "Antwerp Management School, Department of physics, Belgium",
+            "shippingAddress": "Antwerp Management School, Department of physics, Belgium",
+            "totalAmount": "722",
+            "paymentStatus": "Awaiting Bank Decision",
+            "transactionDate": "--",
+            "country": "Belgium",
+            "paymentMode": "0",
+            "services": [
+                {
+                    "serviceName": "Composing",
+                    "serviceDescription": "Composing",
+                    "servicePrice": "121.00000",
+                    "serviceDiscountedAmount": "0"
+                },
+                {
+                    "serviceName": "CopyEditing",
+                    "serviceDescription": "CopyEditing",
+                    "servicePrice": "101.00000",
+                    "serviceDiscountedAmount": "0"
+                },
+                {
+                    "serviceName": "Quick Track Publication Fee",
+                    "serviceDescription": "Quick Track Publication Fee",
+                    "servicePrice": "500.00000",
+                    "serviceDiscountedAmount": "0"
+                }
+            ]
+        },
+        {
+            "invoiceNumber": "BSP-QTP-1111",
+            "journalSubtitle": "TJL",
+            "journalTitle": "Test Journal Live",
+            "referenceNumber": "TPBMS-TJL-2023-283",
+            "manuscriptPublishingYear": "---",
+            "invoiceDate": "10-30-2023",
+            "invoiceTo": "Sarah Saleem",
+            "emailAddress": "sarah@xolva.com",
+            "billingAddress": "African Institute for Mathematical Sciences, ce, Cameroon",
+            "shippingAddress": "African Institute for Mathematical Sciences, ce, Cameroon",
+            "totalAmount": "900",
+            "paymentStatus": "Complete",
+            "transactionDate": "13-03-2024",
+            "country": "Cameroon",
+            "paymentMode": "IBFT",
+            "services": [
+                {
+                    "serviceName": "Quick Track Publication Fee",
+                    "serviceDescription": "Quick Track Publication Fee",
+                    "servicePrice": "800.00000",
+                    "serviceDiscountedAmount": "0"
+                },
+                {
+                    "serviceName": "ANIMATED VIDEO",
+                    "serviceDescription": "ANIMATED VIDEO",
+                    "servicePrice": "100.00000",
+                    "serviceDiscountedAmount": "0"
+                },
+                {
+                    "serviceName": "Quick Track Publication Fee",
+                    "serviceDescription": "Quick Track Publication Fee",
+                    "servicePrice": "500.00000",
+                    "serviceDiscountedAmount": "0"
+                }
+            ]
+        }
+    ]
+}

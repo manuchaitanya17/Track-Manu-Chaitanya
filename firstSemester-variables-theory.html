@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Variables, Data Types &amp; Operations Theory</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/topic-pages.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+  <style>
+    :root{--page-accent:#7fd4ff;--page-blue:#47b0ff;--page-green:#35d27c;}
+  </style>
+  <link rel="stylesheet" href="css/mobile-responsive.css">
+  <link rel="stylesheet" href="css/home-page-system.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+</head>
+<body data-spy="scroll" data-target="#pb-navbar" data-offset="200" class="theory-page">
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsVariablesTheory" aria-controls="navbarsVariablesTheory" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbarsVariablesTheory">
+        <ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="firstSemester-variables.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li><li class="nav-item"><a class="nav-link" href="#section-variables">Variables</a></li><li class="nav-item"><a class="nav-link" href="#section-types">Data Types</a></li><li class="nav-item"><a class="nav-link" href="#section-conversion">Conversion</a></li><li class="nav-item"><a class="nav-link" href="#section-operators">Operators</a></li></ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="page-shell">
+      <div class="hero-bar reveal-up">
+        <div>
+          <span class="hero-kicker">Theory · Variables, Data Types &amp; Operations</span>
+          <h1>Theory: <strong>Variables, Data Types &amp; Operations</strong></h1>
+          <p>This page converts the source PDF into a structured lesson view. The reading flow stays centered on Declaration Rules, Data Representation, Conversion Paths, and Operator Behavior.</p>
+        </div>
+        <div class="hero-actions"><a href="assets/first-semester/variables/theory.pdf" class="btn btn-primary px-4 py-3" target="_blank">Open PDF</a><a href="assets/first-semester/variables/theory.pdf" class="btn btn-secondary px-4 py-3" download>Download PDF</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section pb-5">
+    <div class="page-shell">
+      <div class="page-board reveal-up">
+        <div class="board-grid">
+          <aside class="nav-card">
+            <div class="section-kicker">Reading Path</div>
+            <h3>Jump to any theory block</h3>
+            <a href="#section-variables"><span>Variables</span><span class="icon-chevron-right"></span></a><a href="#section-types"><span>Data Types</span><span class="icon-chevron-right"></span></a><a href="#section-conversion"><span>Conversion</span><span class="icon-chevron-right"></span></a><a href="#section-operators"><span>Operators</span><span class="icon-chevron-right"></span></a>
+            
+          </aside>
+          <div class="content-stack"><article class="info-card reveal-up" id="section-variables">
+              <div class="section-kicker">Variables</div>
+              <h2>Variables are named memory slots with strict declaration rules</h2>
+              <p>The theory starts by treating a variable as a named memory location that stores values during program execution. Java requires declaration before use, so the type and identifier are both part of the contract from the start.</p><p>It also emphasizes naming discipline: identifiers may contain letters, digits, `_`, and `$`, but they cannot begin with a digit, cannot contain spaces, and cannot reuse Java keywords. That basic correctness matters because the compiler enforces it early.</p>
+              
+              <div class="callout-grid"><div class="mini-callout"><small>Declaration</small><strong>Three common declaration patterns</strong><span>Declare only, declare and initialize, or declare multiple variables of the same type in one statement.</span></div><div class="mini-callout"><small>Rule</small><strong>Identifiers are case-sensitive</strong><span>`rate`, `Rate`, and `RATE` are different names, so naming consistency is part of correctness.</span></div></div>
+            </article><article class="info-card reveal-up" id="section-types">
+              <div class="section-kicker">Data Types</div>
+              <h2>Primitive values store directly, references point elsewhere</h2>
+              <p>The PDF separates Java data representation into primitive types and reference types. Primitive variables hold their raw value directly, while reference variables hold the address-like reference used to locate an object in memory.</p><p>From `int`, `byte`, `short`, and `long` to `float`, `double`, `boolean`, and `char`, the theory focuses on range, storage size, and the default behavior you need to understand before writing real expressions.</p>
+              <ul><li>Use `float` with an `f` suffix for literals like `12.3f`.</li><li>`char` is a 16-bit Unicode-based type.</li><li>`boolean` models program flow decisions through `true` and `false`.</li></ul>
+              <div class="callout-grid"><div class="mini-callout"><small>Primitive</small><strong>Eight built-in primitive types</strong><span>They are not objects and are chosen when you want direct value storage with predictable size and range.</span></div><div class="mini-callout"><small>Reference</small><strong>References point to heap objects</strong><span>The variable does not store the full object value; it stores the reference used to reach that object.</span></div></div>
+            </article><article class="info-card reveal-up" id="section-conversion">
+              <div class="section-kicker">Conversion</div>
+              <h2>Compatibility decides whether conversion is automatic or manual</h2>
+              <p>Automatic type conversion happens when source and destination types are compatible and the destination type is wide enough to hold the original value safely. That is why an `int` can widen to `float` without an explicit cast.</p><p>Manual conversion, or casting, is required when you deliberately move into a smaller or incompatible target type. This is where truncation, precision loss, or sign changes become part of the programming decision.</p>
+              
+              <div class="callout-grid"><div class="mini-callout"><small>Widening</small><strong>Compiler-driven conversion</strong><span>Examples include `byte` to `int`, `int` to `long`, and `float` to `double`.</span></div><div class="mini-callout"><small>Casting</small><strong>Programmer-driven conversion</strong><span>Examples like `(int) 12.3f` show how the fractional part is explicitly discarded.</span></div></div>
+            </article><article class="info-card reveal-up" id="section-operators">
+              <div class="section-kicker">Operators</div>
+              <h2>Operators define how expressions are grouped and evaluated</h2>
+              <p>The last part of the theory groups operators by category: unary, arithmetic, shift, relational, bitwise, logical, ternary, and assignment. The point is not just memorization, but understanding how operator choice changes the meaning of an expression.</p><p>Precedence and associativity decide evaluation order. Higher-precedence operators bind first, while operators of the same precedence rely on left-to-right or right-to-left associativity unless parentheses force a different grouping.</p>
+              
+              <div class="callout-grid"><div class="mini-callout"><small>Precedence</small><strong>Higher precedence binds first</strong><span>Multiplication happens before addition unless parentheses intentionally override the order.</span></div><div class="mini-callout"><small>Associativity</small><strong>Same precedence still needs a rule</strong><span>When operator priority matches, associativity decides whether evaluation moves left-to-right or right-to-left.</span></div></div>
+            </article></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/vendor/popper.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/jquery.easing.1.3.js"></script>
+  <script src="js/vendor/jquery.stellar.min.js"></script>
+  <script src="js/vendor/jquery.waypoints.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="js/topic-pages.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      TopicPages.initReveal();
+
+    })();
+  </script>
+  <script src="js/back-nav.js"></script>
+  <script src="js/home-page-system.js"></script>
+  <script src="js/theme-toggle.js"></script>
+</body>
+</html>

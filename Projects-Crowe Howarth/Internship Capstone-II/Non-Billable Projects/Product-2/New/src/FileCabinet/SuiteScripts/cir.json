@@ -1,0 +1,152 @@
+[
+  {
+    "recordType": "customrecord_invoice_custom",
+    "id": "6",
+    "values": {
+      "internalid": [
+        {
+          "value": "6",
+          "text": "6"
+        }
+      ],
+      "custrecord_sales_order": [
+        {
+          "value": "3185",
+          "text": "Sales Order #49"
+        }
+      ],
+      "custrecord_invoice_item": [
+        {
+          "value": "14",
+          "text": "Test NII"
+        }
+      ],
+      "custrecord_inv_qty": "11"
+    }
+  },
+  {
+    "recordType": "customrecord_invoice_custom",
+    "id": "7",
+    "values": {
+      "internalid": [
+        {
+          "value": "7",
+          "text": "7"
+        }
+      ],
+      "custrecord_sales_order": [
+        {
+          "value": "3185",
+          "text": "Sales Order #49"
+        }
+      ],
+      "custrecord_invoice_item": [
+        {
+          "value": "15",
+          "text": "Test NII 2"
+        }
+      ],
+      "custrecord_inv_qty": "15"
+    }
+  },
+  {
+    "recordType": "customrecord_invoice_custom",
+    "id": "8",
+    "values": {
+      "internalid": [
+        {
+          "value": "8",
+          "text": "8"
+        }
+      ],
+      "custrecord_sales_order": [
+        {
+          "value": "3185",
+          "text": "Sales Order #49"
+        }
+      ],
+      "custrecord_invoice_item": [
+        {
+          "value": "15",
+          "text": "Test NII 2"
+        }
+      ],
+      "custrecord_inv_qty": "3"
+    }
+  },
+  {
+    "recordType": "customrecord_invoice_custom",
+    "id": "9",
+    "values": {
+      "internalid": [
+        {
+          "value": "9",
+          "text": "9"
+        }
+      ],
+      "custrecord_sales_order": [
+        {
+          "value": "3186",
+          "text": "Sales Order #50"
+        }
+      ],
+      "custrecord_invoice_item": [
+        {
+          "value": "14",
+          "text": "Test NII"
+        }
+      ],
+      "custrecord_inv_qty": "1"
+    }
+  },
+  {
+    "recordType": "customrecord_invoice_custom",
+    "id": "10",
+    "values": {
+      "internalid": [
+        {
+          "value": "10",
+          "text": "10"
+        }
+      ],
+      "custrecord_sales_order": [
+        {
+          "value": "3186",
+          "text": "Sales Order #50"
+        }
+      ],
+      "custrecord_invoice_item": [
+        {
+          "value": "14",
+          "text": "Test NII"
+        }
+      ],
+      "custrecord_inv_qty": "4"
+    }
+  },
+  {
+    "recordType": "customrecord_invoice_custom",
+    "id": "11",
+    "values": {
+      "internalid": [
+        {
+          "value": "11",
+          "text": "11"
+        }
+      ],
+      "custrecord_sales_order": [
+        {
+          "value": "3186",
+          "text": "Sales Order #50"
+        }
+      ],
+      "custrecord_invoice_item": [
+        {
+          "value": "15",
+          "text": "Test NII 2"
+        }
+      ],
+      "custrecord_inv_qty": "5"
+    }
+  }
+]

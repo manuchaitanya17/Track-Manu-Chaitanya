@@ -1,0 +1,97 @@
+[
+    {
+        "recordType": "salesorder",
+        "id": "3185",
+        "values": {
+            "internalid": [
+                {
+                    "value": "3185",
+                    "text": "3185"
+                }
+            ],
+            "item": [
+                {
+                    "value": "14",
+                    "text": "Test NII"
+                }
+            ],
+            "quantity": "11"
+        }
+    },
+    {
+        "recordType": "salesorder",
+        "id": "3185",
+        "values": {
+            "internalid": [
+                {
+                    "value": "3185",
+                    "text": "3185"
+                }
+            ],
+            "item": [
+                {
+                    "value": "15",
+                    "text": "Test NII 2"
+                }
+            ],
+            "quantity": "12"
+        }
+    },
+    {
+        "recordType": "salesorder",
+        "id": "3185",
+        "values": {
+            "internalid": [
+                {
+                    "value": "3185",
+                    "text": "3185"
+                }
+            ],
+            "item": [
+                {
+                    "value": "16",
+                    "text": "Test NII 3"
+                }
+            ],
+            "quantity": "13"
+        }
+    },
+    {
+        "recordType": "salesorder",
+        "id": "3186",
+        "values": {
+            "internalid": [
+                {
+                    "value": "3186",
+                    "text": "3186"
+                }
+            ],
+            "item": [
+                {
+                    "value": "14",
+                    "text": "Test NII"
+                }
+            ],
+            "quantity": "5"
+        }
+    },
+    {
+        "recordType": "salesorder",
+        "id": "3186",
+        "values": {
+            "internalid": [
+                {
+                    "value": "3186",
+                    "text": "3186"
+                }
+            ],
+            "item": [
+                {
+                    "value": "15",
+                    "text": "Test NII 2"
+                }
+            ],
+            "quantity": "5"
+        }
+    }
+]

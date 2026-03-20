@@ -1,0 +1,41 @@
+{
+  "internalId": "34699",
+  "tranId": "000159",
+  "customerId": "52",
+  "customerName": "52",
+  "date": "2026-01-07",
+  "postingPeriod": "120",
+  "memo": "",
+  "currency": "1",
+  "exchangeRate": 1,
+  "undepositedFunds": false,
+  "accountId": "",
+  "arAccountId": "366",
+  "subsidiaryId": "10",
+  "departmentId": "",
+  "profitCenterId": "",
+  "locationId": "",
+  "strategyNumber": "",
+  "upstreamDocumentNo": "",
+  "paymentAmount": 100000,
+  "invoices": [
+    {
+      "line": 0,
+      "applied": true,
+      "documentType": "Invoice",
+      "documentId": "34599",
+      "refNo": "000225",
+      "docDate": "2026-01-07",
+      "dueDate": "2026-01-01",
+      "originalAmount": 100000,
+      "amountDue": 100000,
+      "discountDate": "",
+      "discountAvailable": 0,
+      "discountTaken": 0,
+      "currency": "1",
+      "paymentApplied": 100000
+    }
+  ],
+  "credits": [],
+  "deposits": []
+}

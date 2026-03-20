@@ -1,0 +1,31 @@
+<mapreducescript scriptid="customscript_css_mr_pprl_updates">
+  <description></description>
+  <isinactive>F</isinactive>
+  <name>CSS MR PPRL UPDATES</name>
+  <notifyadmins>F</notifyadmins>
+  <notifyemails></notifyemails>
+  <notifygroup>[ACCOUNT_SPECIFIC_VALUE]</notifygroup>
+  <notifyowner>T</notifyowner>
+  <scriptfile>[/SuiteScripts/css_mr_pprl_updates.js]</scriptfile>
+  <scriptdeployments>
+    <scriptdeployment scriptid="customdeploy_css_mr_pprl_updates">
+      <buffersize>1</buffersize>
+      <concurrencylimit>1</concurrencylimit>
+      <isdeployed>T</isdeployed>
+      <loglevel>DEBUG</loglevel>
+      <queueallstagesatonce>T</queueallstagesatonce>
+      <runasrole>ADMINISTRATOR</runasrole>
+      <status>SCHEDULED</status>
+      <title>CSS MR PPRL UPDATES</title>
+      <yieldaftermins>10</yieldaftermins>
+      <recurrence>
+        <daily>
+          <everyxdays>1</everyxdays>
+          <repeat>PT30M</repeat>
+          <startdate>2023-04-26</startdate>
+          <starttime>04:00:00Z</starttime>
+        </daily>
+      </recurrence>
+    </scriptdeployment>
+  </scriptdeployments>
+</mapreducescript>

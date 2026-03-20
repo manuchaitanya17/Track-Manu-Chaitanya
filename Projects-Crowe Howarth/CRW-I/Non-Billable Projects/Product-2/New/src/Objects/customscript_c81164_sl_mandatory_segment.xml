@@ -1,0 +1,25 @@
+<suitelet scriptid="customscript_c81164_sl_mandatory_segment">
+  <description>suitlet for getting charts of account data</description>
+  <isinactive>F</isinactive>
+  <name>CSS SL GL ACCOUNT WORKER</name>
+  <notifyadmins>F</notifyadmins>
+  <notifyemails></notifyemails>
+  <notifyowner>T</notifyowner>
+  <notifyuser>F</notifyuser>
+  <scriptfile>[/SuiteScripts/c81164_sl_mandatory_segmentation_worker.js]</scriptfile>
+  <scriptdeployments>
+    <scriptdeployment scriptid="customdeploy_c81164_sl_mandatory_segmend">
+      <allemployees>T</allemployees>
+      <allpartners>T</allpartners>
+      <allroles>T</allroles>
+      <audslctrole></audslctrole>
+      <eventtype></eventtype>
+      <isdeployed>T</isdeployed>
+      <isonline>T</isonline>
+      <loglevel>DEBUG</loglevel>
+      <runasrole>ADMINISTRATOR</runasrole>
+      <status>RELEASED</status>
+      <title>CSS SL GL ACCOUNT WORKER</title>
+    </scriptdeployment>
+  </scriptdeployments>
+</suitelet>

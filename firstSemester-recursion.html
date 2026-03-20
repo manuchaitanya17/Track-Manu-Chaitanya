@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Recursion | First Semester</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/topic-pages.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+  <style>
+    :root{--page-accent:#f7de4a;--page-blue:#47b0ff;--page-green:#12cb63;}
+  </style>
+  <link rel="stylesheet" href="css/mobile-responsive.css">
+  <link rel="stylesheet" href="css/home-page-system.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+</head>
+<body data-spy="scroll" data-target="#pb-navbar" data-offset="200" class="topic-page">
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsRecursion" aria-controls="navbarsRecursion" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbarsRecursion">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="firstSemester-introduction-to-programming.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-overview">Overview</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-resources">Resources</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-map">Topic Map</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-hero" id="section-overview">
+    <div class="page-shell">
+      <div class="hero-frame reveal-up">
+        <div class="hero-grid">
+          <div>
+            <span class="hero-kicker">Topic 08 · First Semester</span>
+            <h1 class="hero-title"><strong>Recursion</strong></h1>
+            <p class="hero-copy">This topic is where Method Calls start solving Problems by calling themselves. It covers Base Conditions, Recurrence Relations, Stack Flow, Head vs Tail Recursion, and the larger recursive problem bank kept inside `Main.java`.</p>
+            <div class="hero-actions">
+              <a href="firstSemester-recursion-theory.html" class="btn btn-primary px-4 py-3">Open Theory</a>
+              <a href="firstSemester-recursion-code.html" class="btn btn-secondary px-4 py-3">Open Code Page</a>
+            </div>
+            <div class="hero-points mt-4">
+              <div class="feature-card"><small>Theory Core</small><strong>Base Condition, Recurrence, Stack Thinking</strong><span>The PDF explains why recursion works only when the problem shrinks toward a valid stopping point.</span></div>
+              <div class="feature-card"><small>Supplement</small><strong>Linear vs Binary Recursion</strong><span>The extra PDF is kept as part of the same reading flow because it extends the theory directly.</span></div>
+              <div class="feature-card"><small>Exercises 2-3</small><strong>Read-only Java Editor</strong><span>The recursive problem bank in `Main.java` is surfaced through exercise tabs and a copyable code surface.</span></div>
+              <div class="feature-card"><small>Coverage</small><strong>Head, Tail, Stack Unwinding, Practice Patterns</strong><span>The topic moves from concept framing into real recursive problem-solving through the source file.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section" id="section-resources">
+    <div class="page-shell">
+      <div class="section-intro reveal-up">
+        <div class="section-kicker">Resources</div>
+        <h2 class="section-title">Three Direct Paths from this topic:</h2>
+        <p class="section-copy">The theory page builds the recursive model, the supplement extends that model, and the code page carries the actual recursive problem bank from the source file.</p>
+      </div>
+      <div class="resource-grid">
+        <a class="resource-card reveal-up" href="firstSemester-recursion-theory.html">
+          <div class="resource-icon"><span class="icon-book"></span></div>
+          <h3 class="resource-title">Theory</h3>
+          <p class="resource-copy">The source PDF is converted into sectioned reading blocks for foundations, stack flow, recursion types, tradeoffs, and the supplement bridge.</p>
+          <div class="resource-meta">
+            <span class="meta-pill">3 Source Pages</span>
+            <span class="meta-pill">Recursive Model</span>
+            <span class="meta-pill">PDF Access Kept</span>
+          </div>
+          <div class="resource-linkline">Open Theory <span class="icon-chevron-right"></span></div>
+        </a>
+
+        <a class="resource-card reveal-up" href="assets/first-semester/recursion/linear-vs-binary-recursion.pdf" target="_blank">
+          <div class="resource-icon"><span class="icon-layers"></span></div>
+          <h3 class="resource-title">Linear Vs Binary Recursion</h3>
+          <p class="resource-copy">The extra PDF stays attached as a direct theory extension because it expands the branching model rather than introducing a separate topic.</p>
+          <div class="resource-meta">
+            <span class="meta-pill">4 Source Pages</span>
+            <span class="meta-pill">Supplement</span>
+            <span class="meta-pill">Direct PDF Access</span>
+          </div>
+          <div class="resource-linkline">Open Supplement <span class="icon-chevron-right"></span></div>
+        </a>
+      </div>
+
+      <a class="wide-resource reveal-up" href="firstSemester-recursion-code.html">
+        <div class="resource-icon"><span class="icon-code"></span></div>
+        <h3 class="resource-title">Exercise-2 &amp; 3</h3>
+        <p class="resource-copy">This route opens the Java editor-style page for the recursive problem bank. The source is split into the exercise sections already marked inside `Main.java`.</p>
+        <div class="resource-meta">
+          <span class="meta-pill">Exercise Tabs</span>
+          <span class="meta-pill">Full Source Included</span>
+          <span class="meta-pill">Main.java Embedded</span>
+        </div>
+        <div class="resource-linkline">Open Code Page <span class="icon-chevron-right"></span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="page-section pb-5" id="section-map">
+    <div class="page-shell">
+      <div class="section-intro reveal-up">
+        <div class="section-kicker">Topic Map</div>
+        <h2 class="section-title">What this Recursion topic actually covers:</h2>
+        <p class="section-copy">The map stays with the real recursion folder: the core notes, the supplement PDF, and the recursive problem sets written into the Java source file.</p>
+      </div>
+      <div class="topic-map reveal-up">
+        <div class="topic-mini"><small>Concept 01</small><strong>Base Condition and Recurrence Relation</strong></div>
+        <div class="topic-mini"><small>Concept 02</small><strong>Going Down and Coming Back</strong></div>
+        <div class="topic-mini"><small>Concept 03</small><strong>Stack Frames in Recursive Calls</strong></div>
+        <div class="topic-mini"><small>Concept 04</small><strong>Head Recursion vs Tail Recursion</strong></div>
+        <div class="topic-mini"><small>Concept 05</small><strong>Recursion vs Iteration Tradeoffs</strong></div>
+        <div class="topic-mini"><small>Concept 06</small><strong>Linear vs Binary Recursion</strong></div>
+        <div class="topic-mini"><small>Concept 07</small><strong>Recursive Problem Bank in Main.java</strong></div>
+        <div class="topic-mini"><small>Concept 08</small><strong>From Concept Model to Problem Solving</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/vendor/popper.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/jquery.easing.1.3.js"></script>
+  <script src="js/vendor/jquery.stellar.min.js"></script>
+  <script src="js/vendor/jquery.waypoints.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="js/topic-pages.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      TopicPages.initReveal();
+    })();
+  </script>
+  <script src="js/back-nav.js"></script>
+  <script src="js/home-page-system.js"></script>
+  <script src="js/theme-toggle.js"></script>
+</body>
+</html>

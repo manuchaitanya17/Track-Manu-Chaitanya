@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Second Semester | Subject Hub</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+  <style>
+    :root{
+      --sem2-accent: #bac964;
+      --sem2-green: #12cb63;
+      --sem2-blue: #47b0ff;
+      --sem2-orange: #ff7c43;
+      --sem2-bg: #1d1d1d;
+      --sem2-panel: rgba(255,255,255,0.06);
+      --sem2-border: rgba(255,255,255,0.10);
+      --sem2-muted: rgba(255,255,255,0.72);
+      --sem2-soft: rgba(255,255,255,0.46);
+    }
+
+    html{ scroll-behavior: smooth; }
+
+    body{
+      color: #fff;
+      background:
+        radial-gradient(circle at top left, rgba(71, 176, 255, 0.10), transparent 20%),
+        radial-gradient(circle at top right, rgba(186, 201, 100, 0.10), transparent 22%),
+        radial-gradient(circle at bottom right, rgba(18, 203, 99, 0.06), transparent 20%),
+        var(--sem2-bg);
+      overflow-x: hidden;
+    }
+
+    .sem2-shell{
+      width: min(94vw, 1700px);
+      margin: 0 auto;
+    }
+
+    .sem2-hero{
+      position: relative;
+      padding: 10.5rem 0 5rem;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 14%, rgba(71, 176, 255, 0.14), transparent 16%),
+        radial-gradient(circle at 82% 20%, rgba(186, 201, 100, 0.14), transparent 18%),
+        linear-gradient(140deg, rgba(25,25,25,0.98), rgba(34,34,34,0.96));
+    }
+
+    .sem2-hero:before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.95), rgba(0,0,0,0.30));
+      pointer-events: none;
+    }
+
+    .sem2-hero .sem2-shell{ position: relative; z-index: 1; }
+
+    .hero-banner{
+      position: relative;
+      min-height: 230px;
+      border-radius: 42px;
+      padding: clamp(1.8rem, 3vw, 2.8rem);
+      background:
+        radial-gradient(circle at 82% 25%, rgba(71, 176, 255, 0.14), transparent 20%),
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 28px 90px rgba(0,0,0,0.26);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-banner:after{
+      content: "";
+      position: absolute;
+      right: -36px;
+      bottom: -44px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(186, 201, 100, 0.22), rgba(186, 201, 100, 0.02) 70%, transparent 74%);
+      animation: heroPulse 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes heroPulse{
+      0%,100%{ transform: scale(1); opacity: 0.55; }
+      50%{ transform: scale(1.08); opacity: 0.96; }
+    }
+
+    .hero-kicker{
+      display: inline-flex;
+      align-items: center;
+      padding: 0.48rem 0.98rem;
+      border-radius: 999px;
+      color: var(--sem2-accent);
+      border: 1px solid rgba(186, 201, 100, 0.28);
+      background: rgba(186, 201, 100, 0.08);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .hero-banner h1{
+      font-size: clamp(3rem, 5vw, 5rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin-bottom: 0;
+      font-weight: 200;
+    }
+
+    .hero-banner h1 strong{ font-weight: 700; }
+
+    .hero-copy-wrap{ margin-top: 2.2rem; }
+
+    .hero-title{
+      font-size: clamp(2rem, 3.2vw, 3.2rem);
+      letter-spacing: -0.03em;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-copy{
+      color: var(--sem2-muted);
+      font-size: 1.08rem;
+      line-height: 1.9;
+      max-width: 50rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-metrics{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+
+    .metric-chip{
+      padding: 0.78rem 1rem;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.84);
+      font-weight: 700;
+    }
+
+    .hero-actions .btn{
+      min-width: 180px;
+      margin-right: 12px;
+      margin-bottom: 12px;
+    }
+
+    .overview-panel{
+      position: relative;
+      border-radius: 28px;
+      padding: 1.7rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 20px 64px rgba(0,0,0,0.24);
+      overflow: hidden;
+    }
+
+    .overview-panel:before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 82% 20%, rgba(71, 176, 255, 0.16), transparent 18%),
+        radial-gradient(circle at 18% 82%, rgba(18, 203, 99, 0.12), transparent 18%);
+      pointer-events: none;
+    }
+
+    .panel-kicker,
+    .section-kicker{
+      color: var(--sem2-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .overview-panel h3,
+    .section-title{ position: relative; z-index: 1; }
+
+    .overview-copy{
+      color: var(--sem2-muted);
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .subject-nav-grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 1.2rem;
+    }
+
+    .subject-nav-card{
+      display: flex;
+      flex-direction: column;
+      min-height: 150px;
+      padding: 1rem;
+      border-radius: 20px;
+      text-decoration: none;
+      color: #fff;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+    }
+
+    .subject-nav-card:hover,
+    .subject-nav-card:focus{
+      color: #fff;
+      text-decoration: none;
+      transform: translateY(-6px);
+      border-color: rgba(186, 201, 100, 0.24);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.20);
+    }
+
+    .subject-nav-id{
+      color: var(--sem2-soft);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.7rem;
+    }
+
+    .subject-nav-title{
+      font-size: 1.05rem;
+      line-height: 1.28;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .subject-nav-status{
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 0.42rem 0.78rem;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .subject-nav-status.ready{
+      color: #10230f;
+      background: var(--sem2-green);
+      border-color: transparent;
+    }
+
+    .subject-nav-status.pending{
+      color: #fff;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .overview-stats{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .overview-stat{
+      border-radius: 16px;
+      padding: 1rem;
+      background: rgba(0,0,0,0.16);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .overview-stat-label{
+      color: var(--sem2-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.76rem;
+    }
+
+    .overview-stat-value{
+      margin-top: 0.45rem;
+      color: var(--sem2-accent);
+      font-size: 1.95rem;
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    .overview-stat-sub{
+      margin-top: 0.42rem;
+      color: var(--sem2-soft);
+      font-size: 0.84rem;
+    }
+
+    .sem2-section{ padding: 0 0 5.5rem; }
+
+    .section-intro{ margin-bottom: 2rem; }
+
+    .section-title{
+      font-size: clamp(2rem, 3vw, 3.2rem);
+      letter-spacing: -0.04em;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-copy{
+      color: var(--sem2-muted);
+      line-height: 1.85;
+      max-width: 54rem;
+      margin-bottom: 0;
+    }
+
+    .subject-head{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 1.6rem;
+    }
+
+    .subject-badge{
+      display: inline-flex;
+      align-items: center;
+      padding: 0.46rem 0.84rem;
+      border-radius: 999px;
+      background: rgba(186, 201, 100, 0.10);
+      border: 1px solid rgba(186, 201, 100, 0.24);
+      color: var(--sem2-accent);
+      font-weight: 700;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.8rem;
+    }
+
+    .subject-jump{
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0.75rem 0.95rem;
+      border-radius: 14px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .subject-jump:hover,
+    .subject-jump:focus{
+      color: #fff;
+      text-decoration: none;
+      border-color: rgba(186, 201, 100, 0.24);
+    }
+
+    .split-panel,
+    .topic-shell,
+    .report-panel,
+    .placeholder-panel{
+      position: relative;
+      border-radius: 34px;
+      padding: clamp(1.6rem, 2.8vw, 2.5rem);
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: 0 24px 72px rgba(0,0,0,0.20);
+      overflow: hidden;
+    }
+
+    .topic-shell{ margin-bottom: 2rem; }
+
+    .topics-grid{
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .topic-card{
+      position: relative;
+      min-height: 220px;
+      padding: 1.4rem 1.2rem 1.3rem;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.20), rgba(0,0,0,0.10));
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+      overflow: hidden;
+    }
+
+    .topic-card:hover{
+      transform: translateY(-8px);
+      border-color: rgba(71, 176, 255, 0.24);
+      box-shadow: 0 22px 56px rgba(0,0,0,0.24);
+    }
+
+    .topic-card:before{
+      content: "";
+      position: absolute;
+      inset: auto -10% -35% auto;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(71, 176, 255, 0.10), transparent 70%);
+      pointer-events: none;
+    }
+
+    .folder-icon{
+      position: relative;
+      width: 92px;
+      height: 66px;
+      margin-bottom: 1.25rem;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #73d6ff, #3fa8dc);
+      box-shadow: inset 0 -5px 0 rgba(0,0,0,0.08), 0 10px 22px rgba(0,0,0,0.16);
+    }
+
+    .folder-icon:before{
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: -10px;
+      width: 34px;
+      height: 18px;
+      border-radius: 10px 10px 0 0;
+      background: linear-gradient(180deg, #52c0f7, #3199d3);
+    }
+
+    .topic-number{
+      color: rgba(255,255,255,0.48);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      margin-bottom: 0.55rem;
+    }
+
+    .topic-title{
+      font-size: 1.2rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 0;
+    }
+
+    .topic-bar{
+      margin-top: 1rem;
+      width: 58px;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--sem2-accent);
+    }
+
+    .certificate-preview-wrap{
+      position: relative;
+      border-radius: 24px;
+      padding: 1rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 18px 46px rgba(0,0,0,0.18);
+      animation: floatPreview 6.5s ease-in-out infinite;
+    }
+
+    @keyframes floatPreview{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-8px); } }
+
+    .certificate-preview{
+      width: 100%;
+      border-radius: 18px;
+      display: block;
+    }
+
+    .certificate-grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .certificate-card{
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      border-radius: 24px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(0,0,0,0.20), rgba(0,0,0,0.08));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 18px 46px rgba(0,0,0,0.18);
+      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+    }
+
+    .certificate-card:hover{
+      transform: translateY(-8px);
+      border-color: rgba(186, 201, 100, 0.24);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.24);
+    }
+
+    .certificate-media{
+      padding: 1rem 1rem 0;
+    }
+
+    .certificate-media img{
+      display: block;
+      width: 100%;
+      aspect-ratio: 1.42 / 1;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.95);
+    }
+
+    .certificate-body{
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      padding: 1.15rem 1rem 1rem;
+    }
+
+    .certificate-provider{
+      color: var(--sem2-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-bottom: 0.55rem;
+    }
+
+    .certificate-title{
+      font-size: 1.22rem;
+      line-height: 1.3;
+      margin-bottom: 0.6rem;
+    }
+
+    .certificate-meta{
+      color: var(--sem2-muted);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .certificate-actions{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    .certificate-actions .btn{
+      min-width: 0;
+      margin: 0;
+      flex: 1 1 180px;
+    }
+
+    .meta-grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 1.4rem 0 1.5rem;
+    }
+
+    .meta-card,
+    .download-card,
+    .summary-card,
+    .document-status,
+    .placeholder-card{
+      border-radius: 18px;
+      padding: 1rem 1.1rem;
+      background: rgba(0,0,0,0.16);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .meta-card small,
+    .summary-card small{
+      color: var(--sem2-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      display: block;
+      margin-bottom: 0.45rem;
+    }
+
+    .meta-card strong{ display: block; font-size: 1rem; line-height: 1.35; }
+
+    .section-actions .btn{
+      min-width: 180px;
+      margin-right: 12px;
+      margin-bottom: 12px;
+    }
+
+    .report-summary{
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 1.5rem;
+    }
+
+    .summary-card strong{
+      color: var(--sem2-accent);
+      font-size: 1.9rem;
+      line-height: 1;
+      display: block;
+      margin-bottom: 0.42rem;
+    }
+
+    .summary-card span{
+      color: rgba(255,255,255,0.82);
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .report-note{
+      color: var(--sem2-soft);
+      margin-bottom: 1.2rem;
+    }
+
+    .report-table-wrap{
+      overflow-x: auto;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.16);
+      margin-bottom: 1.5rem;
+    }
+
+    .report-table{
+      width: 100%;
+      min-width: 740px;
+      border-collapse: collapse;
+    }
+
+    .report-table th,
+    .report-table td{
+      padding: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      vertical-align: top;
+    }
+
+    .report-table th{
+      color: rgba(255,255,255,0.86);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      background: rgba(255,255,255,0.03);
+      white-space: nowrap;
+    }
+
+    .report-table tbody tr:last-child td{ border-bottom: 0; }
+    .report-table td:first-child,
+    .report-table td:nth-child(2){ color: #fff; font-weight: 700; }
+
+    .status-pill{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 62px;
+      padding: 0.4rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.88);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .status-pill.status-d{ box-shadow: inset 0 0 0 1px rgba(18, 203, 99, 0.24); }
+    .status-pill.status-p{ box-shadow: inset 0 0 0 1px rgba(186, 201, 100, 0.24); }
+    .status-pill.status-na{
+      color: rgba(255,255,255,0.66);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
+    }
+
+    .documents-grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 1.5rem;
+    }
+
+    .document-status{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .document-status strong{
+      font-size: 1rem;
+      line-height: 1.35;
+    }
+
+    .download-card{
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 1.4rem;
+      max-width: 640px;
+    }
+
+    .download-card-icon{
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(71, 176, 255, 0.12);
+      color: var(--sem2-blue);
+      font-size: 1.5rem;
+      flex: 0 0 auto;
+    }
+
+    .download-card strong{
+      display: block;
+      font-size: 1.05rem;
+      line-height: 1.35;
+    }
+
+    .download-card span{
+      display: block;
+      margin-top: 0.25rem;
+      color: var(--sem2-soft);
+      line-height: 1.5;
+    }
+
+    .placeholder-grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .placeholder-card h4{
+      margin-bottom: 0.7rem;
+      font-size: 1.25rem;
+    }
+
+    .placeholder-card p{
+      color: var(--sem2-muted);
+      line-height: 1.75;
+      margin-bottom: 0;
+    }
+
+    .reveal-up{
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-up.is-visible{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1399.98px){
+      .topics-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .report-summary{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 1199.98px){
+      .topics-grid,
+      .placeholder-grid,
+      .certificate-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .documents-grid{ grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 991.98px){
+      .sem2-hero{ padding-top: 9rem; }
+      .overview-panel{ margin-top: 1.5rem; }
+      .certificate-preview-wrap{ margin-bottom: 1.5rem; }
+      .subject-head{ flex-direction: column; }
+    }
+
+    @media (max-width: 767.98px){
+      .sem2-hero{ padding: 8rem 0 4.2rem; }
+      .hero-metrics,
+      .metric-chip,
+      .hero-actions .btn,
+      .section-actions .btn{ width: 100%; }
+      .subject-nav-grid,
+      .overview-stats,
+      .report-summary,
+      .topics-grid,
+      .placeholder-grid,
+      .certificate-grid{ grid-template-columns: 1fr; }
+      .hero-banner{ border-radius: 28px; min-height: 200px; }
+      .meta-grid{ grid-template-columns: 1fr; }
+      .topic-card{ min-height: 0; }
+    }
+  </style>
+  <link rel="stylesheet" href="css/mobile-responsive.css">
+  <link rel="stylesheet" href="css/home-page-system.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+</head>
+<body data-spy="scroll" data-target="#pb-navbar" data-offset="200">
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsSecondSemester" aria-controls="navbarsSecondSemester" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbarsSecondSemester">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="academic.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-overview">Overview</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-subjects">Subjects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#subject-21">2.1 OOP</a></li>
+          <li class="nav-item"><a class="nav-link" href="#subject-22">2.2 Frontend</a></li>
+          <li class="nav-item"><a class="nav-link" href="#subject-23">2.3 DBMS</a></li>
+          <li class="nav-item"><a class="nav-link" href="#subject-24">2.4 Networks</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="sem2-hero" id="section-overview">
+    <div class="sem2-shell">
+      <div class="hero-banner reveal-up">
+        <div>
+          <span class="hero-kicker">Second Semester</span>
+          <h1>Semester 02 <strong>Subject Hub</strong></h1>
+        </div>
+      </div>
+
+      <div class="hero-copy-wrap">
+        <div class="row align-items-start">
+          <div class="col-xl-7 col-lg-7 mb-5 mb-lg-0">
+            <h2 class="hero-title reveal-up">Four subjects inside one semester page</h2>
+            <p class="hero-copy reveal-up">
+              This semester is not treated as a single subject page. Instead, it works as a hub for four separate subjects: <strong>2.1 Object-Oriented Programming</strong>, <strong>2.2 Basic Frontend Development</strong>, <strong>2.3 Database Management System</strong>, and <strong>2.4 Computer Networks</strong>. The first two subjects are populated now, and the remaining two sections are already prepared for later content.
+            </p>
+            <div class="hero-metrics reveal-up">
+              <div class="metric-chip">4 subject boxes</div>
+              <div class="metric-chip">2 subject blocks added</div>
+              <div class="metric-chip">2 subject sections ready next</div>
+              <div class="metric-chip">same-page navigation</div>
+            </div>
+            <div class="hero-actions reveal-up">
+              <a href="#section-subjects" class="btn btn-primary px-4 py-3">Open Subjects</a>
+              <a href="#subject-21" class="btn btn-secondary px-4 py-3">Go To 2.1 OOP</a>
+            </div>
+          </div>
+
+          <div class="col-xl-5 col-lg-5">
+            <div class="overview-panel reveal-up">
+              <div class="panel-kicker">Semester Navigator</div>
+              <h3>Prepared for multiple subject builds</h3>
+              <p class="overview-copy">
+                The layout is designed so each subject can stay in the same semester page while still having its own content block, downloads, and revision material. For now, both the OOP and frontend subject blocks are populated with actual course assets.
+              </p>
+
+              <div class="subject-nav-grid" id="subjectNavGrid"></div>
+
+              <div class="overview-stats">
+                <div class="overview-stat">
+                  <div class="overview-stat-label">Subjects</div>
+                  <div class="overview-stat-value" id="statSubjects">0</div>
+                  <div class="overview-stat-sub">tracked for semester two</div>
+                </div>
+                <div class="overview-stat">
+                  <div class="overview-stat-label">Ready Now</div>
+                  <div class="overview-stat-value" id="statReady">0</div>
+                  <div class="overview-stat-sub">fully populated subject blocks</div>
+                </div>
+                <div class="overview-stat">
+                  <div class="overview-stat-label">Mapped Topics</div>
+                  <div class="overview-stat-value" id="statTopics">0</div>
+                  <div class="overview-stat-sub">across the ready subject blocks</div>
+                </div>
+                <div class="overview-stat">
+                  <div class="overview-stat-label">Certificates</div>
+                  <div class="overview-stat-value" id="statCertificates">0</div>
+                  <div class="overview-stat-sub">available across ready subject blocks</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section sem2-section" id="section-subjects">
+    <div class="sem2-shell">
+      <div class="section-intro reveal-up">
+        <div class="section-kicker">Subjects</div>
+        <h2 class="section-title">Semester 02 Subject Navigation</h2>
+        <p class="section-copy">Each box below jumps to a dedicated subject block on this same page. That lets you keep multiple semester subjects grouped together while still expanding each one separately.</p>
+      </div>
+
+      <div class="subject-nav-grid reveal-up" id="subjectCardsGrid"></div>
+    </div>
+  </section>
+
+  <section class="site-section sem2-section pt-0" id="subject-21">
+    <div class="sem2-shell">
+      <div class="subject-head reveal-up">
+        <div>
+          <div class="subject-badge">Subject 2.1</div>
+          <h2 class="section-title" style="margin-bottom: 0.7rem;">Object-Oriented Programming</h2>
+          <p class="section-copy">This is the detailed subject block currently filled with the provided assets: topic folders, certificate, completion report, and cheatsheet download.</p>
+        </div>
+        <a class="subject-jump" href="#section-subjects">Back To Subject Boxes</a>
+      </div>
+
+      <div class="topic-shell reveal-up">
+        <div class="section-kicker">Topics</div>
+        <h3 class="section-title" style="font-size: clamp(1.9rem, 2.5vw, 2.6rem); margin-bottom: 1rem;">2.1 Topic Map</h3>
+        <p class="section-copy" style="margin-bottom: 1.6rem; max-width: 52rem;">Only the folder topics shown in your screenshot are included here. No extra inferred chapter names are added beyond what is visible in the provided course folder.</p>
+        <div class="topics-grid" id="oopTopicsGrid"></div>
+      </div>
+
+      <div class="split-panel reveal-up" style="margin-bottom: 2rem;">
+        <div class="row align-items-center">
+          <div class="col-lg-7 mb-4 mb-lg-0">
+            <div class="certificate-preview-wrap">
+              <img src="images/second-semester/certificate-preview.png" alt="UC San Diego certificate preview" class="certificate-preview">
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="panel-kicker">Certificate</div>
+            <h3 class="section-title" style="font-size: clamp(1.8rem, 2.4vw, 2.5rem); margin-bottom: 0.8rem;">UC San Diego Course Certificate</h3>
+            <p class="section-copy" style="margin-bottom: 0; max-width: none;">
+              The provided certificate matches the OOP subject directly. The file is surfaced here as the certificate artifact for this subject block, with preview and direct PDF access.
+            </p>
+            <div class="meta-grid">
+              <div class="meta-card"><small>Recipient</small><strong>Manu Chaitanya</strong></div>
+              <div class="meta-card"><small>Issued On</small><strong>June 11, 2023</strong></div>
+              <div class="meta-card"><small>Course In File</small><strong>Object Oriented Programming in Java</strong></div>
+              <div class="meta-card"><small>Platform</small><strong>UC San Diego via Coursera</strong></div>
+            </div>
+            <div class="section-actions">
+              <a href="assets/second-semester/certificate-uc-san-diego.pdf" class="btn btn-primary px-4 py-3" target="_blank">Open Certificate</a>
+              <a href="assets/second-semester/certificate-uc-san-diego.pdf" class="btn btn-secondary px-4 py-3" download>Download PDF</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="report-panel reveal-up" style="margin-bottom: 2rem;">
+        <div class="section-kicker">Course Report</div>
+        <h3 class="section-title" style="font-size: clamp(1.9rem, 2.5vw, 2.6rem); margin-bottom: 0.9rem;">Object-Oriented Programming Completion Report</h3>
+        <p class="section-copy" style="margin-bottom: 1.5rem; max-width: 54rem;">The report structure here keeps the original document notation intact. This report only tracks `Theory` and `Exercise-1`, so the page does not invent additional exercise columns.</p>
+
+        <div class="report-summary">
+          <div class="summary-card"><small>Chapters</small><strong>13</strong><span>tracked in the report matrix</span></div>
+          <div class="summary-card"><small>Documents</small><strong>8</strong><span>tracked in the report checklist</span></div>
+          <div class="summary-card"><small>Weeks</small><strong>3</strong><span>completion sprint in report</span></div>
+          <div class="summary-card"><small>MCQs</small><strong>732</strong><span>planned in the course planner</span></div>
+        </div>
+
+        <p class="report-note">Original `P` and `D` notation is preserved from the report file without expanding it into custom labels.</p>
+
+        <div class="report-table-wrap">
+          <table class="report-table">
+            <thead>
+              <tr>
+                <th>Sno.</th>
+                <th>Chapter</th>
+                <th>Theory</th>
+                <th>Exercise-1</th>
+              </tr>
+            </thead>
+            <tbody id="oopReportRows"></tbody>
+          </table>
+        </div>
+
+        <div class="documents-grid" id="oopDocumentRows"></div>
+
+        <div class="section-actions">
+          <a href="assets/second-semester/course-completion-report-object-oriented-programming.docx" class="btn btn-primary px-4 py-3" download>Download Report</a>
+        </div>
+      </div>
+
+      <div class="split-panel reveal-up">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb-4 mb-lg-0">
+            <div class="certificate-preview-wrap">
+              <img src="images/second-semester/cheatsheet-preview.png" alt="OOP cheatsheet preview" class="certificate-preview">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="panel-kicker">Cheatsheet</div>
+            <h3 class="section-title" style="font-size: clamp(1.8rem, 2.4vw, 2.5rem); margin-bottom: 0.8rem;">Interview Cheatsheet Download</h3>
+            <p class="section-copy" style="margin-bottom: 1.2rem; max-width: none;">
+              The preview shows an object-oriented programming interview cheatsheet. The original filename provided is <strong>Cheatsheet-Operating System.pdf</strong>, so the download keeps the exact source file while the section label reflects the actual preview content.
+            </p>
+            <div class="download-card">
+              <div class="download-card-icon"><span class="icon-file-text2"></span></div>
+              <div>
+                <strong>Cheatsheet-Operating System.pdf</strong>
+                <span>Provided file name, used here as the OOP cheatsheet download artifact.</span>
+              </div>
+            </div>
+            <div class="section-actions">
+              <a href="assets/second-semester/cheatsheet-object-oriented-programming.pdf" class="btn btn-primary px-4 py-3" download>Download Cheatsheet</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section sem2-section pt-0" id="subject-22">
+    <div class="sem2-shell">
+      <div class="subject-head reveal-up">
+        <div>
+          <div class="subject-badge">Subject 2.2</div>
+          <h2 class="section-title" style="margin-bottom: 0.7rem;">Basic Frontend Development</h2>
+          <p class="section-copy">This block collects the actual frontend foundation assets for the subject: topic folders, four certificates, the completion report, and the cheatsheet download. The content spans HTML, CSS, Bootstrap, JavaScript, BOM, DOM, and beginner OOP concepts.</p>
+        </div>
+        <a class="subject-jump" href="#section-subjects">Back To Subject Boxes</a>
+      </div>
+
+      <div class="topic-shell reveal-up">
+        <div class="section-kicker">Topics</div>
+        <h3 class="section-title" style="font-size: clamp(1.9rem, 2.5vw, 2.6rem); margin-bottom: 1rem;">2.2 Topic Map</h3>
+        <p class="section-copy" style="margin-bottom: 1.6rem; max-width: 54rem;">Only the visible topic folders from your screenshot are mapped here. The sequence keeps the original progression from HTML basics into CSS, Bootstrap, JavaScript, BOM, DOM, and introductory OOP.</p>
+        <div class="topics-grid" id="frontendTopicsGrid"></div>
+      </div>
+
+      <div class="split-panel reveal-up" style="margin-bottom: 2rem;">
+        <div class="section-kicker">Certificates</div>
+        <h3 class="section-title" style="font-size: clamp(1.9rem, 2.5vw, 2.6rem); margin-bottom: 0.9rem;">Four course certificates mapped to the frontend path</h3>
+        <p class="section-copy" style="margin-bottom: 1.6rem; max-width: 58rem;">This subject is backed by multiple certificate artifacts instead of one generic credential. Together they cover frontend entry points, HTML/CSS depth, JavaScript basics, and introductory web development foundations.</p>
+
+        <div class="certificate-grid">
+          <article class="certificate-card">
+            <div class="certificate-media">
+              <img src="images/second-semester/frontend/certificate-ibm-preview.png" alt="IBM frontend certificate preview">
+            </div>
+            <div class="certificate-body">
+              <div class="certificate-provider">IBM via Coursera</div>
+              <h4 class="certificate-title">Introduction to Web Development with HTML, CSS, JavaScript</h4>
+              <p class="certificate-meta">Issued on Nov 30, 2022. This certificate anchors the subject with the initial HTML, CSS, and JavaScript foundation.</p>
+              <div class="certificate-actions">
+                <a href="assets/second-semester/frontend/certificate-ibm.pdf" class="btn btn-primary px-4 py-3" target="_blank">Open Certificate</a>
+                <a href="assets/second-semester/frontend/certificate-ibm.pdf" class="btn btn-secondary px-4 py-3" download>Download PDF</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="certificate-card">
+            <div class="certificate-media">
+              <img src="images/second-semester/frontend/certificate-meta-i-preview.png" alt="Meta introduction to frontend certificate preview">
+            </div>
+            <div class="certificate-body">
+              <div class="certificate-provider">Meta via Coursera</div>
+              <h4 class="certificate-title">Introduction to Front-End Development</h4>
+              <p class="certificate-meta">Issued on Dec 19, 2022. This artifact fits the opening layer of the subject and supports the shift from raw markup into real interface building.</p>
+              <div class="certificate-actions">
+                <a href="assets/second-semester/frontend/certificate-meta-i.pdf" class="btn btn-primary px-4 py-3" target="_blank">Open Certificate</a>
+                <a href="assets/second-semester/frontend/certificate-meta-i.pdf" class="btn btn-secondary px-4 py-3" download>Download PDF</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="certificate-card">
+            <div class="certificate-media">
+              <img src="images/second-semester/frontend/certificate-meta-ii-preview.png" alt="Meta HTML and CSS in depth certificate preview">
+            </div>
+            <div class="certificate-body">
+              <div class="certificate-provider">Meta via Coursera</div>
+              <h4 class="certificate-title">HTML and CSS in Depth</h4>
+              <p class="certificate-meta">Issued on Jun 22, 2023. This certificate aligns with the middle part of the subject where layout, styling, and responsive structure become more deliberate.</p>
+              <div class="certificate-actions">
+                <a href="assets/second-semester/frontend/certificate-meta-ii.pdf" class="btn btn-primary px-4 py-3" target="_blank">Open Certificate</a>
+                <a href="assets/second-semester/frontend/certificate-meta-ii.pdf" class="btn btn-secondary px-4 py-3" download>Download PDF</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="certificate-card">
+            <div class="certificate-media">
+              <img src="images/second-semester/frontend/certificate-uc-davis-preview.png" alt="UC Davis JavaScript Basics certificate preview">
+            </div>
+            <div class="certificate-body">
+              <div class="certificate-provider">UC Davis via Coursera</div>
+              <h4 class="certificate-title">JavaScript Basics</h4>
+              <p class="certificate-meta">Issued on Jun 30, 2023. This closes the certificate set with a JavaScript-focused artifact that fits the last third of the topic flow.</p>
+              <div class="certificate-actions">
+                <a href="assets/second-semester/frontend/certificate-uc-davis.pdf" class="btn btn-primary px-4 py-3" target="_blank">Open Certificate</a>
+                <a href="assets/second-semester/frontend/certificate-uc-davis.pdf" class="btn btn-secondary px-4 py-3" download>Download PDF</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="report-panel reveal-up" style="margin-bottom: 2rem;">
+        <div class="section-kicker">Course Report</div>
+        <h3 class="section-title" style="font-size: clamp(1.9rem, 2.5vw, 2.6rem); margin-bottom: 0.9rem;">Basic Frontend Development Completion Report</h3>
+        <p class="section-copy" style="margin-bottom: 1.5rem; max-width: 56rem;">The original report notation is preserved exactly as written in the document. This report uses <strong>✓</strong>, <strong>P</strong>, and <strong>N/A</strong>, so the page keeps those values instead of remapping them into custom labels.</p>
+
+        <div class="report-summary">
+          <div class="summary-card"><small>Chapters</small><strong>13</strong><span>tracked in the report matrix</span></div>
+          <div class="summary-card"><small>Certificates</small><strong>4</strong><span>linked to this subject block</span></div>
+          <div class="summary-card"><small>Projects</small><strong>3</strong><span>listed in the course planner</span></div>
+          <div class="summary-card"><small>Theory Sprint</small><strong>4</strong><span>days noted in the report</span></div>
+        </div>
+
+        <p class="report-note">The supporting checklist from the report is also included below so the document state stays visible on the same subject page.</p>
+
+        <div class="report-table-wrap">
+          <table class="report-table">
+            <thead>
+              <tr>
+                <th>Sno.</th>
+                <th>Chapter</th>
+                <th>Theory</th>
+                <th>Project</th>
+              </tr>
+            </thead>
+            <tbody id="frontendReportRows"></tbody>
+          </table>
+        </div>
+
+        <div class="documents-grid" id="frontendDocumentRows"></div>
+
+        <div class="section-actions">
+          <a href="assets/second-semester/frontend/course-completion-basic-frontend-development.docx" class="btn btn-primary px-4 py-3" download>Download Report</a>
+        </div>
+      </div>
+
+      <div class="split-panel reveal-up">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb-4 mb-lg-0">
+            <div class="meta-grid" style="margin: 0;">
+              <div class="meta-card"><small>Format</small><strong>DOCX download</strong></div>
+              <div class="meta-card"><small>Audience</small><strong>Fresher interview revision</strong></div>
+              <div class="meta-card"><small>Coverage</small><strong>HTML, CSS, JavaScript, BOM, DOM, and OOP basics</strong></div>
+              <div class="meta-card"><small>Source File</small><strong>Cheatsheet.docx</strong></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="panel-kicker">Cheatsheet</div>
+            <h3 class="section-title" style="font-size: clamp(1.8rem, 2.4vw, 2.5rem); margin-bottom: 0.8rem;">Frontend Revision Download</h3>
+            <p class="section-copy" style="margin-bottom: 1.2rem; max-width: none;">The cheatsheet stays download-focused here. It works as a revision file for quick interview recall across the frontend stack covered in this subject.</p>
+            <div class="download-card">
+              <div class="download-card-icon"><span class="icon-file-text2"></span></div>
+              <div>
+                <strong>Cheatsheet.docx</strong>
+                <span>Provided frontend revision document used as the downloadable cheatsheet artifact for this subject block.</span>
+              </div>
+            </div>
+            <div class="section-actions">
+              <a href="assets/second-semester/frontend/cheatsheet-basic-frontend-development.docx" class="btn btn-primary px-4 py-3" download>Download Cheatsheet</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section sem2-section pt-0" id="subject-23">
+    <div class="sem2-shell">
+      <div class="subject-head reveal-up">
+        <div>
+          <div class="subject-badge">Subject 2.3</div>
+          <h2 class="section-title" style="margin-bottom: 0.7rem;">Database Management System</h2>
+          <p class="section-copy">This subject shell is ready for DBMS-specific content later and keeps the same structure as the first populated subject.</p>
+        </div>
+        <a class="subject-jump" href="#section-subjects">Back To Subject Boxes</a>
+      </div>
+      <div class="placeholder-panel reveal-up">
+        <div class="placeholder-grid">
+          <div class="placeholder-card">
+            <h4>Topics Block Ready</h4>
+            <p>Use this section later for DBMS topic folders and chapter mapping.</p>
+          </div>
+          <div class="placeholder-card">
+            <h4>Documents Block Ready</h4>
+            <p>Certificate, report, and revision/download items can be inserted here using the same pattern as 2.1.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section sem2-section pt-0" id="subject-24">
+    <div class="sem2-shell">
+      <div class="subject-head reveal-up">
+        <div>
+          <div class="subject-badge">Subject 2.4</div>
+          <h2 class="section-title" style="margin-bottom: 0.7rem;">Computer Networks</h2>
+          <p class="section-copy">This subject shell is also prepared now so later additions can stay on the same semester page instead of forcing a redesign.</p>
+        </div>
+        <a class="subject-jump" href="#section-subjects">Back To Subject Boxes</a>
+      </div>
+      <div class="placeholder-panel reveal-up">
+        <div class="placeholder-grid">
+          <div class="placeholder-card">
+            <h4>Navigation Ready</h4>
+            <p>The subject already has a box and anchor route in the semester navigator.</p>
+          </div>
+          <div class="placeholder-card">
+            <h4>Content Ready</h4>
+            <p>Later you can add topic folders, report tables, certificate assets, and cheatsheet downloads here with the same section layout.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+      <div class="row mb-5">
+        <div class="col-md-12 text-center">
+          <p>
+            <a href="https://www.facebook.com/m14chaitanya" class="social-item"><span class="icon-facebook2"></span></a>
+            <a href="#" class="social-item"><span class="icon-twitter"></span></a>
+            <a href="https://www.instagram.com/m17chaitanya/" class="social-item"><span class="icon-instagram2"></span></a>
+            <a href="https://www.linkedin.com/in/manuchaitanya/" class="social-item"><span class="icon-linkedin2"></span></a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/vendor/popper.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/jquery.easing.1.3.js"></script>
+  <script src="js/vendor/jquery.stellar.min.js"></script>
+  <script src="js/vendor/jquery.waypoints.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script>
+    (function () {
+      "use strict";
+
+      var SUBJECTS = [
+        { id: "subject-21", code: "2.1", title: "Object-Oriented Programming", status: "ready", statusLabel: "Ready Now" },
+        { id: "subject-22", code: "2.2", title: "Basic Frontend Development", status: "ready", statusLabel: "Ready Now" },
+        { id: "subject-23", code: "2.3", title: "Database Management System", status: "pending", statusLabel: "Section Ready" },
+        { id: "subject-24", code: "2.4", title: "Computer Networks", status: "pending", statusLabel: "Section Ready" }
+      ];
+
+      var OOP_TOPICS = [
+        { number: "01", title: "Introduction to Programming Paradigms" },
+        { number: "02", title: "Introduction to Object Oriented Programming" },
+        { number: "03", title: "Object and Classes" },
+        { number: "04", title: "Constructors" },
+        { number: "05", title: "Wrapper Classes" },
+        { number: "06", title: "Packages" },
+        { number: "07", title: "Variables Advanced" },
+        { number: "08", title: "Principles of Object Oriented Programming" },
+        { number: "09", title: "Access Modifiers" },
+        { number: "10", title: "Object Class" },
+        { number: "11", title: "Abstract Class" },
+        { number: "12", title: "Interfaces" },
+        { number: "13", title: "Exception Handling" }
+      ];
+
+      var OOP_REPORT = [
+        { sno: "1", chapter: "Introduction to Programming Paradigms", theory: "P", ex1: "P" },
+        { sno: "2", chapter: "Introduction to Object Oriented Programming", theory: "P", ex1: "P" },
+        { sno: "3", chapter: "Object and Classes", theory: "D", ex1: "D" },
+        { sno: "4", chapter: "Constructors", theory: "D", ex1: "D" },
+        { sno: "5", chapter: "Wrapper Classes", theory: "D", ex1: "D" },
+        { sno: "6", chapter: "Packages", theory: "D", ex1: "D" },
+        { sno: "7", chapter: "Variables Advanced", theory: "D", ex1: "D" },
+        { sno: "8", chapter: "Principles of OOP's", theory: "D", ex1: "D" },
+        { sno: "9", chapter: "Access Modifiers", theory: "D", ex1: "D" },
+        { sno: "10", chapter: "Object Class", theory: "D", ex1: "D" },
+        { sno: "11", chapter: "Abstract Class", theory: "D", ex1: "D" },
+        { sno: "12", chapter: "Interface", theory: "P", ex1: "D" },
+        { sno: "13", chapter: "Exception Handling", theory: "D", ex1: "D" }
+      ];
+
+      var OOP_DOCUMENTS = [
+        { item: "Revision Cheat Sheet", status: "D" },
+        { item: "Certificates", status: "D" },
+        { item: "Course Planner", status: "D" },
+        { item: "Course Completion Report", status: "D" },
+        { item: "GitHub Push (updated)", status: "P" },
+        { item: "6M Capstone Revision", status: "D" },
+        { item: "FTE Capstone Revision", status: "D" },
+        { item: "After Academic Revision", status: "P" }
+      ];
+
+      var FRONTEND_TOPICS = [
+        { number: "01", title: "Introduction to HTML" },
+        { number: "02", title: "HTML Elements P1" },
+        { number: "02", title: "HTML Elements P2" },
+        { number: "03", title: "HTML Entities" },
+        { number: "04", title: "Introduction to CSS" },
+        { number: "05", title: "Properties in CSS" },
+        { number: "06", title: "Element Styling" },
+        { number: "07", title: "Layout in CSS" },
+        { number: "08", title: "Responsiveness" },
+        { number: "09", title: "Introduction to Bootstrap" },
+        { number: "10", title: "Introduction to JS" },
+        { number: "11", title: "Browser Object Model" },
+        { number: "12", title: "Document Object Model" },
+        { number: "13", title: "Object Oriented Programming" }
+      ];
+
+      var FRONTEND_REPORT = [
+        { sno: "1", chapter: "Introduction to HTML", theory: "✓", project: "N/A" },
+        { sno: "2", chapter: "HTML Elements", theory: "✓", project: "N/A" },
+        { sno: "3", chapter: "HTML Entities", theory: "✓", project: "N/A" },
+        { sno: "4", chapter: "Introduction to CSS", theory: "✓", project: "N/A" },
+        { sno: "5", chapter: "Properties in CSS", theory: "✓", project: "✓" },
+        { sno: "6", chapter: "Elements Styling", theory: "✓", project: "N/A" },
+        { sno: "7", chapter: "Layouts in CSS", theory: "✓", project: "N/A" },
+        { sno: "8", chapter: "Responsiveness", theory: "P", project: "✓" },
+        { sno: "9", chapter: "Introduction to Bootstrap", theory: "P", project: "N/A" },
+        { sno: "10", chapter: "Introduction to JavaScript", theory: "✓", project: "N/A" },
+        { sno: "11", chapter: "Browser Object Model", theory: "✓", project: "N/A" },
+        { sno: "12", chapter: "Document Object Model", theory: "✓", project: "✓" },
+        { sno: "13", chapter: "Object Oriented Programming", theory: "✓", project: "N/A" }
+      ];
+
+      var FRONTEND_DOCUMENTS = [
+        { item: "Revision Cheat Sheet", status: "✓" },
+        { item: "Certificates", status: "✓" },
+        { item: "Course Planner", status: "✓" },
+        { item: "Course Completion Report", status: "✓" },
+        { item: "GitHub Push", status: "✓" },
+        { item: "6M Capstone Revision", status: "✓" },
+        { item: "FTE Capstone Revision", status: "P" }
+      ];
+
+      function $(id) { return document.getElementById(id); }
+
+      function escapeHtml(text) {
+        return String(text)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/\"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function renderSubjectBoxes() {
+        var navRoot = $("subjectNavGrid");
+        var gridRoot = $("subjectCardsGrid");
+        var html = SUBJECTS.map(function (subject) {
+          return [
+            '<a class="subject-nav-card" href="#', escapeHtml(subject.id), '">',
+              '<div class="subject-nav-id">Subject ', escapeHtml(subject.code), '</div>',
+              '<div class="subject-nav-title">', escapeHtml(subject.title), '</div>',
+              '<div class="subject-nav-status ', escapeHtml(subject.status), '">', escapeHtml(subject.statusLabel), '</div>',
+            '</a>'
+          ].join("");
+        }).join("");
+
+        if (navRoot) navRoot.innerHTML = html;
+        if (gridRoot) gridRoot.innerHTML = html;
+      }
+
+      function renderTopics(rootId, topics) {
+        var root = $(rootId);
+        if (!root) return;
+        root.innerHTML = topics.map(function (topic) {
+          return [
+            '<article class="topic-card reveal-up">',
+              '<div class="folder-icon"></div>',
+              '<div class="topic-number">Topic ', escapeHtml(topic.number), '</div>',
+              '<h3 class="topic-title">', escapeHtml(topic.title), '</h3>',
+              '<div class="topic-bar"></div>',
+            '</article>'
+          ].join("");
+        }).join("");
+      }
+
+      function statusClass(value) {
+        var normalized = String(value).trim().toUpperCase();
+        if (normalized.indexOf("D") === 0 || normalized === "✓") return "status-d";
+        if (normalized === "N/A" || normalized === "NA") return "status-na";
+        return "status-p";
+      }
+
+      function renderReportRows(reportRootId, rows, fields) {
+        var reportRoot = $(reportRootId);
+        if (reportRoot) {
+          reportRoot.innerHTML = rows.map(function (row) {
+            function pill(value) {
+              return '<span class="status-pill ' + statusClass(value) + '">' + escapeHtml(value) + '</span>';
+            }
+            var cells = fields.map(function (field) {
+              return '<td>' + pill(row[field]) + '</td>';
+            }).join("");
+            return [
+              '<tr>',
+                '<td>', escapeHtml(row.sno), '</td>',
+                '<td>', escapeHtml(row.chapter), '</td>',
+                cells,
+              '</tr>'
+            ].join("");
+          }).join("");
+        }
+      }
+
+      function renderDocuments(rootId, items) {
+        var docsRoot = $(rootId);
+        if (docsRoot) {
+          docsRoot.innerHTML = items.map(function (item) {
+            return [
+              '<div class="document-status">',
+                '<strong>', escapeHtml(item.item), '</strong>',
+                '<span class="status-pill ', statusClass(item.status), '">', escapeHtml(item.status), '</span>',
+              '</div>'
+            ].join("");
+          }).join("");
+        }
+      }
+
+      function animateValue(id, target) {
+        var el = $(id);
+        if (!el) return;
+        var next = Number(target);
+        if (!Number.isFinite(next)) return;
+        var start = null;
+        var duration = 720;
+        function frame(timestamp) {
+          if (start === null) start = timestamp;
+          var progress = Math.min((timestamp - start) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = String(Math.round(next * eased));
+          if (progress < 1) {
+            window.requestAnimationFrame(frame);
+          } else {
+            el.textContent = String(next);
+          }
+        }
+        window.requestAnimationFrame(frame);
+      }
+
+      function initStats() {
+        animateValue("statSubjects", SUBJECTS.length);
+        animateValue("statReady", SUBJECTS.filter(function (subject) { return subject.status === "ready"; }).length);
+        animateValue("statTopics", OOP_TOPICS.length + FRONTEND_TOPICS.length);
+        animateValue("statCertificates", 5);
+      }
+
+      function initReveal() {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          });
+        }, { threshold: 0.14 });
+
+        Array.prototype.forEach.call(document.querySelectorAll(".reveal-up"), function (el, index) {
+          el.style.transitionDelay = Math.min(index * 55, 420) + "ms";
+          observer.observe(el);
+        });
+      }
+
+      function init() {
+        renderSubjectBoxes();
+        renderTopics("oopTopicsGrid", OOP_TOPICS);
+        renderTopics("frontendTopicsGrid", FRONTEND_TOPICS);
+        renderReportRows("oopReportRows", OOP_REPORT, ["theory", "ex1"]);
+        renderDocuments("oopDocumentRows", OOP_DOCUMENTS);
+        renderReportRows("frontendReportRows", FRONTEND_REPORT, ["theory", "project"]);
+        renderDocuments("frontendDocumentRows", FRONTEND_DOCUMENTS);
+        initStats();
+        initReveal();
+      }
+
+      document.addEventListener("DOMContentLoaded", init);
+    })();
+  </script>
+  <script src="js/back-nav.js"></script>
+  <script src="js/home-page-system.js"></script>
+  <script src="js/theme-toggle.js"></script>
+</body>
+</html>

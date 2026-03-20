@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Recursion Theory</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/topic-pages.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+  <style>
+    :root{--page-accent:#f7de4a;--page-blue:#47b0ff;--page-green:#12cb63;}
+  </style>
+  <link rel="stylesheet" href="css/mobile-responsive.css">
+  <link rel="stylesheet" href="css/home-page-system.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+</head>
+<body data-spy="scroll" data-target="#pb-navbar" data-offset="200" class="theory-page">
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsRecursionTheory" aria-controls="navbarsRecursionTheory" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbarsRecursionTheory">
+        <ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="firstSemester-recursion.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li><li class="nav-item"><a class="nav-link" href="#section-foundations">Foundations</a></li><li class="nav-item"><a class="nav-link" href="#section-stack">Stack Flow</a></li><li class="nav-item"><a class="nav-link" href="#section-types">Types of Recursion</a></li><li class="nav-item"><a class="nav-link" href="#section-tradeoffs">Tradeoffs</a></li><li class="nav-item"><a class="nav-link" href="#section-supplement">Supplement</a></li></ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="page-shell">
+      <div class="hero-bar reveal-up">
+        <div>
+          <span class="hero-kicker">Theory · Recursion</span>
+          <h1>Theory: <strong>Recursion</strong></h1>
+          <p>This page converts the source PDF into a structured lesson view. The reading flow stays centered on Base Conditions, Stack Flow, Recursion Types, and the Supplement on Linear vs Binary Recursion.</p>
+        </div>
+        <div class="hero-actions"><a href="assets/first-semester/recursion/theory.pdf" class="btn btn-primary px-4 py-3" target="_blank">Open PDF</a><a href="assets/first-semester/recursion/theory.pdf" class="btn btn-secondary px-4 py-3" download>Download PDF</a><a href="assets/first-semester/recursion/linear-vs-binary-recursion.pdf" class="btn btn-secondary px-4 py-3" target="_blank">Open Supplement</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section pb-5">
+    <div class="page-shell">
+      <div class="page-board reveal-up">
+        <div class="board-grid">
+          <aside class="nav-card">
+            <div class="section-kicker">Reading Path</div>
+            <h3>Jump to any theory block</h3>
+            <a href="#section-foundations"><span>Foundations</span><span class="icon-chevron-right"></span></a><a href="#section-stack"><span>Stack Flow</span><span class="icon-chevron-right"></span></a><a href="#section-types"><span>Types of Recursion</span><span class="icon-chevron-right"></span></a><a href="#section-tradeoffs"><span>Tradeoffs</span><span class="icon-chevron-right"></span></a><a href="#section-supplement"><span>Supplement</span><span class="icon-chevron-right"></span></a>
+            
+          </aside>
+          <div class="content-stack"><article class="info-card reveal-up" id="section-foundations">
+              <div class="section-kicker">Foundations</div>
+              <h2>Recursion means a function solves a problem by calling itself on a smaller sub-problem</h2>
+              <p>The theory introduces recursion as a function-call pattern where a method calls itself directly or indirectly. That only works when the big problem can be reduced into smaller instances of the same problem form.</p><p>Two requirements are repeated throughout the notes: a base condition that stops the calls, and a recurrence relation that moves the input toward that stop condition.</p>
+              
+              <div class="callout-grid"><div class="mini-callout"><small>Base condition</small><strong>The stop gate</strong><span>Without a valid base condition, recursion does not terminate and eventually exhausts stack memory.</span></div><div class="mini-callout"><small>Recurrence</small><strong>The shrinking step</strong><span>Each call should move the problem closer to the base condition rather than sideways or backward.</span></div></div>
+            </article><article class="info-card reveal-up" id="section-stack">
+              <div class="section-kicker">Stack Flow</div>
+              <h2>Recursive calls stack up and return in reverse order</h2>
+              <p>The second theory block walks through how recursion works internally. Each method call gets its own stack frame, waits while deeper calls finish, and then resumes as those calls return back up the chain.</p><p>This is why recursive thinking always has two phases: the going-down phase where calls are created, and the coming-back phase where pending work resumes.</p>
+              
+              <div class="callout-grid"><div class="mini-callout"><small>Go phase</small><strong>Calls are added to the stack</strong><span>Each deeper call pauses the older frame until the deeper one returns.</span></div><div class="mini-callout"><small>Come phase</small><strong>Returns unwind in LIFO order</strong><span>The deepest successful call returns first, then the next outer one, and so on.</span></div></div>
+            </article><article class="info-card reveal-up" id="section-types">
+              <div class="section-kicker">Types of Recursion</div>
+              <h2>Head and tail recursion differ by when the work is done</h2>
+              <p>Tail recursion places the recursive call at the end of the function, so there is no remaining work afterward. Head recursion calls first and performs work while the stack unwinds.</p><p>The notes also connect this distinction to the mental model of “go” and “come”: tail recursion tends to do work on the way down, while head recursion surfaces work on the way back.</p>
+              
+              <div class="callout-grid"><div class="mini-callout"><small>Tail recursion</small><strong>Work before or with the recursive call</strong><span>Useful when the function’s final action is the next recursive call.</span></div><div class="mini-callout"><small>Head recursion</small><strong>Work after the deeper call returns</strong><span>Useful when the result depends on what happens after the deeper level finishes.</span></div></div>
+            </article><article class="info-card reveal-up" id="section-tradeoffs">
+              <div class="section-kicker">Tradeoffs</div>
+              <h2>Recursion can simplify ideas, but iteration can be cheaper</h2>
+              <p>The theory explicitly compares recursion with iteration. Recursive solutions can be cleaner and more intuitive for structurally recursive problems, but they cost additional stack space for each call.</p><p>That means recursion is not automatically better. The right choice depends on problem structure, readability, and whether the stack cost is acceptable.</p>
+              
+              <div class="callout-grid"><div class="mini-callout"><small>Simpler modeling</small><strong>Useful for self-similar problems</strong><span>Factorials, subsequences, and tree-like traversals often map naturally to recursion.</span></div><div class="mini-callout"><small>Risk</small><strong>Wrong shrinking logic causes stack overflow</strong><span>If the base condition is unreachable or the recurrence is wrong, stack frames keep piling up.</span></div></div>
+            </article><article class="info-card reveal-up" id="section-supplement">
+              <div class="section-kicker">Supplement</div>
+              <h2>Linear and binary recursion extend the same core idea at different branching widths</h2>
+              <p>The additional PDF is retained as a source resource for this topic. The core distinction is straightforward: linear recursion makes one recursive call at each level, while binary recursion branches into two recursive calls from one state.</p><p>That difference changes the recursion tree dramatically. Linear recursion grows like a single path, while binary recursion grows like a branching tree, which affects both reasoning and time complexity.</p>
+              
+              <div class="callout-grid"><div class="mini-callout"><small>Linear recursion</small><strong>One recursive branch per level</strong><span>Examples include simple countdowns, factorial, and direct single-subproblem recursion.</span></div><div class="mini-callout"><small>Binary recursion</small><strong>Two recursive branches per level</strong><span>Examples include branching generation problems and some divide-and-combine recursive structures.</span></div></div>
+            </article></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/vendor/popper.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/jquery.easing.1.3.js"></script>
+  <script src="js/vendor/jquery.stellar.min.js"></script>
+  <script src="js/vendor/jquery.waypoints.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="js/topic-pages.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      TopicPages.initReveal();
+
+    })();
+  </script>
+  <script src="js/back-nav.js"></script>
+  <script src="js/home-page-system.js"></script>
+  <script src="js/theme-toggle.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<scheduledscript scriptid="customscript_c53174_ss_pprs_pending">
+  <description></description>
+  <isinactive>F</isinactive>
+  <name>CSS SS Create PPRs Pending Review Search</name>
+  <notifyadmins>F</notifyadmins>
+  <notifyemails></notifyemails>
+  <notifygroup>[ACCOUNT_SPECIFIC_VALUE]</notifygroup>
+  <notifyowner>T</notifyowner>
+  <scriptfile>[/SuiteScripts/CSS SS Create PPRs Pending Review Search.js]</scriptfile>
+  <scriptdeployments>
+    <scriptdeployment scriptid="customdeploy_c53174_ss_pprs_pending">
+      <isdeployed>T</isdeployed>
+      <loglevel>DEBUG</loglevel>
+      <runasrole>ADMINISTRATOR</runasrole>
+      <status>NOTSCHEDULED</status>
+      <title>CSS SS Create PPRs Pending Review Search</title>
+      <recurrence>
+        <single>
+          <repeat></repeat>
+          <startdate>2026-02-03</startdate>
+          <starttime>05:00:00Z</starttime>
+        </single>
+      </recurrence>
+    </scriptdeployment>
+  </scriptdeployments>
+</scheduledscript>
+

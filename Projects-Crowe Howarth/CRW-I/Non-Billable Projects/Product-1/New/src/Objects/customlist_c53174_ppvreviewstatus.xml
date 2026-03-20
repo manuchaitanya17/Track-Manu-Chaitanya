@@ -1,0 +1,24 @@
+<customlist scriptid="customlist_c53174_ppvreviewstatus">
+  <description></description>
+  <isinactive>F</isinactive>
+  <isordered>T</isordered>
+  <name>Purchase Price Review Status</name>
+  <customvalues>
+    <customvalue scriptid="val_242960221_6243726_sb1_100">
+      <isinactive>F</isinactive>
+      <value>To Be Reviewed</value>
+    </customvalue>
+    <customvalue scriptid="val_242960222_6243726_sb1_646">
+      <isinactive>F</isinactive>
+      <value>Use Bill Rate</value>
+    </customvalue>
+    <customvalue scriptid="val_242960223_6243726_sb1_889">
+      <isinactive>F</isinactive>
+      <value>Use PO Rate</value>
+    </customvalue>
+    <customvalue scriptid="val_242960224_6243726_sb1_950">
+      <isinactive>F</isinactive>
+      <value>Use Custom Rate</value>
+    </customvalue>
+  </customvalues>
+</customlist>

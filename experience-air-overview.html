@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>FDD - AIR Mandatory Segments Based on Account</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/experience-pages.css">
+  <link rel="stylesheet" href="css/mobile-responsive.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="css/home-page-system.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+</head>
+<body class="experience-body" data-spy="scroll" data-target="#pb-navbar" data-offset="200">
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-air-mandatory-segments-overview" aria-controls="nav-air-mandatory-segments-overview" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-md-center" id="nav-air-mandatory-segments-overview">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="experience-air-mandatory-segments.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-overview-home">Overview</a></li><li class="nav-item"><a class="nav-link" href="#section-overview-content">Details</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <section class="experience-hero" id="section-overview-home">
+    <div class="experience-shell">
+      <div class="row align-items-center">
+        <div class="col-xl-7 col-lg-7 mb-5 mb-lg-0">
+          <span class="experience-pill reveal">FDD Overview</span>
+          <h1 class="experience-title reveal">AIR Mandatory Segments Based on Account <strong>AIR Mandatory Segments Based on Account</strong></h1>
+          <div class="experience-meta reveal"><div class="experience-meta-chip">CRW-I</div><div class="experience-meta-chip">FDD + Technical Document</div><div class="experience-meta-chip">Conditional Segment Enforcement</div></div>
+          <p class="experience-lead reveal">This overview combines the AIR functional design and technical document into one readable project story. It explains the account-level rule model, the UI and CSV validation layers, and the transaction coverage the source package actually implements.</p>
+          
+          <div class="experience-actions reveal"><a href="assets/experience/air/FDD.docx" class="btn btn-primary px-4 py-3">Download FDD</a><a href="assets/experience/air/Technical_Document.docx" class="btn btn-secondary px-4 py-3">Download Technical Doc</a><a href="experience-air-scripts.html" class="btn btn-secondary px-4 py-3">Open Scripts Explorer</a></div>
+        </div>
+        <div class="col-xl-5 col-lg-5">
+          <div class="experience-panel reveal">
+            <div class="panel-kicker">Control Frame</div>
+            <h3>Mandatory Segments Only When the Account Requires Them</h3>
+            <p class="panel-copy">The FDD’s core idea is precise: locations, departments, and market sectors should become mandatory when the selected GL account says they are required, but the system should still respect cases where the form itself already controls the field behavior.</p>
+            <div class="experience-stats"><div class="experience-stat"><div class="experience-stat-label">Rule Driver</div><div class="experience-stat-value">ACC</div><div class="experience-stat-sub">The account record holds the mandatory flags</div></div><div class="experience-stat"><div class="experience-stat-label">Runtime Layers</div><div class="experience-stat-value">2</div><div class="experience-stat-sub">UI validation and CSV validation are both implemented</div></div><div class="experience-stat"><div class="experience-stat-label">Transaction Surface</div><div class="experience-stat-value">8</div><div class="experience-stat-sub">The technical document confirms eight supported transaction types</div></div><div class="experience-stat"><div class="experience-stat-label">Exception Rule</div><div class="experience-stat-value">JE</div><div class="experience-stat-sub">Journal imports can bypass validation through the skip checkbox</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<section class="experience-section" id="section-overview-content">
+    <div class="experience-shell">
+      <div class="fdd-overview reveal">
+        <aside class="fdd-sidebar">
+          <div class="panel-kicker">What the Docs Establish</div>
+          <h3>The Main Design Decisions</h3>
+          <p class="fdd-copy">The documents align on a rule-based model. Account-level configuration drives whether a segment is required, item lines can derive account requirements indirectly, and CSV imports must respect the same control logic as the UI.</p>
+          <div class="experience-card-meta"><span class="experience-note-chip">Account Rules</span><span class="experience-note-chip">UI + CSV</span><span class="experience-note-chip">Suitelet Map</span><span class="experience-note-chip">Journal Skip</span></div>
+          <ul class="fdd-list"><li><strong>Account Flags</strong><span>Department Mandatory, Location Mandatory, and Market Sector Mandatory</span></li><li><strong>UI Runtime</strong><span>Client script pulls rule maps from the Suitelet during pageInit</span></li><li><strong>CSV Runtime</strong><span>User event rebuilds the same rules server-side during import</span></li><li><strong>Precedence</strong><span>Custom-form mandatory or disabled settings still win when already configured</span></li></ul>
+        </aside>
+        <div class="fdd-main">
+          <div class="surface-kicker">Combined Narrative</div>
+          <h3>How the AIR Segmentation Control Works</h3>
+          <div class="fdd-section"><h4>Business Problem</h4><p class="fdd-copy">The AIR FDD makes the original requirement explicit: the business did not want Location, Department, and Market Sector to be mandatory on every transaction all the time. Instead, they needed those segments to become mandatory when a particular account required them. Standard NetSuite can enforce some segments globally, but it cannot do this account-by-account out of the box.</p><p class="fdd-copy">That means the solution had to be conditional, context-aware, and broad enough to cover both UI entry and CSV import scenarios. Otherwise the account-based control would be easy to bypass and the posting-quality problem would remain.</p></div><div class="fdd-section"><h4>Implementation Pattern</h4><p class="fdd-copy">The technical document shows a clean three-part architecture. A Suitelet gathers the rule map for accounts and items. The client script uses that rule map during user interaction to validate body fields, expense lines, and item lines on supported transaction types. The user event then reproduces the logic server-side during CSV import because client scripts do not execute there.</p><p class="fdd-copy">That architecture is strong because it avoids duplicating the data source for the rules while still keeping validation active in both contexts. The Suitelet acts as the UI data worker, and the user event provides the import-safe enforcement layer.</p></div><div class="fdd-section"><h4>Coverage and Controls</h4><p class="fdd-copy">The technical document also clarifies the implemented coverage: Journal Entry, Advanced Intercompany Journal Entry, Vendor Bill, Vendor Credit, Vendor Payment, Customer Payment, Invoice, and Credit Memo are present in the source package. Item transactions that rely on item income or expense accounts use those derived accounts to decide whether segments should become mandatory.</p><p class="fdd-copy">There is also an explicit journal-exception path through the Exclude Segmentation Validation checkbox. That matters because it shows the package is not blindly rigid. It provides a controlled escape hatch for import workflows that truly need it.</p></div><div class="fdd-section"><h4>Why the Package Matters</h4><p class="fdd-copy">AIR is a good example of policy encoded into runtime behavior. The solution is not flashy, but it is operationally valuable because it reduces posting errors and improves reporting integrity without over-constraining every transaction in the account.</p><p class="fdd-copy">As part of the broader CRW-I track, this project shows a move toward system-level controls: building rules that shape how data enters the platform instead of only automating what happens after the data is already there.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/vendor/popper.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/jquery.easing.1.3.js"></script>
+  <script src="js/vendor/jquery.stellar.min.js"></script>
+  <script src="js/vendor/jquery.waypoints.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="js/experience-pages.js"></script>
+  <script src="js/back-nav.js"></script>
+  
+  <script src="js/home-page-system.js"></script>
+  <script src="js/theme-toggle.js"></script>
+</body>
+</html>

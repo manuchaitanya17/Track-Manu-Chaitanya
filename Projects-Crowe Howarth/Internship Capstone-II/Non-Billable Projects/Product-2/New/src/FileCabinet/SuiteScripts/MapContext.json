@@ -1,0 +1,33 @@
+[
+    {
+    "type": "mapreduce.MapContext",
+    "isRestarted": false,
+    "executionNo": 1,
+    "key": "0",
+    "value": "{\"cirId\":\"6\",\"soId\":\"3185\",\"itemId\":\"14\",\"qty\":11,\"invDate\":\"9/1/2025\",\"customerId\":\"3\"}"
+    },
+
+    {
+        "type": "mapreduce.MapContext",
+        "isRestarted": false,
+        "executionNo": 1,
+        "key": "1",
+        "value": "{\"cirId\":\"9\",\"soId\":\"3186\",\"itemId\":\"14\",\"qty\":1,\"invDate\":\"9/5/2025\",\"customerId\":\"3\"}"
+    },
+
+    {
+        "type": "mapreduce.MapContext",
+        "isRestarted": false,
+        "executionNo": 1,
+        "key": "2",
+        "value": "{\"cirId\":\"10\",\"soId\":\"3186\",\"itemId\":\"14\",\"qty\":4,\"invDate\":\"9/7/2025\",\"customerId\":\"3\"}"
+    },
+    
+    {
+        "type": "mapreduce.MapContext",
+        "isRestarted": false,
+        "executionNo": 1,
+        "key": "3",
+        "value": "{\"cirId\":\"12\",\"soId\":\"3185\",\"itemId\":\"16\",\"qty\":1,\"invDate\":\"9/1/2025\",\"customerId\":\"3\"}"
+    }
+]

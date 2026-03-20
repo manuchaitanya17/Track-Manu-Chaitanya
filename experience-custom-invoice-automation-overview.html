@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Overview - Custom Invoice Automation</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/experience-pages.css">
+  <link rel="stylesheet" href="css/mobile-responsive.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="css/home-page-system.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+</head>
+<body class="experience-body" data-spy="scroll" data-target="#pb-navbar" data-offset="200">
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-custom-invoice-automation-overview" aria-controls="nav-custom-invoice-automation-overview" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-md-center" id="nav-custom-invoice-automation-overview">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="experience-custom-invoice-automation.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-overview-home">Overview</a></li><li class="nav-item"><a class="nav-link" href="#section-overview-content">Details</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <section class="experience-hero" id="section-overview-home">
+    <div class="experience-shell">
+      <div class="row align-items-center">
+        <div class="col-xl-7 col-lg-7 mb-5 mb-lg-0">
+          <span class="experience-pill reveal">Technical Overview</span>
+          <h1 class="experience-title reveal">Custom Invoice Automation <strong>Custom Invoice Automation</strong></h1>
+          <div class="experience-meta reveal"><div class="experience-meta-chip">Internship Capstone-II</div><div class="experience-meta-chip">Validation-First Billing</div><div class="experience-meta-chip">Invoice + Bill Automation</div></div>
+          <p class="experience-lead reveal">This overview explains how the Gamma package uses validation as a gate before finance document creation. It is based on the report and the live map/reduce scripts in the project workspace.</p>
+          
+          <div class="experience-actions reveal"><a href="assets/experience/custom-invoice-automation/Technical_Document.docx" class="btn btn-primary px-4 py-3">Download Technical Doc</a><a href="experience-custom-invoice-automation-scripts.html" class="btn btn-secondary px-4 py-3">Open Scripts Explorer</a></div>
+        </div>
+        <div class="col-xl-5 col-lg-5">
+          <div class="experience-panel reveal">
+            <div class="panel-kicker">Automation Frame</div>
+            <h3>Finance Documents Created Only After Data Passes the Gate</h3>
+            <p class="panel-copy">The strongest design choice in this project is sequencing. Validation runs first to confirm item, quantity, and customer or vendor agreement. Only then does the create-invoice or create-bill process run.</p>
+            <div class="experience-stats"><div class="experience-stat"><div class="experience-stat-label">Validation Rule</div><div class="experience-stat-value">SO||Item</div><div class="experience-stat-sub">CIR groups are checked against the actual Sales Order line quantities</div></div><div class="experience-stat"><div class="experience-stat-label">Grouping Rule</div><div class="experience-stat-value">Cust||SO||Date</div><div class="experience-stat-sub">Invoice creation groups records by customer, source order, and target invoice date</div></div><div class="experience-stat"><div class="experience-stat-label">Purchase Mirror</div><div class="experience-stat-value">Vend||PO||Date</div><div class="experience-stat-sub">Bill creation mirrors the same pattern on the purchase side</div></div><div class="experience-stat"><div class="experience-stat-label">Business Goal</div><div class="experience-stat-value">SAFE</div><div class="experience-stat-sub">Reduce over-billing, mismatched documents, and downstream reversals</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<section class="experience-section" id="section-overview-content">
+    <div class="experience-shell">
+      <div class="fdd-overview reveal">
+        <aside class="fdd-sidebar">
+          <div class="panel-kicker">From the Report</div>
+          <h3>What the Package Actually Does</h3>
+          <p class="fdd-copy">The report breaks the package into two clear responsibilities: validating invoiceability and then generating finance documents from approved grouped records.</p>
+          <div class="experience-card-meta"><span class="experience-note-chip">Validation Gate</span><span class="experience-note-chip">MR Workflow</span><span class="experience-note-chip">Partial Quantities</span><span class="experience-note-chip">Write-Back Linkage</span></div>
+          <ul class="fdd-list"><li><strong>Input Record</strong><span>Custom Invoice Record / Custom Bill Record</span></li><li><strong>Validation</strong><span>Checks quantity, item existence, and customer match against source orders</span></li><li><strong>Generation</strong><span>Transforms source orders and trims lines to grouped requested quantities</span></li><li><strong>Write Back</strong><span>Links created transactions and clears the invoiceable/billable state</span></li></ul>
+        </aside>
+        <div class="fdd-main">
+          <div class="surface-kicker">Technical Narrative</div>
+          <h3>How the Gamma Package is Structured</h3>
+          <div class="fdd-section"><h4>Why the Validation Gate Exists</h4><p class="fdd-copy">The report is clear about the business problem: teams needed a reliable way to make sure only legitimate invoice candidates proceed into invoicing. Without that gate, custom records could overstate quantities, reference missing items, or carry a customer mismatch against the Sales Order. Any of those conditions would create billing risk and downstream rework.</p><p class="fdd-copy">The validation map/reduce handles that by grouping custom invoice records by Sales Order and Item, summing the custom quantities, and comparing those values against the actual Sales Order line quantities. Only records that pass the item, quantity, and customer checks are marked invoiceable.</p></div><div class="fdd-section"><h4>Invoice Creation Flow</h4><p class="fdd-copy">Once records are marked invoiceable, the create-invoice map/reduce groups them by Customer, Sales Order, and Invoice Date. It then transforms the Sales Order into an Invoice and removes any lines that do not belong to the grouped request. Requested quantities are applied carefully so the final invoice reflects only the approved grouped slice of the Sales Order.</p><p class="fdd-copy">That is the right implementation detail for partial billing because it avoids the common mistake of cloning the full order and then asking users to trim it manually. The script performs that shaping automatically and writes the created Invoice back to the source records.</p></div><div class="fdd-section"><h4>Purchase-Side Symmetry</h4><p class="fdd-copy">The package does not stop at invoice creation. It includes a create-bill process that mirrors the same grouped-generation idea for purchase-side records. That symmetry matters because it turns the project into a broader finance-document automation package rather than one narrowly scoped sales-side script.</p><p class="fdd-copy">Taken together, the Gamma package represents a disciplined internal product: validate first, generate second, and leave behind clear linkage so the created transactions remain auditable against their originating custom records.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/vendor/popper.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/jquery.easing.1.3.js"></script>
+  <script src="js/vendor/jquery.stellar.min.js"></script>
+  <script src="js/vendor/jquery.waypoints.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="js/experience-pages.js"></script>
+  <script src="js/back-nav.js"></script>
+  
+  <script src="js/home-page-system.js"></script>
+  <script src="js/theme-toggle.js"></script>
+</body>
+</html>

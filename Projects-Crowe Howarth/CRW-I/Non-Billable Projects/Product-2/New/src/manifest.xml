@@ -1,0 +1,18 @@
+<manifest projecttype="ACCOUNTCUSTOMIZATION">
+  <projectname>AIR REPO</projectname>
+  <frameworkversion>1.0</frameworkversion>
+  <dependencies>
+    <features>
+      <feature required="false">EXPREPORTS</feature>
+      <feature required="false">ADVRECEIVING</feature>
+      <feature required="true">SERVERSIDESCRIPTING</feature>
+      <feature required="false">MULTILOCINVT</feature>
+      <feature required="false">INVENTORY</feature>
+      <feature required="false">CRM</feature>
+      <feature required="false">OPPORTUNITIES</feature>
+      <feature required="false">RECEIVABLES</feature>
+      <feature required="false">ACCOUNTING</feature>
+      <feature required="false">PAYABLES</feature>
+    </features>
+  </dependencies>
+</manifest>

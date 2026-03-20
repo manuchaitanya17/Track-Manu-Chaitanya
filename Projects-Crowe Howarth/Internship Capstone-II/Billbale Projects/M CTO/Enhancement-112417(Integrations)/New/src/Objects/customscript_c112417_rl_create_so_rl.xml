@@ -1,0 +1,22 @@
+<restlet scriptid="customscript_c112417_rl_create_so_rl">
+  <description></description>
+  <isinactive>F</isinactive>
+  <name>CSS RL CREATE SO VIA RESTLET</name>
+  <notifyadmins>F</notifyadmins>
+  <notifyemails></notifyemails>
+  <notifyowner>T</notifyowner>
+  <notifyuser>F</notifyuser>
+  <scriptfile>[/SuiteScripts/c112417_rl_create_so.js]</scriptfile>
+  <scriptdeployments>
+    <scriptdeployment scriptid="customdeploy_c112417_rl_create_so_rl">
+      <allemployees>T</allemployees>
+      <allpartners>F</allpartners>
+      <allroles>T</allroles>
+      <audslctrole></audslctrole>
+      <isdeployed>T</isdeployed>
+      <loglevel>DEBUG</loglevel>
+      <status>RELEASED</status>
+      <title>CSS RL CREATE SO VIA RESTLET</title>
+    </scriptdeployment>
+  </scriptdeployments>
+</restlet>

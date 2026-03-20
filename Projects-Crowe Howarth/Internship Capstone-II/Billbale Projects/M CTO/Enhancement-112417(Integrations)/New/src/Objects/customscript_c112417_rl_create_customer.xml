@@ -1,0 +1,22 @@
+<restlet scriptid="customscript_c112417_rl_create_customer">
+  <description></description>
+  <isinactive>F</isinactive>
+  <name>CSS RL CREATE CUSTOMER ASPECT TO NS</name>
+  <notifyadmins>F</notifyadmins>
+  <notifyemails></notifyemails>
+  <notifyowner>T</notifyowner>
+  <notifyuser>F</notifyuser>
+  <scriptfile>[/SuiteScripts/c112417_rl_create_customer.js]</scriptfile>
+  <scriptdeployments>
+    <scriptdeployment scriptid="customdeploy_c112417_rl_create_customer">
+      <allemployees>T</allemployees>
+      <allpartners>F</allpartners>
+      <allroles>T</allroles>
+      <audslctrole></audslctrole>
+      <isdeployed>T</isdeployed>
+      <loglevel>DEBUG</loglevel>
+      <status>RELEASED</status>
+      <title>CSS RL CREATE CUSTOMER ASPECT TO NS</title>
+    </scriptdeployment>
+  </scriptdeployments>
+</restlet>

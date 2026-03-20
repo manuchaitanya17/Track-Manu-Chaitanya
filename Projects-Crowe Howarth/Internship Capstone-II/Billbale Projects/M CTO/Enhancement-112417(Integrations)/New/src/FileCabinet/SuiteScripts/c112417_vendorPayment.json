@@ -1,0 +1,39 @@
+{
+  "internalId": "34906",
+  "tranId": "13",
+  "payeeId": "27",
+  "payeeName": "27",
+  "date": "2026-01-09",
+  "postingPeriod": "120",
+  "memo": "",
+  "currency": "1",
+  "exchangeRate": 1,
+  "apAccountId": "410",
+  "bankAccountId": "745",
+  "subsidiaryId": "8",
+  "departmentId": "",
+  "profitCenterId": "",
+  "locationId": "",
+  "strategyNumber": "",
+  "upstreamDocumentNo": "",
+  "paymentAmount": 9500,
+  "bills": [
+    {
+      "line": 0,
+      "applied": true,
+      "documentType": "VendorBill",
+      "documentId": "34905",
+      "refNo": "",
+      "billDate": "2026-01-09",
+      "dueDate": "2026-01-09",
+      "originalAmount": 20000,
+      "amountDue": 9500,
+      "discountDate": "",
+      "discountAvailable": 0,
+      "discountTaken": 0,
+      "currency": "1",
+      "paymentApplied": 9500
+    }
+  ],
+  "credits": []
+}

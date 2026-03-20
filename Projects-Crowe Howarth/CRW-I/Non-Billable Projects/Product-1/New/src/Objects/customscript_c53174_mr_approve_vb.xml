@@ -1,0 +1,31 @@
+<mapreducescript scriptid="customscript_c53174_mr_approve_vb">
+  <description></description>
+  <isinactive>F</isinactive>
+  <name>CSS MR Approve VB</name>
+  <notifyadmins>F</notifyadmins>
+  <notifyemails></notifyemails>
+  <notifygroup>[ACCOUNT_SPECIFIC_VALUE]</notifygroup>
+  <notifyowner>T</notifyowner>
+  <scriptfile>[/SuiteScripts/CSS MR Approve VB.js]</scriptfile>
+  <scriptdeployments>
+    <scriptdeployment scriptid="customdeploy_c53174_mr_approve_vb">
+      <buffersize>1</buffersize>
+      <concurrencylimit>5</concurrencylimit>
+      <isdeployed>T</isdeployed>
+      <loglevel>DEBUG</loglevel>
+      <queueallstagesatonce>T</queueallstagesatonce>
+      <runasrole>ADMINISTRATOR</runasrole>
+      <status>SCHEDULED</status>
+      <title>CSS MR Approve VB</title>
+      <yieldaftermins>15</yieldaftermins>
+      <recurrence>
+        <daily>
+          <everyxdays>1</everyxdays>
+          <repeat>PT15M</repeat>
+          <startdate>2022-12-29</startdate>
+          <starttime>05:00:00Z</starttime>
+        </daily>
+      </recurrence>
+    </scriptdeployment>
+  </scriptdeployments>
+</mapreducescript>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Tasks Planner</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+  <link rel="stylesheet" href="css/tasks-page.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+</head>
+<body class="tasks-page">
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsTasks" aria-controls="navbarsTasks" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbarsTasks">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="index.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item active"><a class="nav-link" href="#section-overview">Overview</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-planner">Planner</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-upcoming">Queue</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="tasks-hero" id="section-overview">
+    <div class="tasks-shell">
+      <div class="tasks-hero-grid">
+        <div class="tasks-hero-copy">
+          <span class="tasks-kicker">Today's Tasks</span>
+          <h1>Plan the whole day with a dedicated <strong>Tasks Board</strong></h1>
+          <p class="tasks-lead">
+            Create all-day tasks, timed blocks, and reminder-driven entries in one weekly planner.
+          </p>
+          <div class="tasks-hero-actions">
+            <a href="#section-planner" class="btn btn-primary px-4 py-3">Open Planner</a>
+            <a href="#section-upcoming" class="btn btn-secondary px-4 py-3">Upcoming Queue</a>
+          </div>
+          <div class="tasks-hero-tags">
+            <span>All-day tasks</span>
+            <span>Timed schedule</span>
+            <span>Browser reminders</span>
+          </div>
+        </div>
+
+        <div class="tasks-hero-panel">
+          <div class="tasks-stat-grid">
+            <article class="tasks-stat-card">
+              <span class="tasks-stat-label">Total Tasks</span>
+              <strong class="tasks-stat-value" id="summaryTotalTasks">0</strong>
+              <span class="tasks-stat-copy">Everything saved inside your local planner.</span>
+            </article>
+            <article class="tasks-stat-card">
+              <span class="tasks-stat-label">Today</span>
+              <strong class="tasks-stat-value" id="summaryTodayTasks">0</strong>
+              <span class="tasks-stat-copy">Tasks mapped directly onto the current date.</span>
+            </article>
+            <article class="tasks-stat-card">
+              <span class="tasks-stat-label">All Day</span>
+              <strong class="tasks-stat-value" id="summaryAllDayTasks">0</strong>
+              <span class="tasks-stat-copy">Entries pinned into the all-day row.</span>
+            </article>
+            <article class="tasks-stat-card">
+              <span class="tasks-stat-label">Next Alert</span>
+              <strong class="tasks-stat-value" id="summaryNextAlert">None</strong>
+              <span class="tasks-stat-copy" id="summaryNextAlertCopy">Add a task with reminders to start the live alert loop.</span>
+            </article>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section tasks-stage" id="section-planner">
+    <div class="tasks-shell">
+      <div class="tasks-layout">
+        <aside class="tasks-sidebar">
+          <div class="tasks-panel tasks-panel--form">
+            <span class="tasks-section-kicker">Create Task</span>
+            <h2>Build the day!</h2>
+            <p class="tasks-panel-copy">Create timed work blocks or switch on the all-day toggle to pin a task for the full date.</p>
+
+            <div class="tasks-day-type-panel">
+              <div class="tasks-day-type-head">
+                <span class="tasks-day-type-date" id="dayTypeDateLabel">Today</span>
+
+                <div>
+                  <h3>Set Today’s Day Type.</h3>
+                </div>
+              </div>
+
+              <p class="tasks-day-type-copy">
+                Pick how today should be treated before the day picks its own pace.
+              </p>
+
+              <div class="tasks-day-type-options" id="dayTypeOptions" role="group" aria-label="Choose today’s day category">
+                <button type="button" class="tasks-day-type-btn" data-day-type="easy">
+                  <small>Easy</small>
+                  <strong>Light Push</strong>
+                </button>
+                <button type="button" class="tasks-day-type-btn" data-day-type="normal">
+                  <small>Normal</small>
+                  <strong>Steady Rhythm</strong>
+                </button>
+                <button type="button" class="tasks-day-type-btn" data-day-type="tough">
+                  <small>Tough</small>
+                  <strong>High Discipline</strong>
+                </button>
+              </div>
+
+              <div class="tasks-day-type-note" id="dayTypeMessage">
+                Select a category for today to define the tone of the day.
+              </div>
+            </div>
+
+            <form id="taskForm" class="tasks-form">
+              <label class="tasks-field">
+                <span>Task title</span>
+                <input id="taskTitle" name="taskTitle" type="text" maxlength="90" placeholder="Deep work, client call, gym, reading" required>
+              </label>
+
+              <div class="tasks-field-grid">
+                <div class="tasks-field tasks-date-field" id="taskDateField">
+                  <span>Date</span>
+                  <input id="taskDate" name="taskDate" type="hidden">
+                  <button type="button" class="tasks-date-trigger" id="taskDateTrigger" aria-haspopup="dialog" aria-expanded="false">
+                    <span class="tasks-date-trigger-copy">
+                      <strong id="taskDateValue">21 Mar 2026</strong>
+                      <small>Choose a planned date</small>
+                    </span>
+                    <span class="tasks-date-trigger-glyph" aria-hidden="true">
+                      <span class="icon-calendar3"></span>
+                    </span>
+                  </button>
+
+                  <div class="tasks-date-popover" id="taskDatePopover" hidden role="dialog" aria-modal="false" aria-labelledby="taskDateLabel">
+                    <div class="tasks-date-popover-head">
+                      <div>
+                        <span class="tasks-date-popover-kicker">Task Date</span>
+                        <h3 id="taskDateLabel">March 2026</h3>
+                      </div>
+                      <div class="tasks-date-nav">
+                        <button type="button" class="tasks-date-nav-btn" id="taskDatePrev" aria-label="Previous month">
+                          <span class="icon-chevron-left" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="tasks-date-nav-btn" id="taskDateNext" aria-label="Next month">
+                          <span class="icon-chevron-right" aria-hidden="true"></span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="tasks-date-weekdays" aria-hidden="true">
+                      <span>Sun</span>
+                      <span>Mon</span>
+                      <span>Tue</span>
+                      <span>Wed</span>
+                      <span>Thu</span>
+                      <span>Fri</span>
+                      <span>Sat</span>
+                    </div>
+
+                    <div class="tasks-date-grid" id="taskDateCalendar"></div>
+
+                    <div class="tasks-date-actions">
+                      <button type="button" class="tasks-date-inline-btn" id="taskDateToday">Today</button>
+                      <button type="button" class="tasks-date-inline-btn" id="taskDateClose">Close</button>
+                    </div>
+                  </div>
+                </div>
+
+                <label class="tasks-field">
+                  <span>Lane</span>
+                  <select id="taskCategory" name="taskCategory">
+                    <option value="work">Work</option>
+                    <option value="personal">Personal</option>
+                    <option value="deep">Deep Focus</option>
+                    <option value="health">Health</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                </label>
+              </div>
+
+              <label class="tasks-switch-row" for="taskAllDay">
+                <span>
+                  <strong>All-day task</strong>
+                  <small>Pin this task to the full date without start and end times.</small>
+                </span>
+                <span class="tasks-switch">
+                  <input id="taskAllDay" name="taskAllDay" type="checkbox">
+                  <i aria-hidden="true"></i>
+                </span>
+              </label>
+
+              <div class="tasks-field-grid tasks-time-grid" id="taskTimeGrid">
+                <label class="tasks-field tasks-time-field">
+                  <span>Start time</span>
+                  <input id="taskStartTime" name="taskStartTime" type="hidden">
+                  <button type="button" class="tasks-time-trigger" id="taskStartTimeTrigger" data-time-field="start" aria-haspopup="dialog" aria-expanded="false">
+                    <span class="tasks-time-trigger-copy">
+                      <strong id="taskStartTimeValue">09:00 AM</strong>
+                      <small>Edit time</small>
+                    </span>
+                    <span class="tasks-time-trigger-glyph" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="8.5"></circle>
+                        <path d="M12 7.8V12.2L15.1 14.1"></path>
+                      </svg>
+                    </span>
+                  </button>
+                </label>
+
+                <label class="tasks-field tasks-time-field">
+                  <span>End time</span>
+                  <input id="taskEndTime" name="taskEndTime" type="hidden">
+                  <button type="button" class="tasks-time-trigger" id="taskEndTimeTrigger" data-time-field="end" aria-haspopup="dialog" aria-expanded="false">
+                    <span class="tasks-time-trigger-copy">
+                      <strong id="taskEndTimeValue">10:00 AM</strong>
+                      <small>Edit time</small>
+                    </span>
+                    <span class="tasks-time-trigger-glyph" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="8.5"></circle>
+                        <path d="M12 7.8V12.2L15.1 14.1"></path>
+                      </svg>
+                    </span>
+                  </button>
+                </label>
+              </div>
+
+              <label class="tasks-switch-row" for="taskReminder">
+                <span>
+                  <strong>Reminder</strong>
+                  <small>Trigger a browser alert when the task starts.</small>
+                </span>
+                <span class="tasks-switch">
+                  <input id="taskReminder" name="taskReminder" type="checkbox" checked>
+                  <i aria-hidden="true"></i>
+                </span>
+              </label>
+
+              <label class="tasks-field">
+                <span>Notes</span>
+                <textarea id="taskNotes" name="taskNotes" rows="3" maxlength="240" placeholder="Optional details, meeting link, intent for the block, or context."></textarea>
+              </label>
+
+              <div class="tasks-form-actions">
+                <button type="submit" class="btn btn-primary px-4 py-3">Save Task</button>
+                <button type="reset" class="btn btn-secondary px-4 py-3">Reset</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="tasks-panel tasks-panel--mini">
+            <div class="tasks-mini-head">
+              <div>
+                <span class="tasks-section-kicker">Month Snapshot</span>
+                <h3 id="miniMonthLabel">March 2026</h3>
+              </div>
+            </div>
+            <div class="tasks-mini-weekdays" aria-hidden="true">
+              <span>M</span>
+              <span>T</span>
+              <span>W</span>
+              <span>T</span>
+              <span>F</span>
+              <span>S</span>
+              <span>S</span>
+            </div>
+            <div class="tasks-mini-grid" id="miniMonthGrid"></div>
+          </div>
+
+          <div class="tasks-panel tasks-panel--alerts">
+            <span class="tasks-section-kicker">Live Alerts</span>
+            <h3>Browser notifications</h3>
+            <p class="tasks-panel-copy" id="notificationStatus">
+              Reminders are available when the browser grants notification permission and this page stays open.
+            </p>
+            <div class="tasks-alert-actions">
+              <button type="button" class="btn btn-primary px-4 py-3" id="notificationPermissionBtn">Allow Notifications</button>
+            </div>
+            <ul class="tasks-note-list">
+              <li>All-day task reminders fire at 6:00 AM on the selected date.</li>
+              <li>Timed tasks fire at the task start time.</li>
+              <li>Completed tasks stop appearing in reminder checks.</li>
+            </ul>
+          </div>
+        </aside>
+
+        <div class="tasks-main">
+          <div class="tasks-panel tasks-panel--planner">
+            <div class="tasks-toolbar">
+              <div class="tasks-view-switch" aria-label="Task board view switch">
+                <button type="button" class="tasks-view-tab" aria-disabled="true" title="This page focuses on the planner board">Day</button>
+                <button type="button" class="tasks-view-tab is-active" aria-current="true">Week</button>
+                <button type="button" class="tasks-view-tab" aria-disabled="true" title="This page focuses on the planner board">Month</button>
+              </div>
+
+              <label class="tasks-search" for="taskSearch">
+                <span class="icon-search2" aria-hidden="true"></span>
+                <input id="taskSearch" type="search" placeholder="Search tasks or notes">
+              </label>
+            </div>
+
+            <div class="tasks-board-head">
+              <div>
+                <span class="tasks-section-kicker">Week View</span>
+                <h2 id="weekRangeLabel">17 Mar - 23 Mar 2026</h2>
+              </div>
+
+              <div class="tasks-nav-controls">
+                <button type="button" class="tasks-nav-btn" id="prevWeekBtn" aria-label="Previous week">
+                  <span class="icon-chevron-left" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="tasks-today-btn" id="todayWeekBtn">Today</button>
+                <button type="button" class="tasks-nav-btn" id="nextWeekBtn" aria-label="Next week">
+                  <span class="icon-chevron-right" aria-hidden="true"></span>
+                </button>
+              </div>
+            </div>
+
+            <div class="tasks-weekdays" id="tasksWeekdays"></div>
+
+            <div class="tasks-all-day-row">
+              <div class="tasks-time-label tasks-time-label--all">All day</div>
+              <div class="tasks-all-day-grid" id="tasksAllDayGrid"></div>
+            </div>
+
+            <div class="tasks-timeline-shell">
+              <div class="tasks-time-axis" id="tasksTimeAxis"></div>
+              <div class="tasks-grid-area" id="tasksGridArea">
+                <div class="tasks-grid-columns" id="tasksGridColumns"></div>
+                <div class="tasks-now-line" id="tasksNowLine" hidden>
+                  <span class="tasks-now-dot" aria-hidden="true"></span>
+                </div>
+                <div class="tasks-grid-events" id="tasksGridEvents"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tasks-lower-grid" id="section-upcoming">
+            <div class="tasks-panel tasks-panel--queue">
+              <span class="tasks-section-kicker">Selected Day</span>
+              <h3 id="selectedDayTitle">Today</h3>
+              <div class="tasks-list" id="selectedDayList"></div>
+            </div>
+
+            <div class="tasks-panel tasks-panel--queue">
+              <span class="tasks-section-kicker">Upcoming Queue</span>
+              <h3>Next tasks</h3>
+              <div class="tasks-list" id="upcomingTaskList"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="tasks-time-modal" id="timePickerModal" hidden>
+    <div class="tasks-time-dialog" role="dialog" aria-modal="true" aria-labelledby="timePickerTitle" tabindex="-1">
+      <div class="tasks-time-dialog-head">
+        <div>
+          <span class="tasks-section-kicker">Clock Dial</span>
+          <h3 id="timePickerTitle">Set start time</h3>
+        </div>
+        <button type="button" class="tasks-time-close" id="timePickerClose" aria-label="Close time picker">
+          <span class="icon-cross2" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <div class="tasks-time-display">
+        <button type="button" class="tasks-time-display-segment" id="timePickerHourButton" data-picker-mode="hour">09</button>
+        <span class="tasks-time-display-colon" aria-hidden="true">:</span>
+        <button type="button" class="tasks-time-display-segment" id="timePickerMinuteButton" data-picker-mode="minute">00</button>
+
+        <div class="tasks-time-period" role="group" aria-label="Select period">
+          <button type="button" id="timePickerAmButton">AM</button>
+          <button type="button" id="timePickerPmButton">PM</button>
+        </div>
+      </div>
+
+      <p class="tasks-time-hint" id="timePickerHint">Select the hour on the dial, then lock the minutes.</p>
+
+      <div class="tasks-time-dial-shell">
+        <div class="tasks-time-dial-face">
+          <div class="tasks-time-dial-ring" id="timePickerDialRing"></div>
+          <div class="tasks-time-dial-hand" id="timePickerDialHand"></div>
+          <div class="tasks-time-dial-center" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div class="tasks-time-quick" aria-label="Quick minute choices">
+        <button type="button" data-quick-minute="0">:00</button>
+        <button type="button" data-quick-minute="15">:15</button>
+        <button type="button" data-quick-minute="30">:30</button>
+        <button type="button" data-quick-minute="45">:45</button>
+      </div>
+
+      <div class="tasks-time-actions">
+        <button type="button" class="btn btn-secondary px-4 py-3" id="timePickerCancel">Cancel</button>
+        <button type="button" class="btn btn-primary px-4 py-3" id="timePickerApply">Apply Time</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="tasks-toast-stack" id="tasksToastStack" aria-live="polite" aria-atomic="true"></div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+
+      <div class="row mb-5">
+        <div class="col-md-12 text-center">
+          <p>
+            <a href="https://www.facebook.com/m14chaitanya" class="social-item"><span class="icon-facebook2"></span></a>
+            <a href="#" class="social-item"><span class="icon-twitter"></span></a>
+            <a href="https://www.instagram.com/m17chaitanya/" class="social-item"><span class="icon-instagram2"></span></a>
+            <a href="https://www.linkedin.com/in/manuchaitanya/" class="social-item"><span class="icon-linkedin2"></span></a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/vendor/popper.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/back-nav.js"></script>
+  <script src="js/theme-toggle.js"></script>
+  <script src="js/tasks-page.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<scheduledscript scriptid="customscript_restricted_item_inactive">
+  <description></description>
+  <isinactive>F</isinactive>
+  <name>CSS SS restricted_item_inactive</name>
+  <notifyadmins>F</notifyadmins>
+  <notifyemails></notifyemails>
+  <notifyowner>T</notifyowner>
+  <scriptfile>[/SuiteScripts/c97467_restricted_item_approval_inactive_scheduler.js]</scriptfile>
+  <scriptdeployments>
+    <scriptdeployment scriptid="customdeploy_restricted_item_inactive">
+      <isdeployed>T</isdeployed>
+      <loglevel>DEBUG</loglevel>
+      <status>SCHEDULED</status>
+      <title>CSS SS restricted_item_inactive</title>
+      <recurrence>
+        <daily>
+          <everyxdays>1</everyxdays>
+          <repeat></repeat>
+          <startdate>2025-07-24</startdate>
+          <starttime>06:00:00Z</starttime>
+        </daily>
+      </recurrence>
+    </scriptdeployment>
+  </scriptdeployments>
+</scheduledscript>

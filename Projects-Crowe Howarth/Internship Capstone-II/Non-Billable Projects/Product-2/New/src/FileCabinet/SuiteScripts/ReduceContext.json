@@ -1,0 +1,32 @@
+[
+    {
+        "type": "mapreduce.ReduceContext",
+        "isRestarted": false,
+        "executionNo": 1,
+        "key": "3||3185||9/1/2025",
+        "values": [
+            "{\"cirId\":\"12\",\"soId\":\"3185\",\"itemId\":\"16\",\"qty\":1,\"invDate\":\"9/1/2025\",\"customerId\":\"3\"}",
+            "{\"cirId\":\"6\",\"soId\":\"3185\",\"itemId\":\"14\",\"qty\":11,\"invDate\":\"9/1/2025\",\"customerId\":\"3\"}"
+        ]
+    },
+
+    {
+        "type": "mapreduce.ReduceContext",
+        "isRestarted": false,
+        "executionNo": 1,
+        "key": "3||3186||9/5/2025",
+        "values": [
+            "{\"cirId\":\"9\",\"soId\":\"3186\",\"itemId\":\"14\",\"qty\":1,\"invDate\":\"9/5/2025\",\"customerId\":\"3\"}"
+        ]
+    },
+
+    {
+        "type": "mapreduce.ReduceContext",
+        "isRestarted": false,
+        "executionNo": 1,
+        "key": "3||3186||9/7/2025",
+        "values": [
+            "{\"cirId\":\"10\",\"soId\":\"3186\",\"itemId\":\"14\",\"qty\":4,\"invDate\":\"9/7/2025\",\"customerId\":\"3\"}"
+        ]
+    }
+]

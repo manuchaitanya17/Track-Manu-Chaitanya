@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Scripts - Custom Invoice Automation</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/experience-pages.css">
+  <link rel="stylesheet" href="css/mobile-responsive.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="css/home-page-system.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+</head>
+<body class="experience-body" data-spy="scroll" data-target="#pb-navbar" data-offset="200">
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-custom-invoice-automation-explorer" aria-controls="nav-custom-invoice-automation-explorer" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-md-center" id="nav-custom-invoice-automation-explorer">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="experience-custom-invoice-automation.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-explorer-home">Overview</a></li><li class="nav-item"><a class="nav-link" href="#section-gamma-summary">Summary</a></li><li class="nav-item"><a class="nav-link" href="#section-gamma-explorer">Explorer</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <section class="experience-hero" id="section-explorer-home">
+    <div class="experience-shell">
+      <div class="row align-items-center">
+        <div class="col-xl-7 col-lg-7 mb-5 mb-lg-0">
+          <span class="experience-pill reveal">Code Explorer</span>
+          <h1 class="experience-title reveal">Custom Invoice Automation <strong>Custom Invoice Automation</strong></h1>
+          <div class="experience-meta reveal"><div class="experience-meta-chip">Read-Only Explorer</div><div class="experience-meta-chip">Validation + Generation</div><div class="experience-meta-chip">Map/Reduce Workspace</div></div>
+          <p class="experience-lead reveal">This explorer contains the live Gamma source package, including the validation-before-invoicing logic, create-invoice flow, create-bill flow, and the JSON artefacts used to inspect grouped results during development.</p>
+          
+          <div class="experience-actions reveal"><a href="experience-custom-invoice-automation-overview.html" class="btn btn-primary px-4 py-3">Open Overview</a><a href="experience-custom-invoice-automation.html" class="btn btn-secondary px-4 py-3">Open Project Page</a></div>
+        </div>
+        <div class="col-xl-5 col-lg-5">
+          <div class="experience-panel reveal">
+            <div class="panel-kicker">Explorer Scope</div>
+            <h3>Workspace Files From the Gamma Package</h3>
+            <p class="panel-copy">This explorer mirrors the actual project folders from the source archive. Scripts, metadata, helper files, and supporting project artefacts are shown as they exist in the workspace, with only hidden system noise filtered out.</p>
+            <div class="experience-stats"><div class="experience-stat"><div class="experience-stat-label">Workspace Files</div><div class="experience-stat-value">16</div><div class="experience-stat-sub">All readable project files found across the linked source roots</div></div><div class="experience-stat"><div class="experience-stat-label">Execution Mode</div><div class="experience-stat-value">MR</div><div class="experience-stat-sub">Map/Reduce is the dominant pattern across the package</div></div><div class="experience-stat"><div class="experience-stat-label">Workspace Mode</div><div class="experience-stat-value">SDF</div><div class="experience-stat-sub">Manifest, deploy metadata, and file-cabinet scripts</div></div><div class="experience-stat"><div class="experience-stat-label">View Mode</div><div class="experience-stat-value">RO</div><div class="experience-stat-sub">Read-only source inspection with copy support</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<section class="experience-section pt-0" id="section-gamma-summary">
+    <div class="experience-shell">
+      <div class="experience-surface reveal">
+        <div class="surface-kicker">Explorer Summary</div>
+        <h3>What the Workspace Shows Clearly</h3>
+        <p class="surface-copy">The folder tree is generated from the real project directories, so the explorer reflects the source archive instead of a hand-picked subset.</p>
+        <div class="snapshot-grid"><div class="snapshot-card"><strong>Validation</strong><p>The validation map/reduce marks only safe custom invoice records as invoiceable.</p></div><div class="snapshot-card"><strong>Invoice Creation</strong><p>The invoice map/reduce transforms Sales Orders and keeps only the requested grouped lines.</p></div><div class="snapshot-card"><strong>Bill Creation</strong><p>The bill map/reduce mirrors the same grouped-generation pattern for purchase-side documents.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="experience-section" id="section-gamma-explorer">
+    <div class="experience-shell">
+      <div class="explorer-layout reveal" data-code-workbench>
+        <aside class="code-sidebar">
+          <h3>Gamma Workspace</h3>
+          <div class="code-tree" id="experienceCodeTree"></div>
+        </aside>
+        <div class="code-window">
+          <div class="code-topbar">
+            <div class="code-tab-meta">
+              <strong id="experienceCodeTitle">Loading Explorer</strong>
+              <span id="experienceCodePath">Preparing validation workspace...</span>
+            </div>
+            <button class="btn btn-outline-primary code-copy-btn" id="experienceCodeCopy" type="button">Copy Current File</button>
+          </div>
+          <div class="code-editor-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot amber"></span>
+            <span class="code-dot green"></span>
+            <span class="bravo-date" id="experienceCodeStatus">Gamma Explorer</span>
+          </div>
+          <div class="code-editor-wrap" id="experienceCodeBody"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/vendor/popper.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/jquery.easing.1.3.js"></script>
+  <script src="js/vendor/jquery.stellar.min.js"></script>
+  <script src="js/vendor/jquery.waypoints.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="js/experience-pages.js"></script>
+  <script src="js/back-nav.js"></script>
+  <script src="js/experience-code-data-custom-invoice-automation.js"></script>
+  <script src="js/home-page-system.js"></script>
+  <script src="js/theme-toggle.js"></script>
+</body>
+</html>

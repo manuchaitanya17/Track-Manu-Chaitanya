@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>FDD - Krayden NetSuite-Salesforce Customisation and Integrations</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/experience-pages.css">
+  <link rel="stylesheet" href="css/mobile-responsive.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="css/home-page-system.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+</head>
+<body class="experience-body" data-spy="scroll" data-target="#pb-navbar" data-offset="200">
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-krayden-overview" aria-controls="nav-krayden-overview" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-md-center" id="nav-krayden-overview">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="experience-krayden.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-overview-home">Overview</a></li><li class="nav-item"><a class="nav-link" href="#section-overview-content">Details</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <section class="experience-hero" id="section-overview-home">
+    <div class="experience-shell">
+      <div class="row align-items-center">
+        <div class="col-xl-7 col-lg-7 mb-5 mb-lg-0">
+          <span class="experience-pill reveal">Functional Design Overview</span>
+          <h1 class="experience-title reveal">Krayden NetSuite-Salesforce Customisation and Integrations <strong>Krayden NetSuite-Salesforce Customisation and Integrations</strong></h1>
+          <div class="experience-meta reveal"><div class="experience-meta-chip">Internship Capstone-I</div><div class="experience-meta-chip">Source-Derived Overview</div><div class="experience-meta-chip">Customer, Item, Invoice, Credit Memo, Export Control</div></div>
+          <p class="experience-lead reveal">This page rebuilds the functional design for Krayden from the enhancement packages and live SuiteScript sources. It captures what the delivery was trying to solve, how the sync routes are divided, and where the hard business controls sit inside the integration program.</p>
+          
+          <div class="experience-actions reveal"><a href="experience-krayden-scripts.html" class="btn btn-primary px-4 py-3">Open Scripts Explorer</a><a href="experience-krayden.html" class="btn btn-secondary px-4 py-3">Open Project Page</a></div>
+        </div>
+        <div class="col-xl-5 col-lg-5">
+          <div class="experience-panel reveal">
+            <div class="panel-kicker">Design Frame</div>
+            <h3>Integration First, Validation Close Behind</h3>
+            <p class="panel-copy">The Krayden work reads like a production integration rollout: outbound sync, inbound updates, resync/retry helpers, record-level validation, and approval logic all live together inside enhancement-scoped packages.</p>
+            <div class="experience-stats"><div class="experience-stat"><div class="experience-stat-label">Sync Families</div><div class="experience-stat-value">4</div><div class="experience-stat-sub">Customer, Item, Invoice, and Credit Memo movement across NetSuite and Salesforce</div></div><div class="experience-stat"><div class="experience-stat-label">Control Layer</div><div class="experience-stat-value">1</div><div class="experience-stat-sub">Export Control and Approval blocks restricted transactions at the transaction stage</div></div><div class="experience-stat"><div class="experience-stat-label">Packaging</div><div class="experience-stat-value">SDF</div><div class="experience-stat-sub">Manifest, deploy, object XML, and SuiteScripts are deployed as full SuiteCloud packages</div></div><div class="experience-stat"><div class="experience-stat-label">Author Signal</div><div class="experience-stat-value">MC</div><div class="experience-stat-sub">Primary script headers show Manu Chaitanya on the core integration scripts</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<section class="experience-section" id="section-overview-content">
+    <div class="experience-shell">
+      <div class="fdd-overview reveal">
+        <aside class="fdd-sidebar">
+          <div class="panel-kicker">Krayden Scope</div>
+          <h3>What the Archive Makes Clear</h3>
+          <p class="fdd-copy">Even without one raw FDD file, the source tree makes the project intent explicit. Each enhancement package covers one record family, while a shared library and validation utilities keep the integration behavior consistent.</p>
+          <div class="experience-card-meta"><span class="experience-note-chip">5 Enhancement Packages</span><span class="experience-note-chip">Shared SF Library</span><span class="experience-note-chip">Validation + Approval</span><span class="experience-note-chip">SDF Deployment</span></div>
+          <ul class="fdd-list"><li><strong>Customer Sync</strong><span>UE, RL, MR, territory updates, and address validation</span></li><li><strong>Item Sync</strong><span>Product screening and outbound item payload logic</span></li><li><strong>Invoice Sync</strong><span>Invoice-safe validation before Salesforce push</span></li><li><strong>Export Control</strong><span>Restricted-item gating before transaction completion</span></li></ul>
+        </aside>
+        <div class="fdd-main">
+          <div class="surface-kicker">Functional Narrative</div>
+          <h3>How the Krayden Delivery is Structured</h3>
+          <div class="fdd-section"><h4>Project Context</h4><p class="fdd-copy">Krayden is the first full client integration package in this experience archive and it sets the pattern for the rest of the Crowe work. Instead of one general script bundle, the delivery is split into enhancement packages with clear ownership boundaries: Customer, Item, Invoice, Credit Memo, and Export Control. That structure matters because each record family has different timing, validation, and retry concerns. Customer and Item routes are foundation layers, while Invoice and Credit Memo are downstream finance documents that carry stricter correctness requirements.</p><p class="fdd-copy">The available script headers, manifests, and object XML show that the project was built as a controlled SuiteCloud deployment rather than an informal collection of files. The same integration story repeats across the packages: identify the correct NetSuite event or source state, gather the business data, map it into a Salesforce-safe structure, send or reconcile the payload, and leave enough metadata behind to support reprocessing or error handling.</p></div><div class="fdd-section"><h4>Record Flow and Integration Shape</h4><p class="fdd-copy">The Customer package is the clearest example of the integration pattern. It includes a shared Salesforce helper library, user-event scripts to initiate sync, RESTlet support for updates back into NetSuite, and Map/Reduce processes to resync or update territory assignments when data does not line up on the first pass. This is not just a push script. It is a lifecycle bundle for matching, updating, and stabilizing customer movement across systems.</p><p class="fdd-copy">The Item, Invoice, and Credit Memo packages follow that same idea at narrower scopes. Item sync concentrates on product data screening and field preparation. Invoice sync adds stricter validation because invoice records must be pushed only when the address and supporting data are safe for downstream use. Credit Memo sync mirrors the finance-side pattern so the Salesforce mirror stays aligned even after invoice-side corrections. Together, those packages form one end-to-end NS-to-SF document program.</p></div><div class="fdd-section"><h4>Business Controls and Validation</h4><p class="fdd-copy">Krayden is not valuable only because it moves records. It is valuable because the movement is guarded. Address line validation, invoice validation, and territory resolution logic appear directly in the source, and Export Control introduces a harder transaction gate: when a restricted item is selected, the scripts verify whether the customer is approved and whether the approval is still valid before allowing the flow to continue.</p><p class="fdd-copy">That approval layer is especially important because it turns the project from a simple data sync into a compliance-sensitive business control. The system does not merely replicate records between NetSuite and Salesforce. It helps ensure that the right transactions are allowed to proceed and that restricted-item flows are stopped when the client’s approval rules are not met.</p></div><div class="fdd-section"><h4>Delivery Architecture</h4><p class="fdd-copy">From a delivery perspective, the Krayden work shows three qualities that recur later in the Crowe archive. First, the deployment packaging is clean: manifest.xml, deploy.xml, SuiteScript files, and object XML are present as first-class artefacts. Second, there is reuse instead of duplication, most visibly through the shared Salesforce helper library. Third, the project is enhancement-led, which means changes are scoped, traceable, and easier to maintain over time than one oversized all-purpose script package.</p><p class="fdd-copy">Taken together, the Krayden archive reads like the start of production-grade NetSuite consulting work: record synchronization, validation, cross-system mapping, approval protection, deployment packaging, and enough operational discipline to recover from data mismatch scenarios without rebuilding the logic from scratch.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/vendor/popper.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/jquery.easing.1.3.js"></script>
+  <script src="js/vendor/jquery.stellar.min.js"></script>
+  <script src="js/vendor/jquery.waypoints.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="js/experience-pages.js"></script>
+  <script src="js/back-nav.js"></script>
+  
+  <script src="js/home-page-system.js"></script>
+  <script src="js/theme-toggle.js"></script>
+</body>
+</html>

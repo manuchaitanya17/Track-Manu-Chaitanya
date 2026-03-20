@@ -1,0 +1,1890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Intent | Manu Chaitanya</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+
+  <style>
+    :root{
+      --intent-accent: #bac964;
+      --intent-border: rgba(255, 255, 255, 0.09);
+      --intent-muted: rgba(255, 255, 255, 0.62);
+      --intent-soft: rgba(255, 255, 255, 0.40);
+      --intent-bg: #222;
+    }
+
+    body{
+      background: var(--intent-bg);
+    }
+
+    .intent-hero{
+      position: relative;
+      padding: 11rem 0 6rem;
+      background:
+        radial-gradient(circle at top left, rgba(186, 201, 100, 0.16), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(186, 201, 100, 0.10), transparent 24%),
+        linear-gradient(120deg, rgba(33, 33, 33, 0.80), rgba(24, 24, 24, 0.94)),
+        url("images/intent2.jpg") center center / cover no-repeat;
+      overflow: hidden;
+    }
+
+    .intent-hero:before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.52));
+    }
+
+    .intent-hero .container{
+      position: relative;
+      z-index: 2;
+    }
+
+    .intent-hero h1{
+      font-size: 4rem;
+      font-weight: 200;
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+
+    .intent-hero h1 strong{
+      display: block;
+      font-weight: 700;
+    }
+
+    .intent-hero p.lead{
+      max-width: 42rem;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .intent-pill{
+      display: inline-flex;
+      align-items: center;
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      background: rgba(186, 201, 100, 0.12);
+      border: 1px solid rgba(186, 201, 100, 0.22);
+      color: var(--intent-accent);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+
+    .intent-hero-actions .btn{
+      min-width: 170px;
+      margin-right: 12px;
+      margin-bottom: 12px;
+    }
+
+    .intent-orb{
+      position: absolute;
+      top: 120px;
+      right: 8%;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(186, 201, 100, 0.24), rgba(186, 201, 100, 0.02) 70%, transparent 72%);
+      opacity: 0.9;
+      animation: intentPulse 6s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    @keyframes intentPulse{
+      0%, 100%{ transform: scale(1); opacity: 0.70; }
+      50%{ transform: scale(1.08); opacity: 1; }
+    }
+
+    .intent-hero-panel{
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(10px);
+    }
+
+    .intent-hero-panel:after{
+      content: "";
+      position: absolute;
+      right: -40px;
+      bottom: -40px;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(186, 201, 100, 0.22), transparent 72%);
+      pointer-events: none;
+    }
+
+    .intent-panel-kicker{
+      color: var(--intent-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .intent-panel-date{
+      color: var(--intent-soft);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .intent-hero-stats{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 1.5rem;
+    }
+
+    .intent-hero-stat{
+      padding: 14px 16px;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .intent-hero-stat-label{
+      color: var(--intent-muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.45rem;
+    }
+
+    .intent-hero-stat-value{
+      color: var(--intent-accent);
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .intent-hero-stat-sub{
+      color: var(--intent-soft);
+      font-size: 0.86rem;
+      margin-top: 0.35rem;
+    }
+
+    #section-work-ethic .col-lg-6,
+    #section-smoking .col-lg-5,
+    #section-smoking .col-lg-7{
+      display: flex;
+    }
+
+    #section-smoking .section-heading,
+    #section-history .section-heading{
+      margin-bottom: 2.1rem;
+    }
+
+    .intent-card{
+      width: 100%;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+      border: 1px solid var(--intent-border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .intent-card:hover{
+      transform: translateY(-8px);
+      border-color: rgba(186, 201, 100, 0.35);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.30);
+    }
+
+    .intent-card .icon{
+      box-shadow: 0 0 0 14px rgba(186, 201, 100, 0.08);
+    }
+
+    .intent-card h3{
+      margin-bottom: 0.8rem;
+    }
+
+    .intent-card p{
+      color: rgba(255, 255, 255, 0.66);
+      line-height: 1.9;
+      margin-bottom: 0;
+    }
+
+    .intent-card-tag{
+      color: var(--intent-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .smoke-panel,
+    .smoke-summary-panel,
+    .smoke-history-panel{
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+      border: 1px solid var(--intent-border);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.16);
+    }
+
+    .smoke-kicker{
+      color: var(--intent-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .smoke-intro{
+      color: var(--intent-muted);
+      margin-bottom: 1.6rem;
+    }
+
+    .smoke-scale{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .smoke-label{
+      width: 46px;
+      height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 12px;
+      margin-bottom: 12px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      user-select: none;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.6);
+      transition: 0.2s all ease;
+    }
+
+    .smoke-scale input[type="radio"]:focus + .smoke-label{
+      box-shadow: 0 0 0 0.2rem rgba(186, 201, 100, 0.18);
+    }
+
+    .smoke-label:hover{
+      border-color: var(--intent-accent);
+      color: var(--intent-accent);
+    }
+
+    .smoke-scale input[type="radio"]:checked + .smoke-label{
+      background: var(--intent-accent);
+      border-color: var(--intent-accent);
+      color: #222;
+      transform: translateY(-2px);
+    }
+
+    .smoke-metric{
+      padding: 16px 18px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      height: 100%;
+      transition: transform 0.28s ease, border-color 0.28s ease;
+    }
+
+    .smoke-metric:hover{
+      transform: translateY(-4px);
+      border-color: rgba(186, 201, 100, 0.20);
+    }
+
+    .smoke-metric-label{
+      color: var(--intent-muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.45rem;
+    }
+
+    .smoke-metric-value{
+      color: var(--intent-accent);
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .smoke-metric-sub{
+      margin-top: 0.45rem;
+      color: var(--intent-soft);
+      font-size: 0.86rem;
+    }
+
+    .smoke-breakdown{
+      margin-top: 1.75rem;
+      padding: 18px 20px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .smoke-breakdown h4{
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .smoke-breakdown-row + .smoke-breakdown-row{
+      margin-top: 1rem;
+    }
+
+    .smoke-breakdown-head{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: rgba(255, 255, 255, 0.74);
+      margin-bottom: 0.4rem;
+      font-size: 0.92rem;
+    }
+
+    .smoke-breakdown-head strong{
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .smoke-bar{
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+
+    .smoke-bar-fill{
+      display: block;
+      height: 100%;
+      width: 0;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--intent-accent), #d6e48a);
+      transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .intent-form-control{
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      color: #fff;
+      height: 48px;
+      border-radius: 6px;
+    }
+
+    .smoke-history-filter{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex: 0 0 auto;
+    }
+
+    .smoke-history-filter-label{
+      margin: 0;
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.72);
+      font-weight: 700;
+    }
+
+    #smokeRange{
+      min-width: 12rem;
+      width: auto;
+      padding-right: 2.5rem;
+      flex: 0 0 auto;
+    }
+
+    .intent-form-control:focus{
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+      border-color: rgba(186, 201, 100, 0.42);
+      box-shadow: 0 0 0 0.2rem rgba(186, 201, 100, 0.14);
+    }
+
+    select.intent-form-control option{
+      background: #232323;
+      color: #fff;
+    }
+
+    .smoke-summary-text{
+      color: var(--intent-muted);
+    }
+
+    .smoke-history-panel .table thead th{
+      color: rgba(255, 255, 255, 0.65);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      border-top: 0;
+    }
+
+    .smoke-history-panel .table tbody tr{
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .smoke-history-panel .table td{
+      color: rgba(255, 255, 255, 0.80);
+      vertical-align: middle;
+    }
+
+    .smoke-history-panel .table tbody tr.is-today td{
+      color: var(--intent-accent);
+      font-weight: 600;
+    }
+
+    #smokeStatus{
+      min-height: 24px;
+    }
+
+    .smoke-empty{
+      color: var(--intent-muted);
+    }
+
+    @media (max-width: 991.98px){
+      .intent-hero{
+        padding-top: 9rem;
+      }
+
+      .intent-hero h1{
+        font-size: 3rem;
+      }
+
+      .intent-orb{
+        display: none;
+      }
+    }
+
+    @media (max-width: 767.98px){
+      .intent-hero{
+        padding: 8rem 0 4rem;
+      }
+
+      .intent-hero h1{
+        font-size: 2.45rem;
+      }
+
+      .intent-hero-stats{
+        grid-template-columns: 1fr;
+      }
+
+      .smoke-history-filter{
+        width: 100%;
+      }
+
+      #smokeRange{
+        min-width: 0;
+        width: 100%;
+      }
+    }
+
+    .phase-shell{
+      width: min(94vw, 1680px);
+      margin: 0 auto;
+    }
+
+    .phase-hero{
+      position: relative;
+      padding: 10.5rem 0 5rem;
+      overflow: hidden;
+    }
+
+    .intent-phase-hero{
+      background:
+        radial-gradient(circle at 14% 14%, rgba(186, 201, 100, 0.16), transparent 16%),
+        radial-gradient(circle at 80% 18%, rgba(54, 168, 239, 0.10), transparent 18%),
+        linear-gradient(140deg, rgba(26,26,26,0.82), rgba(30,30,30,0.92)),
+        url("images/intent2.jpg") center center / cover no-repeat;
+    }
+
+    .phase-hero:before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.24), rgba(0,0,0,0.56)),
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: auto, 48px 48px, 48px 48px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.96), rgba(0,0,0,0.32));
+      pointer-events: none;
+    }
+
+    .phase-hero .phase-shell,
+    .journey-section .phase-shell{
+      position: relative;
+      z-index: 1;
+    }
+
+    .phase-grid{
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .phase-banner,
+    .phase-panel,
+    .journey-card{
+      position: relative;
+      overflow: hidden;
+      border-radius: 32px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      box-shadow: 0 28px 90px rgba(0,0,0,0.26);
+      backdrop-filter: blur(10px);
+    }
+
+    .phase-banner{
+      padding: clamp(1.9rem, 3vw, 2.8rem);
+      min-height: 440px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .phase-banner:after,
+    .phase-panel:after,
+    .journey-card:after{
+      content: "";
+      position: absolute;
+      right: -42px;
+      bottom: -48px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(186, 201, 100, 0.18), rgba(186, 201, 100, 0.02) 70%, transparent 74%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .phase-kicker,
+    .panel-kicker,
+    .section-kicker,
+    .journey-pill{
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      color: var(--intent-accent);
+      border: 1px solid rgba(186, 201, 100, 0.28);
+      background: rgba(186, 201, 100, 0.08);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .phase-title{
+      font-size: clamp(3rem, 5vw, 5rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin: 1.2rem 0 1.1rem;
+      font-weight: 200;
+    }
+
+    .phase-title strong{
+      display: block;
+      font-weight: 700;
+    }
+
+    .phase-copy,
+    .phase-panel-copy,
+    .section-copy,
+    .journey-copy{
+      color: rgba(255,255,255,0.78);
+      line-height: 1.85;
+      font-size: 1.08rem;
+    }
+
+    .phase-copy{
+      max-width: 48rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .phase-metrics,
+    .journey-meta{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .phase-metrics{
+      margin-bottom: 1.5rem;
+    }
+
+    .phase-chip,
+    .journey-tag{
+      padding: 0.78rem 1rem;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.84);
+      font-weight: 700;
+    }
+
+    .phase-actions .btn,
+    .journey-footer .btn{
+      min-width: 180px;
+      margin-right: 12px;
+      margin-bottom: 12px;
+    }
+
+    .phase-panel{
+      padding: 1.7rem;
+      min-height: 440px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .phase-panel:before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(54, 168, 239, 0.16), transparent 18%),
+        radial-gradient(circle at 20% 86%, rgba(18, 203, 99, 0.12), transparent 18%);
+      pointer-events: none;
+    }
+
+    .phase-panel > *{
+      position: relative;
+      z-index: 1;
+    }
+
+    .phase-panel h3{
+      font-size: clamp(2rem, 2.7vw, 2.8rem);
+      letter-spacing: -0.04em;
+      margin: 0.9rem 0;
+    }
+
+    .phase-stats{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 1.4rem 0 1.5rem;
+    }
+
+    .phase-stat{
+      border-radius: 18px;
+      padding: 1rem;
+      background: rgba(0,0,0,0.16);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .phase-stat-label{
+      color: rgba(255,255,255,0.48);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .phase-stat-value{
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      line-height: 1;
+      font-weight: 800;
+      color: var(--intent-accent);
+      margin-bottom: 0.35rem;
+    }
+
+    .phase-stat-sub{
+      color: rgba(255,255,255,0.72);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .phase-route{
+      border-radius: 22px;
+      padding: 1.2rem;
+      background: rgba(0,0,0,0.16);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .phase-route-label{
+      color: rgba(255,255,255,0.48);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+
+    .phase-route-title{
+      font-size: 1.38rem;
+      font-weight: 800;
+      margin-bottom: 0.45rem;
+    }
+
+    .phase-route-copy{
+      color: rgba(255,255,255,0.78);
+      line-height: 1.75;
+      margin-bottom: 0;
+    }
+
+    .journey-section{
+      position: relative;
+      padding: 4.7rem 0 3.2rem;
+    }
+
+    .section-intro-modern{
+      max-width: 52rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-intro-modern .section-kicker{
+      margin-bottom: 1rem;
+    }
+
+    .section-intro-modern .section-title{
+      font-size: clamp(2.2rem, 3.4vw, 3.4rem);
+      letter-spacing: -0.04em;
+      margin-bottom: 0.85rem;
+    }
+
+    .journey-carousel-wrap{
+      position: relative;
+    }
+
+    .journey-carousel{
+      position: relative;
+      padding: 0 4.8rem;
+    }
+
+    .journey-viewport{
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .journey-track{
+      display: flex;
+      gap: 24px;
+      align-items: stretch;
+      will-change: transform;
+      transition: transform 0.52s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .journey-card{
+      flex: 0 0 min(620px, calc(100vw - 10rem));
+      padding: 1.55rem;
+      opacity: 0.74;
+      transform: scale(0.94);
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, opacity 0.35s ease;
+    }
+
+    .journey-card.is-active{
+      opacity: 1;
+      transform: scale(1);
+      border-color: rgba(186,201,100,0.18);
+      box-shadow: 0 26px 80px rgba(0,0,0,0.24);
+    }
+
+    .journey-icon{
+      width: 74px;
+      height: 74px;
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(186,201,100,0.12);
+      border: 1px solid rgba(186,201,100,0.18);
+      color: var(--intent-accent);
+      font-size: 1.9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .journey-header{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .journey-code{
+      color: rgba(255,255,255,0.48);
+      font-size: 0.92rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .journey-header h3{
+      font-size: clamp(2rem, 2.8vw, 2.8rem);
+      letter-spacing: -0.04em;
+      margin: 0 0 0.45rem;
+    }
+
+    .journey-footer{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      margin-top: 1.55rem;
+      padding-top: 1.15rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .journey-footer span{
+      color: rgba(255,255,255,0.78);
+      line-height: 1.7;
+      max-width: 25rem;
+    }
+
+    .journey-nav{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 58px;
+      height: 58px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      font-size: 1.2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 2;
+      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    }
+
+    .journey-nav:hover{
+      transform: translateY(-50%) scale(1.04);
+      border-color: rgba(186,201,100,0.22);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .journey-nav.prev{
+      left: 0;
+    }
+
+    .journey-nav.next{
+      right: 0;
+    }
+
+    .journey-nav:disabled{
+      opacity: 0.32;
+      cursor: default;
+      transform: translateY(-50%);
+    }
+
+    .journey-dots{
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 1.25rem;
+    }
+
+    .journey-dot{
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.18);
+      border: 0;
+      padding: 0;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .journey-dot.is-active{
+      background: var(--intent-accent);
+      transform: scale(1.2);
+    }
+
+    .reveal-up{
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal-up.is-visible{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1199.98px){
+      .phase-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .phase-panel,
+      .phase-banner{
+        min-height: auto;
+      }
+
+      .journey-card{
+        flex-basis: min(540px, calc(100vw - 8rem));
+      }
+    }
+
+    @media (max-width: 767.98px){
+      .phase-hero{
+        padding-top: 8.8rem;
+        padding-bottom: 3.5rem;
+      }
+
+      .phase-banner,
+      .phase-panel,
+      .journey-card{
+        border-radius: 24px;
+      }
+
+      .phase-stats{
+        grid-template-columns: 1fr;
+      }
+
+      .phase-actions .btn,
+      .journey-footer .btn{
+        width: 100%;
+        margin-right: 0;
+      }
+
+      .journey-footer{
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .journey-carousel{
+        padding: 0 2.4rem;
+      }
+
+      .journey-card{
+        flex-basis: calc(100vw - 5.8rem);
+      }
+
+      .journey-nav{
+        width: 48px;
+        height: 48px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="css/mobile-responsive.css">
+  <link rel="stylesheet" href="css/home-page-system.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+</head>
+<body data-spy="scroll" data-target="#pb-navbar" data-offset="200">
+
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsIntent" aria-controls="navbarsIntent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbarsIntent">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="index.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-intent">Overview</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-journey">Journey Track</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-smoking">Smoking Record</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-history">History</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="phase-hero intent-phase-hero" id="section-intent">
+    <div class="phase-shell">
+      <div class="phase-grid">
+        <div class="phase-banner reveal-up">
+          <div>
+            <span class="phase-kicker">Phase 01 - Intent</span>
+            <h1 class="phase-title">Focused <strong>Foundation</strong></h1>
+            <p class="phase-copy">
+              Intent was the phase of disciplined starts. The technical journey mattered, but the personal system behind it mattered equally. The smoking record sits here as a daily measure of control, consistency, and the ability to build discipline before intensity and ownership phases expand further.
+            </p>
+            <div class="phase-metrics">
+              <div class="phase-chip">Daily Smoking Record</div>
+              <div class="phase-chip">Discipline First</div>
+              <div class="phase-chip">Consistency Phase</div>
+              <div class="phase-chip">Foundation Before Intensity</div>
+            </div>
+          </div>
+
+          <div class="phase-actions">
+            <a href="#section-smoking" class="btn btn-primary px-4 py-3">Track Today</a>
+            <a href="#section-history" class="btn btn-secondary px-4 py-3">View History</a>
+          </div>
+        </div>
+
+        <aside class="phase-panel reveal-up">
+          <div>
+            <div class="panel-kicker">Discipline Compass</div>
+            <div class="intent-panel-date mt-2">Today - <span id="heroTodayLabel">-</span></div>
+            <h3>Personal control stayed measurable!</h3>
+            <p class="phase-panel-copy">The Intent phase is intentionally simple: one daily record, one measurable habit, and one visible signal of whether discipline is holding. Weekly and monthly totals make progress concrete instead of vague.</p>
+          </div>
+
+          <div class="phase-stats">
+            <div class="phase-stat">
+              <div class="phase-stat-label">This Week</div>
+              <div class="phase-stat-value" id="heroWeekTotal">0</div>
+              <div class="phase-stat-sub">Cigarettes recorded across the week.</div>
+            </div>
+            <div class="phase-stat">
+              <div class="phase-stat-label">This Month</div>
+              <div class="phase-stat-value" id="heroMonthTotal">0</div>
+              <div class="phase-stat-sub">Cigarettes recorded in the month.</div>
+            </div>
+            <div class="phase-stat">
+              <div class="phase-stat-label">This Year</div>
+              <div class="phase-stat-value" id="heroYearTotal">0</div>
+              <div class="phase-stat-sub">Cigarettes recorded in the year.</div>
+            </div>
+            <div class="phase-stat">
+              <div class="phase-stat-label">Smoke-Free Days</div>
+              <div class="phase-stat-value" id="heroSmokeFreeDays">0</div>
+              <div class="phase-stat-sub">Days recorded at zero this month.</div>
+            </div>
+          </div>
+
+          <div class="phase-route">
+            <div class="phase-route-label">Connected Track</div>
+            <div class="phase-route-title">Internship Capstone-II</div>
+            <p class="phase-route-copy">The linked experience track shows where preparation and disciplined consistency start translating into accountable delivery inside real project work.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section journey-section" id="section-journey">
+    <div class="phase-shell">
+      <div class="section-intro-modern reveal-up">
+        <div class="section-kicker">Journey Track</div>
+        <h2 class="section-title">Connected Track In Intent</h2>
+        <p class="section-copy">The current archive links Intent to one delivery-facing track. The card below opens the same Internship Capstone-II page used in the Experience section, showing how early discipline starts feeding into accountable technical work.</p>
+      </div>
+
+      <div class="journey-carousel-wrap">
+        <div class="journey-carousel reveal-up" data-journey-carousel>
+          <button class="journey-nav prev" type="button" aria-label="Previous track">
+            <span class="icon-chevron-left"></span>
+          </button>
+          <div class="journey-viewport">
+            <div class="journey-track">
+              <article class="journey-card">
+                <div class="journey-icon"><span class="icon-briefcase3"></span></div>
+                <div class="journey-header">
+                  <div>
+                    <div class="journey-code">Track 01</div>
+                    <h3>Internship Capstone-II</h3>
+                  </div>
+                  <span class="journey-pill">Intent Link</span>
+                </div>
+                <p class="journey-copy">Internship Capstone-II represents the point where disciplined preparation starts crossing into direct delivery. The work moved into Crowe Horwath project execution, faster learning, and early accountability under real business expectations.</p>
+                <div class="journey-meta">
+                  <span class="journey-tag">Crowe Horwath</span>
+                  <span class="journey-tag">Applied Discipline</span>
+                  <span class="journey-tag">Experience Link</span>
+                </div>
+                <div class="journey-footer">
+                  <span>Open the Experience track to review the project tree, client work, and delivery journey connected to this phase.</span>
+                  <a href="experience-capstone-ii.html" class="btn btn-outline-primary">Open Experience</a>
+                </div>
+              </article>
+            </div>
+          </div>
+          <button class="journey-nav next" type="button" aria-label="Next track">
+            <span class="icon-chevron-right"></span>
+          </button>
+        </div>
+        <div class="journey-dots reveal-up"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section pt-0" id="section-smoking">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 mb-5">
+          <div class="section-heading text-center">
+            <h2>Smoking <strong>Record</strong></h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-5 mb-5 mb-lg-0">
+          <div class="resume-item p-4 smoke-panel site-animate" data-animate-effect="fadeInLeft">
+            <div class="smoke-kicker">Today's Smoking Count</div>
+            <h3 class="mt-2">Daily log</h3>
+            <p class="smoke-intro">Save one entry per day. This keeps the Intent phase focused on measurable discipline rather than vague progress.</p>
+
+            <form id="smokeForm" class="smoke-form">
+              <div class="smoke-scale" role="radiogroup" aria-label="Cigarettes smoked today">
+                <input class="sr-only" type="radio" id="smoke-0" name="smoke_count" value="0">
+                <label class="smoke-label" for="smoke-0">0</label>
+
+                <input class="sr-only" type="radio" id="smoke-1" name="smoke_count" value="1">
+                <label class="smoke-label" for="smoke-1">1</label>
+
+                <input class="sr-only" type="radio" id="smoke-2" name="smoke_count" value="2">
+                <label class="smoke-label" for="smoke-2">2</label>
+
+                <input class="sr-only" type="radio" id="smoke-3" name="smoke_count" value="3">
+                <label class="smoke-label" for="smoke-3">3</label>
+
+                <input class="sr-only" type="radio" id="smoke-4" name="smoke_count" value="4">
+                <label class="smoke-label" for="smoke-4">4</label>
+
+                <input class="sr-only" type="radio" id="smoke-5" name="smoke_count" value="5">
+                <label class="smoke-label" for="smoke-5">5</label>
+
+                <input class="sr-only" type="radio" id="smoke-6" name="smoke_count" value="6">
+                <label class="smoke-label" for="smoke-6">6</label>
+
+                <input class="sr-only" type="radio" id="smoke-7" name="smoke_count" value="7">
+                <label class="smoke-label" for="smoke-7">7</label>
+
+                <input class="sr-only" type="radio" id="smoke-8" name="smoke_count" value="8">
+                <label class="smoke-label" for="smoke-8">8</label>
+
+                <input class="sr-only" type="radio" id="smoke-9" name="smoke_count" value="9">
+                <label class="smoke-label" for="smoke-9">9</label>
+
+                <input class="sr-only" type="radio" id="smoke-10" name="smoke_count" value="10">
+                <label class="smoke-label" for="smoke-10">10</label>
+              </div>
+
+              <button type="submit" class="btn btn-primary px-4 py-3">Save Today</button>
+              <p id="smokeStatus" class="mt-3 mb-2"></p>
+              <small class="d-block mt-3 smoke-summary-text">Tip: Select <strong>0</strong> for a smoke-free day.</small>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-lg-7">
+          <div class="resume-item p-4 smoke-summary-panel site-animate" data-animate-effect="fadeInRight">
+            <div class="smoke-kicker">Current Pulse</div>
+            <h3 class="mt-2">Live summary</h3>
+            <p id="smokeSummaryText" class="smoke-summary-text mb-0">No records yet. Save today's count to start tracking.</p>
+
+            <div class="row mt-4">
+              <div class="col-sm-6 col-xl-3 mb-3">
+                <div class="smoke-metric">
+                  <div class="smoke-metric-label">Today</div>
+                  <div class="smoke-metric-value" id="smokeTotalToday">-</div>
+                  <div class="smoke-metric-sub">current count</div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 col-xl-3 mb-3">
+                <div class="smoke-metric">
+                  <div class="smoke-metric-label">This Week</div>
+                  <div class="smoke-metric-value" id="smokeTotalWeek">0</div>
+                  <div class="smoke-metric-sub" id="smokeWeekRange"></div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 col-xl-3 mb-3">
+                <div class="smoke-metric">
+                  <div class="smoke-metric-label">This Month</div>
+                  <div class="smoke-metric-value" id="smokeTotalMonth">0</div>
+                  <div class="smoke-metric-sub" id="smokeMonthRange"></div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 col-xl-3 mb-3">
+                <div class="smoke-metric">
+                  <div class="smoke-metric-label">This Year</div>
+                  <div class="smoke-metric-value" id="smokeTotalYear">0</div>
+                  <div class="smoke-metric-sub" id="smokeYearLabel"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="smoke-breakdown">
+              <h4 class="mb-3">Weekly and monthly discipline</h4>
+
+              <div class="smoke-breakdown-row">
+                <div class="smoke-breakdown-head">
+                  <span>Smoke-free days this week</span>
+                  <strong id="smokeFreeWeekLabel">0/7 days</strong>
+                </div>
+                <div class="smoke-bar">
+                  <span class="smoke-bar-fill" id="smokeFreeWeekBar"></span>
+                </div>
+              </div>
+
+              <div class="smoke-breakdown-row">
+                <div class="smoke-breakdown-head">
+                  <span>Days at or below 4 this month</span>
+                  <strong id="lowCountMonthLabel">0 days</strong>
+                </div>
+                <div class="smoke-bar">
+                  <span class="smoke-bar-fill" id="lowCountMonthBar"></span>
+                </div>
+              </div>
+
+              <div class="smoke-breakdown-row">
+                <div class="smoke-breakdown-head">
+                  <span>Logging consistency this week</span>
+                  <strong id="smokeLoggingLabel">0/7 days</strong>
+                </div>
+                <div class="smoke-bar">
+                  <span class="smoke-bar-fill" id="smokeLoggingBar"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section pt-0" id="section-history">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 mb-5">
+          <div class="section-heading text-center">
+            <h2>Smoking <strong>History</strong></h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="resume-item p-4 smoke-history-panel site-animate" data-animate-effect="fadeInUp">
+            <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between">
+              <div class="mb-3 mb-md-0">
+                <h3 class="mb-1">Summary</h3>
+                <p id="smokeRangeSummary" class="mb-0 smoke-summary-text">No records in this range yet.</p>
+              </div>
+
+              <div class="smoke-history-filter">
+                <label for="smokeRange" class="smoke-history-filter-label">Show</label>
+                <select id="smokeRange" class="form-control form-control-sm intent-form-control">
+                  <option value="7" selected>Last 7 days</option>
+                  <option value="30">Last 30 days</option>
+                  <option value="365">Last 365 days</option>
+                  <option value="all">All</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-responsive mt-4">
+              <table class="table table-borderless table-sm mb-0" id="smokeTable">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Number of Cigarettes</th>
+                  </tr>
+                </thead>
+                <tbody id="smokeTableBody">
+                  <tr>
+                    <td colspan="2" class="smoke-empty">No records yet. Save today's count to start tracking.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mt-4 d-flex flex-wrap">
+              <button type="button" class="btn btn-secondary btn-sm mr-2 mb-2" id="smokeExportCsvBtn">Export CSV</button>
+              <button type="button" class="btn btn-secondary btn-sm mr-2 mb-2" id="smokeExportJsonBtn">Export JSON</button>
+              <button type="button" class="btn btn-outline-light btn-sm mb-2" id="smokeClearBtn">Clear All</button>
+            </div>
+
+            <small class="d-block mt-3 smoke-summary-text">Data is stored in this browser using LocalStorage. If you clear browser data or switch devices, the history will not carry over.</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+
+      <div class="row mb-5">
+        <div class="col-md-12 text-center">
+          <p>
+            <a href="https://www.facebook.com/m14chaitanya" class="social-item"><span class="icon-facebook2"></span></a>
+            <a href="#" class="social-item"><span class="icon-twitter"></span></a>
+            <a href="https://www.instagram.com/m17chaitanya/" class="social-item"><span class="icon-instagram2"></span></a>
+            <a href="https://www.linkedin.com/in/manuchaitanya/" class="social-item"><span class="icon-linkedin2"></span></a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/vendor/popper.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/jquery.easing.1.3.js"></script>
+  <script src="js/vendor/jquery.stellar.min.js"></script>
+  <script src="js/vendor/jquery.waypoints.min.js"></script>
+  <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+  <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script>
+    (function () {
+      function initReveal() {
+        if (!('IntersectionObserver' in window)) {
+          Array.prototype.forEach.call(document.querySelectorAll('.reveal-up'), function (el) {
+            el.classList.add('is-visible');
+          });
+          return;
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          });
+        }, { threshold: 0.14 });
+
+        Array.prototype.forEach.call(document.querySelectorAll('.reveal-up'), function (el, index) {
+          el.style.transitionDelay = Math.min(index * 60, 420) + 'ms';
+          observer.observe(el);
+        });
+      }
+
+      function initJourneyCarousels() {
+        Array.prototype.forEach.call(document.querySelectorAll('[data-journey-carousel]'), function (root) {
+          var viewport = root.querySelector('.journey-viewport');
+          var track = root.querySelector('.journey-track');
+          var prev = root.querySelector('.journey-nav.prev');
+          var next = root.querySelector('.journey-nav.next');
+          var wrap = root.parentElement;
+          var dotsRoot = wrap ? wrap.querySelector('.journey-dots') : null;
+          if (!viewport || !track || !prev || !next || !dotsRoot) return;
+
+          var cards = Array.prototype.slice.call(track.querySelectorAll('.journey-card'));
+          if (!cards.length) return;
+
+          if (cards.length <= 1) {
+            prev.style.display = 'none';
+            next.style.display = 'none';
+            dotsRoot.style.display = 'none';
+            cards[0].classList.add('is-active');
+            track.style.justifyContent = 'center';
+            track.style.transform = 'translate3d(0,0,0)';
+            return;
+          }
+
+          var index = 0;
+          var pointerStartX = null;
+
+          dotsRoot.innerHTML = cards.map(function (_, dotIndex) {
+            return '<button class="journey-dot' + (dotIndex === 0 ? ' is-active' : '') + '" type="button" data-index="' + dotIndex + '" aria-label="Go to track ' + (dotIndex + 1) + '"></button>';
+          }).join('');
+
+          var dots = Array.prototype.slice.call(dotsRoot.querySelectorAll('.journey-dot'));
+
+          function clamp(value, min, max) {
+            return Math.max(min, Math.min(max, value));
+          }
+
+          function sync(animate) {
+            index = clamp(index, 0, cards.length - 1);
+
+            cards.forEach(function (card, cardIndex) {
+              card.classList.toggle('is-active', cardIndex === index);
+            });
+
+            dots.forEach(function (dot, dotIndex) {
+              dot.classList.toggle('is-active', dotIndex === index);
+            });
+
+            track.style.transition = animate
+              ? 'transform 0.52s cubic-bezier(0.22, 1, 0.36, 1)'
+              : 'none';
+
+            var activeCard = cards[index];
+            var maxOffset = Math.max(track.scrollWidth - viewport.clientWidth, 0);
+            var desired = activeCard.offsetLeft - ((viewport.clientWidth - activeCard.offsetWidth) / 2);
+            var offset = clamp(desired, 0, maxOffset);
+            track.style.transform = 'translate3d(' + (-offset) + 'px, 0, 0)';
+
+            prev.disabled = index === 0;
+            next.disabled = index === cards.length - 1;
+          }
+
+          prev.addEventListener('click', function () {
+            index = clamp(index - 1, 0, cards.length - 1);
+            sync(true);
+          });
+
+          next.addEventListener('click', function () {
+            index = clamp(index + 1, 0, cards.length - 1);
+            sync(true);
+          });
+
+          dotsRoot.addEventListener('click', function (event) {
+            var dot = event.target.closest('.journey-dot');
+            if (!dot) return;
+            index = Number(dot.getAttribute('data-index')) || 0;
+            sync(true);
+          });
+
+          viewport.addEventListener('touchstart', function (event) {
+            pointerStartX = event.touches && event.touches[0] ? event.touches[0].clientX : null;
+          }, { passive: true });
+
+          viewport.addEventListener('touchend', function (event) {
+            if (pointerStartX === null) return;
+            var endX = event.changedTouches && event.changedTouches[0] ? event.changedTouches[0].clientX : pointerStartX;
+            var delta = endX - pointerStartX;
+            if (Math.abs(delta) > 44) {
+              index = clamp(index + (delta < 0 ? 1 : -1), 0, cards.length - 1);
+              sync(true);
+            }
+            pointerStartX = null;
+          }, { passive: true });
+
+          window.addEventListener('resize', function () {
+            sync(false);
+          });
+
+          sync(false);
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        initReveal();
+        initJourneyCarousels();
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var STORAGE_KEY = "smokingRecord.v1";
+      var HARDCODED_RANGES = [
+        { start: [2026, 1, 1], end: [2026, 1, 15], count: 8 },
+        { start: [2026, 1, 16], end: [2026, 1, 31], count: 6 },
+        { start: [2026, 2, 1], end: [2026, 2, 15], count: 4 },
+        { start: [2026, 2, 16], end: [2026, 2, 28], count: 10 },
+        { start: [2026, 3, 1], end: [2026, 3, 15], count: 6 }
+      ];
+
+      function $(id) {
+        return document.getElementById(id);
+      }
+
+      function pad2(n) {
+        return String(n).padStart(2, "0");
+      }
+
+      function toDateKey(d) {
+        return d.getFullYear() + "-" + pad2(d.getMonth() + 1) + "-" + pad2(d.getDate());
+      }
+
+      function fromDateKey(key) {
+        var parts = String(key).split("-");
+        if (parts.length !== 3) return null;
+        var y = Number(parts[0]);
+        var m = Number(parts[1]) - 1;
+        var day = Number(parts[2]);
+        if (!Number.isFinite(y) || !Number.isFinite(m) || !Number.isFinite(day)) return null;
+        return new Date(y, m, day);
+      }
+
+      function startOfDay(d) {
+        return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+      }
+
+      function formatShort(d) {
+        try {
+          return d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+        } catch (e) {
+          return (d.getMonth() + 1) + "/" + d.getDate();
+        }
+      }
+
+      function formatLongFromKey(key) {
+        var d = fromDateKey(key);
+        if (!d) return key;
+        try {
+          return d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+        } catch (e) {
+          return key;
+        }
+      }
+
+      function safeParse(text, fallback) {
+        try {
+          var parsed = JSON.parse(text);
+          return parsed && typeof parsed === "object" ? parsed : fallback;
+        } catch (e) {
+          return fallback;
+        }
+      }
+
+      function buildHardcodedData() {
+        var seeded = {};
+        HARDCODED_RANGES.forEach(function (range) {
+          var current = new Date(range.start[0], range.start[1] - 1, range.start[2]);
+          var end = new Date(range.end[0], range.end[1] - 1, range.end[2]);
+          while (current.getTime() <= end.getTime()) {
+            seeded[toDateKey(current)] = range.count;
+            current.setDate(current.getDate() + 1);
+          }
+        });
+        return seeded;
+      }
+
+      var HARDCODED_DATA = buildHardcodedData();
+
+      function loadData() {
+        var raw = localStorage.getItem(STORAGE_KEY);
+        var stored = safeParse(raw || "{}", {});
+        return Object.assign({}, stored, HARDCODED_DATA);
+      }
+
+      function saveData(data) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      }
+
+      function getWeekRange(today) {
+        var day = today.getDay();
+        var diffFromMonday = (day + 6) % 7;
+        var start = new Date(today);
+        start.setDate(today.getDate() - diffFromMonday);
+        var end = new Date(start);
+        end.setDate(start.getDate() + 6);
+        return { start: start, end: end };
+      }
+
+      function getMonthRange(today) {
+        return {
+          start: new Date(today.getFullYear(), today.getMonth(), 1),
+          end: new Date(today.getFullYear(), today.getMonth() + 1, 0)
+        };
+      }
+
+      function getYearRange(today) {
+        return {
+          start: new Date(today.getFullYear(), 0, 1),
+          end: new Date(today.getFullYear(), 11, 31)
+        };
+      }
+
+      function getDaysInRangeData(data, start, end, predicate) {
+        var count = 0;
+        Object.keys(data).forEach(function (key) {
+          var d = fromDateKey(key);
+          if (!d) return;
+          var t = d.getTime();
+          if (t < start.getTime() || t > end.getTime()) return;
+          var value = Number(data[key]);
+          if (!Number.isFinite(value)) return;
+          if (!predicate || predicate(value, key)) count++;
+        });
+        return count;
+      }
+
+      function sumInRange(data, start, end) {
+        var total = 0;
+        Object.keys(data).forEach(function (key) {
+          var d = fromDateKey(key);
+          if (!d) return;
+          var t = d.getTime();
+          if (t >= start.getTime() && t <= end.getTime()) {
+            var value = Number(data[key]);
+            if (Number.isFinite(value)) total += value;
+          }
+        });
+        return total;
+      }
+
+      function getSortedEntries(data) {
+        return Object.keys(data)
+          .map(function (key) {
+            return { date: key, count: Number(data[key]) };
+          })
+          .filter(function (row) {
+            return Number.isFinite(row.count);
+          })
+          .sort(function (a, b) {
+            return a.date < b.date ? 1 : -1;
+          });
+      }
+
+      function clampRangeEntries(entries, rangeValue, today) {
+        if (rangeValue === "all") return entries;
+        var days = Number(rangeValue);
+        if (!Number.isFinite(days) || days <= 0) return entries;
+
+        var cutoff = new Date(today);
+        cutoff.setDate(today.getDate() - (days - 1));
+
+        return entries.filter(function (row) {
+          var d = fromDateKey(row.date);
+          return d && d.getTime() >= cutoff.getTime();
+        });
+      }
+
+      function downloadFile(filename, text, mime) {
+        var blob = new Blob([text], { type: mime || "text/plain" });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      }
+
+      function animateMetric(id, value) {
+        var el = $(id);
+        if (!el) return;
+
+        var next = Number(value);
+        if (!Number.isFinite(next)) {
+          el.textContent = "-";
+          el.removeAttribute("data-value");
+          return;
+        }
+
+        var previous = Number(el.getAttribute("data-value"));
+        if (!Number.isFinite(previous)) previous = 0;
+
+        var startTime = null;
+        var duration = 500;
+
+        function step(timestamp) {
+          if (startTime === null) startTime = timestamp;
+          var progress = Math.min((timestamp - startTime) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          var current = previous + (next - previous) * eased;
+          el.textContent = String(Math.round(current * 100) / 100).replace(/\.0+$/, "");
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          } else {
+            el.textContent = String(next);
+            el.setAttribute("data-value", String(next));
+          }
+        }
+
+        window.requestAnimationFrame(step);
+      }
+
+      function setBar(barId, labelId, percentage, labelText) {
+        var bar = $(barId);
+        var label = $(labelId);
+        var safePercentage = Math.max(0, Math.min(100, Number(percentage) || 0));
+        if (bar) bar.style.width = safePercentage + "%";
+        if (label) label.textContent = labelText;
+      }
+
+      function setStatus(message, type) {
+        var el = $("smokeStatus");
+        if (!el) return;
+        el.textContent = message || "";
+        el.classList.remove("text-danger", "text-success", "text-warning", "text-info");
+        if (type === "success") el.classList.add("text-success");
+        else if (type === "warning") el.classList.add("text-warning");
+        else if (type === "danger") el.classList.add("text-danger");
+        else if (message) el.classList.add("text-info");
+      }
+
+      function render() {
+        var form = $("smokeForm");
+        var tableBody = $("smokeTableBody");
+        var rangeSelect = $("smokeRange");
+        if (!form || !tableBody || !rangeSelect) return;
+
+        var now = new Date();
+        var today = startOfDay(now);
+        var todayKey = toDateKey(today);
+        var data = loadData();
+
+        if ($("heroTodayLabel")) $("heroTodayLabel").textContent = formatLongFromKey(todayKey);
+
+        form.reset();
+        if (Object.prototype.hasOwnProperty.call(data, todayKey)) {
+          var saved = String(data[todayKey]);
+          var radio = form.querySelector('input[name="smoke_count"][value="' + saved + '"]');
+          if (radio) radio.checked = true;
+        }
+
+        var week = getWeekRange(today);
+        var month = getMonthRange(today);
+        var year = getYearRange(today);
+
+        var todayCount = Object.prototype.hasOwnProperty.call(data, todayKey) ? Number(data[todayKey]) : null;
+        var weekTotal = sumInRange(data, week.start, week.end);
+        var monthTotal = sumInRange(data, month.start, month.end);
+        var yearTotal = sumInRange(data, year.start, year.end);
+
+        var weekSmokeFreeDays = getDaysInRangeData(data, week.start, week.end, function (value) { return value === 0; });
+        var weekLoggedDays = getDaysInRangeData(data, week.start, week.end);
+        var monthSmokeFreeDays = getDaysInRangeData(data, month.start, month.end, function (value) { return value === 0; });
+        var monthLowCountDays = getDaysInRangeData(data, month.start, month.end, function (value) { return value <= 4; });
+        var monthLoggedDays = getDaysInRangeData(data, month.start, month.end);
+
+        $("smokeTotalToday").textContent = (todayCount === null || !Number.isFinite(todayCount)) ? "-" : String(todayCount);
+        animateMetric("smokeTotalWeek", weekTotal);
+        animateMetric("smokeTotalMonth", monthTotal);
+        animateMetric("smokeTotalYear", yearTotal);
+
+        animateMetric("heroWeekTotal", weekTotal);
+        animateMetric("heroMonthTotal", monthTotal);
+        animateMetric("heroYearTotal", yearTotal);
+        animateMetric("heroSmokeFreeDays", monthSmokeFreeDays);
+
+        if ($("smokeWeekRange")) $("smokeWeekRange").textContent = formatShort(week.start) + " - " + formatShort(week.end);
+        if ($("smokeMonthRange")) $("smokeMonthRange").textContent = formatShort(month.start) + " - " + formatShort(month.end);
+        if ($("smokeYearLabel")) $("smokeYearLabel").textContent = String(today.getFullYear());
+
+        var summaryTextEl = $("smokeSummaryText");
+        if (summaryTextEl) {
+          if (Object.keys(data).length === 0) {
+            summaryTextEl.textContent = "No records yet. Save today's count to start tracking.";
+          } else {
+            summaryTextEl.textContent =
+              "Today: " + ((todayCount === null || !Number.isFinite(todayCount)) ? "-" : String(todayCount)) +
+              " • This Week: " + weekTotal +
+              " • This Month: " + monthTotal +
+              " • This Year: " + yearTotal;
+          }
+        }
+
+        setBar("smokeFreeWeekBar", "smokeFreeWeekLabel", (weekSmokeFreeDays / 7) * 100, weekSmokeFreeDays + "/7 days");
+        setBar(
+          "lowCountMonthBar",
+          "lowCountMonthLabel",
+          monthLoggedDays ? (monthLowCountDays / monthLoggedDays) * 100 : 0,
+          monthLowCountDays + " days"
+        );
+        setBar("smokeLoggingBar", "smokeLoggingLabel", (weekLoggedDays / 7) * 100, weekLoggedDays + "/7 days");
+
+        var entries = getSortedEntries(data);
+        var filteredEntries = clampRangeEntries(entries, rangeSelect.value, today);
+        var rangeSummaryEl = $("smokeRangeSummary");
+
+        if (rangeSummaryEl) {
+          if (!filteredEntries.length) {
+            rangeSummaryEl.textContent = "No records in this range yet.";
+          } else {
+            var filteredTotal = filteredEntries.reduce(function (sum, row) { return sum + row.count; }, 0);
+            var filteredSmokeFree = filteredEntries.filter(function (row) { return row.count === 0; }).length;
+            rangeSummaryEl.textContent =
+              "Entries: " + filteredEntries.length +
+              " • Total Cigarettes: " + filteredTotal +
+              " • Smoke-Free Days: " + filteredSmokeFree;
+          }
+        }
+
+        tableBody.innerHTML = "";
+        if (!filteredEntries.length) {
+          var emptyRow = document.createElement("tr");
+          var emptyCell = document.createElement("td");
+          emptyCell.colSpan = 2;
+          emptyCell.className = "smoke-empty";
+          emptyCell.textContent = "No records in this range yet.";
+          emptyRow.appendChild(emptyCell);
+          tableBody.appendChild(emptyRow);
+          return;
+        }
+
+        filteredEntries.forEach(function (row) {
+          var tr = document.createElement("tr");
+          if (row.date === todayKey) tr.className = "is-today";
+
+          var dateTd = document.createElement("td");
+          dateTd.textContent = formatLongFromKey(row.date);
+
+          var countTd = document.createElement("td");
+          countTd.textContent = String(row.count);
+
+          tr.appendChild(dateTd);
+          tr.appendChild(countTd);
+          tableBody.appendChild(tr);
+        });
+      }
+
+      function init() {
+        var form = $("smokeForm");
+        var rangeSelect = $("smokeRange");
+        var exportCsvBtn = $("smokeExportCsvBtn");
+        var exportJsonBtn = $("smokeExportJsonBtn");
+        var clearBtn = $("smokeClearBtn");
+        if (!form) return;
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          var today = startOfDay(new Date());
+          var todayKey = toDateKey(today);
+          var selected = form.querySelector('input[name="smoke_count"]:checked');
+
+          if (!selected) {
+            setStatus("Please select the number of cigarettes for today.", "danger");
+            return;
+          }
+
+          var count = Number(selected.value);
+          if (!Number.isFinite(count) || count < 0) {
+            setStatus("Invalid value selected.", "danger");
+            return;
+          }
+
+          var data = loadData();
+          data[todayKey] = count;
+          saveData(data);
+
+          setStatus("Saved: " + count + " for " + formatLongFromKey(todayKey) + ".", "success");
+          render();
+        });
+
+        if (rangeSelect) {
+          rangeSelect.addEventListener("change", render);
+        }
+
+        if (exportCsvBtn) {
+          exportCsvBtn.addEventListener("click", function () {
+            var today = startOfDay(new Date());
+            var entries = clampRangeEntries(getSortedEntries(loadData()), $("smokeRange").value, today);
+            var lines = ["date,count"];
+            entries.slice().reverse().forEach(function (row) {
+              lines.push(row.date + "," + row.count);
+            });
+            downloadFile("smoking_record.csv", lines.join("\n"), "text/csv");
+          });
+        }
+
+        if (exportJsonBtn) {
+          exportJsonBtn.addEventListener("click", function () {
+            var today = startOfDay(new Date());
+            var entries = clampRangeEntries(getSortedEntries(loadData()), $("smokeRange").value, today);
+            downloadFile("smoking_record.json", JSON.stringify(entries, null, 2), "application/json");
+          });
+        }
+
+        if (clearBtn) {
+          clearBtn.addEventListener("click", function () {
+            if (!window.confirm("Clear all smoking records stored in this browser?")) return;
+            localStorage.removeItem(STORAGE_KEY);
+            setStatus("Cleared all records.", "warning");
+            render();
+          });
+        }
+
+        render();
+      }
+
+      document.addEventListener("DOMContentLoaded", init);
+    })();
+  </script>
+  <script src="js/back-nav.js"></script>
+  <script src="js/home-page-system.js"></script>
+  <script src="js/theme-toggle.js"></script>
+</body>
+</html>

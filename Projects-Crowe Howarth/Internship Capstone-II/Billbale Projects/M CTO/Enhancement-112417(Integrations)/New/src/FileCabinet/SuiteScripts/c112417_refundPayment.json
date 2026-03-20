@@ -1,0 +1,23 @@
+{
+  "internalId": "34920",
+  "tranId": "",
+  "customerId": "63",
+  "accountId": "122",
+  "arAccountId": "366",
+  "date": "2026-01-14",
+  "postingPeriod": "Jan 2026",
+  "memo": "",
+  "subsidiaryId": "1",
+  "currency": "USD",
+  "exchangeRate": 1,
+  "paymentAmount": "2368",
+  "invoices": [
+    {
+      "applied": true,
+      "docDate": "2025-10-10",
+      "documentType": "",
+      "refNo": "1234567893",
+      "paymentApplied": "2368"
+    }
+  ]
+}

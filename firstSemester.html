@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>First Semester | Academic Foundation</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="css/mobile-responsive.css">
+  <style>
+    :root {
+      --sem-accent: #bac964;
+      --sem-accent-2: #36a8ef;
+      --sem-panel: rgba(255,255,255,0.06);
+      --sem-panel-strong: rgba(255,255,255,0.09);
+      --sem-border: rgba(255,255,255,0.10);
+      --sem-text: rgba(255,255,255,0.78);
+      --sem-soft: rgba(255,255,255,0.48);
+      --sem-bg: #1d1d1d;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      color: #fff;
+      background:
+        radial-gradient(circle at top left, rgba(186, 201, 100, 0.10), transparent 22%),
+        radial-gradient(circle at top right, rgba(54, 168, 239, 0.10), transparent 22%),
+        radial-gradient(circle at bottom right, rgba(18, 203, 99, 0.06), transparent 20%),
+        var(--sem-bg);
+      overflow-x: hidden;
+    }
+
+    .sem-shell {
+      width: min(94vw, 1680px);
+      margin: 0 auto;
+    }
+
+    .sem-hero {
+      position: relative;
+      padding: 10.5rem 0 5rem;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 14% 14%, rgba(186, 201, 100, 0.16), transparent 16%),
+        radial-gradient(circle at 80% 18%, rgba(54, 168, 239, 0.12), transparent 18%),
+        linear-gradient(140deg, rgba(26,26,26,0.98), rgba(35,35,35,0.96));
+    }
+
+    .sem-hero:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.95), rgba(0,0,0,0.3));
+      pointer-events: none;
+    }
+
+    .sem-hero .sem-shell,
+    .semester-section .sem-shell {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-banner,
+    .hero-panel,
+    .subject-card,
+    .snapshot-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 32px;
+      border: 1px solid var(--sem-border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      box-shadow: 0 28px 90px rgba(0,0,0,0.26);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-banner {
+      padding: clamp(1.9rem, 3vw, 2.8rem);
+      min-height: 440px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-banner:after,
+    .hero-panel:after,
+    .subject-card:after,
+    .snapshot-card:after {
+      content: "";
+      position: absolute;
+      right: -42px;
+      bottom: -48px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(186, 201, 100, 0.18), rgba(186, 201, 100, 0.02) 70%, transparent 74%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .hero-kicker,
+    .section-kicker,
+    .panel-kicker,
+    .subject-pill,
+    .snapshot-kicker {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      color: var(--sem-accent);
+      border: 1px solid rgba(186, 201, 100, 0.28);
+      background: rgba(186, 201, 100, 0.08);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 5vw, 5rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin: 1.2rem 0 1.1rem;
+      font-weight: 200;
+    }
+
+    .hero-title strong {
+      font-weight: 700;
+    }
+
+    .hero-copy,
+    .panel-copy,
+    .section-copy,
+    .subject-copy,
+    .snapshot-copy {
+      color: var(--sem-text);
+      line-height: 1.85;
+      font-size: 1.08rem;
+    }
+
+    .hero-copy {
+      max-width: 48rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-metrics,
+    .subject-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-metrics {
+      margin-bottom: 1.5rem;
+    }
+
+    .metric-chip,
+    .subject-tag {
+      padding: 0.78rem 1rem;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.84);
+      font-weight: 700;
+    }
+
+    .hero-actions .btn,
+    .subject-footer .btn {
+      min-width: 180px;
+      margin-right: 12px;
+      margin-bottom: 12px;
+    }
+
+    .hero-panel {
+      padding: 1.7rem;
+      min-height: 440px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-panel:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(54, 168, 239, 0.16), transparent 18%),
+        radial-gradient(circle at 20% 86%, rgba(18, 203, 99, 0.12), transparent 18%);
+      pointer-events: none;
+    }
+
+    .panel-copy,
+    .hero-panel h3,
+    .hero-panel .stats-grid,
+    .hero-panel .panel-subject-route {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-panel h3 {
+      font-size: clamp(2rem, 2.7vw, 2.8rem);
+      letter-spacing: -0.04em;
+      margin: 0.9rem 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 1.4rem 0 1.5rem;
+    }
+
+    .stat-card {
+      border-radius: 18px;
+      padding: 1rem;
+      background: rgba(0,0,0,0.16);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .stat-label {
+      color: var(--sem-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .stat-value {
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      line-height: 1;
+      font-weight: 800;
+      color: var(--sem-accent);
+      margin-bottom: 0.35rem;
+    }
+
+    .stat-sub {
+      color: var(--sem-text);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .panel-subject-route {
+      border-radius: 22px;
+      padding: 1.2rem;
+      background: rgba(0,0,0,0.16);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .route-label {
+      color: var(--sem-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+
+    .route-title {
+      font-size: 1.38rem;
+      font-weight: 800;
+      margin-bottom: 0.45rem;
+    }
+
+    .route-copy {
+      color: var(--sem-text);
+      line-height: 1.75;
+      margin-bottom: 0;
+    }
+
+    .semester-section {
+      position: relative;
+      padding: 4.7rem 0 0;
+    }
+
+    .section-intro {
+      max-width: 48rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-kicker {
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(2.2rem, 3.4vw, 3.4rem);
+      letter-spacing: -0.04em;
+      margin-bottom: 0.85rem;
+    }
+
+    .subject-grid,
+    .snapshot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 22px;
+    }
+
+    .subject-card,
+    .snapshot-card {
+      padding: 1.55rem;
+      height: 100%;
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .subject-card:hover,
+    .snapshot-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(186,201,100,0.18);
+      box-shadow: 0 26px 80px rgba(0,0,0,0.24);
+    }
+
+    .subject-icon {
+      width: 74px;
+      height: 74px;
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(186,201,100,0.12);
+      border: 1px solid rgba(186,201,100,0.18);
+      color: var(--sem-accent);
+      font-size: 1.9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .subject-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .subject-header h3,
+    .snapshot-card h3 {
+      font-size: clamp(2rem, 2.8vw, 2.8rem);
+      letter-spacing: -0.04em;
+      margin: 0 0 0.45rem;
+    }
+
+    .subject-code {
+      color: var(--sem-soft);
+      font-size: 0.92rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .subject-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      margin-top: 1.55rem;
+      padding-top: 1.15rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .subject-footer span {
+      color: var(--sem-text);
+      line-height: 1.7;
+      max-width: 25rem;
+    }
+
+    .snapshot-kicker {
+      margin-bottom: 1rem;
+    }
+
+    .snapshot-card h3 {
+      font-size: clamp(1.65rem, 2.5vw, 2.25rem);
+      margin-bottom: 0.8rem;
+    }
+
+    .snapshot-copy {
+      margin-bottom: 0;
+    }
+
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal-up.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1199.98px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-panel,
+      .hero-banner {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 767.98px) {
+      .sem-hero {
+        padding-top: 8.8rem;
+        padding-bottom: 3.5rem;
+      }
+
+      .hero-banner,
+      .hero-panel,
+      .subject-card,
+      .snapshot-card {
+        border-radius: 24px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .subject-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-actions .btn,
+      .subject-footer .btn {
+        width: 100%;
+        margin-right: 0;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="css/home-page-system.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+</head>
+<body data-spy="scroll" data-target="#pb-navbar" data-offset="200">
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsFirstSemesterHub" aria-controls="navbarsFirstSemesterHub" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbarsFirstSemesterHub">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="academic.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-overview">Overview</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-subjects">Subjects</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="sem-hero" id="section-overview">
+    <div class="sem-shell">
+      <div class="hero-grid">
+        <div class="hero-banner reveal-up">
+          <div>
+            <span class="hero-kicker">Semester 01</span>
+            <h1 class="hero-title">Academic <strong>Foundation</strong></h1>
+            <p class="hero-copy">
+              Semester 01 marked the beginning of the academic journey. It was the phase where programming discipline started, analytical thinking was introduced, and the base for later Data Structures, Algorithms, and backend problem solving was built through repeated practice.
+            </p>
+            <div class="hero-metrics">
+              <div class="metric-chip">1 Core Subject</div>
+              <div class="metric-chip">8 Topic Blocks</div>
+              <div class="metric-chip">10-Week Study Rhythm</div>
+              <div class="metric-chip">Programming Foundation</div>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#section-subjects" class="btn btn-primary px-4 py-3">Open Subject List</a>
+            <a href="firstSemester-introduction-to-programming.html" class="btn btn-secondary px-4 py-3">Open 1.1 Page</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel reveal-up">
+          <div>
+            <div class="panel-kicker">First Semester Journey</div>
+            <h3>Programming became the First Academic Base!</h3>
+            <p class="panel-copy">
+              The semester stayed centred on one core subject, Introduction To Programming. Even with a single subject, the journey was broad: syntax, variables, control flow, strings, arrays, methods, and recursion together formed the first serious programming foundation of the degree.
+            </p>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-label">Subjects</div>
+              <div class="stat-value" id="statSubjects">0</div>
+              <div class="stat-sub">Studied in Semester 01</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Topic Blocks</div>
+              <div class="stat-value" id="statTopics">0</div>
+              <div class="stat-sub">Covered in Introduction To Programming</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Study Weeks</div>
+              <div class="stat-value" id="statWeeks">0</div>
+              <div class="stat-sub">Used to build the Academic Base</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Practice</div>
+              <div class="stat-value" id="statPractice">0</div>
+              <div class="stat-sub">Questions and Exercises tracked in the course work!</div>
+            </div>
+          </div>
+
+          <div class="panel-subject-route">
+            <div class="route-label">Core Subject</div>
+            <div class="route-title">1.1 Introduction To Programming</div>
+            <p class="route-copy">This subject carried the full Semester 01 academic load and established the logic, coding discipline, and problem-solving baseline used in the semesters that followed.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section semester-section" id="section-subjects">
+    <div class="sem-shell">
+      <div class="section-intro reveal-up">
+        <div class="section-kicker">Subjects</div>
+        <h2 class="section-title">Subjects Studied In Semester 01</h2>
+        <p class="section-copy">Semester 01 contains one recorded subject in the current academic archive. That subject represents the full programming foundation built during the opening semester and acts as the starting point of the wider academic timeline.</p>
+      </div>
+
+      <div class="subject-grid" id="subjectGrid"></div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var SUBJECTS = [
+        {
+          number: '1.1',
+          title: 'Introduction To Programming',
+          code: 'Subject 01',
+          copy: 'This subject established the first programming base through Java fundamentals, variables, control flow, strings, arrays, methods, and recursion. It shaped the discipline, logic, and implementation mindset that later semesters built on.',
+          tags: ['8 Topic Blocks', '10-Week Study Rhythm', 'Programming Foundation'],
+          footer: 'Open the subject page to review the complete topic journey, certificate, report, cheatsheet, and topic-level study material.',
+          href: 'firstSemester-introduction-to-programming.html'
+        }
+      ];
+
+      function $(id) {
+        return document.getElementById(id);
+      }
+
+      function escapeHtml(text) {
+        return String(text)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function renderSubjects() {
+        var root = $('subjectGrid');
+        if (!root) return;
+
+        root.innerHTML = SUBJECTS.map(function (subject) {
+          return [
+            '<article class="subject-card reveal-up">',
+              '<div class="subject-icon"><span class="icon-folder2"></span></div>',
+              '<div class="subject-header">',
+                '<div>',
+                  '<div class="subject-code">', escapeHtml(subject.code), '</div>',
+                  '<h3>', escapeHtml(subject.number), ' ', escapeHtml(subject.title), '</h3>',
+                '</div>',
+                '<span class="subject-pill">Semester 01</span>',
+              '</div>',
+              '<p class="subject-copy">', escapeHtml(subject.copy), '</p>',
+              '<div class="subject-meta">',
+                subject.tags.map(function (tag) {
+                  return '<span class="subject-tag">' + escapeHtml(tag) + '</span>';
+                }).join(''),
+              '</div>',
+              '<div class="subject-footer">',
+                '<span>', escapeHtml(subject.footer), '</span>',
+                '<a href="', escapeHtml(subject.href), '" class="btn btn-outline-primary">Open Subject Page</a>',
+              '</div>',
+            '</article>'
+          ].join('');
+        }).join('');
+      }
+
+      function animateValue(id, target) {
+        var el = $(id);
+        if (!el) return;
+
+        var next = Number(target);
+        if (!Number.isFinite(next)) return;
+
+        var start = null;
+        var duration = 720;
+
+        function frame(timestamp) {
+          if (start === null) start = timestamp;
+          var progress = Math.min((timestamp - start) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          var current = next * eased;
+          el.textContent = String(Math.round(current));
+          if (progress < 1) {
+            window.requestAnimationFrame(frame);
+          } else {
+            el.textContent = String(next);
+          }
+        }
+
+        window.requestAnimationFrame(frame);
+      }
+
+      function initStats() {
+        animateValue('statSubjects', SUBJECTS.length);
+        animateValue('statTopics', 8);
+        animateValue('statWeeks', 10);
+        animateValue('statPractice', 240);
+      }
+
+      function initReveal() {
+        if (!('IntersectionObserver' in window)) {
+          Array.prototype.forEach.call(document.querySelectorAll('.reveal-up'), function (el) {
+            el.classList.add('is-visible');
+          });
+          return;
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          });
+        }, { threshold: 0.14 });
+
+        Array.prototype.forEach.call(document.querySelectorAll('.reveal-up'), function (el, index) {
+          el.style.transitionDelay = Math.min(index * 60, 420) + 'ms';
+          observer.observe(el);
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        renderSubjects();
+        initStats();
+        initReveal();
+      });
+    })();
+  </script>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+      <div class="row mb-5">
+        <div class="col-md-12 text-center">
+          <p>
+            <a href="https://www.facebook.com/m14chaitanya" class="social-item"><span class="icon-facebook2"></span></a>
+            <a href="#" class="social-item"><span class="icon-twitter"></span></a>
+            <a href="https://www.instagram.com/m17chaitanya/" class="social-item"><span class="icon-instagram2"></span></a>
+            <a href="https://www.linkedin.com/in/manuchaitanya/" class="social-item"><span class="icon-linkedin2"></span></a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="js/back-nav.js"></script>
+  <script src="js/home-page-system.js"></script>
+  <script src="js/theme-toggle.js"></script>
+</body>
+</html>
