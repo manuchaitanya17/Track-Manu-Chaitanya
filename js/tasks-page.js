@@ -1093,7 +1093,8 @@
     refs.tasksNowLine.style.top = ((nowMinutes - START_HOUR * 60) / 60) * HOUR_HEIGHT + "px";
   }
 
-  function createTaskListItem(task){
+  function createTaskListItem(task, options){
+    options = options || {};
     var item = document.createElement("article");
     var start = getTaskStart(task);
     var timeMeta = task.allDay ? "All day" : TIME_FORMATTER.format(start) + " - " + TIME_FORMATTER.format(getTaskEnd(task));
@@ -1116,7 +1117,11 @@
 
     item.setAttribute("data-task-id", task.id);
     item.querySelector("strong").textContent = task.title;
-    item.querySelector("p").textContent = task.notes || "No extra notes added for this task.";
+    if(task.notes){
+      item.querySelector("p").textContent = task.notes;
+    } else {
+      item.querySelector("p").remove();
+    }
 
     var check = item.querySelector(".tasks-list-check");
     check.innerHTML = task.done ? '<span class="icon-checkbox-checked"></span>' : '<span class="icon-checkbox-unchecked"></span>';
@@ -1127,7 +1132,9 @@
     var meta = item.querySelector(".tasks-list-meta");
     meta.appendChild(createPill(timeMeta, task));
     meta.appendChild(createPill(getTaskCategoryLabel(task), task));
-    meta.appendChild(createPill(FULL_DAY_FORMATTER.format(parseDateKey(task.date)), task));
+    if(options.showDate !== false){
+      meta.appendChild(createPill(FULL_DAY_FORMATTER.format(parseDateKey(task.date)), task));
+    }
 
     return item;
   }
@@ -1151,7 +1158,7 @@
       refs.selectedDayList.innerHTML = '<div class="tasks-empty">No tasks are scheduled for the selected day yet. Use the form to add a timed block or an all-day task.</div>';
     } else {
       selectedTasks.forEach(function(task){
-        refs.selectedDayList.appendChild(createTaskListItem(task));
+        refs.selectedDayList.appendChild(createTaskListItem(task, { showDate: false }));
       });
     }
 

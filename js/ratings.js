@@ -55,7 +55,7 @@
     },
     {
       start: [2026, 3, 1],
-      end: [2026, 3, 15],
+      end: [2026, 3, 22],
       ratings: { consistency: 2, discipline: 3, determination: 2, interest: 3 }
     }
   ];
