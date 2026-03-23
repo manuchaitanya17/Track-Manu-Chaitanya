@@ -43,6 +43,7 @@
     dayTypes: {},
     anchorDate: stripTime(new Date()),
     selectedDate: stripTime(new Date()),
+    editingTaskId: null,
     query: "",
     reminderTicker: null,
     timePicker: {
@@ -349,6 +350,12 @@
     }));
   }
 
+  function getTaskById(taskId){
+    return state.tasks.find(function(task){
+      return task.id === taskId;
+    }) || null;
+  }
+
   function getUpcomingTasks(tasks){
     var now = new Date();
     return sortTasks((tasks || getVisibleTasks()).filter(function(task){
@@ -445,6 +452,13 @@
     refs.taskDateValue.textContent = selectedDate ? formatDateDisplay(selectedDate) : "Select date";
   }
 
+  function renderTaskFormMode(){
+    var isEditing = Boolean(state.editingTaskId);
+    refs.taskFormEditing.hidden = !isEditing;
+    refs.taskSubmitBtn.textContent = isEditing ? "Update Task" : "Save Task";
+    refs.taskResetBtn.textContent = isEditing ? "Cancel Edit" : "Reset";
+  }
+
   function setDefaultFormValues(baseDate){
     var now = new Date();
     var targetDate = stripTime(baseDate || state.selectedDate || now);
@@ -472,6 +486,49 @@
     refs.taskNotes.value = "";
     syncTimeFieldDisplays();
     updateTimeFields();
+  }
+
+  function clearEditingState(){
+    state.editingTaskId = null;
+    renderTaskFormMode();
+  }
+
+  function populateFormForTask(task){
+    if(!task){
+      return;
+    }
+
+    var targetDate = parseDateKey(task.date) || state.selectedDate || stripTime(new Date());
+    setDefaultFormValues(targetDate);
+    refs.taskTitle.value = task.title;
+    refs.taskDate.value = task.date;
+    refs.taskCategory.value = task.category;
+    refs.taskAllDay.checked = Boolean(task.allDay);
+    refs.taskReminder.checked = task.reminder !== false;
+    refs.taskNotes.value = task.notes || "";
+
+    if(!task.allDay){
+      refs.taskStartTime.value = task.startTime;
+      refs.taskEndTime.value = task.endTime;
+    }
+
+    syncDateFieldDisplay();
+    syncTimeFieldDisplays();
+    updateTimeFields();
+  }
+
+  function enterEditMode(taskId){
+    var task = getTaskById(taskId);
+    if(!task){
+      return;
+    }
+
+    state.editingTaskId = taskId;
+    renderTaskFormMode();
+    populateFormForTask(task);
+    refs.taskForm.scrollIntoView({ behavior: "smooth", block: "start" });
+    refs.taskTitle.focus();
+    showToast("Edit mode", "Update the task details and save the changes.");
   }
 
   function updateTimeFields(){
@@ -1051,7 +1108,7 @@
         var startOffset = Math.max(item.startMinutes, START_HOUR * 60) - START_HOUR * 60;
         var endOffset = Math.min(item.endMinutes, END_HOUR * 60) - START_HOUR * 60;
         var top = (startOffset / 60) * HOUR_HEIGHT;
-        var height = Math.max(((endOffset - startOffset) / 60) * HOUR_HEIGHT, 58);
+        var height = Math.max(((endOffset - startOffset) / 60) * HOUR_HEIGHT, 20);
         var usableDayWidth = dayWidth - 8;
         var columnWidth = (usableDayWidth - innerGap * (item.columns - 1)) / item.columns;
         var left = dayIndex * dayWidth + item.column * (columnWidth + innerGap) + 4;
@@ -1066,10 +1123,20 @@
         event.style.width = Math.max(columnWidth, 34) + "px";
         event.style.top = top + "px";
         event.style.height = height + "px";
+        if(height < 54){
+          event.classList.add("is-compact");
+        }
+        if(height < 42){
+          event.classList.add("is-tight");
+        }
+        if(height < 28){
+          event.classList.add("is-micro");
+        }
         event.innerHTML = "<small></small><strong></strong><span></span>";
         event.querySelector("small").textContent = getTaskCategoryLabel(item.task);
         event.querySelector("strong").textContent = item.task.title;
         event.querySelector("span").textContent = TIME_FORMATTER.format(getTaskStart(item.task)) + " - " + TIME_FORMATTER.format(getTaskEnd(item.task));
+        event.title = item.task.title + " — " + TIME_FORMATTER.format(getTaskStart(item.task)) + " - " + TIME_FORMATTER.format(getTaskEnd(item.task));
         refs.tasksGridEvents.appendChild(event);
       });
     });
@@ -1111,6 +1178,7 @@
       '<p></p>',
       '</div>',
       '<div class="tasks-list-actions">',
+      options.allowEdit ? '<button type="button" class="tasks-edit-btn" data-action="edit" aria-label="Edit task"><span class="icon-edit2"></span></button>' : '',
       '<button type="button" class="tasks-delete-btn" data-action="delete" aria-label="Delete task"><span class="icon-bin"></span></button>',
       '</div>'
     ].join("");
@@ -1158,7 +1226,7 @@
       refs.selectedDayList.innerHTML = '<div class="tasks-empty">No tasks are scheduled for the selected day yet. Use the form to add a timed block or an all-day task.</div>';
     } else {
       selectedTasks.forEach(function(task){
-        refs.selectedDayList.appendChild(createTaskListItem(task, { showDate: false }));
+        refs.selectedDayList.appendChild(createTaskListItem(task, { showDate: false, allowEdit: true }));
       });
     }
 
@@ -1214,8 +1282,10 @@
       }
     }
 
+    var existingTask = state.editingTaskId ? getTaskById(state.editingTaskId) : null;
+    var isEditing = Boolean(existingTask);
     var task = {
-      id: createId(),
+      id: existingTask ? existingTask.id : createId(),
       title: title,
       date: date,
       allDay: allDay,
@@ -1224,19 +1294,26 @@
       category: refs.taskCategory.value,
       reminder: refs.taskReminder.checked,
       notes: refs.taskNotes.value.trim(),
-      done: false,
-      createdAt: Date.now()
+      done: existingTask ? existingTask.done : false,
+      createdAt: existingTask ? existingTask.createdAt : Date.now()
     };
 
-    state.tasks.push(task);
+    if(existingTask){
+      state.tasks = state.tasks.map(function(entry){
+        return entry.id === existingTask.id ? task : entry;
+      });
+    } else {
+      state.tasks.push(task);
+    }
     saveTasks();
     state.anchorDate = parseDateKey(task.date);
     state.selectedDate = parseDateKey(task.date);
+    clearEditingState();
     refs.taskForm.reset();
     setDefaultFormValues(state.selectedDate);
     renderPlanner();
     checkTaskReminders();
-    showToast("Task saved", task.title + " has been added to the planner.");
+    showToast(isEditing ? "Task updated" : "Task saved", isEditing ? task.title + " has been updated." : task.title + " has been added to the planner.");
     scrollPlannerIntoView();
   }
 
@@ -1252,6 +1329,11 @@
     state.tasks = state.tasks.filter(function(task){
       return task.id !== taskId;
     });
+    if(state.editingTaskId === taskId){
+      clearEditingState();
+      refs.taskForm.reset();
+      setDefaultFormValues(state.selectedDate);
+    }
     saveTasks();
     renderPlanner();
     showToast("Task deleted", "The task has been removed from the planner.");
@@ -1275,6 +1357,11 @@
       updateTask(taskId, function(task){
         return Object.assign({}, task, { done: !task.done });
       });
+      return;
+    }
+
+    if(action === "edit"){
+      enterEditMode(taskId);
       return;
     }
 
@@ -1321,6 +1408,7 @@
     refs.taskForm.addEventListener("submit", handleCreateTask);
     refs.taskForm.addEventListener("reset", function(){
       window.setTimeout(function(){
+        clearEditingState();
         setDefaultFormValues(state.selectedDate);
       }, 0);
     });
@@ -1478,6 +1566,9 @@
 
   function cacheRefs(){
     refs.taskForm = document.getElementById("taskForm");
+    refs.taskFormEditing = document.getElementById("taskFormEditing");
+    refs.taskSubmitBtn = document.getElementById("taskSubmitBtn");
+    refs.taskResetBtn = document.getElementById("taskResetBtn");
     refs.dayTypeDateLabel = document.getElementById("dayTypeDateLabel");
     refs.dayTypeOptions = document.getElementById("dayTypeOptions");
     refs.dayTypeMessage = document.getElementById("dayTypeMessage");
@@ -1550,6 +1641,7 @@
     state.dayTypes = loadDayTypes();
     state.anchorDate = stripTime(new Date());
     state.selectedDate = stripTime(new Date());
+    renderTaskFormMode();
     setDefaultFormValues(state.selectedDate);
     attachEvents();
     renderDayType();

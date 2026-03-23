@@ -88,6 +88,7 @@
             <span class="tasks-section-kicker">Create Task</span>
             <h2>Build the day!</h2>
             <p class="tasks-panel-copy">Create timed work blocks or switch on the all-day toggle to pin a task for the full date.</p>
+            <p class="tasks-form-editing" id="taskFormEditing" hidden>Editing the selected task. Update the details and save, or cancel to switch back to a fresh task.</p>
 
             <div class="tasks-day-type-panel">
               <div class="tasks-day-type-head">
@@ -253,8 +254,8 @@
               </label>
 
               <div class="tasks-form-actions">
-                <button type="submit" class="btn btn-primary px-4 py-3">Save Task</button>
-                <button type="reset" class="btn btn-secondary px-4 py-3">Reset</button>
+                <button type="submit" class="btn btn-primary px-4 py-3" id="taskSubmitBtn">Save Task</button>
+                <button type="reset" class="btn btn-secondary px-4 py-3" id="taskResetBtn">Reset</button>
               </div>
             </form>
           </div>
