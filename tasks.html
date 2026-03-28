@@ -192,7 +192,7 @@
 
               <label class="tasks-switch-row" for="taskAllDay">
                 <span>
-                  <strong>All-day task</strong>
+                  <strong>All-Day Task</strong>
                   <small>Pin this task to the full date without start and end times.</small>
                 </span>
                 <span class="tasks-switch">
@@ -281,7 +281,7 @@
 
           <div class="tasks-panel tasks-panel--alerts">
             <span class="tasks-section-kicker">Live Alerts</span>
-            <h3>Browser notifications</h3>
+            <h3>Browser Notifications</h3>
             <p class="tasks-panel-copy" id="notificationStatus">
               Reminders are available when the browser grants notification permission and this page stays open.
             </p>
@@ -289,7 +289,7 @@
               <button type="button" class="btn btn-primary px-4 py-3" id="notificationPermissionBtn">Allow Notifications</button>
             </div>
             <ul class="tasks-note-list">
-              <li>All-day task reminders fire at 6:00 AM on the selected date.</li>
+              <li>All-Day Task reminders fire at 6:00 AM on the selected date.</li>
               <li>Timed tasks fire at the task start time.</li>
               <li>Completed tasks stop appearing in reminder checks.</li>
             </ul>
@@ -335,14 +335,16 @@
               <div class="tasks-all-day-grid" id="tasksAllDayGrid"></div>
             </div>
 
-            <div class="tasks-timeline-shell">
-              <div class="tasks-time-axis" id="tasksTimeAxis"></div>
-              <div class="tasks-grid-area" id="tasksGridArea">
-                <div class="tasks-grid-columns" id="tasksGridColumns"></div>
-                <div class="tasks-now-line" id="tasksNowLine" hidden>
-                  <span class="tasks-now-dot" aria-hidden="true"></span>
+            <div class="tasks-timeline-scroll" id="tasksTimelineScroll">
+              <div class="tasks-timeline-shell">
+                <div class="tasks-time-axis" id="tasksTimeAxis"></div>
+                <div class="tasks-grid-area" id="tasksGridArea">
+                  <div class="tasks-grid-columns" id="tasksGridColumns"></div>
+                  <div class="tasks-now-line" id="tasksNowLine" hidden>
+                    <span class="tasks-now-dot" aria-hidden="true"></span>
+                  </div>
+                  <div class="tasks-grid-events" id="tasksGridEvents"></div>
                 </div>
-                <div class="tasks-grid-events" id="tasksGridEvents"></div>
               </div>
             </div>
           </div>

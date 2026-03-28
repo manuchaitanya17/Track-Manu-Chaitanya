@@ -2,8 +2,8 @@
   var STORAGE_KEY = "site-tasks-v1";
   var NOTIFIED_KEY = "site-task-notified-v1";
   var DAY_TYPE_KEY = "site-day-types-v1";
-  var START_HOUR = 6;
-  var END_HOUR = 23;
+  var START_HOUR = 0;
+  var END_HOUR = 24;
   var HOUR_HEIGHT = 76;
   var REMINDER_GRACE_MS = 10 * 60 * 1000;
   var CHECK_INTERVAL_MS = 30 * 1000;
@@ -59,7 +59,8 @@
       isOpen: false,
       monthAnchor: stripTime(new Date()),
       returnFocus: null
-    }
+    },
+    timelineScrollInitialized: false
   };
 
   var refs = {};
@@ -469,6 +470,15 @@
     if(targetDate.getTime() === today.getTime()){
       start = roundToNextHalfHour(now);
       end = new Date(start.getTime() + 60 * 60 * 1000);
+      if(stripTime(start).getTime() !== targetDate.getTime()){
+        start = new Date(targetDate.getTime());
+        start.setHours(23, 0, 0, 0);
+        end = new Date(targetDate.getTime());
+        end.setHours(23, 59, 0, 0);
+      } else if(stripTime(end).getTime() !== targetDate.getTime()){
+        end = new Date(targetDate.getTime());
+        end.setHours(23, 59, 0, 0);
+      }
     } else {
       start = new Date(targetDate.getTime());
       start.setHours(9, 0, 0, 0);
@@ -1144,6 +1154,26 @@
     renderNowLine(days);
   }
 
+  function getRecommendedTimelineScrollTop(){
+    var today = new Date();
+    var todayInWeek = getWeekDays().some(function(day){
+      return sameDay(day, stripTime(today));
+    });
+    var anchorHour = todayInWeek ? Math.max(today.getHours() - 1, 0) : 6;
+    return Math.max((anchorHour - START_HOUR) * HOUR_HEIGHT, 0);
+  }
+
+  function autoScrollTimeline(force){
+    if(!refs.tasksTimelineScroll){
+      return;
+    }
+    if(!force && state.timelineScrollInitialized){
+      return;
+    }
+    refs.tasksTimelineScroll.scrollTop = getRecommendedTimelineScrollTop();
+    state.timelineScrollInitialized = true;
+  }
+
   function renderNowLine(days){
     var today = new Date();
     var nowMinutes = today.getHours() * 60 + today.getMinutes();
@@ -1465,6 +1495,7 @@
       state.anchorDate = stripTime(new Date());
       state.selectedDate = stripTime(new Date());
       renderPlanner();
+      autoScrollTimeline(true);
     });
 
     refs.notificationPermissionBtn.addEventListener("click", requestNotificationPermission);
@@ -1602,6 +1633,7 @@
     refs.weekRangeLabel = document.getElementById("weekRangeLabel");
     refs.tasksWeekdays = document.getElementById("tasksWeekdays");
     refs.tasksAllDayGrid = document.getElementById("tasksAllDayGrid");
+    refs.tasksTimelineScroll = document.getElementById("tasksTimelineScroll");
     refs.tasksTimeAxis = document.getElementById("tasksTimeAxis");
     refs.tasksGridArea = document.getElementById("tasksGridArea");
     refs.tasksGridColumns = document.getElementById("tasksGridColumns");
@@ -1646,6 +1678,9 @@
     attachEvents();
     renderDayType();
     renderPlanner();
+    window.requestAnimationFrame(function(){
+      autoScrollTimeline(true);
+    });
     checkTaskReminders();
     state.reminderTicker = window.setInterval(checkTaskReminders, CHECK_INTERVAL_MS);
   }

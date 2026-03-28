@@ -12,6 +12,27 @@
     { date: "2027-01-01", title: "New Year's Day" }
   ];
 
+  var PTO_ENTRIES = [
+    { date: "2026-03-27", title: "Casual Leave", leaveType: "casual" },
+    { date: "2026-03-30", title: "Casual Leave", leaveType: "casual" },
+    { date: "2026-03-31", title: "Casual Leave", leaveType: "casual" }
+  ];
+
+  var PTO_META = {
+    casual: {
+      label: "Casual Leave",
+      copy: "Short planned leave used for personal days and flexible time away."
+    },
+    sick: {
+      label: "Sick Leave",
+      copy: "Medical recovery or health-related time away from office delivery."
+    },
+    earned: {
+      label: "Earned Leave",
+      copy: "Longer leave bank for larger breaks, travel, or planned resets."
+    }
+  };
+
   var RANGE_START = new Date(2026, 0, 1);
   var RANGE_END = new Date(2027, 0, 1);
   var INITIAL_FALLBACK = new Date(2026, 2, 1);
@@ -26,8 +47,9 @@
     query: ""
   };
 
-  var holidayMap = Object.create(null);
+  var calendarEventMap = Object.create(null);
   var monthGroups = Object.create(null);
+  var ptoGroups = Object.create(null);
 
   function toDate(isoDate){
     var parts = isoDate.split("-").map(Number);
@@ -96,6 +118,13 @@
     });
   }
 
+  function getFilteredCalendarEntries(){
+    var query = state.query.trim().toLowerCase();
+    return HOLIDAYS.concat(PTO_ENTRIES).filter(function(entry){
+      return !query || entry.title.toLowerCase().indexOf(query) !== -1;
+    });
+  }
+
   function getMonthHolidayCount(monthDate){
     return getFilteredHolidayList().filter(function(holiday){
       return holiday.dateValue.getFullYear() === monthDate.getFullYear() && holiday.dateValue.getMonth() === monthDate.getMonth();
@@ -119,7 +148,7 @@
     var grid = document.getElementById("calendarGrid");
     var label = document.getElementById("calendarMonthLabel");
     var meta = document.getElementById("calendarMonthMeta");
-    var visibleHolidays = getFilteredHolidayList();
+    var visibleEntries = getFilteredCalendarEntries();
     var firstDay = startOfMonth(state.month);
     var offset = firstDay.getDay();
     var gridStart = addDays(firstDay, -offset);
@@ -131,8 +160,8 @@
     for(var i = 0; i < 42; i += 1){
       var cellDate = addDays(gridStart, i);
       var cellKey = dateKey(cellDate);
-      var dayEvents = (holidayMap[cellKey] || []).filter(function(holiday){
-        return !state.query || holiday.title.toLowerCase().indexOf(state.query) !== -1;
+      var dayEvents = (calendarEventMap[cellKey] || []).filter(function(entry){
+        return !state.query || entry.title.toLowerCase().indexOf(state.query) !== -1;
       });
       var cell = document.createElement("article");
       var head = document.createElement("div");
@@ -156,14 +185,17 @@
       cell.appendChild(head);
 
       eventStack.className = "calendar-event-stack";
-      dayEvents.forEach(function(holiday){
+      dayEvents.forEach(function(entry){
         var pill = document.createElement("span");
         pill.className = "calendar-event";
-        if(sameDay(holiday.dateValue, nextHoliday.dateValue)){
+        if(entry.kind === "pto"){
+          pill.classList.add("calendar-event--pto");
+        }
+        if(entry.kind === "holiday" && sameDay(entry.dateValue, nextHoliday.dateValue)){
           pill.classList.add("is-next-up");
         }
-        pill.textContent = holiday.title;
-        pill.title = holiday.title + " - " + DATE_FORMATTER.format(holiday.dateValue);
+        pill.textContent = entry.title;
+        pill.title = entry.title + " - " + DATE_FORMATTER.format(entry.dateValue);
         eventStack.appendChild(pill);
       });
 
@@ -171,18 +203,18 @@
       grid.appendChild(cell);
     }
 
-    var currentMonthMatches = visibleHolidays.filter(function(holiday){
-      return sameMonth(holiday.dateValue, firstDay);
+    var currentMonthMatches = visibleEntries.filter(function(entry){
+      return sameMonth(entry.dateValue, firstDay);
     });
 
     if(state.query && currentMonthMatches.length === 0){
-      meta.textContent = "No matching holidays in " + MONTH_FORMATTER.format(firstDay) + ".";
+      meta.textContent = "No matching holidays or PTO appear in " + MONTH_FORMATTER.format(firstDay) + ".";
     } else if(currentMonthMatches.length === 0){
-      meta.textContent = "No office holidays fall inside " + MONTH_FORMATTER.format(firstDay) + ".";
+      meta.textContent = "No office holidays or PTO fall inside " + MONTH_FORMATTER.format(firstDay) + ".";
     } else if(currentMonthMatches.length === 1){
-      meta.textContent = "1 office holiday appears in " + MONTH_FORMATTER.format(firstDay) + ".";
+      meta.textContent = "1 holiday or PTO entry appears in " + MONTH_FORMATTER.format(firstDay) + ".";
     } else {
-      meta.textContent = currentMonthMatches.length + " office holidays appear in " + MONTH_FORMATTER.format(firstDay) + ".";
+      meta.textContent = currentMonthMatches.length + " holiday or PTO entries appear in " + MONTH_FORMATTER.format(firstDay) + ".";
     }
 
     updateJumpButtons();
@@ -227,6 +259,69 @@
     });
   }
 
+  function buildPtoGroups(){
+    var container = document.getElementById("ptoGroupGrid");
+    var order = ["casual", "sick", "earned"];
+
+    container.innerHTML = "";
+
+    order.forEach(function(type){
+      var meta = PTO_META[type];
+      var entries = (ptoGroups[type] || []).slice().sort(function(a, b){
+        return a.dateValue - b.dateValue;
+      });
+      var group = document.createElement("article");
+      var head = document.createElement("div");
+      var copyBlock = document.createElement("div");
+      var title = document.createElement("h3");
+      var copy = document.createElement("p");
+      var count = document.createElement("span");
+      var list = document.createElement("div");
+
+      group.className = "pto-group";
+      head.className = "pto-group-head";
+      count.className = "pto-group-count";
+      list.className = "pto-list";
+
+      title.textContent = meta.label;
+      copy.textContent = meta.copy;
+      count.textContent = entries.length;
+
+      copyBlock.appendChild(title);
+      copyBlock.appendChild(copy);
+      head.appendChild(copyBlock);
+      head.appendChild(count);
+      group.appendChild(head);
+
+      if(entries.length === 0){
+        var empty = document.createElement("div");
+        empty.className = "pto-empty";
+        empty.textContent = "No " + meta.label.toLowerCase() + " entries are stored yet.";
+        list.appendChild(empty);
+      } else {
+        entries.forEach(function(entry){
+          var button = document.createElement("button");
+          var name = document.createElement("strong");
+          var date = document.createElement("span");
+
+          button.type = "button";
+          button.className = "pto-list-item";
+          button.setAttribute("data-pto-date", entry.isoDate);
+
+          name.textContent = entry.title;
+          date.textContent = LIST_DATE_FORMATTER.format(entry.dateValue) + " - Click to open this month in the calendar.";
+
+          button.appendChild(name);
+          button.appendChild(date);
+          list.appendChild(button);
+        });
+      }
+
+      group.appendChild(list);
+      container.appendChild(group);
+    });
+  }
+
   function buildMonthJumps(){
     var container = document.getElementById("calendarMonthJumps");
     var keys = Object.keys(monthGroups).sort();
@@ -261,12 +356,20 @@
       return holiday.dateValue.getFullYear() === 2026;
     }).length;
     var activeMonths = Object.keys(monthGroups).length;
+    var totalPto = PTO_ENTRIES.length;
+    var casualPto = (ptoGroups.casual || []).length;
+    var sickPto = (ptoGroups.sick || []).length;
+    var earnedPto = (ptoGroups.earned || []).length;
 
     document.getElementById("summaryTotalHolidays").textContent = total;
     document.getElementById("summaryCurrentYear").textContent = yearly;
     document.getElementById("summaryActiveMonths").textContent = activeMonths;
     document.getElementById("summaryNextCountdown").textContent = daysAway >= 0 ? daysAway + "d" : "Done";
     document.getElementById("summaryNextCopy").textContent = nextHoliday.title + " - " + DATE_FORMATTER.format(nextHoliday.dateValue) + ".";
+    document.getElementById("summaryTotalPto").textContent = totalPto;
+    document.getElementById("summaryCasualPto").textContent = casualPto;
+    document.getElementById("summarySickPto").textContent = sickPto;
+    document.getElementById("summaryEarnedPto").textContent = earnedPto;
 
     document.getElementById("nextHolidayTitle").textContent = nextHoliday.title;
     document.getElementById("nextHolidayText").textContent = DATE_FORMATTER.format(nextHoliday.dateValue);
@@ -275,13 +378,14 @@
       : "Latest listed holiday";
     document.getElementById("searchStatus").textContent = state.query
       ? "Filtered by \"" + state.query + "\""
-      : "Showing all holidays";
+      : "Showing all holidays and PTO";
   }
 
   function renderAll(){
     updateSummary();
     buildCalendarGrid();
     buildHolidayList();
+    buildPtoGroups();
   }
 
   function goToMonth(monthDate){
@@ -320,6 +424,17 @@
       if(!button) return;
       var selected = HOLIDAYS.find(function(holiday){
         return holiday.isoDate === button.getAttribute("data-date");
+      });
+      if(!selected) return;
+      goToMonth(startOfMonth(selected.dateValue));
+      document.getElementById("section-calendar").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    document.getElementById("ptoGroupGrid").addEventListener("click", function(event){
+      var button = event.target.closest(".pto-list-item");
+      if(!button) return;
+      var selected = PTO_ENTRIES.find(function(entry){
+        return entry.isoDate === button.getAttribute("data-pto-date");
       });
       if(!selected) return;
       goToMonth(startOfMonth(selected.dateValue));
@@ -364,6 +479,7 @@
 
   function hydrateData(){
     HOLIDAYS.forEach(function(holiday){
+      holiday.kind = "holiday";
       holiday.isoDate = holiday.date;
       holiday.dateValue = toDate(holiday.date);
       holiday.monthDate = startOfMonth(holiday.dateValue);
@@ -371,15 +487,33 @@
       var key = dateKey(holiday.dateValue);
       var groupKey = monthKey(holiday.dateValue);
 
-      if(!holidayMap[key]){
-        holidayMap[key] = [];
+      if(!calendarEventMap[key]){
+        calendarEventMap[key] = [];
       }
-      holidayMap[key].push(holiday);
+      calendarEventMap[key].push(holiday);
 
       if(!monthGroups[groupKey]){
         monthGroups[groupKey] = [];
       }
       monthGroups[groupKey].push(holiday);
+    });
+
+    PTO_ENTRIES.forEach(function(entry){
+      entry.kind = "pto";
+      entry.isoDate = entry.date;
+      entry.dateValue = toDate(entry.date);
+      entry.monthDate = startOfMonth(entry.dateValue);
+
+      var key = dateKey(entry.dateValue);
+      if(!calendarEventMap[key]){
+        calendarEventMap[key] = [];
+      }
+      calendarEventMap[key].push(entry);
+
+      if(!ptoGroups[entry.leaveType]){
+        ptoGroups[entry.leaveType] = [];
+      }
+      ptoGroups[entry.leaveType].push(entry);
     });
   }
 

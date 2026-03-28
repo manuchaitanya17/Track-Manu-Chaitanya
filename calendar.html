@@ -26,6 +26,7 @@
           <li class="nav-item active"><a class="nav-link" href="#section-overview">Overview</a></li>
           <li class="nav-item"><a class="nav-link" href="#section-calendar">Calendar</a></li>
           <li class="nav-item"><a class="nav-link" href="#section-holidays">Holidays</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-pto">PTO</a></li>
         </ul>
       </div>
     </div>
@@ -132,6 +133,7 @@
             <div class="calendar-legend">
               <span><i class="calendar-legend-dot calendar-legend-dot--today"></i>Today</span>
               <span><i class="calendar-legend-dot calendar-legend-dot--holiday"></i>Office Holiday</span>
+              <span><i class="calendar-legend-dot calendar-legend-dot--pto"></i>PTO</span>
               <span><i class="calendar-legend-dot calendar-legend-dot--outside"></i>Outside Month</span>
             </div>
             <p id="calendarMonthMeta">Loading the office holiday summary for this month.</p>
@@ -189,6 +191,54 @@
               <li>The board is tuned for the month view because that is the clearest way to spot closures.</li>
               <li>Overflow days from adjacent months stay visible so holidays near month boundaries are still easy to catch.</li>
               <li>The page follows the same day and night theme state used across the rest of the website.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section calendar-stage calendar-stage--ledger" id="section-pto">
+    <div class="calendar-shell">
+      <div class="calendar-ledger-grid">
+        <div class="calendar-panel calendar-panel--wide">
+          <span class="calendar-section-kicker">My PTO</span>
+          <h2>Personal leave ledger across Casual, Sick, and Earned leave.</h2>
+          <p class="calendar-panel-copy">
+            PTO stays separate from office holidays, but every leave entry below is also visible on the month calendar.
+          </p>
+          <div class="pto-group-grid" id="ptoGroupGrid"></div>
+        </div>
+
+        <div class="calendar-side-stack">
+          <div class="calendar-panel">
+            <span class="calendar-section-kicker">PTO Summary</span>
+            <div class="calendar-coverage">
+              <div class="calendar-coverage-row">
+                <span>Total PTO Days</span>
+                <strong id="summaryTotalPto">0</strong>
+              </div>
+              <div class="calendar-coverage-row">
+                <span>Casual Leave</span>
+                <strong id="summaryCasualPto">0</strong>
+              </div>
+              <div class="calendar-coverage-row">
+                <span>Sick Leave</span>
+                <strong id="summarySickPto">0</strong>
+              </div>
+              <div class="calendar-coverage-row">
+                <span>Earned Leave</span>
+                <strong id="summaryEarnedPto">0</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="calendar-panel">
+            <span class="calendar-section-kicker">PTO Notes</span>
+            <ul class="calendar-note-list">
+              <li>PTO entries appear on the month board with their own visual style so they do not get mixed up with office closures.</li>
+              <li>Clicking any PTO item jumps the calendar directly to that month.</li>
+              <li>When no Sick or Earned leave is logged yet, the section keeps those groups visible with an empty state.</li>
             </ul>
           </div>
         </div>
