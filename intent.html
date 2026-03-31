@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="fonts/icomoon/style.css">
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/record-date-picker.css">
   <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
 
   <style>
@@ -372,6 +373,21 @@
       color: #fff;
       height: 48px;
       border-radius: 6px;
+      color-scheme: dark;
+    }
+
+    .smoke-date-group{
+      margin-bottom: 1.25rem;
+    }
+
+    .smoke-date-label{
+      display: block;
+      margin-bottom: 0.5rem;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .smoke-history-filter{
@@ -1111,11 +1127,61 @@
       <div class="row">
         <div class="col-lg-5 mb-5 mb-lg-0">
           <div class="resume-item p-4 smoke-panel site-animate" data-animate-effect="fadeInLeft">
-            <div class="smoke-kicker">Today's Smoking Count</div>
+            <div class="smoke-kicker">Smoking Record</div>
             <h3 class="mt-2">Daily log</h3>
-            <p class="smoke-intro">Save one entry per day. This keeps the Intent phase focused on measurable discipline rather than vague progress.</p>
+            <p class="smoke-intro">Choose the date first, then save or correct one entry for that day. This keeps the Intent phase focused on measurable discipline rather than vague progress.</p>
 
             <form id="smokeForm" class="smoke-form">
+              <div class="smoke-date-group">
+                <label for="smokeDate" class="smoke-date-label">Record Date</label>
+                <div class="record-date-field" data-record-date-picker>
+                  <input type="hidden" id="smokeDate" name="smokeDate">
+                  <button type="button" class="record-date-trigger" aria-haspopup="dialog" aria-expanded="false">
+                    <span class="record-date-trigger-copy">
+                      <strong class="record-date-value">30 Mar 2026</strong>
+                      <small>Choose the day you want to log or correct.</small>
+                    </span>
+                    <span class="record-date-trigger-glyph" aria-hidden="true">
+                      <span class="icon-calendar3"></span>
+                    </span>
+                  </button>
+
+                  <div class="record-date-popover" hidden role="dialog" aria-modal="false">
+                    <div class="record-date-popover-head">
+                      <div>
+                        <span class="record-date-popover-kicker">Record Date</span>
+                        <h3 class="record-date-month-label">March 2026</h3>
+                      </div>
+                      <div class="record-date-nav">
+                        <button type="button" class="record-date-nav-btn record-date-prev" aria-label="Previous month">
+                          <span class="icon-chevron-left" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="record-date-nav-btn record-date-next" aria-label="Next month">
+                          <span class="icon-chevron-right" aria-hidden="true"></span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="record-date-weekdays" aria-hidden="true">
+                      <span>Sun</span>
+                      <span>Mon</span>
+                      <span>Tue</span>
+                      <span>Wed</span>
+                      <span>Thu</span>
+                      <span>Fri</span>
+                      <span>Sat</span>
+                    </div>
+
+                    <div class="record-date-grid record-date-calendar"></div>
+
+                    <div class="record-date-actions">
+                      <button type="button" class="record-date-inline-btn record-date-today">Today</button>
+                      <button type="button" class="record-date-inline-btn record-date-close">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div class="smoke-scale" role="radiogroup" aria-label="Cigarettes smoked today">
                 <input class="sr-only" type="radio" id="smoke-0" name="smoke_count" value="0">
                 <label class="smoke-label" for="smoke-0">0</label>
@@ -1151,9 +1217,9 @@
                 <label class="smoke-label" for="smoke-10">10</label>
               </div>
 
-              <button type="submit" class="btn btn-primary px-4 py-3">Save Today</button>
+              <button type="submit" class="btn btn-primary px-4 py-3">Save Record</button>
               <p id="smokeStatus" class="mt-3 mb-2"></p>
-              <small class="d-block mt-3 smoke-summary-text">Tip: Select <strong>0</strong> for a smoke-free day.</small>
+              <small class="d-block mt-3 smoke-summary-text">Tip: Select <strong>0</strong> for a smoke-free day, even if you are backfilling a missed date.</small>
             </form>
           </div>
         </div>
@@ -1162,7 +1228,7 @@
           <div class="resume-item p-4 smoke-summary-panel site-animate" data-animate-effect="fadeInRight">
             <div class="smoke-kicker">Current Pulse</div>
             <h3 class="mt-2">Live summary</h3>
-            <p id="smokeSummaryText" class="smoke-summary-text mb-0">No records yet. Save today's count to start tracking.</p>
+            <p id="smokeSummaryText" class="smoke-summary-text mb-0">No records yet. Save a smoking record to start tracking.</p>
 
             <div class="row mt-4">
               <div class="col-sm-6 col-xl-3 mb-3">
@@ -1277,7 +1343,7 @@
                 </thead>
                 <tbody id="smokeTableBody">
                   <tr>
-                    <td colspan="2" class="smoke-empty">No records yet. Save today's count to start tracking.</td>
+                    <td colspan="2" class="smoke-empty">No records yet. Save a smoking record to start tracking.</td>
                   </tr>
                 </tbody>
               </table>
@@ -1327,6 +1393,7 @@
   <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
   <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
   <script src="js/custom.js"></script>
+  <script src="js/record-date-picker.js"></script>
   <script>
     (function () {
       function initReveal() {
@@ -1543,7 +1610,7 @@
       function loadData() {
         var raw = localStorage.getItem(STORAGE_KEY);
         var stored = safeParse(raw || "{}", {});
-        return Object.assign({}, stored, HARDCODED_DATA);
+        return Object.assign({}, HARDCODED_DATA, stored);
       }
 
       function saveData(data) {
@@ -1694,6 +1761,34 @@
         else if (message) el.classList.add("text-info");
       }
 
+      function getSelectedDateKey(todayKey) {
+        var input = $("smokeDate");
+        if (!input) return todayKey;
+        var value = input.value;
+        return fromDateKey(value) && value <= todayKey ? value : todayKey;
+      }
+
+      function syncSmokeForm(form, data, selectedKey, todayKey) {
+        if (!form) return;
+        form.reset();
+
+        var dateInput = $("smokeDate");
+        if (dateInput) {
+          dateInput.max = todayKey;
+          dateInput.setAttribute("max", todayKey);
+          dateInput.value = selectedKey;
+          if (window.RecordDatePicker && typeof window.RecordDatePicker.sync === "function") {
+            window.RecordDatePicker.sync(dateInput);
+          }
+        }
+
+        if (Object.prototype.hasOwnProperty.call(data, selectedKey)) {
+          var saved = String(data[selectedKey]);
+          var radio = form.querySelector('input[name="smoke_count"][value="' + saved + '"]');
+          if (radio) radio.checked = true;
+        }
+      }
+
       function render() {
         var form = $("smokeForm");
         var tableBody = $("smokeTableBody");
@@ -1704,15 +1799,11 @@
         var today = startOfDay(now);
         var todayKey = toDateKey(today);
         var data = loadData();
+        var selectedKey = getSelectedDateKey(todayKey);
 
         if ($("heroTodayLabel")) $("heroTodayLabel").textContent = formatLongFromKey(todayKey);
 
-        form.reset();
-        if (Object.prototype.hasOwnProperty.call(data, todayKey)) {
-          var saved = String(data[todayKey]);
-          var radio = form.querySelector('input[name="smoke_count"][value="' + saved + '"]');
-          if (radio) radio.checked = true;
-        }
+        syncSmokeForm(form, data, selectedKey, todayKey);
 
         var week = getWeekRange(today);
         var month = getMonthRange(today);
@@ -1746,7 +1837,7 @@
         var summaryTextEl = $("smokeSummaryText");
         if (summaryTextEl) {
           if (Object.keys(data).length === 0) {
-            summaryTextEl.textContent = "No records yet. Save today's count to start tracking.";
+            summaryTextEl.textContent = "No records yet. Save a smoking record to start tracking.";
           } else {
             summaryTextEl.textContent =
               "Today: " + ((todayCount === null || !Number.isFinite(todayCount)) ? "-" : String(todayCount)) +
@@ -1823,10 +1914,21 @@
 
           var today = startOfDay(new Date());
           var todayKey = toDateKey(today);
+          var selectedKey = getSelectedDateKey(todayKey);
           var selected = form.querySelector('input[name="smoke_count"]:checked');
 
+          if (!fromDateKey(selectedKey)) {
+            setStatus("Please choose a valid record date.", "danger");
+            return;
+          }
+
+          if (selectedKey > todayKey) {
+            setStatus("You can only save smoking records up to today.", "danger");
+            return;
+          }
+
           if (!selected) {
-            setStatus("Please select the number of cigarettes for today.", "danger");
+            setStatus("Please select the number of cigarettes for the selected date.", "danger");
             return;
           }
 
@@ -1837,12 +1939,28 @@
           }
 
           var data = loadData();
-          data[todayKey] = count;
+          data[selectedKey] = count;
           saveData(data);
 
-          setStatus("Saved: " + count + " for " + formatLongFromKey(todayKey) + ".", "success");
+          setStatus("Saved: " + count + " for " + formatLongFromKey(selectedKey) + ".", "success");
           render();
         });
+
+        var smokeDateInput = $("smokeDate");
+        if (smokeDateInput) {
+          smokeDateInput.addEventListener("change", function () {
+            var today = toDateKey(startOfDay(new Date()));
+            var selectedKey = getSelectedDateKey(today);
+            render();
+
+            var data = loadData();
+            if (Object.prototype.hasOwnProperty.call(data, selectedKey)) {
+              setStatus("Loaded saved smoking record for " + formatLongFromKey(selectedKey) + ".", "info");
+            } else {
+              setStatus("No smoking record saved for " + formatLongFromKey(selectedKey) + " yet.", "info");
+            }
+          });
+        }
 
         if (rangeSelect) {
           rangeSelect.addEventListener("change", render);

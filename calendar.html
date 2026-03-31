@@ -96,7 +96,7 @@
 
             <label class="calendar-search" for="holidaySearch">
               <span class="icon-search2" aria-hidden="true"></span>
-              <input id="holidaySearch" type="search" placeholder="Search holidays">
+              <input id="holidaySearch" type="search" placeholder="Search holidays and PTO">
             </label>
           </div>
 
@@ -212,6 +212,38 @@
 
         <div class="calendar-side-stack">
           <div class="calendar-panel">
+            <span class="calendar-section-kicker">Create PTO</span>
+            <h3>Mark a Leave Day on the Calendar!</h3>
+            <p class="calendar-panel-copy">
+              Choose a date, pick the leave bucket, and save it as a fixed single-day PTO entry.
+            </p>
+            <form class="calendar-pto-form" id="ptoForm">
+              <label class="calendar-field" for="ptoDate">
+                <span>Date</span>
+                <input id="ptoDate" type="date" min="2026-01-01" max="2027-01-01" required>
+              </label>
+
+              <label class="calendar-field" for="ptoType">
+                <span>Leave Type</span>
+                <select id="ptoType">
+                  <option value="casual">Casual Leave</option>
+                  <option value="sick">Sick Leave</option>
+                  <option value="earned">Earned Leave</option>
+                  <option value="other">Other Leave</option>
+                </select>
+              </label>
+
+              <label class="calendar-field" for="ptoLabel">
+                <span>Leave Label</span>
+                <input id="ptoLabel" type="text" maxlength="60" placeholder="Optional custom label like Marriage Leave">
+              </label>
+
+              <button type="submit" class="btn btn-primary px-4 py-3">Save PTO Day</button>
+              <p class="calendar-form-hint" id="ptoFormStatus">Saved PTO stays tied to the selected date in this browser.</p>
+            </form>
+          </div>
+
+          <div class="calendar-panel">
             <span class="calendar-section-kicker">PTO Summary</span>
             <div class="calendar-coverage">
               <div class="calendar-coverage-row">
@@ -230,6 +262,10 @@
                 <span>Earned Leave</span>
                 <strong id="summaryEarnedPto">0</strong>
               </div>
+              <div class="calendar-coverage-row">
+                <span>Other Leave</span>
+                <strong id="summaryOtherPto">0</strong>
+              </div>
             </div>
           </div>
 
@@ -238,7 +274,7 @@
             <ul class="calendar-note-list">
               <li>PTO entries appear on the month board with their own visual style so they do not get mixed up with office closures.</li>
               <li>Clicking any PTO item jumps the calendar directly to that month.</li>
-              <li>When no Sick or Earned leave is logged yet, the section keeps those groups visible with an empty state.</li>
+              <li>New PTO entries created here are saved locally and treated as fixed single-day leave entries for that date.</li>
             </ul>
           </div>
         </div>

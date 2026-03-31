@@ -1,0 +1,294 @@
+:root{
+  --record-date-accent:#c5d763;
+  --record-date-accent-strong:#d7e676;
+  --record-date-surface:linear-gradient(180deg, rgba(30,33,37,0.96), rgba(20,22,26,0.94));
+  --record-date-surface-soft:linear-gradient(180deg, rgba(34,37,41,0.94), rgba(22,24,28,0.94));
+  --record-date-toolbar:rgba(255,255,255,0.04);
+  --record-date-border:rgba(255,255,255,0.10);
+  --record-date-text:#f4efe7;
+  --record-date-muted:rgba(244,239,231,0.68);
+  --record-date-soft:rgba(244,239,231,0.42);
+  --record-date-shadow:0 28px 76px rgba(0,0,0,0.30);
+}
+
+html[data-theme="light"]{
+  --record-date-surface:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(244,238,230,0.98));
+  --record-date-surface-soft:linear-gradient(180deg, rgba(251,248,242,0.98), rgba(242,236,228,0.98));
+  --record-date-toolbar:rgba(255,252,247,0.86);
+  --record-date-border:rgba(92,81,66,0.12);
+  --record-date-text:#241f19;
+  --record-date-muted:#61584d;
+  --record-date-soft:#8a8172;
+  --record-date-shadow:0 26px 64px rgba(128,111,86,0.18);
+}
+
+.record-date-field{
+  position:relative;
+  width:100%;
+}
+
+.record-date-trigger{
+  position:relative;
+  width:100%;
+  min-height:84px;
+  padding:0.95rem 5.2rem 0.95rem 1.1rem;
+  border-radius:22px;
+  border:1px solid var(--record-date-border);
+  background:var(--record-date-toolbar);
+  color:var(--record-date-text);
+  display:block;
+  text-align:left;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.03);
+  transition:transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+}
+
+.record-date-trigger:hover,
+.record-date-trigger:focus,
+.record-date-trigger[aria-expanded="true"]{
+  transform:translateY(-1px);
+  outline:none;
+  border-color:rgba(197,215,99,0.30);
+  box-shadow:0 0 0 0.18rem rgba(197,215,99,0.12), 0 18px 32px rgba(0,0,0,0.18);
+}
+
+html[data-theme="light"] .record-date-trigger:hover,
+html[data-theme="light"] .record-date-trigger:focus,
+html[data-theme="light"] .record-date-trigger[aria-expanded="true"]{
+  box-shadow:0 0 0 0.18rem rgba(162,180,90,0.10), 0 18px 32px rgba(128,111,86,0.14);
+}
+
+.record-date-trigger-copy{
+  display:grid;
+  gap:0.25rem;
+  min-width:0;
+  width:100%;
+}
+
+.record-date-trigger-copy strong{
+  font-size:clamp(1.02rem, 1.42vw, 1.24rem);
+  font-weight:800;
+  letter-spacing:-0.05em;
+  line-height:1.05;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.record-date-trigger-copy small{
+  color:var(--record-date-muted);
+  font-size:0.76rem;
+  font-weight:700;
+  letter-spacing:0.01em;
+  line-height:1.45;
+}
+
+.record-date-trigger-glyph{
+  position:absolute;
+  right:12px;
+  top:50%;
+  width:48px;
+  height:48px;
+  border-radius:18px;
+  border:1px solid var(--record-date-border);
+  background:var(--record-date-surface-soft);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transform:translateY(-50%);
+  pointer-events:none;
+  overflow:hidden;
+  color:var(--record-date-soft);
+  font-size:1.16rem;
+}
+
+.record-date-trigger-glyph > span{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  height:100%;
+  line-height:1;
+}
+
+.record-date-popover{
+  position:absolute;
+  top:calc(100% + 12px);
+  left:0;
+  z-index:80;
+  width:min(92vw, 340px);
+  padding:1rem;
+  border-radius:26px;
+  border:1px solid var(--record-date-border);
+  background:var(--record-date-surface);
+  box-shadow:var(--record-date-shadow);
+  animation:recordDatePopoverIn 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+  backdrop-filter:blur(16px);
+}
+
+.record-date-popover-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:1rem;
+}
+
+.record-date-popover-kicker{
+  display:block;
+  color:var(--record-date-soft);
+  font-size:0.72rem;
+  font-weight:800;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+}
+
+.record-date-popover-head h3{
+  margin:0.55rem 0 0;
+  font-size:1.42rem;
+  line-height:1;
+  letter-spacing:-0.04em;
+  color:var(--record-date-text);
+}
+
+.record-date-nav{
+  display:flex;
+  gap:0.45rem;
+}
+
+.record-date-nav-btn,
+.record-date-inline-btn{
+  border:1px solid var(--record-date-border);
+  background:var(--record-date-toolbar);
+  color:var(--record-date-text);
+  transition:transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.record-date-nav-btn{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+}
+
+.record-date-inline-btn{
+  min-height:42px;
+  padding:0.7rem 0.95rem;
+  border-radius:14px;
+  font-size:0.88rem;
+  font-weight:800;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+}
+
+.record-date-nav-btn:hover,
+.record-date-nav-btn:focus,
+.record-date-inline-btn:hover,
+.record-date-inline-btn:focus{
+  transform:translateY(-1px);
+  outline:none;
+  border-color:rgba(197,215,99,0.26);
+}
+
+.record-date-weekdays,
+.record-date-grid{
+  display:grid;
+  grid-template-columns:repeat(7, minmax(0, 1fr));
+}
+
+.record-date-weekdays{
+  gap:0.4rem;
+  margin-top:1rem;
+  color:var(--record-date-soft);
+  font-size:0.72rem;
+  font-weight:800;
+  letter-spacing:0.08em;
+  text-align:center;
+  text-transform:uppercase;
+}
+
+.record-date-grid{
+  gap:0.4rem;
+  margin-top:0.65rem;
+}
+
+.record-date-day{
+  min-height:42px;
+  padding:0;
+  border-radius:14px;
+  border:1px solid transparent;
+  background:transparent;
+  color:var(--record-date-text);
+  font-size:0.95rem;
+  font-weight:800;
+  transition:transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, color 0.18s ease, opacity 0.18s ease;
+}
+
+.record-date-day.is-outside{
+  color:var(--record-date-soft);
+  opacity:0.56;
+}
+
+.record-date-day.is-today{
+  border-color:rgba(197,215,99,0.28);
+  background:rgba(197,215,99,0.10);
+}
+
+.record-date-day.is-selected{
+  background:linear-gradient(135deg, var(--record-date-accent), var(--record-date-accent-strong));
+  border-color:transparent;
+  color:#181a13;
+  box-shadow:0 16px 28px rgba(0,0,0,0.18);
+}
+
+.record-date-day.is-disabled{
+  color:var(--record-date-soft);
+  opacity:0.22;
+  pointer-events:none;
+}
+
+.record-date-day:hover,
+.record-date-day:focus{
+  transform:translateY(-1px);
+  outline:none;
+  border-color:rgba(197,215,99,0.20);
+  background:rgba(255,255,255,0.04);
+}
+
+html[data-theme="light"] .record-date-day:hover,
+html[data-theme="light"] .record-date-day:focus{
+  background:rgba(162,180,90,0.08);
+}
+
+.record-date-actions{
+  display:flex;
+  justify-content:space-between;
+  gap:0.75rem;
+  margin-top:0.9rem;
+}
+
+@keyframes recordDatePopoverIn{
+  from{
+    opacity:0;
+    transform:translateY(8px) scale(0.985);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 575.98px){
+  .record-date-trigger{
+    min-height:78px;
+    padding-right:4.8rem;
+  }
+
+  .record-date-trigger-copy strong{
+    font-size:1rem;
+  }
+
+  .record-date-popover{
+    width:min(94vw, 320px);
+    padding:0.9rem;
+  }
+}

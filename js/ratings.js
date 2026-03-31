@@ -121,7 +121,7 @@
     var store = safeParseJSON(raw, null);
     if (!store || typeof store !== 'object') store = {};
     if (!store.entries || typeof store.entries !== 'object') store.entries = {};
-    store.entries = Object.assign({}, store.entries, HARDCODED_ENTRIES);
+    store.entries = Object.assign({}, HARDCODED_ENTRIES, store.entries);
     return store;
   }
 
@@ -400,6 +400,13 @@
     return out;
   }
 
+  function clearRatingsForm(formEl) {
+    var inputs = formEl.querySelectorAll('input[type="radio"]');
+    for (var i = 0; i < inputs.length; i++) {
+      inputs[i].checked = false;
+    }
+  }
+
   function applyRatingsToForm(formEl, ratingsObj) {
     if (!ratingsObj) return;
     for (var i = 0; i < CATEGORIES.length; i++) {
@@ -413,6 +420,47 @@
     }
   }
 
+  function getSelectedDateISO() {
+    var input = $('ratingsDate');
+    var todayISO = toISODate(new Date());
+    if (!input) return todayISO;
+    return /^\d{4}-\d{2}-\d{2}$/.test(input.value || '') && input.value <= todayISO ? input.value : todayISO;
+  }
+
+  function syncRatingsDateInput() {
+    var input = $('ratingsDate');
+    if (!input) return null;
+    var todayISO = toISODate(new Date());
+    input.max = todayISO;
+    input.setAttribute('max', todayISO);
+    if (!input.value) input.value = todayISO;
+    if (window.RecordDatePicker && typeof window.RecordDatePicker.sync === 'function') {
+      window.RecordDatePicker.sync(input);
+    }
+    return input.value;
+  }
+
+  function loadFormForDate(formEl, iso, options) {
+    var opts = options || {};
+    clearRatingsForm(formEl);
+
+    var store = loadStore();
+    if (store.entries && store.entries[iso]) {
+      applyRatingsToForm(formEl, store.entries[iso]);
+      if (!opts.silent) setStatus('Loaded saved ratings for ' + iso + '.', 'info');
+      return;
+    }
+
+    var draft = loadDraft();
+    if (draft && draft.date === iso) {
+      applyRatingsToForm(formEl, draft.ratings || {});
+      if (!opts.silent) setStatus('Loaded your draft for ' + iso + '.', 'info');
+      return;
+    }
+
+    if (!opts.silent) setStatus('No ratings saved for ' + iso + ' yet.', 'info');
+  }
+
   function buildHistoryTable() {
     var store = loadStore();
     var tbody = $('ratingsTableBody');
@@ -423,8 +471,8 @@
 
     var keys = Object.keys(store.entries || {});
     if (!keys.length) {
-      tbody.innerHTML = '<tr><td colspan="6" class="text-muted">No ratings yet. Submit today’s ratings to start tracking.</td></tr>';
-      if (summaryEl) summaryEl.textContent = 'No ratings yet. Submit today’s ratings to start tracking.';
+      tbody.innerHTML = '<tr><td colspan="6" class="text-muted">No ratings yet. Save a ratings record to start tracking.</td></tr>';
+      if (summaryEl) summaryEl.textContent = 'No ratings yet. Save a ratings record to start tracking.';
       return;
     }
 
@@ -566,22 +614,14 @@
     var form = $('dailyRatingsForm');
     if (!form) return;
 
-    // Re-apply today's saved ratings (if present) or today's draft (if present)
-    var todayISO = toISODate(new Date());
-    var store = loadStore();
-    if (store.entries && store.entries[todayISO]) {
-      applyRatingsToForm(form, store.entries[todayISO]);
-      setStatus('Loaded Today’s Saved Ratings (' + todayISO + ').', 'info');
-    } else {
-      var draft = loadDraft();
-      if (draft && draft.date === todayISO) {
-        applyRatingsToForm(form, draft.ratings || {});
-        setStatus('Loaded Your Draft For Today (' + todayISO + ').', 'info');
-      }
-    }
+    var selectedISO = syncRatingsDateInput() || toISODate(new Date());
+    loadFormForDate(form, selectedISO, { silent: false });
 
     // Save draft whenever a rating changes
-    form.addEventListener('change', function () {
+    form.addEventListener('change', function (event) {
+      if (event.target && event.target.id === 'ratingsDate') return;
+
+      var selectedISO = getSelectedDateISO();
       var partial = {};
       for (var i = 0; i < CATEGORIES.length; i++) {
         var cat = CATEGORIES[i];
@@ -591,12 +631,26 @@
           if (v !== null) partial[cat.key] = v;
         }
       }
-      saveDraft({ date: todayISO, ratings: partial, updatedAt: new Date().toISOString() });
+      saveDraft({ date: selectedISO, ratings: partial, updatedAt: new Date().toISOString() });
       // Keep status subtle (don’t override success messages immediately)
       if (!$('ratingsStatus').classList.contains('text-success')) {
-        setStatus('Draft Saved for Today.');
+        setStatus('Draft saved for ' + selectedISO + '.');
       }
     });
+
+    var dateInput = $('ratingsDate');
+    if (dateInput) {
+      dateInput.addEventListener('change', function () {
+        var todayISO = toISODate(new Date());
+        if (!dateInput.value || dateInput.value > todayISO) {
+          dateInput.value = todayISO;
+          if (window.RecordDatePicker && typeof window.RecordDatePicker.sync === 'function') {
+            window.RecordDatePicker.sync(dateInput);
+          }
+        }
+        loadFormForDate(form, getSelectedDateISO());
+      });
+    }
 
     // Submit handler
     form.addEventListener('submit', function (e) {
@@ -608,8 +662,12 @@
         return;
       }
 
-      var now = new Date();
-      var iso = toISODate(now);
+      var todayISO = toISODate(new Date());
+      var iso = getSelectedDateISO();
+      if (!iso || iso > todayISO) {
+        setStatus('Please choose a valid record date up to today.', 'error');
+        return;
+      }
 
       var storeNow = loadStore();
       storeNow.entries[iso] = {
@@ -628,7 +686,7 @@
       var subject = CONFIG.subjectPrefix + ' — ' + iso;
       var body = buildEmailBody({ todayISO: iso, todayRatings: selected, store: storeNow });
 
-      setStatus('Saved! Opening Email Draft…', 'Success');
+      setStatus('Saved ratings for ' + iso + '. Opening email draft…', 'success');
       openEmailDraft(subject, body);
     });
 

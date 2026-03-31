@@ -939,6 +939,52 @@
 			position: relative;
 		}
 
+		#section-ratings .ratings-date-bar{
+			padding: 1.2rem 1.25rem 1.3rem;
+			border-radius: 26px;
+			background:
+				linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03)),
+				radial-gradient(circle at top right, rgba(255,255,255,0.05), transparent 44%);
+			border: 1px solid rgba(255,255,255,0.08);
+			box-shadow: 0 22px 56px rgba(0,0,0,0.14);
+			text-align: left;
+		}
+
+		#section-ratings .ratings-date-label{
+			display: block;
+			margin-bottom: 0.5rem;
+			color: rgba(255,255,255,0.58);
+			font-size: 0.76rem;
+			font-weight: 800;
+			letter-spacing: 0.16em;
+			text-transform: uppercase;
+		}
+
+		#section-ratings .ratings-date-input{
+			height: 50px;
+			border-radius: 16px;
+			border: 1px solid rgba(255,255,255,0.1);
+			background: rgba(255,255,255,0.04);
+			color: #fff;
+			box-shadow: none;
+			color-scheme: dark;
+		}
+
+		#section-ratings .ratings-date-input:focus{
+			background: rgba(255,255,255,0.06);
+			border-color: rgba(186, 201, 100, 0.4);
+			box-shadow: 0 0 0 0.2rem rgba(186, 201, 100, 0.14);
+			color: #fff;
+		}
+
+		#section-ratings .ratings-date-help{
+			display: block;
+			margin-top: 0.75rem;
+			color: rgba(255,255,255,0.5);
+			font-size: 0.88rem;
+			line-height: 1.5;
+		}
+
 		#section-ratings .rating-card{
 			position: relative;
 			padding: 1.45rem 1.45rem 1.5rem;
@@ -3942,6 +3988,7 @@
 
   <link rel="stylesheet" href="css/mobile-responsive.css">
   <link rel="stylesheet" href="css/theme-toggle.css">
+  <link rel="stylesheet" href="css/record-date-picker.css">
 </head>
 <body data-spy="scroll" data-target="#pb-navbar" data-offset="200">
 
@@ -4657,6 +4704,60 @@
 
 			<form id="dailyRatingsForm" class="ratings-form">
 				<div class="row">
+					<div class="col-md-12 mb-4">
+						<div class="ratings-date-bar">
+							<label for="ratingsDate" class="ratings-date-label">Record Date</label>
+							<div class="record-date-field" data-record-date-picker>
+								<input type="hidden" id="ratingsDate" name="ratingsDate">
+								<button type="button" class="record-date-trigger" aria-haspopup="dialog" aria-expanded="false">
+									<span class="record-date-trigger-copy">
+										<strong class="record-date-value">30 Mar 2026</strong>
+										<small>Pick the day you want to fill or correct.</small>
+									</span>
+									<span class="record-date-trigger-glyph" aria-hidden="true">
+										<span class="icon-calendar3"></span>
+									</span>
+								</button>
+
+								<div class="record-date-popover" hidden role="dialog" aria-modal="false">
+									<div class="record-date-popover-head">
+										<div>
+											<span class="record-date-popover-kicker">Record Date</span>
+											<h3 class="record-date-month-label">March 2026</h3>
+										</div>
+										<div class="record-date-nav">
+											<button type="button" class="record-date-nav-btn record-date-prev" aria-label="Previous month">
+												<span class="icon-chevron-left" aria-hidden="true"></span>
+											</button>
+											<button type="button" class="record-date-nav-btn record-date-next" aria-label="Next month">
+												<span class="icon-chevron-right" aria-hidden="true"></span>
+											</button>
+										</div>
+									</div>
+
+									<div class="record-date-weekdays" aria-hidden="true">
+										<span>Sun</span>
+										<span>Mon</span>
+										<span>Tue</span>
+										<span>Wed</span>
+										<span>Thu</span>
+										<span>Fri</span>
+										<span>Sat</span>
+									</div>
+
+									<div class="record-date-grid record-date-calendar"></div>
+
+									<div class="record-date-actions">
+										<button type="button" class="record-date-inline-btn record-date-today">Today</button>
+										<button type="button" class="record-date-inline-btn record-date-close">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
 					<div class="col-md-6 mb-5 d-flex">
 						<div class="resume-item rating-card w-100">
 							<div class="rating-card-head">
@@ -4769,7 +4870,7 @@
 				<div class="row">
 					<div class="col-md-12 text-center">
 						<div class="ratings-submit-bar">
-							<button type="submit" class="btn btn-primary px-4 py-3">Submit Today’s Ratings</button>
+							<button type="submit" class="btn btn-primary px-4 py-3">Save Ratings</button>
 							<p id="ratingsStatus" class="mb-0"></p>
 						</div>
 					</div>
@@ -4797,7 +4898,7 @@
 						<div class="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between">
 							<div class="mb-3 mb-md-0">
 								<h3 class="mb-1">Summary</h3>
-								<p id="ratingsSummaryText" class="mb-0 text-muted">No ratings yet. Submit today’s ratings to start tracking.</p>
+								<p id="ratingsSummaryText" class="mb-0 text-muted">No ratings yet. Save a ratings record to start tracking.</p>
 							</div>
 
 								<div class="ratings-range-control">
@@ -4831,7 +4932,7 @@
 								</thead>
 								<tbody id="ratingsTableBody">
 									<tr>
-										<td colspan="6" class="text-muted">No ratings yet. Submit today’s ratings to start tracking.</td>
+										<td colspan="6" class="text-muted">No ratings yet. Save a ratings record to start tracking.</td>
 									</tr>
 								</tbody>
 							</table>
@@ -5022,6 +5123,7 @@
 	<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 	<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
 	<script src="js/custom.js"></script>
+	<script src="js/record-date-picker.js"></script>
 	<script src="js/ratings.js"></script>
 	<script src="js/greeting.js"></script>
 	<script src="js/hero-main.js"></script>

@@ -1430,6 +1430,40 @@ html[data-theme="light"] #section-ratings .ratings-form{
   box-shadow:none !important;
 }
 
+html[data-theme="light"] #section-ratings .ratings-date-bar{
+  background:var(--day-panel-soft) !important;
+  border-color:var(--day-border) !important;
+  box-shadow:var(--day-shadow) !important;
+}
+
+html[data-theme="light"] :is(.intent-form-control, .intensity-form-control, #section-ratings .ratings-date-input){
+  background:rgba(250,246,240,0.92) !important;
+  border-color:var(--day-border) !important;
+  color:var(--day-text) !important;
+  box-shadow:none !important;
+  color-scheme:light !important;
+}
+
+html[data-theme="light"] :is(.intent-form-control, .intensity-form-control, #section-ratings .ratings-date-input):focus{
+  background:rgba(250,246,240,0.98) !important;
+  border-color:rgba(162,180,90,0.28) !important;
+  color:var(--day-text) !important;
+  box-shadow:0 0 0 0.2rem rgba(162,180,90,0.10) !important;
+}
+
+html[data-theme="light"] select:is(.intent-form-control, .intensity-form-control) option{
+  background:#fbf7f1 !important;
+  color:var(--day-text) !important;
+}
+
+html[data-theme="light"] :is(.smoke-date-label, .tracker-panel label, #section-ratings .ratings-date-label){
+  color:var(--day-soft) !important;
+}
+
+html[data-theme="light"] :is(.tracker-help, #section-ratings .ratings-date-help){
+  color:var(--day-muted) !important;
+}
+
 html[data-theme="light"] #section-ratings .rating-card:hover{
   box-shadow:var(--day-shadow-hover) !important;
 }

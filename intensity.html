@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="fonts/icomoon/style.css">
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/record-date-picker.css">
   <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
 
   <style>
@@ -247,6 +248,7 @@
       color: #fff;
       height: 48px;
       border-radius: 6px;
+      color-scheme: dark;
     }
 
     .intensity-form-control:focus{
@@ -1161,8 +1163,53 @@
 
             <form id="fitnessForm" novalidate>
               <div class="form-group">
-                <label for="fitnessDate">Date</label>
-                <input type="text" id="fitnessDate" class="form-control intensity-form-control" readonly>
+                <label for="fitnessDate">Record Date</label>
+                <div class="record-date-field" data-record-date-picker>
+                  <input type="hidden" id="fitnessDate" name="fitnessDate">
+                  <button type="button" class="record-date-trigger" aria-haspopup="dialog" aria-expanded="false">
+                    <span class="record-date-trigger-copy">
+                      <strong class="record-date-value">30 Mar 2026</strong>
+                      <small>Choose the missed day you want to fill or correct.</small>
+                    </span>
+                    <span class="record-date-trigger-glyph" aria-hidden="true">
+                      <span class="icon-calendar3"></span>
+                    </span>
+                  </button>
+
+                  <div class="record-date-popover" hidden role="dialog" aria-modal="false">
+                    <div class="record-date-popover-head">
+                      <div>
+                        <span class="record-date-popover-kicker">Record Date</span>
+                        <h3 class="record-date-month-label">March 2026</h3>
+                      </div>
+                      <div class="record-date-nav">
+                        <button type="button" class="record-date-nav-btn record-date-prev" aria-label="Previous month">
+                          <span class="icon-chevron-left" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="record-date-nav-btn record-date-next" aria-label="Next month">
+                          <span class="icon-chevron-right" aria-hidden="true"></span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="record-date-weekdays" aria-hidden="true">
+                      <span>Sun</span>
+                      <span>Mon</span>
+                      <span>Tue</span>
+                      <span>Wed</span>
+                      <span>Thu</span>
+                      <span>Fri</span>
+                      <span>Sat</span>
+                    </div>
+
+                    <div class="record-date-grid record-date-calendar"></div>
+
+                    <div class="record-date-actions">
+                      <button type="button" class="record-date-inline-btn record-date-today">Today</button>
+                      <button type="button" class="record-date-inline-btn record-date-close">Close</button>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div class="form-row">
@@ -1196,9 +1243,9 @@
                 <input type="number" id="waterIntake" class="form-control intensity-form-control" min="0" step="0.25" placeholder="e.g. 3">
               </div>
 
-              <button type="submit" class="btn btn-primary px-4 py-3">Save Today</button>
+              <button type="submit" class="btn btn-primary px-4 py-3">Save Record</button>
               <p id="fitnessStatus" class="mt-3 mb-2"></p>
-              <small class="tracker-help d-block">Tip: Use <strong>0</strong> if a workout category did not happen today.</small>
+              <small class="tracker-help d-block">Tip: Use <strong>0</strong> if a workout category did not happen on the selected day.</small>
             </form>
           </div>
         </div>
@@ -1207,7 +1254,7 @@
           <div class="resume-item p-4 tracker-summary-panel site-animate" data-animate-effect="fadeInRight">
             <div class="tracker-kicker">Current Pulse</div>
             <h3 class="mt-2">Live summary</h3>
-            <p id="fitnessSummaryText" class="tracker-summary-text mb-0">No logs yet. Save today's fitness entry to start tracking intensity.</p>
+            <p id="fitnessSummaryText" class="tracker-summary-text mb-0">No logs yet. Save a fitness record to start tracking intensity.</p>
 
             <div class="row tracker-metrics">
               <div class="col-sm-6 col-xl-3 mb-3">
@@ -1327,7 +1374,7 @@
                 </thead>
                 <tbody id="fitnessTableBody">
                   <tr>
-                    <td colspan="6" class="tracker-empty">No logs yet. Save today's fitness entry to start tracking intensity.</td>
+                    <td colspan="6" class="tracker-empty">No logs yet. Save a fitness record to start tracking intensity.</td>
                   </tr>
                 </tbody>
               </table>
@@ -1375,6 +1422,7 @@
   <script src="js/vendor/jquery.stellar.min.js"></script>
   <script src="js/vendor/jquery.waypoints.min.js"></script>
   <script src="js/custom.js"></script>
+  <script src="js/record-date-picker.js"></script>
   <script>
     (function () {
       function initReveal() {
@@ -1774,14 +1822,29 @@
         }, 250);
       }
 
-      function populateFormForToday(store, todayKey) {
+      function getSelectedDateKey(todayKey) {
+        var input = $("fitnessDate");
+        if (!input) return todayKey;
+        var value = input.value;
+        return fromDateKey(value) && value <= todayKey ? value : todayKey;
+      }
+
+      function populateFormForDate(store, selectedKey, todayKey) {
         var form = $("fitnessForm");
         if (!form) return;
 
         form.reset();
-        $("fitnessDate").value = formatLongDate(todayKey);
+        var dateInput = $("fitnessDate");
+        if (dateInput) {
+          dateInput.max = todayKey;
+          dateInput.setAttribute("max", todayKey);
+          dateInput.value = selectedKey;
+          if (window.RecordDatePicker && typeof window.RecordDatePicker.sync === "function") {
+            window.RecordDatePicker.sync(dateInput);
+          }
+        }
 
-        var saved = store[todayKey];
+        var saved = store[selectedKey];
         if (!saved) return;
 
         var metrics = getEntryMetrics(saved);
@@ -1804,8 +1867,9 @@
         var todayKey = toDateKey(today);
         var store = loadStore();
         var allEntries = getSortedEntries(store);
+        var selectedKey = getSelectedDateKey(todayKey);
 
-        populateFormForToday(store, todayKey);
+        populateFormForDate(store, selectedKey, todayKey);
 
         if ($("heroTodayLabel")) $("heroTodayLabel").textContent = formatLongDate(todayKey);
 
@@ -1844,7 +1908,7 @@
         var summaryEl = $("fitnessSummaryText");
         if (summaryEl) {
           if (!allEntries.length) {
-            summaryEl.textContent = "No logs yet. Save today's fitness entry to start tracking intensity.";
+            summaryEl.textContent = "No logs yet. Save a fitness record to start tracking intensity.";
           } else {
             summaryEl.textContent =
               "Today: " + formatNumber(todayMetrics.totalHours, 2) + " hours" +
@@ -1960,14 +2024,25 @@
           var now = new Date();
           var today = startOfDay(now);
           var todayKey = toDateKey(today);
+          var selectedKey = getSelectedDateKey(todayKey);
 
           var cardio = Number($("cardioHours").value || 0);
           var weight = Number($("weightHours").value || 0);
           var water = Number($("waterIntake").value || 0);
           var diet = form.querySelector('input[name="diet_status"]:checked');
 
+          if (!fromDateKey(selectedKey)) {
+            setStatus("Please choose a valid record date.", "danger");
+            return;
+          }
+
+          if (selectedKey > todayKey) {
+            setStatus("You can only save fitness records up to today.", "danger");
+            return;
+          }
+
           if (!diet) {
-            setStatus("Please select whether today's diet was controlled or uncontrolled.", "danger");
+            setStatus("Please select whether the selected day's diet was controlled or uncontrolled.", "danger");
             return;
           }
 
@@ -1977,7 +2052,7 @@
           }
 
           var store = loadStore();
-          store[todayKey] = {
+          store[selectedKey] = {
             cardioHours: cardio,
             weightHours: weight,
             dietStatus: diet.value,
@@ -1986,9 +2061,25 @@
           };
           saveStore(store);
 
-          setStatus("Saved today's intensity log for " + formatLongDate(todayKey) + ".", "success");
+          setStatus("Saved intensity log for " + formatLongDate(selectedKey) + ".", "success");
           render();
         });
+
+        var fitnessDateInput = $("fitnessDate");
+        if (fitnessDateInput) {
+          fitnessDateInput.addEventListener("change", function () {
+            var todayKey = toDateKey(startOfDay(new Date()));
+            var selectedKey = getSelectedDateKey(todayKey);
+            render();
+
+            var store = loadStore();
+            if (Object.prototype.hasOwnProperty.call(store, selectedKey)) {
+              setStatus("Loaded saved fitness log for " + formatLongDate(selectedKey) + ".", "info");
+            } else {
+              setStatus("No fitness log saved for " + formatLongDate(selectedKey) + " yet.", "info");
+            }
+          });
+        }
 
         if (rangeSelect) {
           rangeSelect.addEventListener("change", render);

@@ -12,7 +12,9 @@
     { date: "2027-01-01", title: "New Year's Day" }
   ];
 
-  var PTO_ENTRIES = [
+  var PTO_STORAGE_KEY = "site-calendar-custom-pto-v1";
+
+  var PTO_SEED_ENTRIES = [
     { date: "2026-03-27", title: "Casual Leave", leaveType: "casual" },
     { date: "2026-03-30", title: "Casual Leave", leaveType: "casual" },
     { date: "2026-03-31", title: "Casual Leave", leaveType: "casual" }
@@ -30,6 +32,10 @@
     earned: {
       label: "Earned Leave",
       copy: "Longer leave bank for larger breaks, travel, or planned resets."
+    },
+    other: {
+      label: "Other Leave",
+      copy: "Custom leave bucket for personal leave names outside the main PTO types."
     }
   };
 
@@ -44,7 +50,9 @@
 
   var state = {
     month: null,
-    query: ""
+    query: "",
+    customPtoEntries: [],
+    ptoEntries: []
   };
 
   var calendarEventMap = Object.create(null);
@@ -103,6 +111,82 @@
     return stripTime(new Date());
   }
 
+  function getPtoLabel(leaveType, title){
+    var trimmed = String(title || "").trim();
+    if(trimmed){
+      return trimmed;
+    }
+    if(PTO_META[leaveType]){
+      return PTO_META[leaveType].label;
+    }
+    return PTO_META.other.label;
+  }
+
+  function normalizePtoSeedEntry(entry){
+    var leaveType = PTO_META[entry.leaveType] ? entry.leaveType : "other";
+    return {
+      date: entry.date,
+      title: getPtoLabel(leaveType, entry.title),
+      leaveType: leaveType,
+      source: "seed"
+    };
+  }
+
+  function normalizeCustomPtoEntry(entry){
+    var leaveType = PTO_META[entry.leaveType] ? entry.leaveType : "other";
+    if(!entry || typeof entry.date !== "string"){
+      return null;
+    }
+    return {
+      date: entry.date,
+      title: getPtoLabel(leaveType, entry.title),
+      leaveType: leaveType,
+      source: "custom"
+    };
+  }
+
+  function loadCustomPtoEntries(){
+    try {
+      var raw = localStorage.getItem(PTO_STORAGE_KEY);
+      if(!raw){
+        return [];
+      }
+
+      var parsed = JSON.parse(raw);
+      if(!Array.isArray(parsed)){
+        return [];
+      }
+
+      return parsed.map(normalizeCustomPtoEntry).filter(Boolean);
+    } catch (error) {
+      return [];
+    }
+  }
+
+  function saveCustomPtoEntries(){
+    try {
+      localStorage.setItem(PTO_STORAGE_KEY, JSON.stringify(state.customPtoEntries));
+    } catch (error) {
+      return;
+    }
+  }
+
+  function buildMergedPtoEntries(){
+    var byDate = Object.create(null);
+
+    PTO_SEED_ENTRIES.forEach(function(entry){
+      byDate[entry.date] = normalizePtoSeedEntry(entry);
+    });
+
+    state.customPtoEntries.forEach(function(entry){
+      byDate[entry.date] = normalizeCustomPtoEntry(entry);
+    });
+
+    return Object.keys(byDate).sort().map(function(key){
+      return byDate[key];
+    });
+  }
+
   function getInitialMonth(){
     var todayMonth = startOfMonth(getToday());
     if(todayMonth >= RANGE_START && todayMonth <= RANGE_END){
@@ -120,7 +204,7 @@
 
   function getFilteredCalendarEntries(){
     var query = state.query.trim().toLowerCase();
-    return HOLIDAYS.concat(PTO_ENTRIES).filter(function(entry){
+    return HOLIDAYS.concat(state.ptoEntries).filter(function(entry){
       return !query || entry.title.toLowerCase().indexOf(query) !== -1;
     });
   }
@@ -261,7 +345,7 @@
 
   function buildPtoGroups(){
     var container = document.getElementById("ptoGroupGrid");
-    var order = ["casual", "sick", "earned"];
+    var order = ["casual", "sick", "earned", "other"];
 
     container.innerHTML = "";
 
@@ -356,10 +440,11 @@
       return holiday.dateValue.getFullYear() === 2026;
     }).length;
     var activeMonths = Object.keys(monthGroups).length;
-    var totalPto = PTO_ENTRIES.length;
+    var totalPto = state.ptoEntries.length;
     var casualPto = (ptoGroups.casual || []).length;
     var sickPto = (ptoGroups.sick || []).length;
     var earnedPto = (ptoGroups.earned || []).length;
+    var otherPto = (ptoGroups.other || []).length;
 
     document.getElementById("summaryTotalHolidays").textContent = total;
     document.getElementById("summaryCurrentYear").textContent = yearly;
@@ -370,6 +455,7 @@
     document.getElementById("summaryCasualPto").textContent = casualPto;
     document.getElementById("summarySickPto").textContent = sickPto;
     document.getElementById("summaryEarnedPto").textContent = earnedPto;
+    document.getElementById("summaryOtherPto").textContent = otherPto;
 
     document.getElementById("nextHolidayTitle").textContent = nextHoliday.title;
     document.getElementById("nextHolidayText").textContent = DATE_FORMATTER.format(nextHoliday.dateValue);
@@ -386,6 +472,53 @@
     buildCalendarGrid();
     buildHolidayList();
     buildPtoGroups();
+  }
+
+  function setPtoFormStatus(message, isError){
+    var status = document.getElementById("ptoFormStatus");
+    status.textContent = message;
+    status.classList.toggle("is-error", Boolean(isError));
+  }
+
+  function resetPtoForm(){
+    document.getElementById("ptoDate").value = dateKey(getToday());
+    document.getElementById("ptoType").value = "casual";
+    document.getElementById("ptoLabel").value = "";
+    setPtoFormStatus("Saved PTO stays tied to the selected date in this browser.", false);
+  }
+
+  function savePtoEntry(){
+    var date = document.getElementById("ptoDate").value;
+    var leaveType = document.getElementById("ptoType").value;
+    var title = getPtoLabel(leaveType, document.getElementById("ptoLabel").value);
+    var dateValue;
+
+    if(!date){
+      setPtoFormStatus("Choose a date before saving the PTO entry.", true);
+      return;
+    }
+
+    if(!PTO_META[leaveType]){
+      leaveType = "other";
+    }
+
+    dateValue = toDate(date);
+    state.customPtoEntries = state.customPtoEntries.filter(function(entry){
+      return entry.date !== date;
+    });
+    state.customPtoEntries.push({
+      date: date,
+      leaveType: leaveType,
+      title: title
+    });
+
+    saveCustomPtoEntries();
+    hydrateData();
+    state.month = clampMonth(startOfMonth(dateValue));
+    renderAll();
+    resetPtoForm();
+    setPtoFormStatus(title + " has been saved for " + DATE_FORMATTER.format(dateValue) + ".", false);
+    document.getElementById("section-calendar").scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   function goToMonth(monthDate){
@@ -433,12 +566,17 @@
     document.getElementById("ptoGroupGrid").addEventListener("click", function(event){
       var button = event.target.closest(".pto-list-item");
       if(!button) return;
-      var selected = PTO_ENTRIES.find(function(entry){
+      var selected = state.ptoEntries.find(function(entry){
         return entry.isoDate === button.getAttribute("data-pto-date");
       });
       if(!selected) return;
       goToMonth(startOfMonth(selected.dateValue));
       document.getElementById("section-calendar").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    document.getElementById("ptoForm").addEventListener("submit", function(event){
+      event.preventDefault();
+      savePtoEntry();
     });
   }
 
@@ -478,6 +616,10 @@
   }
 
   function hydrateData(){
+    calendarEventMap = Object.create(null);
+    monthGroups = Object.create(null);
+    ptoGroups = Object.create(null);
+
     HOLIDAYS.forEach(function(holiday){
       holiday.kind = "holiday";
       holiday.isoDate = holiday.date;
@@ -498,7 +640,9 @@
       monthGroups[groupKey].push(holiday);
     });
 
-    PTO_ENTRIES.forEach(function(entry){
+    state.ptoEntries = buildMergedPtoEntries();
+
+    state.ptoEntries.forEach(function(entry){
       entry.kind = "pto";
       entry.isoDate = entry.date;
       entry.dateValue = toDate(entry.date);
@@ -518,8 +662,10 @@
   }
 
   document.addEventListener("DOMContentLoaded", function(){
+    state.customPtoEntries = loadCustomPtoEntries();
     hydrateData();
     state.month = getInitialMonth();
+    resetPtoForm();
     buildMonthJumps();
     renderAll();
     handleClicks();
