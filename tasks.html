@@ -190,6 +190,68 @@
                 </label>
               </div>
 
+              <div class="tasks-repeat-panel">
+                <div class="tasks-repeat-head">
+                  <div>
+                    <span class="tasks-repeat-label">Repeat</span>
+                    <strong id="taskRepeatSummary">One-time task</strong>
+                  </div>
+                  <small id="taskRepeatHint">Runs once on the selected date.</small>
+                </div>
+
+                <input id="taskRepeat" name="taskRepeat" type="hidden" value="none">
+
+                <div class="tasks-repeat-options" id="taskRepeatOptions" role="group" aria-label="Choose repeat rule">
+                  <button type="button" class="tasks-repeat-btn is-active" data-repeat="none" aria-pressed="true">
+                    <small>No repeat</small>
+                    <strong>One-time</strong>
+                  </button>
+                  <button type="button" class="tasks-repeat-btn" data-repeat="daily" aria-pressed="false">
+                    <small>Every day</small>
+                    <strong>Daily</strong>
+                  </button>
+                  <button type="button" class="tasks-repeat-btn" data-repeat="weekdays" aria-pressed="false">
+                    <small>Work days</small>
+                    <strong>Weekdays</strong>
+                  </button>
+                  <button type="button" class="tasks-repeat-btn" data-repeat="weekly" aria-pressed="false">
+                    <small>Same day</small>
+                    <strong>Weekly</strong>
+                  </button>
+                  <button type="button" class="tasks-repeat-btn" data-repeat="monthly" aria-pressed="false">
+                    <small>Monthly cycle</small>
+                    <strong>Monthly</strong>
+                  </button>
+                  <button type="button" class="tasks-repeat-btn" data-repeat="custom" aria-pressed="false">
+                    <small>Custom rule</small>
+                    <strong>Custom</strong>
+                  </button>
+                </div>
+
+                <div class="tasks-repeat-custom" id="taskRepeatCustom" hidden>
+                  <div class="tasks-repeat-custom-head">
+                    <span>Custom cadence</span>
+                    <small>Build your own repetition pattern from the selected start date.</small>
+                  </div>
+
+                  <div class="tasks-repeat-custom-grid">
+                    <label class="tasks-field">
+                      <span>Every</span>
+                      <input id="taskRepeatInterval" name="taskRepeatInterval" type="number" min="1" max="30" step="1" value="2">
+                    </label>
+
+                    <label class="tasks-field">
+                      <span>Unit</span>
+                      <select id="taskRepeatUnit" name="taskRepeatUnit">
+                        <option value="days">Days</option>
+                        <option value="weeks">Weeks</option>
+                        <option value="months">Months</option>
+                      </select>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
               <label class="tasks-switch-row" for="taskAllDay">
                 <span>
                   <strong>All-Day Task</strong>
