@@ -4,16 +4,18 @@
   var DAY_TYPE_KEY = "site-day-types-v1";
   var START_HOUR = 0;
   var END_HOUR = 24;
-  var HOUR_HEIGHT = 76;
+  var HOUR_HEIGHT = 92;
   var REMINDER_GRACE_MS = 10 * 60 * 1000;
   var CHECK_INTERVAL_MS = 30 * 1000;
+  var DEFAULT_CUSTOM_REPEAT_INTERVAL = 2;
+  var DEFAULT_CUSTOM_REPEAT_UNIT = "days";
+  var UPCOMING_OCCURRENCE_LIMIT = 8;
+  var UPCOMING_OCCURRENCE_HORIZON_DAYS = 180;
 
   var CATEGORY_META = {
-    work: { label: "Work", className: "tasks-task-work" },
-    personal: { label: "Personal", className: "tasks-task-personal" },
-    deep: { label: "Deep Focus", className: "tasks-task-deep" },
-    health: { label: "Health", className: "tasks-task-health" },
-    admin: { label: "Admin", className: "tasks-task-admin" }
+    work: { label: "CRW-I Billable", className: "tasks-task-work" },
+    personal: { label: "CRW-I Non-Billable", className: "tasks-task-personal" },
+    deep: { label: "FTE-Capstone", className: "tasks-task-deep" }
   };
 
   var DAY_TYPE_META = {
@@ -28,6 +30,28 @@
     tough: {
       label: "Tough",
       message: "Today is a tough day, you need to be consistent throughout!"
+    }
+  };
+
+  var REPEAT_META = {
+    none: {
+      title: "One-time task",
+      hint: "Runs once on the selected date."
+    },
+    daily: {
+      title: "Daily repetition"
+    },
+    weekdays: {
+      title: "Weekday repetition"
+    },
+    weekly: {
+      title: "Weekly repetition"
+    },
+    monthly: {
+      title: "Monthly repetition"
+    },
+    custom: {
+      title: "Custom repetition"
     }
   };
 
@@ -82,6 +106,12 @@
     return next;
   }
 
+  function diffInDays(startDate, endDate){
+    var start = stripTime(startDate);
+    var end = stripTime(endDate);
+    return Math.round((end.getTime() - start.getTime()) / (24 * 60 * 60 * 1000));
+  }
+
   function sameDay(a, b){
     return a.getFullYear() === b.getFullYear() &&
       a.getMonth() === b.getMonth() &&
@@ -102,12 +132,121 @@
     return new Date(parts[0], parts[1] - 1, parts[2], 12);
   }
 
+  function normalizeRepeat(value){
+    return REPEAT_META[value] ? value : "none";
+  }
+
+  function normalizeCategory(value){
+    if(value === "work" || value === "personal" || value === "deep"){
+      return value;
+    }
+    if(value === "health"){
+      return "personal";
+    }
+    if(value === "admin"){
+      return "deep";
+    }
+    return "work";
+  }
+
+  function normalizeRepeatInterval(value){
+    var interval = Number(value);
+    if(!isFinite(interval)){
+      return DEFAULT_CUSTOM_REPEAT_INTERVAL;
+    }
+    interval = Math.round(interval);
+    if(interval < 1){
+      return 1;
+    }
+    if(interval > 30){
+      return 30;
+    }
+    return interval;
+  }
+
+  function normalizeRepeatUnit(value){
+    return value === "weeks" || value === "months" ? value : "days";
+  }
+
+  function getPluralizedUnit(interval, unit){
+    if(unit === "weeks"){
+      return interval === 1 ? "week" : "weeks";
+    }
+    if(unit === "months"){
+      return interval === 1 ? "month" : "months";
+    }
+    return interval === 1 ? "day" : "days";
+  }
+
+  function getMonthlyOccurrenceDate(startDate, monthOffset){
+    var targetYear = startDate.getFullYear() + Math.floor((startDate.getMonth() + monthOffset) / 12);
+    var targetMonth = (startDate.getMonth() + monthOffset) % 12;
+    var daysInMonth = new Date(targetYear, targetMonth + 1, 0, 12).getDate();
+    var targetDay = Math.min(startDate.getDate(), daysInMonth);
+    return new Date(targetYear, targetMonth, targetDay, 12);
+  }
+
+  function occursMonthlyOnDate(startDate, targetDate, monthInterval){
+    var monthDiff = (targetDate.getFullYear() - startDate.getFullYear()) * 12 + (targetDate.getMonth() - startDate.getMonth());
+    if(monthDiff < 0 || monthDiff % monthInterval !== 0){
+      return false;
+    }
+    return sameDay(getMonthlyOccurrenceDate(startDate, monthDiff), targetDate);
+  }
+
   function formatDateInput(date){
     return dateKey(stripTime(date));
   }
 
   function formatDateDisplay(date){
     return FORM_DATE_FORMATTER.format(stripTime(date));
+  }
+
+  function getRepeatCopy(repeat, selectedDate, interval, unit){
+    var normalizedRepeat = normalizeRepeat(repeat);
+    var targetDate = stripTime(selectedDate || new Date());
+    var longDayName = targetDate.toLocaleDateString("en-US", { weekday: "long" });
+    var meta = REPEAT_META[normalizedRepeat] || REPEAT_META.none;
+
+    if(normalizedRepeat === "daily"){
+      return {
+        title: meta.title,
+        hint: "Repeats every day from " + formatDateDisplay(targetDate) + "."
+      };
+    }
+
+    if(normalizedRepeat === "weekdays"){
+      return {
+        title: meta.title,
+        hint: "Repeats every Monday to Friday from the selected start date."
+      };
+    }
+
+    if(normalizedRepeat === "weekly"){
+      return {
+        title: meta.title,
+        hint: "Repeats every " + longDayName + " starting on " + formatDateDisplay(targetDate) + "."
+      };
+    }
+
+    if(normalizedRepeat === "monthly"){
+      return {
+        title: meta.title,
+        hint: "Repeats every month on day " + targetDate.getDate() + "."
+      };
+    }
+
+    if(normalizedRepeat === "custom"){
+      return {
+        title: meta.title,
+        hint: "Repeats every " + interval + " " + getPluralizedUnit(interval, unit) + " from " + formatDateDisplay(targetDate) + "."
+      };
+    }
+
+    return {
+      title: meta.title,
+      hint: meta.hint
+    };
   }
 
   function startOfMonthGrid(date){
@@ -247,6 +386,14 @@
           typeof task.title === "string" &&
           typeof task.date === "string";
       }).map(function(task){
+        var completedDates = Array.isArray(task.completedDates) ? task.completedDates.filter(function(entry){
+          return parseDateKey(entry);
+        }) : [];
+
+        if(Boolean(task.done) && completedDates.indexOf(task.date) === -1){
+          completedDates.push(task.date);
+        }
+
         return {
           id: task.id,
           title: task.title,
@@ -254,10 +401,14 @@
           allDay: Boolean(task.allDay),
           startTime: task.startTime || "",
           endTime: task.endTime || "",
-          category: CATEGORY_META[task.category] ? task.category : "work",
+          category: normalizeCategory(task.category),
           reminder: task.reminder !== false,
           notes: task.notes || "",
+          repeat: normalizeRepeat(task.repeat),
+          repeatInterval: normalizeRepeatInterval(task.repeatInterval),
+          repeatUnit: normalizeRepeatUnit(task.repeatUnit),
           done: Boolean(task.done),
+          completedDates: completedDates,
           createdAt: typeof task.createdAt === "number" ? task.createdAt : Date.now()
         };
       });
@@ -345,9 +496,11 @@
   }
 
   function getTasksForDate(date, tasks){
-    var targetKey = dateKey(date);
+    var targetDate = stripTime(date);
     return sortTasks((tasks || getVisibleTasks()).filter(function(task){
-      return task.date === targetKey;
+      return taskOccursOnDate(task, targetDate);
+    }).map(function(task){
+      return buildTaskOccurrence(task, targetDate);
     }));
   }
 
@@ -358,14 +511,29 @@
   }
 
   function getUpcomingTasks(tasks){
-    var now = new Date();
-    return sortTasks((tasks || getVisibleTasks()).filter(function(task){
-      if(task.done){
-        return false;
+    var sourceTasks = tasks || getVisibleTasks();
+    var today = stripTime(new Date());
+    var now = Date.now();
+    var upcoming = [];
+
+    for(var offset = 0; offset <= UPCOMING_OCCURRENCE_HORIZON_DAYS; offset += 1){
+      getTasksForDate(addDays(today, offset), sourceTasks).forEach(function(task){
+        var reminderDate;
+        if(task.done){
+          return;
+        }
+        reminderDate = getTaskStart(task);
+        if(reminderDate && reminderDate.getTime() >= now - REMINDER_GRACE_MS){
+          upcoming.push(task);
+        }
+      });
+
+      if(upcoming.length >= UPCOMING_OCCURRENCE_LIMIT * 4){
+        break;
       }
-      var reminderDate = getTaskStart(task);
-      return reminderDate && reminderDate.getTime() >= now.getTime() - REMINDER_GRACE_MS;
-    })).slice(0, 8);
+    }
+
+    return sortTasks(upcoming).slice(0, UPCOMING_OCCURRENCE_LIMIT);
   }
 
   function createId(){
@@ -410,6 +578,35 @@
       button.classList.toggle("is-normal", type === "normal");
       button.classList.toggle("is-tough", type === "tough");
       button.setAttribute("aria-pressed", String(type === selectedType));
+    });
+  }
+
+  function setRepeatFormValues(repeat, interval, unit){
+    refs.taskRepeat.value = normalizeRepeat(repeat);
+    refs.taskRepeatInterval.value = String(normalizeRepeatInterval(interval));
+    refs.taskRepeatUnit.value = normalizeRepeatUnit(unit);
+    syncRepeatUI();
+  }
+
+  function syncRepeatUI(){
+    var repeat = normalizeRepeat(refs.taskRepeat.value);
+    var interval = normalizeRepeatInterval(refs.taskRepeatInterval.value);
+    var unit = normalizeRepeatUnit(refs.taskRepeatUnit.value);
+    var selectedDate = parseDateKey(refs.taskDate.value) || state.selectedDate || stripTime(new Date());
+    var copy = getRepeatCopy(repeat, selectedDate, interval, unit);
+
+    refs.taskRepeat.value = repeat;
+    refs.taskRepeatInterval.value = String(interval);
+    refs.taskRepeatUnit.value = unit;
+    refs.taskRepeatCustom.hidden = repeat !== "custom";
+    refs.taskRepeatSummary.textContent = copy.title;
+    refs.taskRepeatHint.textContent = copy.hint;
+
+    Array.prototype.forEach.call(refs.taskRepeatOptions.querySelectorAll("[data-repeat]"), function(button){
+      var buttonRepeat = button.getAttribute("data-repeat");
+      var isActive = buttonRepeat === repeat;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
     });
   }
 
@@ -495,6 +692,7 @@
     refs.taskEndTime.value = formatTimeInput(end);
     refs.taskNotes.value = "";
     syncTimeFieldDisplays();
+    setRepeatFormValues("none", DEFAULT_CUSTOM_REPEAT_INTERVAL, DEFAULT_CUSTOM_REPEAT_UNIT);
     updateTimeFields();
   }
 
@@ -516,6 +714,7 @@
     refs.taskAllDay.checked = Boolean(task.allDay);
     refs.taskReminder.checked = task.reminder !== false;
     refs.taskNotes.value = task.notes || "";
+    setRepeatFormValues(task.repeat, task.repeatInterval, task.repeatUnit);
 
     if(!task.allDay){
       refs.taskStartTime.value = task.startTime;
@@ -524,6 +723,7 @@
 
     syncDateFieldDisplay();
     syncTimeFieldDisplays();
+    syncRepeatUI();
     updateTimeFields();
   }
 
@@ -615,8 +815,83 @@
   function selectDate(date){
     refs.taskDate.value = formatDateInput(date);
     syncDateFieldDisplay();
+    syncRepeatUI();
     state.datePicker.monthAnchor = new Date(date.getFullYear(), date.getMonth(), 1, 12);
     closeDatePicker(true);
+  }
+
+  function taskOccursOnDate(task, targetDate){
+    var startDate = parseDateKey(task.date);
+    var normalizedTarget = stripTime(targetDate);
+    var repeat = normalizeRepeat(task.repeat);
+    var dayDiff;
+
+    if(!startDate){
+      return false;
+    }
+
+    dayDiff = diffInDays(startDate, normalizedTarget);
+    if(dayDiff < 0){
+      return false;
+    }
+
+    if(repeat === "daily"){
+      return true;
+    }
+
+    if(repeat === "weekdays"){
+      return normalizedTarget.getDay() >= 1 && normalizedTarget.getDay() <= 5;
+    }
+
+    if(repeat === "weekly"){
+      return dayDiff % 7 === 0;
+    }
+
+    if(repeat === "monthly"){
+      return occursMonthlyOnDate(startDate, normalizedTarget, 1);
+    }
+
+    if(repeat === "custom"){
+      if(task.repeatUnit === "weeks"){
+        return dayDiff % (normalizeRepeatInterval(task.repeatInterval) * 7) === 0;
+      }
+      if(task.repeatUnit === "months"){
+        return occursMonthlyOnDate(startDate, normalizedTarget, normalizeRepeatInterval(task.repeatInterval));
+      }
+      return dayDiff % normalizeRepeatInterval(task.repeatInterval) === 0;
+    }
+
+    return dayDiff === 0;
+  }
+
+  function isTaskDoneOnDate(task, occurrenceDateKey){
+    if(Array.isArray(task.completedDates) && task.completedDates.indexOf(occurrenceDateKey) !== -1){
+      return true;
+    }
+    return normalizeRepeat(task.repeat) === "none" && Boolean(task.done);
+  }
+
+  function buildTaskOccurrence(task, occurrenceDate){
+    var occurrenceDateKey = dateKey(occurrenceDate);
+
+    return {
+      id: task.id + "::" + occurrenceDateKey,
+      seriesId: task.id,
+      occurrenceDate: occurrenceDateKey,
+      title: task.title,
+      date: occurrenceDateKey,
+      allDay: Boolean(task.allDay),
+      startTime: task.startTime || "",
+      endTime: task.endTime || "",
+      category: task.category,
+      reminder: task.reminder !== false,
+      notes: task.notes || "",
+      repeat: normalizeRepeat(task.repeat),
+      repeatInterval: normalizeRepeatInterval(task.repeatInterval),
+      repeatUnit: normalizeRepeatUnit(task.repeatUnit),
+      done: isTaskDoneOnDate(task, occurrenceDateKey),
+      createdAt: task.createdAt
+    };
   }
 
   function getDialCoordinates(index, total, radius){
@@ -862,6 +1137,7 @@
     var now = Date.now();
     var notified = readNotifiedMap();
     var nextNotified = {};
+    var todaysTasks = getTasksForDate(stripTime(new Date()), state.tasks);
 
     Object.keys(notified).forEach(function(key){
       if(now - notified[key] < 5 * 24 * 60 * 60 * 1000){
@@ -869,7 +1145,7 @@
       }
     });
 
-    state.tasks.forEach(function(task){
+    todaysTasks.forEach(function(task){
       if(task.done || !task.reminder){
         return;
       }
@@ -879,7 +1155,7 @@
         return;
       }
 
-      var reminderKey = task.id + ":" + reminderDate.getTime();
+      var reminderKey = task.seriesId + ":" + reminderDate.getTime();
       var delta = now - reminderDate.getTime();
 
       if(delta >= 0 && delta <= REMINDER_GRACE_MS && !nextNotified[reminderKey]){
@@ -894,9 +1170,11 @@
   function updateSummary(){
     var tasks = state.tasks.slice();
     var todayTasks = getTasksForDate(stripTime(new Date()), tasks);
-    var allDayCount = tasks.filter(function(task){
-      return task.allDay && !task.done;
-    }).length;
+    var allDayCount = getWeekDays().reduce(function(total, day){
+      return total + getTasksForDate(day, tasks).filter(function(task){
+        return task.allDay && !task.done;
+      }).length;
+    }, 0);
     var nextReminderTask = getUpcomingTasks(tasks)[0];
 
     refs.summaryTotalTasks.textContent = tasks.length;
@@ -995,6 +1273,8 @@
           taskButton.classList.add("is-done");
         }
         taskButton.setAttribute("data-task-id", task.id);
+        taskButton.setAttribute("data-series-id", task.seriesId || task.id);
+        taskButton.setAttribute("data-occurrence-date", task.date);
         taskButton.textContent = task.title;
         taskButton.title = task.notes || task.title;
         cell.appendChild(taskButton);
@@ -1133,21 +1413,15 @@
         event.style.width = Math.max(columnWidth, 34) + "px";
         event.style.top = top + "px";
         event.style.height = height + "px";
-        if(height < 54){
-          event.classList.add("is-compact");
-        }
-        if(height < 42){
-          event.classList.add("is-tight");
-        }
-        if(height < 28){
-          event.classList.add("is-micro");
-        }
+        event.setAttribute("data-series-id", item.task.seriesId || item.task.id);
+        event.setAttribute("data-occurrence-date", item.task.date);
         event.innerHTML = "<small></small><strong></strong><span></span>";
         event.querySelector("small").textContent = getTaskCategoryLabel(item.task);
         event.querySelector("strong").textContent = item.task.title;
         event.querySelector("span").textContent = TIME_FORMATTER.format(getTaskStart(item.task)) + " - " + TIME_FORMATTER.format(getTaskEnd(item.task));
         event.title = item.task.title + " — " + TIME_FORMATTER.format(getTaskStart(item.task)) + " - " + TIME_FORMATTER.format(getTaskEnd(item.task));
         refs.tasksGridEvents.appendChild(event);
+        fitTimedTaskCopy(event);
       });
     });
 
@@ -1190,6 +1464,58 @@
     refs.tasksNowLine.style.top = ((nowMinutes - START_HOUR * 60) / 60) * HOUR_HEIGHT + "px";
   }
 
+  function fitTimedTaskCopy(eventCard){
+    var title = eventCard.querySelector("strong");
+    var label = eventCard.querySelector("small");
+    var meta = eventCard.querySelector("span");
+    var titleFontSize;
+    var attempts = 0;
+    var minFontSize = 8.5;
+
+    if(!title){
+      return;
+    }
+
+    eventCard.classList.remove("is-compact", "is-tight", "is-micro");
+    title.style.fontSize = "";
+    title.style.lineHeight = "";
+    if(label){
+      label.style.display = "";
+    }
+    if(meta){
+      meta.style.display = "";
+    }
+
+    if(eventCard.scrollHeight > eventCard.clientHeight){
+      if(meta){
+        meta.style.display = "none";
+      }
+    }
+    if(eventCard.scrollHeight > eventCard.clientHeight){
+      if(label){
+        label.style.display = "none";
+      }
+    }
+    if(eventCard.scrollHeight > eventCard.clientHeight){
+      eventCard.classList.add("is-compact");
+    }
+    if(eventCard.scrollHeight > eventCard.clientHeight){
+      eventCard.classList.add("is-tight");
+    }
+    if(eventCard.scrollHeight > eventCard.clientHeight){
+      eventCard.classList.add("is-micro");
+    }
+
+    titleFontSize = parseFloat(window.getComputedStyle(title).fontSize);
+
+    while(eventCard.scrollHeight > eventCard.clientHeight && titleFontSize > minFontSize && attempts < 10){
+      titleFontSize -= 0.5;
+      title.style.fontSize = titleFontSize + "px";
+      title.style.lineHeight = "1.02";
+      attempts += 1;
+    }
+  }
+
   function createTaskListItem(task, options){
     options = options || {};
     var item = document.createElement("article");
@@ -1214,6 +1540,8 @@
     ].join("");
 
     item.setAttribute("data-task-id", task.id);
+    item.setAttribute("data-series-id", task.seriesId || task.id);
+    item.setAttribute("data-occurrence-date", task.date);
     item.querySelector("strong").textContent = task.title;
     if(task.notes){
       item.querySelector("p").textContent = task.notes;
@@ -1295,6 +1623,9 @@
     var allDay = refs.taskAllDay.checked;
     var startTime = refs.taskStartTime.value;
     var endTime = refs.taskEndTime.value;
+    var repeat = normalizeRepeat(refs.taskRepeat.value);
+    var repeatInterval = normalizeRepeatInterval(refs.taskRepeatInterval.value);
+    var repeatUnit = normalizeRepeatUnit(refs.taskRepeatUnit.value);
 
     if(!title || !date){
       showToast("Task not saved", "A task title and date are required.");
@@ -1321,10 +1652,14 @@
       allDay: allDay,
       startTime: allDay ? "" : startTime,
       endTime: allDay ? "" : endTime,
-      category: refs.taskCategory.value,
+      category: normalizeCategory(refs.taskCategory.value),
       reminder: refs.taskReminder.checked,
       notes: refs.taskNotes.value.trim(),
+      repeat: repeat,
+      repeatInterval: repeatInterval,
+      repeatUnit: repeatUnit,
       done: existingTask ? existingTask.done : false,
+      completedDates: existingTask ? (existingTask.completedDates || []).slice() : [],
       createdAt: existingTask ? existingTask.createdAt : Date.now()
     };
 
@@ -1355,7 +1690,40 @@
     renderPlanner();
   }
 
+  function toggleTaskCompletion(taskId, occurrenceDateKey){
+    state.tasks = state.tasks.map(function(task){
+      var completedDates;
+      var isOneTime;
+      var alreadyDone;
+
+      if(task.id !== taskId){
+        return task;
+      }
+
+      completedDates = Array.isArray(task.completedDates) ? task.completedDates.slice() : [];
+      isOneTime = normalizeRepeat(task.repeat) === "none";
+      alreadyDone = completedDates.indexOf(occurrenceDateKey) !== -1 || (isOneTime && Boolean(task.done));
+
+      if(alreadyDone){
+        completedDates = completedDates.filter(function(entry){
+          return entry !== occurrenceDateKey;
+        });
+      } else {
+        completedDates.push(occurrenceDateKey);
+      }
+
+      return Object.assign({}, task, {
+        done: isOneTime ? !alreadyDone : task.done,
+        completedDates: completedDates
+      });
+    });
+
+    saveTasks();
+    renderPlanner();
+  }
+
   function deleteTask(taskId){
+    var taskToDelete = getTaskById(taskId);
     state.tasks = state.tasks.filter(function(task){
       return task.id !== taskId;
     });
@@ -1366,7 +1734,9 @@
     }
     saveTasks();
     renderPlanner();
-    showToast("Task deleted", "The task has been removed from the planner.");
+    showToast("Task deleted", taskToDelete && normalizeRepeat(taskToDelete.repeat) !== "none" ?
+      "The repeating task series has been removed from the planner." :
+      "The task has been removed from the planner.");
   }
 
   function handleListAction(event){
@@ -1380,13 +1750,12 @@
       return;
     }
 
-    var taskId = item.getAttribute("data-task-id");
+    var taskId = item.getAttribute("data-series-id") || item.getAttribute("data-task-id");
+    var occurrenceDateKey = item.getAttribute("data-occurrence-date");
     var action = actionButton.getAttribute("data-action");
 
     if(action === "toggle"){
-      updateTask(taskId, function(task){
-        return Object.assign({}, task, { done: !task.done });
-      });
+      toggleTaskCompletion(taskId, occurrenceDateKey);
       return;
     }
 
@@ -1418,19 +1787,21 @@
 
   function handleTaskSelect(event){
     var taskButton = event.target.closest("[data-task-id]");
+    var occurrenceDate;
     if(!taskButton){
       return;
     }
 
-    var task = state.tasks.find(function(entry){
-      return entry.id === taskButton.getAttribute("data-task-id");
-    });
-    if(!task){
+    occurrenceDate = parseDateKey(taskButton.getAttribute("data-occurrence-date"));
+    if(!occurrenceDate){
+      occurrenceDate = parseDateKey(taskButton.getAttribute("data-date"));
+    }
+    if(!occurrenceDate){
       return;
     }
 
-    state.selectedDate = parseDateKey(task.date);
-    state.anchorDate = parseDateKey(task.date);
+    state.selectedDate = occurrenceDate;
+    state.anchorDate = occurrenceDate;
     renderPlanner();
   }
 
@@ -1467,6 +1838,17 @@
       renderDayType();
       showToast("Day category saved", DAY_TYPE_META[selectedType].message);
     });
+    refs.taskRepeatOptions.addEventListener("click", function(event){
+      var button = event.target.closest("[data-repeat]");
+      if(!button){
+        return;
+      }
+
+      refs.taskRepeat.value = button.getAttribute("data-repeat");
+      syncRepeatUI();
+    });
+    refs.taskRepeatInterval.addEventListener("input", syncRepeatUI);
+    refs.taskRepeatUnit.addEventListener("change", syncRepeatUI);
     refs.taskAllDay.addEventListener("change", updateTimeFields);
     refs.taskStartTimeTrigger.addEventListener("click", function(){
       openTimePicker("start");
@@ -1616,6 +1998,13 @@
     refs.taskDateToday = document.getElementById("taskDateToday");
     refs.taskDateClose = document.getElementById("taskDateClose");
     refs.taskCategory = document.getElementById("taskCategory");
+    refs.taskRepeat = document.getElementById("taskRepeat");
+    refs.taskRepeatOptions = document.getElementById("taskRepeatOptions");
+    refs.taskRepeatSummary = document.getElementById("taskRepeatSummary");
+    refs.taskRepeatHint = document.getElementById("taskRepeatHint");
+    refs.taskRepeatCustom = document.getElementById("taskRepeatCustom");
+    refs.taskRepeatInterval = document.getElementById("taskRepeatInterval");
+    refs.taskRepeatUnit = document.getElementById("taskRepeatUnit");
     refs.taskAllDay = document.getElementById("taskAllDay");
     refs.taskStartTime = document.getElementById("taskStartTime");
     refs.taskEndTime = document.getElementById("taskEndTime");

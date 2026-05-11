@@ -20,7 +20,7 @@
   --tasks-deep:#b58dff;
   --tasks-health:#f3b248;
   --tasks-admin:#f07b7b;
-  --tasks-hour-height:76px;
+  --tasks-hour-height:92px;
 }
 
 html[data-theme="light"]{
@@ -1830,6 +1830,7 @@ html[data-theme="light"] .tasks-day-head:focus{
   position:absolute;
   display:flex;
   flex-direction:column;
+  justify-content:flex-start;
   padding:0.82rem 0.84rem 0.78rem;
   border-radius:22px;
   background:var(--task-fill, rgba(255,255,255,0.08));
@@ -1851,6 +1852,7 @@ html[data-theme="light"] .tasks-day-head:focus{
 
 .tasks-timed-task small{
   display:block;
+  order:1;
   color:rgba(255,255,255,0.76);
   font-size:0.64rem;
   font-weight:700;
@@ -1860,20 +1862,28 @@ html[data-theme="light"] .tasks-day-head:focus{
 
 .tasks-timed-task strong{
   display:block;
-  margin-top:0.28rem;
+  order:0;
+  margin-top:0;
   color:#fff;
   font-size:0.92rem;
   font-weight:600;
   line-height:1.32;
+  overflow-wrap:anywhere;
+  word-break:break-word;
 }
 
 .tasks-timed-task span{
   display:block;
+  order:2;
   margin-top:0.26rem;
   color:rgba(255,255,255,0.82);
   font-size:0.78rem;
   font-weight:500;
   line-height:1.46;
+}
+
+.tasks-timed-task strong + small{
+  margin-top:0.22rem;
 }
 
 .tasks-timed-task.is-done{
@@ -1904,14 +1914,14 @@ html[data-theme="light"] .tasks-day-head:focus{
 }
 
 .tasks-timed-task.is-compact strong{
-  margin-top:0.16rem;
-  font-size:0.8rem;
-  line-height:1.18;
+  margin-top:0;
+  font-size:0.74rem;
+  line-height:1.14;
   display:-webkit-box;
   overflow:hidden;
   text-overflow:ellipsis;
   -webkit-box-orient:vertical;
-  -webkit-line-clamp:2;
+  -webkit-line-clamp:3;
 }
 
 .tasks-timed-task.is-compact span{
@@ -1926,21 +1936,23 @@ html[data-theme="light"] .tasks-day-head:focus{
 .tasks-timed-task.is-tight{
   padding:0.38rem 0.48rem;
   border-radius:14px;
-  justify-content:center;
+  justify-content:flex-start;
 }
 
 .tasks-timed-task.is-tight small{
-  font-size:0.48rem;
-  letter-spacing:0.18em;
+  display:none;
 }
 
 .tasks-timed-task.is-tight strong{
-  margin-top:0.08rem;
-  font-size:0.7rem;
-  line-height:1.12;
-  white-space:nowrap;
+  margin-top:0;
+  font-size:0.62rem;
+  line-height:1.06;
+  white-space:normal;
+  display:-webkit-box;
   overflow:hidden;
   text-overflow:ellipsis;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:4;
 }
 
 .tasks-timed-task.is-tight span{
@@ -1950,7 +1962,7 @@ html[data-theme="light"] .tasks-day-head:focus{
 .tasks-timed-task.is-micro{
   padding:0.3rem 0.42rem;
   border-radius:12px;
-  justify-content:center;
+  justify-content:flex-start;
 }
 
 .tasks-timed-task.is-micro small,
@@ -1960,11 +1972,14 @@ html[data-theme="light"] .tasks-day-head:focus{
 
 .tasks-timed-task.is-micro strong{
   margin:0;
-  font-size:0.64rem;
-  line-height:1.05;
-  white-space:nowrap;
+  font-size:0.54rem;
+  line-height:1.02;
+  white-space:normal;
+  display:-webkit-box;
   overflow:hidden;
   text-overflow:ellipsis;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:4;
 }
 
 .tasks-now-line{
