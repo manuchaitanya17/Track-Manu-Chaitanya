@@ -11,11 +11,11 @@
     { start: "05:00AM", end: "07:00AM", activity: "ECSE743- FTE Capstone" },
     { start: "07:00AM", end: "09:00AM", activity: "Workout -> Skin Care & Shower -> Breakfast" },
     { start: "09:00AM", end: "11:00AM", activity: "ECSE743- FTE Capstone" },
-    { start: "11:00AM", end: "02:00PM", activity: "CRW-I" },
+    { start: "11:00AM", end: "02:00PM", activity: "CRW-II" },
     { start: "02:00PM", end: "03:00PM", activity: "Lunch -> Rest" },
-    { start: "03:00PM", end: "06:00PM", activity: "CRW-I" },
+    { start: "03:00PM", end: "06:00PM", activity: "CRW-II" },
     { start: "06:00PM", end: "07:00PM", activity: "Friends and Gupshup" },
-    { start: "07:00PM", end: "09:00PM", activity: "CRW-I -> ECSE743- FTE Capstone" },
+    { start: "07:00PM", end: "09:00PM", activity: "CRW-II -> ECSE743- FTE Capstone" },
     { start: "09:00PM", end: "10:00PM", activity: "Dinner & Web Series" },
     { start: "10:00PM", end: "04:45AM", activity: "Rest" }
   ];
@@ -161,7 +161,7 @@
   function renderMetrics(insights) {
     return [
       { label: "Wake-up", value: insights.startLabel, note: "First active window of the day." },
-      { label: "Deep work", value: formatDuration(insights.totals.focus), note: "FTE Capstone and CRW-I." },
+      { label: "Deep work", value: formatDuration(insights.totals.focus), note: "FTE Capstone and CRW-II." },
       { label: "Health", value: formatDuration(insights.totals.health), note: "Training, Hygiene, and Readiness." },
       { label: "Sleep", value: formatDuration(insights.totals.sleep), note: "A required sound sleep." }
     ].map(function (item) {
@@ -240,7 +240,7 @@
           '<div>',
             '<span class="routine-kicker">Operating Rhythm</span>',
             '<h3 class="routine-title">Are you ready to kickoff the day?</h3>',
-            '<p class="routine-copy">For the next six months, you will consistently follow this routine as part of the CRW-I program. The routine is designed to ensure steady progress, maintain discipline, and help you develop the required skills and performance standards expected from the program.</p>',
+            '<p class="routine-copy">For the next six months, you will consistently follow this routine as part of the CRW-II program. The routine is designed to ensure steady progress, maintain discipline, and help you develop the required skills and performance standards expected from the program.</p>',
           '</div>',
           '<div class="routine-hero-metrics">', renderMetrics(insights), '</div>',
         '</div>',

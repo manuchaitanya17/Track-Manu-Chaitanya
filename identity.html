@@ -1,38 +1,2165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Identity</title>
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/style.css">
+  <title>Identity | Manu Chaitanya</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/mobile-responsive.css">
   <link rel="stylesheet" href="css/home-page-system.css">
-  <script src="js/theme-init.js"></script>
   <link rel="stylesheet" href="css/theme-toggle.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+  <style>
+    :root{
+      --identity-accent: #bac964;
+      --identity-blue: #36a8ef;
+      --identity-amber: #f0b565;
+      --identity-green: #12cb63;
+      --identity-bg: #1d1d1d;
+      --identity-text: #ffffff;
+      --identity-panel-top: rgba(255, 255, 255, 0.08);
+      --identity-panel-bottom: rgba(255, 255, 255, 0.04);
+      --identity-panel-solid: rgba(255, 255, 255, 0.06);
+      --identity-border: rgba(255, 255, 255, 0.10);
+      --identity-muted: rgba(255, 255, 255, 0.76);
+      --identity-soft: rgba(255, 255, 255, 0.46);
+      --identity-chip-bg: rgba(255, 255, 255, 0.05);
+      --identity-chip-border: rgba(255, 255, 255, 0.08);
+      --identity-deep-panel: rgba(0, 0, 0, 0.16);
+      --identity-shadow: 0 28px 90px rgba(0, 0, 0, 0.26);
+      --identity-grid-line: rgba(255, 255, 255, 0.025);
+    }
+
+    html[data-theme="light"]{
+      --identity-bg: #f4f1e8;
+      --identity-text: #171717;
+      --identity-panel-top: rgba(255, 255, 255, 0.92);
+      --identity-panel-bottom: rgba(255, 255, 255, 0.84);
+      --identity-panel-solid: rgba(255, 255, 255, 0.90);
+      --identity-border: rgba(17, 17, 17, 0.08);
+      --identity-muted: rgba(17, 17, 17, 0.72);
+      --identity-soft: rgba(17, 17, 17, 0.46);
+      --identity-chip-bg: rgba(17, 17, 17, 0.04);
+      --identity-chip-border: rgba(17, 17, 17, 0.08);
+      --identity-deep-panel: rgba(17, 17, 17, 0.05);
+      --identity-shadow: 0 22px 64px rgba(30, 30, 30, 0.10);
+      --identity-grid-line: rgba(17, 17, 17, 0.04);
+    }
+
+    html{
+      scroll-behavior: smooth;
+    }
+
+    body{
+      color: var(--identity-text);
+      background:
+        radial-gradient(circle at top left, rgba(186, 201, 100, 0.12), transparent 24%),
+        radial-gradient(circle at top right, rgba(54, 168, 239, 0.08), transparent 20%),
+        radial-gradient(circle at bottom right, rgba(240, 181, 101, 0.08), transparent 18%),
+        var(--identity-bg);
+      overflow-x: hidden;
+    }
+
+    html[data-theme="light"] body{
+      background:
+        radial-gradient(circle at top left, rgba(186, 201, 100, 0.20), transparent 26%),
+        radial-gradient(circle at top right, rgba(54, 168, 239, 0.12), transparent 22%),
+        radial-gradient(circle at bottom right, rgba(240, 181, 101, 0.14), transparent 20%),
+        var(--identity-bg);
+    }
+
+    .identity-shell{
+      width: min(94vw, 1680px);
+      margin: 0 auto;
+    }
+
+    .identity-hero{
+      position: relative;
+      padding: 10.5rem 0 5rem;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 14% 14%, rgba(186, 201, 100, 0.16), transparent 18%),
+        radial-gradient(circle at 80% 18%, rgba(54, 168, 239, 0.12), transparent 18%),
+        linear-gradient(140deg, rgba(26, 26, 26, 0.90), rgba(33, 33, 33, 0.94)),
+        url("images/darkModeHomeWallpaper.jpg") center center / cover no-repeat;
+    }
+
+    html[data-theme="light"] .identity-hero{
+      background:
+        radial-gradient(circle at 14% 14%, rgba(186, 201, 100, 0.24), transparent 18%),
+        radial-gradient(circle at 80% 18%, rgba(54, 168, 239, 0.20), transparent 18%),
+        linear-gradient(140deg, rgba(249, 246, 238, 0.82), rgba(239, 234, 222, 0.88)),
+        url("images/dayModeHomePageWallpaper1.jpg") center center / cover no-repeat;
+    }
+
+    .identity-hero:before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0.58)),
+        linear-gradient(var(--identity-grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--identity-grid-line) 1px, transparent 1px);
+      background-size: auto, 48px 48px, 48px 48px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.96), rgba(0, 0, 0, 0.30));
+      pointer-events: none;
+    }
+
+    html[data-theme="light"] .identity-hero:before{
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.34)),
+        linear-gradient(var(--identity-grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--identity-grid-line) 1px, transparent 1px);
+      background-size: auto, 48px 48px, 48px 48px;
+    }
+
+    .identity-hero .identity-shell,
+    .identity-section .identity-shell{
+      position: relative;
+      z-index: 1;
+    }
+
+    .identity-grid{
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-banner,
+    .hero-panel,
+    .identity-card,
+    .money-card,
+    .budget-row{
+      position: relative;
+      overflow: hidden;
+      border-radius: 32px;
+      border: 1px solid var(--identity-border);
+      background: linear-gradient(180deg, var(--identity-panel-top), var(--identity-panel-bottom));
+      box-shadow: var(--identity-shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-banner,
+    .hero-panel,
+    .identity-card,
+    .money-card{
+      padding: clamp(1.7rem, 3vw, 2.4rem);
+    }
+
+    .hero-banner:after,
+    .hero-panel:after,
+    .identity-card:after,
+    .money-card:after{
+      content: "";
+      position: absolute;
+      right: -42px;
+      bottom: -48px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(186, 201, 100, 0.18), rgba(186, 201, 100, 0.02) 70%, transparent 74%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .hero-banner{
+      min-height: 460px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-panel{
+      min-height: 460px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-panel:before,
+    .money-card--summary:before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(54, 168, 239, 0.16), transparent 18%),
+        radial-gradient(circle at 20% 86%, rgba(18, 203, 99, 0.12), transparent 18%);
+      pointer-events: none;
+    }
+
+    .hero-panel > *,
+    .money-card--summary > *{
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-kicker,
+    .panel-kicker,
+    .section-kicker,
+    .budget-chip{
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      color: var(--identity-accent);
+      border: 1px solid rgba(186, 201, 100, 0.28);
+      background: rgba(186, 201, 100, 0.08);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .hero-title{
+      font-size: clamp(3rem, 5vw, 5rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin: 1.15rem 0 1rem;
+      font-weight: 200;
+      color: #fff;
+    }
+
+    html[data-theme="light"] .hero-title{
+      color: #151515;
+    }
+
+    .hero-title strong{
+      display: block;
+      font-weight: 700;
+    }
+
+    .hero-copy,
+    .hero-panel-copy,
+    .section-copy,
+    .identity-card-copy,
+    .budget-note,
+    .route-copy{
+      color: var(--identity-muted);
+      font-size: 1.08rem;
+      line-height: 1.85;
+    }
+
+    .hero-copy{
+      max-width: 48rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-metrics,
+    .card-meta{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-metrics{
+      margin-bottom: 1.5rem;
+    }
+
+    .metric-chip,
+    .meta-chip{
+      padding: 0.78rem 1rem;
+      border-radius: 14px;
+      background: var(--identity-chip-bg);
+      border: 1px solid var(--identity-chip-border);
+      color: var(--identity-text);
+      font-weight: 700;
+    }
+
+    .hero-actions .btn,
+    .card-actions .btn{
+      min-width: 180px;
+      margin-right: 12px;
+      margin-bottom: 12px;
+    }
+
+    .hero-panel-date{
+      color: var(--identity-soft);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      margin-top: 0.85rem;
+    }
+
+    .hero-panel h3,
+    .identity-card h3,
+    .money-card h3{
+      font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+      letter-spacing: -0.04em;
+      margin: 0.9rem 0 0.95rem;
+      color: var(--identity-text);
+    }
+
+    .hero-panel-stats{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 1.45rem 0 1.5rem;
+    }
+
+    .hero-panel-stat,
+    .money-summary-tile{
+      border-radius: 18px;
+      padding: 1rem;
+      background: var(--identity-deep-panel);
+      border: 1px solid var(--identity-chip-border);
+    }
+
+    .hero-panel-stat-label,
+    .money-summary-label,
+    .route-label,
+    .budget-stat-label{
+      color: var(--identity-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      margin-bottom: 0.48rem;
+      font-weight: 700;
+    }
+
+    .hero-panel-stat-value,
+    .money-summary-value,
+    .budget-stat-value{
+      font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+      line-height: 1;
+      font-weight: 800;
+      color: var(--identity-accent);
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-panel-stat-sub,
+    .money-summary-sub{
+      color: var(--identity-muted);
+      font-size: 0.92rem;
+      line-height: 1.65;
+      margin-bottom: 0;
+    }
+
+    .route-card{
+      border-radius: 22px;
+      padding: 1.2rem;
+      background: var(--identity-deep-panel);
+      border: 1px solid var(--identity-chip-border);
+    }
+
+    .route-title{
+      font-size: 1.36rem;
+      font-weight: 800;
+      margin-bottom: 0.45rem;
+      color: var(--identity-text);
+    }
+
+    .identity-section{
+      position: relative;
+      padding: 4.8rem 0 1rem;
+    }
+
+    .identity-section--budget{
+      padding-bottom: 4.8rem;
+    }
+
+    .section-intro-modern{
+      max-width: 55rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .section-title{
+      font-size: clamp(2.4rem, 4vw, 4rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      margin: 1rem 0 0.85rem;
+      font-weight: 200;
+      color: var(--identity-text);
+    }
+
+    .section-title strong{
+      font-weight: 700;
+    }
+
+    .identity-card-grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .identity-card{
+      height: 100%;
+    }
+
+    .identity-card-label{
+      color: var(--identity-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-weight: 800;
+      margin-bottom: 0.9rem;
+    }
+
+    .card-list{
+      list-style: none;
+      margin: 1.3rem 0 0;
+      padding: 0;
+    }
+
+    .card-list li{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 0.9rem 0;
+      border-top: 1px solid var(--identity-chip-border);
+      color: var(--identity-muted);
+    }
+
+    .card-list li:first-child{
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .card-list strong{
+      color: var(--identity-text);
+      font-size: 0.98rem;
+    }
+
+    .card-list span{
+      color: var(--identity-soft);
+      text-align: right;
+      white-space: nowrap;
+      font-size: 0.92rem;
+    }
+
+    .card-actions{
+      margin-top: 1.6rem;
+    }
+
+    .money-grid{
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .money-summary{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 1.45rem 0 1.5rem;
+    }
+
+    .allocation-ring-wrap{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1.2rem 0 1.6rem;
+    }
+
+    .allocation-ring{
+      position: relative;
+      width: min(260px, 72vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: conic-gradient(var(--identity-green) 0deg, var(--identity-green) 206deg, rgba(255, 255, 255, 0.12) 206deg, rgba(255, 255, 255, 0.12) 360deg);
+      box-shadow: inset 0 0 0 1px var(--identity-chip-border);
+    }
+
+    .allocation-ring:before{
+      content: "";
+      position: absolute;
+      inset: 18%;
+      border-radius: 50%;
+      background: var(--identity-bg);
+      box-shadow: inset 0 0 0 1px var(--identity-chip-border);
+    }
+
+    .allocation-ring-center{
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1rem;
+      gap: 0.35rem;
+    }
+
+    .allocation-ring-center small{
+      color: var(--identity-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    .allocation-ring-center strong{
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      line-height: 0.95;
+      color: var(--identity-text);
+      letter-spacing: -0.04em;
+    }
+
+    .allocation-ring-center span{
+      color: var(--identity-muted);
+      font-size: 0.82rem;
+      line-height: 1.35;
+      margin-top: 0.15rem;
+      max-width: 64%;
+      text-wrap: balance;
+    }
+
+    .budget-list{
+      display: grid;
+      gap: 14px;
+      margin-top: 1.6rem;
+    }
+
+    .budget-row{
+      padding: 1.1rem 1.15rem;
+      background: linear-gradient(180deg, var(--identity-panel-solid), var(--identity-panel-bottom));
+    }
+
+    .budget-row-head,
+    .budget-row-meta{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .budget-row-head{
+      margin-bottom: 0.42rem;
+    }
+
+    .budget-row-title{
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .budget-row-title strong{
+      color: var(--identity-text);
+      font-size: 1.02rem;
+      font-weight: 800;
+    }
+
+    .budget-row-code{
+      color: var(--identity-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+
+    .budget-row-amount{
+      color: var(--identity-text);
+      font-size: 1rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .budget-row-meta{
+      color: var(--identity-muted);
+      font-size: 0.92rem;
+    }
+
+    .budget-row-meta span:last-child{
+      color: var(--identity-soft);
+      white-space: nowrap;
+    }
+
+    .budget-bar{
+      width: 100%;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--identity-chip-bg);
+      overflow: hidden;
+      margin-top: 0.85rem;
+    }
+
+    .budget-bar-fill{
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--bar-start, var(--identity-accent)), var(--bar-end, var(--identity-blue)));
+      width: 0;
+      transition: width 0.8s ease;
+    }
+
+    .budget-footnote{
+      margin-top: 1.35rem;
+      color: var(--identity-soft);
+      font-size: 0.94rem;
+      line-height: 1.8;
+    }
+
+    .budget-recorder-intro{
+      margin-top: 2.6rem;
+      margin-bottom: 1.4rem;
+      max-width: 52rem;
+    }
+
+    .budget-recorder-title{
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      margin: 1rem 0 0.75rem;
+      font-weight: 700;
+      color: var(--identity-text);
+    }
+
+    .budget-recorder-grid{
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+      margin-top: 1.6rem;
+    }
+
+    .budget-form{
+      margin-top: 1.2rem;
+    }
+
+    .budget-recorder-card{
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top right, rgba(54, 168, 239, 0.14), transparent 24%),
+        radial-gradient(circle at bottom left, rgba(186, 201, 100, 0.12), transparent 24%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03));
+    }
+
+    .budget-recorder-card:before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--identity-grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--identity-grid-line) 1px, transparent 1px);
+      background-size: 24px 24px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    .budget-recorder-head,
+    .budget-month-stage{
+      position: relative;
+      z-index: 1;
+    }
+
+    .budget-recorder-head{
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 1.35rem;
+    }
+
+    .budget-recorder-copy{
+      min-width: 0;
+    }
+
+    .budget-recorder-copy h3{
+      margin-bottom: 0.75rem;
+    }
+
+    .budget-live-board{
+      border-radius: 26px;
+      padding: 1.1rem;
+      background: rgba(10, 10, 10, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    html[data-theme="light"] .budget-live-board{
+      background: rgba(255, 255, 255, 0.70);
+    }
+
+    .budget-live-board-label{
+      display: inline-flex;
+      align-items: center;
+      padding: 0.42rem 0.78rem;
+      border-radius: 999px;
+      background: rgba(18, 203, 99, 0.10);
+      border: 1px solid rgba(18, 203, 99, 0.22);
+      color: var(--identity-green);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.9rem;
+    }
+
+    .budget-live-grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .budget-live-tile{
+      border-radius: 18px;
+      padding: 0.85rem 0.8rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      min-width: 0;
+    }
+
+    .budget-live-tile--month{
+      grid-column: 1 / -1;
+      padding-bottom: 1rem;
+    }
+
+    .budget-live-tile--month strong{
+      font-size: 1.06rem;
+      white-space: normal;
+      text-wrap: balance;
+    }
+
+    html[data-theme="light"] .budget-live-tile{
+      background: rgba(17, 17, 17, 0.03);
+      border-color: rgba(17, 17, 17, 0.07);
+    }
+
+    .budget-live-tile small{
+      display: block;
+      color: var(--identity-soft);
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.45rem;
+    }
+
+    .budget-live-tile strong{
+      display: block;
+      color: var(--identity-text);
+      font-size: 1.08rem;
+      line-height: 1.16;
+      word-break: normal;
+      overflow-wrap: normal;
+      white-space: nowrap;
+    }
+
+    .budget-month-stage{
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, 0.82fr);
+      gap: 16px;
+      align-items: center;
+      padding: 1rem;
+      border-radius: 24px;
+      background: rgba(0, 0, 0, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      margin-bottom: 1.25rem;
+    }
+
+    html[data-theme="light"] .budget-month-stage{
+      background: rgba(255, 255, 255, 0.70);
+    }
+
+    .budget-stage-label{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--identity-accent);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.55rem;
+    }
+
+    .budget-stage-label:before{
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--identity-accent);
+      box-shadow: 0 0 0 8px rgba(186, 201, 100, 0.10);
+    }
+
+    .budget-month-copy strong{
+      display: block;
+      color: var(--identity-text);
+      font-size: 1.1rem;
+      line-height: 1.25;
+      margin-bottom: 0.25rem;
+    }
+
+    .budget-month-copy span{
+      display: block;
+      color: var(--identity-muted);
+      line-height: 1.7;
+      font-size: 0.94rem;
+    }
+
+    .budget-month-field .budget-label{
+      margin-bottom: 0.5rem;
+    }
+
+    .budget-form-grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .budget-field{
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .budget-capture-card{
+      position: relative;
+      padding: 1rem;
+      border-radius: 22px;
+      background: rgba(0, 0, 0, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      overflow: hidden;
+    }
+
+    html[data-theme="light"] .budget-capture-card{
+      background: rgba(255, 255, 255, 0.76);
+      border-color: rgba(17, 17, 17, 0.08);
+    }
+
+    .budget-capture-card:before{
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--capture-start, var(--identity-accent)), var(--capture-end, var(--identity-blue)));
+      opacity: 0.95;
+    }
+
+    .budget-capture-card--b1{
+      --capture-start: #f0b565;
+      --capture-end: #ff8f5a;
+    }
+
+    .budget-capture-card--b2{
+      --capture-start: #d48fff;
+      --capture-end: #8f74ff;
+    }
+
+    .budget-capture-card--h{
+      --capture-start: #36a8ef;
+      --capture-end: #42d2ff;
+    }
+
+    .budget-capture-card--pm{
+      --capture-start: #ff8f5a;
+      --capture-end: #f0b565;
+    }
+
+    .budget-capture-card--s{
+      --capture-start: #12cb63;
+      --capture-end: #77e08c;
+    }
+
+    .budget-capture-card--note{
+      --capture-start: #bac964;
+      --capture-end: #36a8ef;
+    }
+
+    .budget-capture-top{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 0.9rem;
+    }
+
+    .budget-capture-code{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 44px;
+      min-height: 34px;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      color: var(--identity-text);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    html[data-theme="light"] .budget-capture-code{
+      background: rgba(17, 17, 17, 0.04);
+      border-color: rgba(17, 17, 17, 0.08);
+    }
+
+    .budget-capture-hint{
+      color: var(--identity-soft);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      text-align: right;
+    }
+
+    .budget-field--full{
+      grid-column: 1 / -1;
+    }
+
+    .budget-label{
+      color: var(--identity-muted);
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .budget-input,
+    .budget-textarea{
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid var(--identity-chip-border);
+      background: var(--identity-chip-bg);
+      color: var(--identity-text);
+      padding: 0.95rem 1rem;
+      font-size: 1rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .budget-input{
+      min-height: 54px;
+    }
+
+    .budget-input-shell{
+      position: relative;
+    }
+
+    .budget-input-prefix{
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--identity-soft);
+      font-size: 0.92rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      pointer-events: none;
+    }
+
+    .budget-input--amount{
+      padding-left: 3.4rem;
+      font-weight: 700;
+      font-size: 1.02rem;
+    }
+
+    .budget-input[type="month"]{
+      color-scheme: dark;
+    }
+
+    html[data-theme="light"] .budget-input[type="month"]{
+      color-scheme: light;
+    }
+
+    .budget-textarea{
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .budget-input:focus,
+    .budget-textarea:focus{
+      outline: none;
+      border-color: rgba(186, 201, 100, 0.42);
+      box-shadow: 0 0 0 0.22rem rgba(186, 201, 100, 0.14);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    html[data-theme="light"] .budget-input:focus,
+    html[data-theme="light"] .budget-textarea:focus{
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    .budget-form-actions{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 1.3rem;
+    }
+
+    .budget-form-actions .btn{
+      min-width: 170px;
+      margin-right: 0;
+      margin-bottom: 0;
+    }
+
+    .budget-form-status{
+      min-height: 24px;
+      margin-top: 0.9rem;
+      margin-bottom: 0;
+      color: var(--identity-muted);
+      font-size: 0.94rem;
+    }
+
+    .budget-form-status.is-error{
+      color: #ff8f8f;
+    }
+
+    .budget-form-status.is-success{
+      color: var(--identity-green);
+    }
+
+    .budget-capture-note{
+      display: block;
+      margin-top: 0.75rem;
+      color: var(--identity-soft);
+      font-size: 0.84rem;
+      line-height: 1.6;
+    }
+
+    .budget-history-meta{
+      margin-top: 1.2rem;
+      border-radius: 18px;
+      padding: 1rem 1.1rem;
+      background: var(--identity-deep-panel);
+      border: 1px solid var(--identity-chip-border);
+      color: var(--identity-muted);
+      line-height: 1.75;
+    }
+
+    .budget-history-list{
+      display: grid;
+      gap: 16px;
+      margin-top: 1.3rem;
+    }
+
+    .budget-history-item{
+      border-radius: 22px;
+      padding: 1.15rem;
+      background: linear-gradient(180deg, var(--identity-panel-solid), var(--identity-panel-bottom));
+      border: 1px solid var(--identity-chip-border);
+    }
+
+    .budget-history-top{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 0.9rem;
+    }
+
+    .budget-history-month{
+      color: var(--identity-text);
+      font-size: 1.08rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 0.2rem;
+    }
+
+    .budget-history-saved{
+      color: var(--identity-soft);
+      font-size: 0.84rem;
+    }
+
+    .budget-history-total{
+      color: var(--identity-accent);
+      font-size: 1.02rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .budget-history-chips,
+    .budget-history-breakdown{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .budget-history-chips{
+      margin-bottom: 0.9rem;
+    }
+
+    .budget-history-chip,
+    .budget-history-breakdown span{
+      border-radius: 999px;
+      padding: 0.5rem 0.85rem;
+      background: var(--identity-chip-bg);
+      border: 1px solid var(--identity-chip-border);
+      color: var(--identity-muted);
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .budget-history-breakdown span{
+      color: var(--identity-text);
+    }
+
+    .budget-history-note{
+      margin: 0.95rem 0 0;
+      color: var(--identity-muted);
+      line-height: 1.75;
+      font-size: 0.95rem;
+    }
+
+    .budget-history-actions{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 1rem;
+    }
+
+    .budget-mini-btn{
+      border: 1px solid var(--identity-chip-border);
+      background: transparent;
+      color: var(--identity-text);
+      border-radius: 999px;
+      padding: 0.55rem 0.95rem;
+      font-size: 0.86rem;
+      font-weight: 700;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .budget-mini-btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(186, 201, 100, 0.36);
+      background: rgba(186, 201, 100, 0.08);
+    }
+
+    .budget-mini-btn--danger:hover{
+      border-color: rgba(255, 143, 143, 0.42);
+      background: rgba(255, 143, 143, 0.10);
+    }
+
+    .budget-empty{
+      margin-top: 1.15rem;
+      border-radius: 18px;
+      padding: 1rem 1.1rem;
+      background: var(--identity-deep-panel);
+      border: 1px dashed var(--identity-chip-border);
+      color: var(--identity-soft);
+      line-height: 1.75;
+    }
+
+    .reveal-up{
+      opacity: 0;
+      transform: translateY(34px);
+      transition: opacity 0.68s ease, transform 0.68s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-up.is-visible{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 991.98px){
+      .identity-hero{
+        padding-top: 9rem;
+      }
+
+      .identity-grid,
+      .money-grid,
+      .identity-card-grid,
+      .budget-recorder-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .budget-recorder-head,
+      .budget-month-stage{
+        grid-template-columns: 1fr;
+      }
+
+      .hero-banner,
+      .hero-panel{
+        min-height: 0;
+      }
+    }
+
+    @media (max-width: 767.98px){
+      .identity-hero{
+        padding: 8rem 0 4rem;
+      }
+
+      .hero-title{
+        font-size: 2.55rem;
+      }
+
+      .hero-panel-stats,
+      .money-summary,
+      .budget-form-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .budget-live-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .budget-row-head,
+      .budget-row-meta,
+      .card-list li{
+        display: block;
+      }
+
+      .budget-row-amount,
+      .budget-row-meta span:last-child,
+      .card-list span{
+        display: block;
+        margin-top: 0.35rem;
+        text-align: left;
+      }
+
+      .hero-actions .btn,
+      .card-actions .btn,
+      .budget-form-actions .btn{
+        min-width: 0;
+        width: 100%;
+        margin-right: 0;
+      }
+
+      .budget-history-top{
+        display: block;
+      }
+
+      .budget-history-total{
+        display: block;
+        margin-top: 0.45rem;
+        white-space: normal;
+      }
+
+      .budget-live-tile strong{
+        font-size: 1rem;
+      }
+
+      .budget-live-tile--month{
+        grid-column: 1 / -1;
+      }
+    }
+  </style>
 </head>
-<body>
-    <footer class="site-footer">
-      <div class="container">
-        <div class="row mb-5">
-          <p class="col-12 text-center">
-            Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
-          </p>
-        </div>
-        <div class="row mb-5">
-          <div class="col-md-12 text-center">
-            <p>
-              <a href="https://www.facebook.com/m14chaitanya" class="social-item"><span class="icon-facebook2"></span></a>
-              <a href="#" class="social-item"><span class="icon-twitter"></span></a>
-              <a href="https://www.instagram.com/m17chaitanya/" class="social-item"><span class="icon-instagram2"></span></a>
-              <a href="https://www.linkedin.com/in/manuchaitanya/" class="social-item"><span class="icon-linkedin2"></span></a>
+<body data-spy="scroll" data-target="#pb-navbar" data-offset="200">
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsIdentity" aria-controls="navbarsIdentity" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbarsIdentity">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="index.html#section-services">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#section-home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-identity">Overview</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-capstone">CRW-II and FTE</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-budget">Monthly Budget</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="identity-hero" id="section-identity">
+    <div class="identity-shell">
+      <div class="identity-grid">
+        <div class="hero-banner reveal-up">
+          <div>
+            <span class="hero-kicker">Identity Layer</span>
+            <h1 class="hero-title">What I Repeat <strong>Becomes Me</strong></h1>
+            <p class="hero-copy">
+              Identity here is not just biography. It is the set of systems I keep live at the same time: professional execution through CRW-II, academic revision through FTE Capstone, and financial discipline through a fixed monthly allocation.
             </p>
+            <div class="hero-metrics">
+              <div class="metric-chip">Crowe Work Track</div>
+              <div class="metric-chip">Academic Revision Track</div>
+              <div class="metric-chip">Monthly Budget System</div>
+              <div class="metric-chip">Savings-First Planning</div>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#section-capstone" class="btn btn-primary px-4 py-3">Open Identity Tracks</a>
+            <a href="#section-budget" class="btn btn-secondary px-4 py-3">View Monthly Budget</a>
           </div>
         </div>
+
+        <aside class="hero-panel reveal-up">
+          <div>
+            <div class="panel-kicker">Current Anchors</div>
+            <div class="hero-panel-date">Today - <span id="identityTodayLabel">-</span></div>
+            <h3>Identity stays strongest when the systems stay visible.</h3>
+            <p class="hero-panel-copy">
+              The page brings three live anchors into one place: CRW-II as the work-side track placeholder, FTE Capstone as the academic revision track, and the monthly money plan that protects stability through clear allocations.
+            </p>
+          </div>
+
+          <div class="hero-panel-stats">
+            <div class="hero-panel-stat">
+              <div class="hero-panel-stat-label">Active Tracks</div>
+              <div class="hero-panel-stat-value">2</div>
+              <div class="hero-panel-stat-sub">CRW-II and FTE Capstone running in parallel.</div>
+            </div>
+            <div class="hero-panel-stat">
+              <div class="hero-panel-stat-label">Monthly Savings</div>
+              <div class="hero-panel-stat-value" id="heroSavingsFigure">Rs. 0</div>
+              <div class="hero-panel-stat-sub">Protected first, before discretionary drift.</div>
+            </div>
+            <div class="hero-panel-stat">
+              <div class="hero-panel-stat-label">Expense Buckets</div>
+              <div class="hero-panel-stat-value" id="heroExpenseBuckets">0</div>
+              <div class="hero-panel-stat-sub">Bills, home, and pocket money tracked explicitly.</div>
+            </div>
+            <div class="hero-panel-stat">
+              <div class="hero-panel-stat-label">Savings Rate</div>
+              <div class="hero-panel-stat-value" id="heroSavingsRate">0%</div>
+              <div class="hero-panel-stat-sub">Share of the total monthly allocation.</div>
+            </div>
+          </div>
+
+          <div class="route-card">
+            <div class="route-label">Identity Formula</div>
+            <div class="route-title">Work with intent, study with structure, allocate cleanly.</div>
+            <p class="route-copy">
+              CRW-II holds the professional side, FTE Capstone sharpens the academic side, and budgeting keeps the foundation stable enough to support both.
+            </p>
+          </div>
+        </aside>
       </div>
-    </footer>
+    </div>
+  </section>
+
+  <section class="site-section identity-section" id="section-capstone">
+    <div class="identity-shell">
+      <div class="section-intro-modern reveal-up">
+        <div class="section-kicker">Parallel Tracks</div>
+        <h2 class="section-title">CRW-II and  <strong>FTE Capstone</strong></h2>
+        <p class="section-copy">
+          Identity now carries two linked tracks in one section. CRW-II reserves the professional-side page for the next Crowe phase, while FTE Capstone continues to hold the academic revision and placement-preparation stream running beside it.
+        </p>
+      </div>
+
+      <div class="identity-card-grid">
+        <article class="identity-card reveal-up">
+          <div class="identity-card-label">Track 01</div>
+          <h3>CRW-II</h3>
+          <p class="identity-card-copy">
+            CRW-II is now attached here as the professional-side track that will sit beside the academic capstone. For now the page is intentionally blank, but the route is in place so Identity already reflects both parallel lanes.
+          </p>
+          <div class="card-meta mt-4">
+            <div class="meta-chip">Crowe Horwath</div>
+            <div class="meta-chip">Professional Track</div>
+            <div class="meta-chip">Placeholder Page</div>
+            <div class="meta-chip">Parallel to FTE</div>
+          </div>
+          <div class="card-actions">
+            <a href="crw-ii.html" class="btn btn-primary px-4 py-3">Open CRW-II</a>
+          </div>
+        </article>
+
+        <article class="identity-card reveal-up">
+          <div class="identity-card-label">Track 02</div>
+          <h3>FTE Capstone</h3>
+          <p class="identity-card-copy">
+            ECSE743L - FTE Capstone continues as a structured four-module track reconnecting programming, OOP, DSA, DBMS, Computer Networks, and the System Design runway into one placement-oriented academic stream.
+          </p>
+          <div class="card-meta mt-4">
+            <div class="meta-chip">4 Modules</div>
+            <div class="meta-chip">26-Week Track</div>
+            <div class="meta-chip">5 Credits</div>
+            <div class="meta-chip">Placement-Oriented</div>
+          </div>
+          <div class="card-actions">
+            <a href="seventhSemester-fte-capstone.html" class="btn btn-primary px-4 py-3">Open FTE Capstone</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section identity-section identity-section--budget" id="section-budget">
+    <div class="identity-shell">
+      <div class="section-intro-modern reveal-up">
+        <div class="section-kicker">Financial Anchor</div>
+        <h2 class="section-title">Monthly Expenditure <strong>&amp; Savings</strong></h2>
+        <p class="section-copy">
+          This section stores the current monthly allocation in one place and reflects how the money is split across fixed bills, home responsibilities, personal pocket money, and protected savings.
+        </p>
+      </div>
+
+      <div class="money-grid">
+        <article class="money-card reveal-up">
+          <div class="budget-chip" id="budgetMonthLabel">Monthly Allocation</div>
+          <h3>Budget Buckets</h3>
+          <p class="budget-note">
+            Every bucket below is rendered from a single budget object, which makes the section easy to maintain when the monthly plan changes.
+          </p>
+          <div class="budget-list" id="budgetBreakdown"></div>
+          <p class="budget-footnote" id="budgetFootnote">
+            Savings is being treated as a first-class allocation, not as whatever remains after spending.
+          </p>
+        </article>
+
+        <aside class="money-card money-card--summary reveal-up">
+          <div>
+            <div class="panel-kicker">Budget Snapshot</div>
+            <div class="hero-panel-date" id="budgetSnapshotDate">Template - Current Plan</div>
+            <h3>One monthly plan, two clear outcomes.</h3>
+            <p class="budget-note">
+              The full allocation keeps daily life funded while still preserving a strong savings-first posture. Expenses stay visible, and savings stays intentional.
+            </p>
+          </div>
+
+          <div class="money-summary">
+            <div class="money-summary-tile">
+              <div class="money-summary-label">Total Allocation</div>
+              <div class="money-summary-value" id="totalAllocation">Rs. 0</div>
+              <p class="money-summary-sub">Complete monthly plan across expenses and savings.</p>
+            </div>
+            <div class="money-summary-tile">
+              <div class="money-summary-label">Expense Budget</div>
+              <div class="money-summary-value" id="expenseAllocation">Rs. 0</div>
+              <p class="money-summary-sub">All non-savings monthly buckets combined.</p>
+            </div>
+            <div class="money-summary-tile">
+              <div class="money-summary-label">Savings Budget</div>
+              <div class="money-summary-value" id="savingsAllocation">Rs. 0</div>
+              <p class="money-summary-sub">Protected reserve planned for the month.</p>
+            </div>
+            <div class="money-summary-tile">
+              <div class="money-summary-label">Savings Edge</div>
+              <div class="money-summary-value" id="savingsEdge">Rs. 0</div>
+              <p class="money-summary-sub">How much savings exceeds total expense allocation.</p>
+            </div>
+          </div>
+
+          <div class="allocation-ring-wrap">
+            <div class="allocation-ring" id="allocationRing">
+              <div class="allocation-ring-center">
+                <small>Savings Rate</small>
+                <strong id="allocationRate">0%</strong>
+                <span id="allocationRateNote">0 of total plan</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="route-card">
+            <div class="route-label">Allocation Insight</div>
+            <div class="route-title" id="budgetInsightTitle">Savings-First Structure</div>
+            <p class="route-copy" id="budgetInsightCopy">
+              The monthly plan keeps savings explicit and measurable, which makes the rest of the spending easier to evaluate.
+            </p>
+          </div>
+        </aside>
+      </div>
+
+      <div class="budget-recorder-intro reveal-up">
+        <div class="section-kicker">Month-End Recorder</div>
+        <h3 class="budget-recorder-title">Record the actual month-end numbers.</h3>
+        <p class="budget-note">
+          Use this section at the end of each month to save what went into `B1`, `B2`, `Home`, `Pocket Money`, and `Savings`. Each month is stored in this browser, and saving the same month again updates that record instead of duplicating it.
+        </p>
+      </div>
+
+      <div class="budget-recorder-grid">
+        <article class="money-card budget-recorder-card reveal-up">
+          <div class="budget-recorder-head">
+            <div class="budget-recorder-copy">
+              <div class="panel-kicker">Month-End Studio</div>
+              <h3>Shape the snapshot from the inputs.</h3>
+              <p class="budget-note">
+                This recorder now works like a live composition surface. As you change a month or any amount, the `Budget Snapshot` updates immediately above.
+              </p>
+            </div>
+
+            <div class="budget-live-board">
+              <div class="budget-live-board-label">Live Preview</div>
+              <div class="budget-live-grid">
+                <div class="budget-live-tile budget-live-tile--month">
+                  <small>Month</small>
+                  <strong id="livePreviewMonth">-</strong>
+                </div>
+                <div class="budget-live-tile">
+                  <small>Expenses</small>
+                  <strong id="liveExpensePreview">Rs. 0</strong>
+                </div>
+                <div class="budget-live-tile">
+                  <small>Savings Rate</small>
+                  <strong id="liveRatePreview">0%</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <form class="budget-form" id="monthlyBudgetForm">
+            <div class="budget-month-stage">
+              <div class="budget-month-copy">
+                <div class="budget-stage-label">Recording Window</div>
+                <strong>Choose the month you are closing.</strong>
+                <span>The snapshot above mirrors the numbers in this form, so you can see the month-end picture before saving it.</span>
+              </div>
+
+              <div class="budget-month-field">
+                <label class="budget-label" for="budgetMonthInput">Month</label>
+                <input class="budget-input" id="budgetMonthInput" name="month" type="month" required>
+              </div>
+            </div>
+
+            <div class="budget-form-grid">
+              <div class="budget-field budget-capture-card budget-capture-card--b1">
+                <div class="budget-capture-top">
+                  <span class="budget-capture-code">B1</span>
+                  <span class="budget-capture-hint">Fixed bill</span>
+                </div>
+                <label class="budget-label" for="budgetB1Input">Bill-1 (B1)</label>
+                <div class="budget-input-shell">
+                  <span class="budget-input-prefix">Rs.</span>
+                  <input class="budget-input budget-input--amount" id="budgetB1Input" name="B1" type="number" min="0" step="1" required>
+                </div>
+                <span class="budget-capture-note">Template anchor: Rs. 6,000</span>
+              </div>
+
+              <div class="budget-field budget-capture-card budget-capture-card--b2">
+                <div class="budget-capture-top">
+                  <span class="budget-capture-code">B2</span>
+                  <span class="budget-capture-hint">Fixed bill</span>
+                </div>
+                <label class="budget-label" for="budgetB2Input">Bill-2 (B2)</label>
+                <div class="budget-input-shell">
+                  <span class="budget-input-prefix">Rs.</span>
+                  <input class="budget-input budget-input--amount" id="budgetB2Input" name="B2" type="number" min="0" step="1" required>
+                </div>
+                <span class="budget-capture-note">Template anchor: Rs. 4,000</span>
+              </div>
+
+              <div class="budget-field budget-capture-card budget-capture-card--h">
+                <div class="budget-capture-top">
+                  <span class="budget-capture-code">H</span>
+                  <span class="budget-capture-hint">Home support</span>
+                </div>
+                <label class="budget-label" for="budgetHInput">Home (H)</label>
+                <div class="budget-input-shell">
+                  <span class="budget-input-prefix">Rs.</span>
+                  <input class="budget-input budget-input--amount" id="budgetHInput" name="H" type="number" min="0" step="1" required>
+                </div>
+                <span class="budget-capture-note">Template anchor: Rs. 10,000</span>
+              </div>
+
+              <div class="budget-field budget-capture-card budget-capture-card--pm">
+                <div class="budget-capture-top">
+                  <span class="budget-capture-code">PM</span>
+                  <span class="budget-capture-hint">Personal spend</span>
+                </div>
+                <label class="budget-label" for="budgetPMInput">Pocket Money (PM)</label>
+                <div class="budget-input-shell">
+                  <span class="budget-input-prefix">Rs.</span>
+                  <input class="budget-input budget-input--amount" id="budgetPMInput" name="PM" type="number" min="0" step="1" required>
+                </div>
+                <span class="budget-capture-note">Template anchor: Rs. 6,000</span>
+              </div>
+
+              <div class="budget-field budget-field--full budget-capture-card budget-capture-card--s">
+                <div class="budget-capture-top">
+                  <span class="budget-capture-code">S</span>
+                  <span class="budget-capture-hint">Protected reserve</span>
+                </div>
+                <label class="budget-label" for="budgetSInput">Savings (S)</label>
+                <div class="budget-input-shell">
+                  <span class="budget-input-prefix">Rs.</span>
+                  <input class="budget-input budget-input--amount" id="budgetSInput" name="S" type="number" min="0" step="1" required>
+                </div>
+                <span class="budget-capture-note">Template anchor: Rs. 34,832</span>
+              </div>
+
+              <div class="budget-field budget-field--full budget-capture-card budget-capture-card--note">
+                <div class="budget-capture-top">
+                  <span class="budget-capture-code">Note</span>
+                  <span class="budget-capture-hint">Month context</span>
+                </div>
+                <label class="budget-label" for="budgetNoteInput">Month-End Note</label>
+                <textarea class="budget-textarea" id="budgetNoteInput" name="note" placeholder="Optional note for this month: what changed, what went well, what to watch next month."></textarea>
+                <span class="budget-capture-note">Keep a short reason if one category changed sharply from the template.</span>
+              </div>
+            </div>
+
+            <div class="budget-form-actions">
+              <button class="btn btn-primary px-4 py-3" type="submit">Save Month-End Entry</button>
+              <button class="btn btn-secondary px-4 py-3" id="budgetFormResetBtn" type="button">Reset Form</button>
+            </div>
+            <p class="budget-form-status" id="budgetFormStatus" aria-live="polite"></p>
+          </form>
+        </article>
+
+        <aside class="money-card reveal-up">
+          <div class="panel-kicker">Saved History</div>
+          <h3>Month-End Records</h3>
+          <p class="budget-note">
+            Your saved entries stay visible here. Use `Load` to bring a month back into the form for editing, or `Delete` to remove it from the browser.
+          </p>
+
+          <div class="budget-history-meta" id="budgetHistoryMeta">
+            No month-end records saved yet. Your first saved entry will appear here and the latest month will also feed the snapshot above.
+          </div>
+
+          <div class="budget-history-list" id="budgetHistoryList"></div>
+          <div class="budget-empty" id="budgetHistoryEmpty">
+            No month-end entries yet. Save your first month to start building the record.
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+
+      <div class="row mb-5">
+        <div class="col-md-12 text-center">
+          <p>
+            <a href="https://www.facebook.com/m14chaitanya" class="social-item"><span class="icon-facebook2"></span></a>
+            <a href="#" class="social-item"><span class="icon-twitter"></span></a>
+            <a href="https://www.instagram.com/m17chaitanya/" class="social-item"><span class="icon-instagram2"></span></a>
+            <a href="https://www.linkedin.com/in/manuchaitanya/" class="social-item"><span class="icon-linkedin2"></span></a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/vendor/popper.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/vendor/jquery.easing.1.3.js"></script>
+  <script src="js/vendor/jquery.stellar.min.js"></script>
+  <script src="js/vendor/jquery.waypoints.min.js"></script>
+  <script src="js/custom.js"></script>
   <script src="js/home-page-system.js"></script>
+  <script>
+    (function(){
+      var BUDGET_RECORDS_STORAGE_KEY = "identity-month-end-records-v1";
+      var monthlyBudgetPlan = {
+        label: "Current Monthly Allocation",
+        categories: [
+          { code: "B1", title: "Bill-1", amount: 6000, kind: "expense", shareLabel: "Fixed bill budget", colors: ["#f0b565", "#ff8f5a"] },
+          { code: "B2", title: "Bill-2", amount: 4000, kind: "expense", shareLabel: "Fixed bill budget", colors: ["#d48fff", "#8f74ff"] },
+          { code: "H", title: "Home", amount: 10000, kind: "expense", shareLabel: "Home contribution", colors: ["#36a8ef", "#42d2ff"] },
+          { code: "PM", title: "Pocket Money", amount: 6000, kind: "expense", shareLabel: "Personal day-to-day budget", colors: ["#ff8f5a", "#f0b565"] },
+          { code: "S", title: "Savings", amount: 34832, kind: "savings", shareLabel: "Protected monthly reserve", colors: ["#12cb63", "#77e08c"] }
+        ]
+      };
+
+      function formatCurrency(value){
+        return "Rs. " + value.toLocaleString("en-IN");
+      }
+
+      function formatPercent(value){
+        return value.toFixed(1) + "%";
+      }
+
+      function setText(id, value){
+        var node = document.getElementById(id);
+        if(node) node.textContent = value;
+      }
+
+      function escapeHtml(value){
+        return String(value).replace(/[&<>"']/g, function(char){
+          return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+          }[char];
+        });
+      }
+
+      function getMonthLabel(monthValue){
+        if(!monthValue || !/^\d{4}-\d{2}$/.test(monthValue)) return "Unknown month";
+        var parts = monthValue.split("-");
+        var date = new Date(Number(parts[0]), Number(parts[1]) - 1, 1);
+        return date.toLocaleDateString("en-IN", {
+          month: "long",
+          year: "numeric"
+        });
+      }
+
+      function getCurrentMonthValue(){
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = String(now.getMonth() + 1).padStart(2, "0");
+        return year + "-" + month;
+      }
+
+      function getTemplateEntries(){
+        return monthlyBudgetPlan.categories.reduce(function(result, item){
+          result[item.code] = item.amount;
+          return result;
+        }, {});
+      }
+
+      function getCategoryByCode(code){
+        return monthlyBudgetPlan.categories.find(function(item){
+          return item.code === code;
+        });
+      }
+
+      function calculateBudgetStats(entries){
+        var expenseCount = 0;
+        var expenses = 0;
+        var savings = 0;
+
+        monthlyBudgetPlan.categories.forEach(function(item){
+          var amount = Number(entries[item.code]) || 0;
+          if(item.kind === "savings"){
+            savings += amount;
+            return;
+          }
+          expenseCount += 1;
+          expenses += amount;
+        });
+
+        var total = expenses + savings;
+        var savingsRate = total ? (savings / total) * 100 : 0;
+
+        return {
+          total: total,
+          expenses: expenses,
+          savings: savings,
+          savingsRate: savingsRate,
+          savingsEdge: savings - expenses,
+          expenseCount: expenseCount
+        };
+      }
+
+      function readBudgetRecords(){
+        try {
+          var raw = localStorage.getItem(BUDGET_RECORDS_STORAGE_KEY);
+          if(!raw) return [];
+          var parsed = JSON.parse(raw);
+          if(!Array.isArray(parsed)) return [];
+
+          return parsed
+            .filter(function(record){
+              return record &&
+                typeof record.month === "string" &&
+                record.entries &&
+                typeof record.entries === "object";
+            })
+            .map(function(record){
+              var cleanEntries = {};
+              monthlyBudgetPlan.categories.forEach(function(item){
+                var rawAmount = Number(record.entries[item.code]);
+                cleanEntries[item.code] = Number.isFinite(rawAmount) && rawAmount >= 0 ? rawAmount : 0;
+              });
+
+              return {
+                month: record.month,
+                note: typeof record.note === "string" ? record.note : "",
+                savedAt: typeof record.savedAt === "string" ? record.savedAt : new Date().toISOString(),
+                entries: cleanEntries
+              };
+            });
+        } catch (error) {
+          return [];
+        }
+      }
+
+      function writeBudgetRecords(records){
+        try {
+          localStorage.setItem(BUDGET_RECORDS_STORAGE_KEY, JSON.stringify(records));
+        } catch (error) {}
+      }
+
+      function sortRecordsByMonth(records){
+        return records.slice().sort(function(a, b){
+          return b.month.localeCompare(a.month);
+        });
+      }
+
+      function setBudgetFormStatus(message, type){
+        var status = document.getElementById("budgetFormStatus");
+        if(!status) return;
+        status.textContent = message || "";
+        status.classList.remove("is-error", "is-success");
+        if(type === "error") status.classList.add("is-error");
+        if(type === "success") status.classList.add("is-success");
+      }
+
+      function getBudgetPreviewRecordFromForm(){
+        var monthInput = document.getElementById("budgetMonthInput");
+        var noteInput = document.getElementById("budgetNoteInput");
+        var entries = {};
+
+        monthlyBudgetPlan.categories.forEach(function(item){
+          var input = document.getElementById("budget" + item.code + "Input");
+          var value = input ? Number(input.value) : NaN;
+          entries[item.code] = Number.isFinite(value) && value >= 0 ? value : 0;
+        });
+
+        return {
+          month: monthInput && monthInput.value ? monthInput.value : getCurrentMonthValue(),
+          note: noteInput ? noteInput.value.trim() : "",
+          entries: entries
+        };
+      }
+
+      function renderBudgetTemplate(){
+        var templateEntries = getTemplateEntries();
+        var stats = calculateBudgetStats(templateEntries);
+        var total = monthlyBudgetPlan.categories.reduce(function(sum, item){ return sum + item.amount; }, 0);
+        var expenses = stats.expenses;
+        var budgetBreakdown = document.getElementById("budgetBreakdown");
+
+        if (budgetBreakdown) {
+          budgetBreakdown.innerHTML = "";
+          monthlyBudgetPlan.categories.forEach(function(item){
+            var shareOfTotal = total ? (item.amount / total) * 100 : 0;
+            var shareOfType = item.kind === "expense" && expenses ? (item.amount / expenses) * 100 : shareOfTotal;
+            var kindLabel = item.kind === "savings" ? "Share of total plan" : "Share of expense budget";
+            var row = document.createElement("article");
+            row.className = "budget-row";
+            row.innerHTML = [
+              '<div class="budget-row-head">',
+              '  <div class="budget-row-title">',
+              '    <span class="budget-row-code">' + item.code + '</span>',
+              '    <strong>' + item.title + '</strong>',
+              '  </div>',
+              '  <div class="budget-row-amount">' + formatCurrency(item.amount) + '</div>',
+              '</div>',
+              '<div class="budget-row-meta">',
+              '  <span>' + item.shareLabel + '</span>',
+              '  <span>' + kindLabel + ': ' + formatPercent(shareOfType) + '</span>',
+              '</div>',
+              '<div class="budget-bar">',
+              '  <span class="budget-bar-fill" style="width:' + shareOfTotal.toFixed(1) + '%; --bar-start:' + item.colors[0] + '; --bar-end:' + item.colors[1] + ';"></span>',
+              '</div>'
+            ].join("");
+            budgetBreakdown.appendChild(row);
+          });
+        }
+
+        setText("budgetMonthLabel", monthlyBudgetPlan.label);
+        setText("budgetFootnote", "This is the standing template. Use the month-end recorder below to save the actual numbers for each month.");
+      }
+
+      function updateBudgetSnapshot(record, options){
+        var snapshotOptions = options || {};
+        var templateEntries = getTemplateEntries();
+        var isSavedRecord = !!record;
+        var entries = isSavedRecord ? record.entries : templateEntries;
+        var stats = calculateBudgetStats(entries);
+        var snapshotLabel = snapshotOptions.label || (isSavedRecord ? "Latest record - " + getMonthLabel(record.month) : "Template - Current Plan");
+
+        setText("budgetSnapshotDate", snapshotLabel);
+        setText("heroSavingsFigure", formatCurrency(stats.savings));
+        setText("heroExpenseBuckets", String(stats.expenseCount));
+        setText("heroSavingsRate", formatPercent(stats.savingsRate));
+        setText("totalAllocation", formatCurrency(stats.total));
+        setText("expenseAllocation", formatCurrency(stats.expenses));
+        setText("savingsAllocation", formatCurrency(stats.savings));
+        setText("savingsEdge", formatCurrency(stats.savingsEdge));
+        setText("allocationRate", formatPercent(stats.savingsRate));
+        setText("allocationRateNote", formatCurrency(stats.savings) + " of " + formatCurrency(stats.total));
+
+        var ring = document.getElementById("allocationRing");
+        if (ring) {
+          ring.style.background = "conic-gradient(var(--identity-green) 0deg, var(--identity-green) " +
+            (stats.savingsRate * 3.6).toFixed(1) + "deg, rgba(255, 255, 255, 0.12) " +
+            (stats.savingsRate * 3.6).toFixed(1) + "deg, rgba(255, 255, 255, 0.12) 360deg)";
+        }
+
+        setText("budgetInsightTitle", stats.savingsRate >= 50 ? "Savings-First Structure." : "Expense-Led Structure");
+        setText(
+          "budgetInsightCopy",
+          "Savings is carrying " + formatPercent(stats.savingsRate) + " of the full monthly allocation, while expenses account for " +
+          formatPercent(100 - stats.savingsRate) + ". That keeps the reserve visible instead of accidental."
+        );
+      }
+
+      function syncBudgetPreviewFromForm(mode){
+        var previewRecord = getBudgetPreviewRecordFromForm();
+        var stats = calculateBudgetStats(previewRecord.entries);
+        var monthLabel = getMonthLabel(previewRecord.month);
+        var labelPrefix = mode === "saved" ? "Saved record" : mode === "loaded" ? "Loaded month" : "Live preview";
+
+        setText("livePreviewMonth", monthLabel);
+        setText("liveExpensePreview", formatCurrency(stats.expenses));
+        setText("liveRatePreview", formatPercent(stats.savingsRate));
+
+        updateBudgetSnapshot(previewRecord, {
+          label: labelPrefix + " - " + monthLabel
+        });
+      }
+
+      function initDateLabel(){
+        var label = new Date().toLocaleDateString("en-IN", {
+          weekday: "long",
+          day: "numeric",
+          month: "long",
+          year: "numeric"
+        });
+        setText("identityTodayLabel", label);
+      }
+
+      function resetBudgetForm(targetMonth, options){
+        var resetOptions = options || {};
+        var templateEntries = getTemplateEntries();
+        var monthInput = document.getElementById("budgetMonthInput");
+        var noteInput = document.getElementById("budgetNoteInput");
+
+        if(monthInput) monthInput.value = targetMonth || getCurrentMonthValue();
+        monthlyBudgetPlan.categories.forEach(function(item){
+          var input = document.getElementById("budget" + item.code + "Input");
+          if(input) input.value = templateEntries[item.code];
+        });
+        if(noteInput) noteInput.value = "";
+        syncBudgetPreviewFromForm(resetOptions.previewMode || "editing");
+        if(!resetOptions.silentStatus){
+          setBudgetFormStatus("Form reset to the current template.", "success");
+        }
+      }
+
+      function fillBudgetForm(record, options){
+        var fillOptions = options || {};
+        if(!record) return;
+
+        var monthInput = document.getElementById("budgetMonthInput");
+        var noteInput = document.getElementById("budgetNoteInput");
+        if(monthInput) monthInput.value = record.month;
+        if(noteInput) noteInput.value = record.note || "";
+
+        monthlyBudgetPlan.categories.forEach(function(item){
+          var input = document.getElementById("budget" + item.code + "Input");
+          if(input) input.value = record.entries[item.code];
+        });
+
+        syncBudgetPreviewFromForm(fillOptions.previewMode || "loaded");
+        if(!fillOptions.silentStatus){
+          setBudgetFormStatus(getMonthLabel(record.month) + " loaded into the form for editing.", "success");
+        }
+      }
+
+      function readBudgetRecordFromForm(){
+        var monthInput = document.getElementById("budgetMonthInput");
+        var noteInput = document.getElementById("budgetNoteInput");
+        var month = monthInput ? monthInput.value : "";
+
+        if(!month){
+          setBudgetFormStatus("Please select a month before saving the entry.", "error");
+          return null;
+        }
+
+        var entries = {};
+        var hasInvalidAmount = false;
+
+        monthlyBudgetPlan.categories.forEach(function(item){
+          var input = document.getElementById("budget" + item.code + "Input");
+          var value = input ? Number(input.value) : NaN;
+          if(!Number.isFinite(value) || value < 0){
+            hasInvalidAmount = true;
+            return;
+          }
+          entries[item.code] = value;
+        });
+
+        if(hasInvalidAmount){
+          setBudgetFormStatus("Please enter valid non-negative amounts for every category.", "error");
+          return null;
+        }
+
+        return {
+          month: month,
+          note: noteInput ? noteInput.value.trim() : "",
+          savedAt: new Date().toISOString(),
+          entries: entries
+        };
+      }
+
+      function renderBudgetHistory(records){
+        var historyList = document.getElementById("budgetHistoryList");
+        var historyEmpty = document.getElementById("budgetHistoryEmpty");
+        var historyMeta = document.getElementById("budgetHistoryMeta");
+        var sortedRecords = sortRecordsByMonth(records);
+        var latestRecord = sortedRecords[0] || null;
+
+        if(historyList){
+          historyList.innerHTML = "";
+        }
+
+        if(historyMeta){
+          if(latestRecord){
+            historyMeta.textContent = sortedRecords.length + " saved " + (sortedRecords.length === 1 ? "month" : "months") +
+              ". Latest record: " + getMonthLabel(latestRecord.month) + ".";
+          } else {
+            historyMeta.textContent = "No month-end records saved yet. Your first saved entry will appear here and the latest month will also feed the snapshot above.";
+          }
+        }
+
+        if(historyEmpty){
+          historyEmpty.style.display = sortedRecords.length ? "none" : "block";
+        }
+
+        if(historyList){
+          sortedRecords.forEach(function(record){
+            var stats = calculateBudgetStats(record.entries);
+            var item = document.createElement("article");
+            item.className = "budget-history-item";
+            item.innerHTML = [
+              '<div class="budget-history-top">',
+              '  <div>',
+              '    <div class="budget-history-month">' + escapeHtml(getMonthLabel(record.month)) + '</div>',
+              '    <div class="budget-history-saved">Saved on ' + escapeHtml(new Date(record.savedAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })) + '</div>',
+              '  </div>',
+              '  <div class="budget-history-total">Total ' + escapeHtml(formatCurrency(stats.total)) + '</div>',
+              '</div>',
+              '<div class="budget-history-chips">',
+              '  <span class="budget-history-chip">Expenses ' + escapeHtml(formatCurrency(stats.expenses)) + '</span>',
+              '  <span class="budget-history-chip">Savings ' + escapeHtml(formatCurrency(stats.savings)) + '</span>',
+              '  <span class="budget-history-chip">Savings Rate ' + escapeHtml(formatPercent(stats.savingsRate)) + '</span>',
+              '</div>',
+              '<div class="budget-history-breakdown">',
+              '  <span>B1 ' + escapeHtml(formatCurrency(record.entries.B1)) + '</span>',
+              '  <span>B2 ' + escapeHtml(formatCurrency(record.entries.B2)) + '</span>',
+              '  <span>H ' + escapeHtml(formatCurrency(record.entries.H)) + '</span>',
+              '  <span>PM ' + escapeHtml(formatCurrency(record.entries.PM)) + '</span>',
+              '  <span>S ' + escapeHtml(formatCurrency(record.entries.S)) + '</span>',
+              '</div>',
+              record.note ? '<p class="budget-history-note">' + escapeHtml(record.note) + '</p>' : "",
+              '<div class="budget-history-actions">',
+              '  <button class="budget-mini-btn" type="button" data-budget-action="load" data-budget-month="' + escapeHtml(record.month) + '">Load</button>',
+              '  <button class="budget-mini-btn budget-mini-btn--danger" type="button" data-budget-action="delete" data-budget-month="' + escapeHtml(record.month) + '">Delete</button>',
+              '</div>'
+            ].join("");
+            historyList.appendChild(item);
+          });
+        }
+
+      }
+
+      function handleBudgetFormSubmit(event){
+        event.preventDefault();
+        var record = readBudgetRecordFromForm();
+        if(!record) return;
+
+        var records = readBudgetRecords();
+        var existingIndex = records.findIndex(function(item){
+          return item.month === record.month;
+        });
+
+        if(existingIndex >= 0){
+          records[existingIndex] = record;
+        } else {
+          records.push(record);
+        }
+
+        writeBudgetRecords(records);
+        renderBudgetHistory(records);
+        syncBudgetPreviewFromForm("saved");
+        setBudgetFormStatus(getMonthLabel(record.month) + " has been saved.", "success");
+      }
+
+      function handleBudgetHistoryClick(event){
+        var actionButton = event.target.closest("[data-budget-action]");
+        if(!actionButton) return;
+
+        var action = actionButton.getAttribute("data-budget-action");
+        var month = actionButton.getAttribute("data-budget-month");
+        var records = readBudgetRecords();
+        var targetRecord = records.find(function(record){
+          return record.month === month;
+        });
+
+        if(action === "load"){
+          if(!targetRecord) return;
+          fillBudgetForm(targetRecord, { previewMode: "loaded" });
+          var form = document.getElementById("monthlyBudgetForm");
+          if(form && form.scrollIntoView){
+            form.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+          return;
+        }
+
+        if(action === "delete"){
+          if(!targetRecord) return;
+          if(!window.confirm("Delete the saved record for " + getMonthLabel(month) + "?")) return;
+
+          var nextRecords = records.filter(function(record){
+            return record.month !== month;
+          });
+          writeBudgetRecords(nextRecords);
+          renderBudgetHistory(nextRecords);
+          syncBudgetPreviewFromForm("editing");
+          setBudgetFormStatus(getMonthLabel(month) + " has been deleted.", "success");
+        }
+      }
+
+      function initBudgetRecorder(){
+        var form = document.getElementById("monthlyBudgetForm");
+        var resetButton = document.getElementById("budgetFormResetBtn");
+        var historyList = document.getElementById("budgetHistoryList");
+        var records = readBudgetRecords();
+        var latestRecord = sortRecordsByMonth(records)[0] || null;
+
+        if(form){
+          form.addEventListener("submit", handleBudgetFormSubmit);
+          form.addEventListener("input", function(){
+            syncBudgetPreviewFromForm("editing");
+          });
+          form.addEventListener("change", function(){
+            syncBudgetPreviewFromForm("editing");
+          });
+        }
+
+        if(resetButton){
+          resetButton.addEventListener("click", function(){
+            resetBudgetForm(getCurrentMonthValue(), { previewMode: "editing" });
+          });
+        }
+
+        if(historyList){
+          historyList.addEventListener("click", handleBudgetHistoryClick);
+        }
+
+        if(latestRecord){
+          fillBudgetForm(latestRecord, { silentStatus: true, previewMode: "loaded" });
+        } else {
+          resetBudgetForm(getCurrentMonthValue(), { silentStatus: true, previewMode: "editing" });
+        }
+        renderBudgetHistory(records);
+      }
+
+      function initReveal(){
+        if (!("IntersectionObserver" in window)) {
+          Array.prototype.forEach.call(document.querySelectorAll(".reveal-up"), function(el){
+            el.classList.add("is-visible");
+          });
+          return;
+        }
+
+        var observer = new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          });
+        }, { threshold: 0.14 });
+
+        Array.prototype.forEach.call(document.querySelectorAll(".reveal-up"), function(el, index){
+          el.style.transitionDelay = Math.min(index * 70, 420) + "ms";
+          observer.observe(el);
+        });
+      }
+
+      initDateLabel();
+      renderBudgetTemplate();
+      initBudgetRecorder();
+      initReveal();
+    })();
+  </script>
+  <script src="js/back-nav.js"></script>
   <script src="js/theme-toggle.js"></script>
 </body>
 </html>

@@ -181,78 +181,18 @@
                 <label class="tasks-field">
                   <span>Lane</span>
                   <select id="taskCategory" name="taskCategory">
-                    <option value="work">CRW-I Billable</option>
-                    <option value="personal">CRW-I Non-Billable</option>
-                    <option value="deep">FTE-Capstone</option>
+                    <option value="work">Work</option>
+                    <option value="personal">Personal</option>
+                    <option value="deep">Deep Focus</option>
+                    <option value="health">Health</option>
+                    <option value="admin">Admin</option>
                   </select>
                 </label>
               </div>
 
-              <div class="tasks-repeat-panel">
-                <div class="tasks-repeat-head">
-                  <div>
-                    <span class="tasks-repeat-label">Repeat</span>
-                    <strong id="taskRepeatSummary">One-time task</strong>
-                  </div>
-                  <small id="taskRepeatHint">Runs once on the selected date.</small>
-                </div>
-
-                <input id="taskRepeat" name="taskRepeat" type="hidden" value="none">
-
-                <div class="tasks-repeat-options" id="taskRepeatOptions" role="group" aria-label="Choose repeat rule">
-                  <button type="button" class="tasks-repeat-btn is-active" data-repeat="none" aria-pressed="true">
-                    <small>No repeat</small>
-                    <strong>One-time</strong>
-                  </button>
-                  <button type="button" class="tasks-repeat-btn" data-repeat="daily" aria-pressed="false">
-                    <small>Every day</small>
-                    <strong>Daily</strong>
-                  </button>
-                  <button type="button" class="tasks-repeat-btn" data-repeat="weekdays" aria-pressed="false">
-                    <small>Work days</small>
-                    <strong>Weekdays</strong>
-                  </button>
-                  <button type="button" class="tasks-repeat-btn" data-repeat="weekly" aria-pressed="false">
-                    <small>Same day</small>
-                    <strong>Weekly</strong>
-                  </button>
-                  <button type="button" class="tasks-repeat-btn" data-repeat="monthly" aria-pressed="false">
-                    <small>Monthly cycle</small>
-                    <strong>Monthly</strong>
-                  </button>
-                  <button type="button" class="tasks-repeat-btn" data-repeat="custom" aria-pressed="false">
-                    <small>Custom rule</small>
-                    <strong>Custom</strong>
-                  </button>
-                </div>
-
-                <div class="tasks-repeat-custom" id="taskRepeatCustom" hidden>
-                  <div class="tasks-repeat-custom-head">
-                    <span>Custom cadence</span>
-                    <small>Build your own repetition pattern from the selected start date.</small>
-                  </div>
-
-                  <div class="tasks-repeat-custom-grid">
-                    <label class="tasks-field">
-                      <span>Every</span>
-                      <input id="taskRepeatInterval" name="taskRepeatInterval" type="number" min="1" max="30" step="1" value="2">
-                    </label>
-
-                    <label class="tasks-field">
-                      <span>Unit</span>
-                      <select id="taskRepeatUnit" name="taskRepeatUnit">
-                        <option value="days">Days</option>
-                        <option value="weeks">Weeks</option>
-                        <option value="months">Months</option>
-                      </select>
-                    </label>
-                  </div>
-                </div>
-              </div>
-
               <label class="tasks-switch-row" for="taskAllDay">
                 <span>
-                  <strong>All-Day Task</strong>
+                  <strong>All-Day TThask</strong>
                   <small>Pin this task to the full date without start and end times.</small>
                 </span>
                 <span class="tasks-switch">
@@ -395,16 +335,14 @@
               <div class="tasks-all-day-grid" id="tasksAllDayGrid"></div>
             </div>
 
-            <div class="tasks-timeline-scroll" id="tasksTimelineScroll">
-              <div class="tasks-timeline-shell">
-                <div class="tasks-time-axis" id="tasksTimeAxis"></div>
-                <div class="tasks-grid-area" id="tasksGridArea">
-                  <div class="tasks-grid-columns" id="tasksGridColumns"></div>
-                  <div class="tasks-now-line" id="tasksNowLine" hidden>
-                    <span class="tasks-now-dot" aria-hidden="true"></span>
-                  </div>
-                  <div class="tasks-grid-events" id="tasksGridEvents"></div>
+            <div class="tasks-timeline-shell">
+              <div class="tasks-time-axis" id="tasksTimeAxis"></div>
+              <div class="tasks-grid-area" id="tasksGridArea">
+                <div class="tasks-grid-columns" id="tasksGridColumns"></div>
+                <div class="tasks-now-line" id="tasksNowLine" hidden>
+                  <span class="tasks-now-dot" aria-hidden="true"></span>
                 </div>
+                <div class="tasks-grid-events" id="tasksGridEvents"></div>
               </div>
             </div>
           </div>
