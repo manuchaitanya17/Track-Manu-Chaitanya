@@ -1762,6 +1762,10 @@ html[data-theme="light"] :is(
   color:var(--day-muted) !important;
 }
 
+html[data-theme="light"] .diet-badge.uncontrolled{
+  color:var(--day-muted) !important;
+}
+
 html[data-theme="light"] #section-home .hero-btn--ghost{
   background:rgba(250,246,240,0.88) !important;
   border-color:var(--day-border) !important;
@@ -1778,6 +1782,99 @@ html[data-theme="light"] #section-home .hero-btn--ghost:focus{
 
 html[data-theme="light"] #section-routine .routine-duration{
   background:rgba(250,246,240,0.88) !important;
+  border-color:var(--day-border) !important;
+  color:var(--day-text) !important;
+  box-shadow:none !important;
+}
+
+/* Keep project pages neutral in day mode; green remains a text/status accent only. */
+html[data-theme="light"] body.experience-body{
+  background:linear-gradient(180deg, #f7f3ec 0%, #eee8de 100%) !important;
+}
+
+html[data-theme="light"] body.experience-body .experience-hero{
+  background:linear-gradient(145deg, #faf7f2 0%, #eee8df 100%) !important;
+}
+
+html[data-theme="light"] body.experience-body .experience-hero::after,
+html[data-theme="light"] body.experience-body .experience-section::before,
+html[data-theme="light"] body.experience-body .experience-panel::before,
+html[data-theme="light"] body.experience-body .experience-card::before,
+html[data-theme="light"] body.experience-body .experience-surface::before{
+  background:none !important;
+}
+
+html[data-theme="light"] body.experience-body :is(
+  .panel-kicker,
+  .explorer-kicker,
+  .surface-kicker
+){
+  background:transparent !important;
+  border-color:transparent !important;
+  box-shadow:none !important;
+}
+
+html[data-theme="light"] body.experience-body :is(
+  .experience-pill,
+  .experience-meta-chip,
+  .experience-tag,
+  .experience-note-chip,
+  .experience-card-meta span,
+  .bravo-badge,
+  .hero-node
+){
+  background:rgba(250,247,242,0.94) !important;
+  border-color:var(--day-border) !important;
+  box-shadow:none !important;
+}
+
+html[data-theme="light"] body.experience-body :is(
+  .bravo-nav:hover,
+  .bravo-nav:focus,
+  .code-tree-row:hover,
+  .code-tree-row.is-active,
+  .tab-btn.active,
+  .line-code.marked
+){
+  background:rgba(107,97,82,0.08) !important;
+  border-color:var(--day-border) !important;
+}
+
+html[data-theme="light"] body.experience-body .bravo-indicator.is-active{
+  background:var(--day-text) !important;
+}
+
+html[data-theme="light"] body.experience-body #pb-navbar .theme-toggle-dot{
+  background:var(--day-text) !important;
+  box-shadow:0 0 0 6px rgba(53,47,39,0.08) !important;
+}
+
+html[data-theme="light"] body.experience-body #pb-navbar .navbar-nav > li > a:hover,
+html[data-theme="light"] body.experience-body #pb-navbar .navbar-nav > li > a:focus,
+html[data-theme="light"] body.experience-body #pb-navbar .navbar-nav > li > a.active,
+html[data-theme="light"] body.experience-body #pb-navbar .navbar-nav > li.active > a{
+  background:rgba(107,97,82,0.08) !important;
+  color:var(--day-text) !important;
+}
+
+html[data-theme="light"] body.experience-body .btn-primary{
+  background:var(--day-text) !important;
+  border-color:var(--day-text) !important;
+  color:#fff !important;
+  box-shadow:0 16px 30px rgba(53,47,39,0.14) !important;
+}
+
+html[data-theme="light"] body.experience-body .btn-primary:hover,
+html[data-theme="light"] body.experience-body .btn-primary:focus{
+  background:var(--day-muted) !important;
+  border-color:var(--day-muted) !important;
+  color:#fff !important;
+}
+
+html[data-theme="light"] body.experience-body .btn-outline-primary,
+html[data-theme="light"] body.experience-body .btn-outline-primary:hover,
+html[data-theme="light"] body.experience-body .btn-outline-primary:focus{
+  background:rgba(250,247,242,0.94) !important;
   border-color:var(--day-border) !important;
   color:var(--day-text) !important;
   box-shadow:none !important;

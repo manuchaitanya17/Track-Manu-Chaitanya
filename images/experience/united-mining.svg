@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" role="img" aria-labelledby="title desc">
+  <title id="title">United Mining Industries</title>
+  <desc id="desc">Blue and red United Mining Industries mark above the company name.</desc>
+  <g transform="translate(80 36) rotate(-10 150 76)">
+    <rect x="0" y="92" width="92" height="29" rx="15" fill="#27347c"/>
+    <rect x="58" y="56" width="100" height="29" rx="15" fill="#27347c"/>
+    <rect x="123" y="20" width="86" height="29" rx="15" fill="#27347c"/>
+    <rect x="78" y="107" width="100" height="29" rx="15" fill="#27347c"/>
+    <rect x="145" y="70" width="91" height="29" rx="15" fill="#27347c"/>
+    <ellipse cx="215" cy="129" rx="34" ry="16" fill="#ad1117"/>
+  </g>
+  <text x="278" y="232" fill="#ad1117" font-family="Helvetica Neue, Helvetica, sans-serif" font-size="50" font-weight="700">United Mining Industries</text>
+</svg>

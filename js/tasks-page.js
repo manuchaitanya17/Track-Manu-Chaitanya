@@ -15,7 +15,7 @@
   var CATEGORY_META = {
     work: { label: "CRW-I Billable", className: "tasks-task-work" },
     personal: { label: "CRW-I Non-Billable", className: "tasks-task-personal" },
-    deep: { label: "FTE-Capstone", className: "tasks-task-deep" }
+    deep: { label: "L2 Capstone", className: "tasks-task-deep" }
   };
 
   var DAY_TYPE_META = {
@@ -582,6 +582,10 @@
   }
 
   function setRepeatFormValues(repeat, interval, unit){
+    if(!refs.taskRepeat || !refs.taskRepeatInterval || !refs.taskRepeatUnit){
+      return;
+    }
+
     refs.taskRepeat.value = normalizeRepeat(repeat);
     refs.taskRepeatInterval.value = String(normalizeRepeatInterval(interval));
     refs.taskRepeatUnit.value = normalizeRepeatUnit(unit);
@@ -589,6 +593,10 @@
   }
 
   function syncRepeatUI(){
+    if(!refs.taskRepeat || !refs.taskRepeatInterval || !refs.taskRepeatUnit){
+      return;
+    }
+
     var repeat = normalizeRepeat(refs.taskRepeat.value);
     var interval = normalizeRepeatInterval(refs.taskRepeatInterval.value);
     var unit = normalizeRepeatUnit(refs.taskRepeatUnit.value);
@@ -1623,9 +1631,9 @@
     var allDay = refs.taskAllDay.checked;
     var startTime = refs.taskStartTime.value;
     var endTime = refs.taskEndTime.value;
-    var repeat = normalizeRepeat(refs.taskRepeat.value);
-    var repeatInterval = normalizeRepeatInterval(refs.taskRepeatInterval.value);
-    var repeatUnit = normalizeRepeatUnit(refs.taskRepeatUnit.value);
+    var repeat = normalizeRepeat(refs.taskRepeat ? refs.taskRepeat.value : "none");
+    var repeatInterval = normalizeRepeatInterval(refs.taskRepeatInterval ? refs.taskRepeatInterval.value : 1);
+    var repeatUnit = normalizeRepeatUnit(refs.taskRepeatUnit ? refs.taskRepeatUnit.value : "days");
 
     if(!title || !date){
       showToast("Task not saved", "A task title and date are required.");
@@ -1838,17 +1846,19 @@
       renderDayType();
       showToast("Day category saved", DAY_TYPE_META[selectedType].message);
     });
-    refs.taskRepeatOptions.addEventListener("click", function(event){
-      var button = event.target.closest("[data-repeat]");
-      if(!button){
-        return;
-      }
+    if(refs.taskRepeatOptions && refs.taskRepeatInterval && refs.taskRepeatUnit){
+      refs.taskRepeatOptions.addEventListener("click", function(event){
+        var button = event.target.closest("[data-repeat]");
+        if(!button){
+          return;
+        }
 
-      refs.taskRepeat.value = button.getAttribute("data-repeat");
-      syncRepeatUI();
-    });
-    refs.taskRepeatInterval.addEventListener("input", syncRepeatUI);
-    refs.taskRepeatUnit.addEventListener("change", syncRepeatUI);
+        refs.taskRepeat.value = button.getAttribute("data-repeat");
+        syncRepeatUI();
+      });
+      refs.taskRepeatInterval.addEventListener("input", syncRepeatUI);
+      refs.taskRepeatUnit.addEventListener("change", syncRepeatUI);
+    }
     refs.taskAllDay.addEventListener("change", updateTimeFields);
     refs.taskStartTimeTrigger.addEventListener("click", function(){
       openTimePicker("start");

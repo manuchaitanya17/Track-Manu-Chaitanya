@@ -14,6 +14,8 @@
   <style>
     :root{
       --academic-accent: #bac964;
+      --academic-completed: #09c15c;
+      --academic-incomplete: #ff2b16;
       --academic-core: #09c15c;
       --academic-milestone: #ff2b16;
       --academic-launch: #f4eb16;
@@ -432,7 +434,7 @@
       align-items: center;
       min-width: 1840px;
       width: max-content;
-      padding: 6.4rem 1.2rem 10.2rem;
+      padding: 8.5rem 1.2rem 10.2rem;
     }
 
     .timeline-scale-wrap{
@@ -523,7 +525,7 @@
       writing-mode: vertical-rl;
       text-orientation: mixed;
       white-space: nowrap;
-      height: 124px;
+      height: 144px;
       display: flex;
       align-items: flex-end;
       justify-content: flex-end;
@@ -561,9 +563,8 @@
       transition: transform 0.28s ease, box-shadow 0.28s ease, filter 0.28s ease;
     }
 
-    .timeline-subject.core{ background: var(--academic-core); }
-    .timeline-subject.milestone{ background: var(--academic-milestone); }
-    .timeline-subject.launch{ background: var(--academic-launch); }
+    .timeline-subject.completed{ background: var(--academic-completed); }
+    .timeline-subject.incomplete{ background: var(--academic-incomplete); }
 
     .timeline-semester-unit.is-active .timeline-subject{
       box-shadow: 0 0 0 8px rgba(186, 201, 100, 0.16);
@@ -622,9 +623,8 @@
       border-radius: 50%;
     }
 
-    .timeline-legend-dot.core{ background: var(--academic-core); }
-    .timeline-legend-dot.milestone{ background: var(--academic-milestone); }
-    .timeline-legend-dot.launch{ background: var(--academic-launch); }
+    .timeline-legend-dot.completed{ background: var(--academic-completed); }
+    .timeline-legend-dot.incomplete{ background: var(--academic-incomplete); }
 
     .timeline-detail{
       margin-top: 2rem;
@@ -735,9 +735,8 @@
       line-height: 1.25;
     }
 
-    .detail-chip.core{ box-shadow: inset 0 0 0 1px rgba(9, 193, 92, 0.28); }
-    .detail-chip.milestone{ box-shadow: inset 0 0 0 1px rgba(255, 43, 22, 0.30); }
-    .detail-chip.launch{ box-shadow: inset 0 0 0 1px rgba(244, 235, 22, 0.32); }
+    .detail-chip.completed{ box-shadow: inset 0 0 0 1px rgba(9, 193, 92, 0.28); }
+    .detail-chip.incomplete{ box-shadow: inset 0 0 0 1px rgba(255, 43, 22, 0.30); }
 
     .semester-carousel-shell{
       position: relative;
@@ -960,9 +959,8 @@
       line-height: 1.25;
     }
 
-    .semester-subject-chip.core{ box-shadow: inset 0 0 0 1px rgba(9, 193, 92, 0.28); }
-    .semester-subject-chip.milestone{ box-shadow: inset 0 0 0 1px rgba(255, 43, 22, 0.30); }
-    .semester-subject-chip.launch{ box-shadow: inset 0 0 0 1px rgba(244, 235, 22, 0.32); }
+    .semester-subject-chip.completed{ box-shadow: inset 0 0 0 1px rgba(9, 193, 92, 0.28); }
+    .semester-subject-chip.incomplete{ box-shadow: inset 0 0 0 1px rgba(255, 43, 22, 0.30); }
 
     .semester-nav{
       position: absolute;
@@ -1277,9 +1275,8 @@
         </div>
 
         <div class="timeline-legend">
-          <div class="timeline-legend-item"><span class="timeline-legend-dot core"></span> Core Learning</div>
-          <div class="timeline-legend-item"><span class="timeline-legend-dot milestone"></span> Major Milestone</div>
-          <div class="timeline-legend-item"><span class="timeline-legend-dot launch"></span> Final Internship</div>
+          <div class="timeline-legend-item"><span class="timeline-legend-dot completed"></span> Completed</div>
+          <div class="timeline-legend-item"><span class="timeline-legend-dot incomplete"></span> Incomplete</div>
         </div>
 
         <div class="timeline-detail" id="timelineDetail">
@@ -1372,7 +1369,7 @@
           copy: "The First Semester established the starting layer: learning syntax, logic, and the discipline required to think through code clearly.",
           page: "firstSemester.html",
           subjects: [
-            { label: "Introduction to Programming", tone: "core" }
+            { label: "1.1 Introduction To Programming", tone: "completed" }
           ]
         },
         {
@@ -1381,13 +1378,14 @@
           title: "Second Semester",
           phase: "core",
           phaseLabel: "Foundation",
-          theme: "Frontend, OOP, and DBMS",
-          copy: "This phase widened the base through Frontend Fundamentals, Object Oriented Programming, and Structured Database understanding.",
+          theme: "OOP, Frontend, DBMS, and Networks",
+          copy: "This phase widened the foundation through Object-Oriented Programming, Frontend Development, Database Management, and Computer Networks.",
           page: "secondSemester.html",
           subjects: [
-            { label: "Basic Frontend Development", tone: "core" },
-            { label: "Object Oriented Programming", tone: "core" },
-            { label: "Database Management System", tone: "core" }
+            { label: "2.1 Object-Oriented Programming", tone: "completed" },
+            { label: "2.2 Basic Frontend Development", tone: "completed" },
+            { label: "2.3 Database Management System", tone: "completed" },
+            { label: "2.4 Computer Networks", tone: "completed" }
           ]
         },
         {
@@ -1396,12 +1394,12 @@
           title: "Third Semester",
           phase: "core",
           phaseLabel: "Systems Base",
-          theme: "Algorithms and backend grounding",
-          copy: "The Third Semester moved from Basic Coding into the Structure behind Software with Data Structures, Backend Foundations, and Computer Networks.",
+          theme: "Algorithms, Backend, and Systems",
+          copy: "The Third Semester moved into Data Structures and Algorithms, Backend Development, and Operating System fundamentals.",
           subjects: [
-            { label: "Basic Data Structures Algorithms", tone: "core" },
-            { label: "Basic Backend Development", tone: "core" },
-            { label: "Computer Networks", tone: "core" }
+            { label: "3.1 Basic Data Structures Algorithms", tone: "completed" },
+            { label: "3.2 Basic Backend Development", tone: "completed" },
+            { label: "3.3 Operating System", tone: "completed" }
           ]
         },
         {
@@ -1411,11 +1409,10 @@
           phase: "core",
           phaseLabel: "Depth",
           theme: "Advanced Problem Solving",
-          copy: "Here the work deepened into Advanced Frontend Development, Advanced Data Structures and Algorithms, and Microprocessor Architecture.",
+          copy: "Here the work deepened into Advanced Data Structures and Algorithms alongside Advanced Frontend Development.",
           subjects: [
-            { label: "Advanced Frontend Development", tone: "core" },
-            { label: "Advanced Data Structures Algorithms", tone: "core" },
-            { label: "Microprocessor Architecture", tone: "core" }
+            { label: "4.1 Advanced Data Structures Algorithms", tone: "completed" },
+            { label: "4.2 Advanced Frontend Development", tone: "completed" }
           ]
         },
         {
@@ -1424,23 +1421,25 @@
           title: "Fifth Semester",
           phase: "milestone",
           phaseLabel: "Specialization",
-          theme: "Backend Depth and Systems",
-          copy: "The track shifted toward stronger specialization with Advanced Backend Development and Operating System level understanding.",
+          theme: "Backend Depth and L1 Capstone",
+          copy: "The track shifted toward Advanced Backend Development before moving into the first capstone build through L1 Capstone.",
           subjects: [
-            { label: "Advanced Backend Development", tone: "milestone" },
-            { label: "Operating System", tone: "core" }
+            { label: "5.1 Advanced Backend Development", tone: "completed" },
+            { label: "5.2 L1 Capstone", tone: "incomplete" }
           ]
         },
         {
           id: "semester-6",
           number: "06",
           title: "Sixth Semester",
-          phase: "core",
-          phaseLabel: "Applied Build",
-          theme: "Capstone Execution",
-          copy: "This semester compressed learning into a deliverable build cycle through the 6M Capstone, turning theory into execution.",
+          phase: "milestone",
+          phaseLabel: "Capstone",
+          theme: "L2 Capstone Execution",
+          copy: "The Sixth Semester extended the capstone journey through L2 Capstone, carrying the earlier build discipline into a deeper execution cycle.",
+          page: "sixthSemester-l2-capstone.html",
+          pageLabel: "Open L2 Capstone",
           subjects: [
-            { label: "6M Capstone", tone: "core" }
+            { label: "6.1 L2 Capstone", tone: "incomplete" }
           ]
         },
         {
@@ -1449,12 +1448,11 @@
           title: "Seventh Semester",
           phase: "milestone",
           phaseLabel: "Industry Transition",
-          theme: "Internship Plus Capstone",
-          copy: "Academic work started merging directly into delivery through Internship Capstone-II alongside the FTE Capstone.",
+          theme: "Internship Program-I",
+          copy: "Academic work moved directly into industry delivery through Internship Program-I, connecting the semester with live business problem solving.",
           page: "seventhSemester.html",
           subjects: [
-            { label: "Internship Capstone-II", tone: "core" },
-            { label: "FTE Capstone", tone: "milestone" }
+            { label: "7.1 Internship Program-I", tone: "completed" }
           ]
         },
         {
@@ -1466,7 +1464,7 @@
           theme: "Final Internship Cycle",
           copy: "The Final Semester completed the transition into industry immersion through Internship Program-II.",
           subjects: [
-            { label: "Internship Program-II", tone: "launch" }
+            { label: "8.1 Internship Program-II", tone: "completed" }
           ]
         }
       ];
@@ -1564,7 +1562,7 @@
             return '<span class="semester-subject-chip ' + escapeHtml(subject.tone) + '">' + escapeHtml(subject.label) + '</span>';
           }).join("");
           var actionHtml = semester.page
-            ? '<a href="' + escapeHtml(semester.page) + '" class="semester-card-action">Open Semester Page</a>'
+            ? '<a href="' + escapeHtml(semester.page) + '" class="semester-card-action">' + escapeHtml(semester.pageLabel || 'Open Semester Page') + '</a>'
             : "";
 
           return [
@@ -1816,7 +1814,7 @@
         }
         if (action) {
           action.innerHTML = selected.page
-            ? '<a href="' + escapeHtml(selected.page) + '" class="detail-link">Open Semester Page</a>'
+            ? '<a href="' + escapeHtml(selected.page) + '" class="detail-link">' + escapeHtml(selected.pageLabel || 'Open Semester Page') + '</a>'
             : "";
         }
 
@@ -1893,7 +1891,7 @@
 
         var milestoneCount = SEMESTERS.reduce(function (sum, semester) {
           return sum + semester.subjects.filter(function (subject) {
-            return subject.tone !== "core";
+            return subject.tone === "incomplete";
           }).length;
         }, 0);
 

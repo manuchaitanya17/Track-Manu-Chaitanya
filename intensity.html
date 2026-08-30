@@ -1069,7 +1069,7 @@
 
           <div class="phase-route">
             <div class="phase-route-label">Parallel Tracks</div>
-            <div class="phase-route-title">Internship Capstone-II + FTE Capstone</div>
+            <div class="phase-route-title">CRW-I + L2 Capstone</div>
             <p class="phase-route-copy">Intensity was defined by delivery on one side and revision-heavy academic execution on the other, both running in parallel with the daily fitness discipline tracked here.</p>
           </div>
         </aside>
@@ -1082,7 +1082,7 @@
       <div class="section-intro-modern reveal-up">
         <div class="section-kicker">Journey Tracks</div>
         <h2 class="section-title">Tracks Defining Intensity</h2>
-        <p class="section-copy">The current phase archive ties Intensity to two active tracks. Internship Capstone-II carries the experience-side delivery work, while FTE Capstone holds the academic revision and execution stream running in parallel.</p>
+        <p class="section-copy">The current phase archive ties Intensity to two active tracks. CRW-I carries the experience-side delivery work, while L2 Capstone holds the academic revision and execution stream running in parallel.</p>
       </div>
 
       <div class="journey-carousel-wrap">
@@ -1097,19 +1097,19 @@
                 <div class="journey-header">
                   <div>
                     <div class="journey-code">Track 01</div>
-                    <h3>Internship Capstone-II</h3>
+                    <h3>CRW-I</h3>
                   </div>
                   <span class="journey-pill">Experience Link</span>
                 </div>
-                <p class="journey-copy">Internship Capstone-II represents the live delivery side of Intensity. It moved through multi-client NetSuite work, faster adaptation, and accountable technical execution inside real project timelines.</p>
+                <p class="journey-copy">CRW-I represents the live delivery side of Intensity. It moved through multi-client NetSuite work, faster adaptation, and accountable technical execution inside real project timelines.</p>
                 <div class="journey-meta">
                   <span class="journey-tag">Crowe Horwath</span>
                   <span class="journey-tag">Industry Delivery</span>
                   <span class="journey-tag">Project Execution</span>
                 </div>
                 <div class="journey-footer">
-                  <span>Open the Experience track to review the billable projects, non-billable work, and delivery progression connected to this phase.</span>
-                  <a href="experience-capstone-ii.html" class="btn btn-outline-primary">Open Experience</a>
+                  <span>Open CRW-I to review the Krayden, Spinel Europe, and United Mining billable projects connected to this phase.</span>
+                  <a href="experience-crw-i.html" class="btn btn-outline-primary">Open CRW-I</a>
                 </div>
               </article>
 
@@ -1118,19 +1118,19 @@
                 <div class="journey-header">
                   <div>
                     <div class="journey-code">Track 02</div>
-                    <h3>FTE Capstone</h3>
+                    <h3>L2 Capstone</h3>
                   </div>
                   <span class="journey-pill">Academic Link</span>
                 </div>
-                <p class="journey-copy">FTE Capstone represents the academic side of Intensity through structured revision of frontend, programming, Data Structures and Algorithms, OOP, and DBMS, all consolidated into one capstone execution cycle.</p>
+                <p class="journey-copy">L2 Capstone represents the academic side of Intensity through structured revision of frontend, programming, Data Structures and Algorithms, OOP, and DBMS, all consolidated into one capstone execution cycle.</p>
                 <div class="journey-meta">
                   <span class="journey-tag">Academic Capstone</span>
                   <span class="journey-tag">Revision Track</span>
                   <span class="journey-tag">Semester 07</span>
                 </div>
                 <div class="journey-footer">
-                  <span>Open the FTE Capstone page to review the course revision map and the subject folders that define the academic side of this phase.</span>
-                  <a href="seventhSemester-fte-capstone.html" class="btn btn-outline-primary">Open FTE Capstone</a>
+                  <span>Open the L2 Capstone page to review the course revision map and the subject folders that define the academic side of this phase.</span>
+                  <a href="sixthSemester-l2-capstone.html" class="btn btn-outline-primary">Open L2 Capstone</a>
                 </div>
               </article>
             </div>
@@ -1560,6 +1560,18 @@
       "use strict";
 
       var STORAGE_KEY = "intensityFitness.v1";
+      var HARDCODED_RANGES = [
+        {
+          start: [2026, 3, 23],
+          end: [2026, 8, 30],
+          entry: {
+            cardioHours: 0,
+            weightHours: 1,
+            dietStatus: "uncontrolled",
+            waterLiters: 1.5
+          }
+        }
+      ];
 
       function $(id) {
         return document.getElementById(id);
@@ -1596,8 +1608,25 @@
         }
       }
 
+      function buildHardcodedData() {
+        var seeded = {};
+        HARDCODED_RANGES.forEach(function (range) {
+          var current = new Date(range.start[0], range.start[1] - 1, range.start[2]);
+          var end = new Date(range.end[0], range.end[1] - 1, range.end[2]);
+
+          while (current.getTime() <= end.getTime()) {
+            seeded[toDateKey(current)] = Object.assign({}, range.entry);
+            current.setDate(current.getDate() + 1);
+          }
+        });
+        return seeded;
+      }
+
+      var HARDCODED_DATA = buildHardcodedData();
+
       function loadStore() {
-        return safeParse(localStorage.getItem(STORAGE_KEY) || "{}", {});
+        var stored = safeParse(localStorage.getItem(STORAGE_KEY) || "{}", {});
+        return Object.assign({}, HARDCODED_DATA, stored);
       }
 
       function saveStore(store) {

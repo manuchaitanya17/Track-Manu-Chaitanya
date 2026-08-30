@@ -403,6 +403,17 @@ body.experience-body {
   object-fit: cover;
 }
 
+.experience-card-logo img[src$="spinel-europe.svg"],
+.experience-card-logo img[src$="united-mining.svg"] {
+  object-fit: contain;
+  padding: 0.45rem;
+  background: #fff;
+}
+
+.experience-card-logo.experience-card-logo--wide {
+  width: 184px;
+}
+
 .experience-card-logo.monogram,
 .snapshot-logo.monogram {
   color: var(--exp-accent);
@@ -924,6 +935,12 @@ body.experience-body {
   display: grid;
   grid-template-columns: 320px 1fr;
   min-height: 780px;
+}
+
+[data-code-workbench].reveal {
+  opacity: 1;
+  transform: none;
+  transition: none;
 }
 
 .code-sidebar {

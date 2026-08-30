@@ -20,6 +20,13 @@
     }, { threshold: 0.14 });
 
     Array.prototype.forEach.call(document.querySelectorAll('.reveal'), function (el, index) {
+      // Large source files can make the workbench taller than the observer's
+      // threshold can ever satisfy, so the editor must not depend on reveal.
+      if (el.matches('[data-code-workbench]')) {
+        el.style.transitionDelay = '0ms';
+        el.classList.add('is-visible');
+        return;
+      }
       el.style.transitionDelay = Math.min(index * 55, 420) + 'ms';
       observer.observe(el);
     });

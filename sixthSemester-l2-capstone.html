@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Sixth Semester | 6.1 L2 Capstone</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/flexslider.css">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="css/mobile-responsive.css">
+  <style>
+    :root{
+      --capstone-accent: #bac964;
+      --capstone-green: #12cb63;
+      --capstone-blue: #36a8ef;
+      --capstone-panel: rgba(255,255,255,0.06);
+      --capstone-border: rgba(255,255,255,0.10);
+      --capstone-muted: rgba(255,255,255,0.72);
+      --capstone-soft: rgba(255,255,255,0.46);
+    }
+
+    html{
+      scroll-behavior: smooth;
+    }
+
+    body{
+      color: #fff;
+      background:
+        radial-gradient(circle at top left, rgba(186, 201, 100, 0.10), transparent 22%),
+        radial-gradient(circle at top right, rgba(54, 168, 239, 0.10), transparent 22%),
+        radial-gradient(circle at bottom right, rgba(18, 203, 99, 0.06), transparent 20%),
+        #1d1d1d;
+      overflow-x: hidden;
+    }
+
+    .capstone-shell{
+      width: min(94vw, 1680px);
+      margin: 0 auto;
+    }
+
+    .capstone-hero{
+      position: relative;
+      padding: 10.5rem 0 5rem;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 14% 14%, rgba(186, 201, 100, 0.16), transparent 16%),
+        radial-gradient(circle at 80% 18%, rgba(54, 168, 239, 0.12), transparent 18%),
+        linear-gradient(140deg, rgba(26,26,26,0.98), rgba(35,35,35,0.96));
+    }
+
+    .capstone-hero:before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.95), rgba(0,0,0,0.3));
+      pointer-events: none;
+    }
+
+    .capstone-hero .capstone-shell,
+    .capstone-section .capstone-shell{
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-grid{
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-banner,
+    .overview-panel,
+    .topics-shell{
+      position: relative;
+      overflow: hidden;
+      border-radius: 34px;
+      border: 1px solid var(--capstone-border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      box-shadow: 0 28px 90px rgba(0,0,0,0.26);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-banner{
+      padding: clamp(1.9rem, 3vw, 2.8rem);
+      min-height: 440px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-banner:after,
+    .overview-panel:after,
+    .topic-card:before{
+      content: "";
+      position: absolute;
+      right: -42px;
+      bottom: -48px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(186, 201, 100, 0.18), rgba(186, 201, 100, 0.02) 70%, transparent 74%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .hero-kicker,
+    .panel-kicker,
+    .section-kicker{
+      display: inline-flex;
+      align-items: center;
+      padding: 0.48rem 0.98rem;
+      border-radius: 999px;
+      color: var(--capstone-accent);
+      border: 1px solid rgba(186, 201, 100, 0.28);
+      background: rgba(186, 201, 100, 0.08);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title{
+      font-size: clamp(3rem, 5vw, 5rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin: 0 0 1rem;
+      font-weight: 200;
+    }
+
+    .hero-title strong{
+      font-weight: 700;
+    }
+
+    .hero-copy,
+    .overview-panel-copy,
+    .section-copy{
+      color: var(--capstone-muted);
+      font-size: 1.08rem;
+      line-height: 1.85;
+    }
+
+    .hero-copy{
+      max-width: 50rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-metrics{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 1.6rem;
+    }
+
+    .metric-chip{
+      padding: 0.78rem 1rem;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.84);
+      font-weight: 700;
+    }
+
+    .hero-actions .btn{
+      min-width: 180px;
+      margin-right: 12px;
+      margin-bottom: 12px;
+    }
+
+    .overview-panel{
+      padding: 1.7rem;
+      min-height: 440px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .overview-panel:before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(54, 168, 239, 0.16), transparent 18%),
+        radial-gradient(circle at 20% 86%, rgba(18, 203, 99, 0.12), transparent 18%);
+      pointer-events: none;
+    }
+
+    .overview-panel > *{
+      position: relative;
+      z-index: 1;
+    }
+
+    .overview-panel h3{
+      font-size: clamp(2rem, 2.7vw, 2.8rem);
+      letter-spacing: -0.04em;
+      margin: 0.2rem 0 0.9rem;
+    }
+
+    .week-grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 1.3rem 0;
+    }
+
+    .week-chip{
+      min-height: 112px;
+      border-radius: 16px;
+      padding: 1rem;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .week-chip small{
+      color: var(--capstone-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.7rem;
+    }
+
+    .week-chip span{
+      color: #fff;
+      font-weight: 700;
+      line-height: 1.18;
+      font-size: 0.98rem;
+    }
+
+    .overview-stats{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .overview-stat{
+      border-radius: 16px;
+      padding: 1rem;
+      background: rgba(0,0,0,0.16);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .overview-stat-label{
+      color: var(--capstone-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.76rem;
+    }
+
+    .overview-stat-value{
+      margin-top: 0.45rem;
+      color: var(--capstone-accent);
+      font-size: 1.95rem;
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    .overview-stat-sub{
+      margin-top: 0.42rem;
+      color: var(--capstone-soft);
+      font-size: 0.84rem;
+    }
+
+    .capstone-section{
+      padding: 0 0 5.5rem;
+    }
+
+    .section-intro{
+      margin-bottom: 2rem;
+    }
+
+    .section-title{
+      font-size: clamp(2rem, 3vw, 3.2rem);
+      letter-spacing: -0.04em;
+      margin-bottom: 0.8rem;
+    }
+
+    .topics-shell{
+      padding: clamp(1.6rem, 2.8vw, 2.5rem);
+    }
+
+    .topics-grid{
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .topic-card{
+      position: relative;
+      display: block;
+      min-height: 240px;
+      padding: 1.5rem 1.3rem 1.4rem;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.20), rgba(0,0,0,0.10));
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+      overflow: hidden;
+    }
+
+    a.topic-card{
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topic-card.is-linked{
+      cursor: pointer;
+    }
+
+    .topic-card:hover{
+      transform: translateY(-8px);
+      border-color: rgba(186, 201, 100, 0.20);
+      box-shadow: 0 22px 56px rgba(0,0,0,0.24);
+    }
+
+    .topic-card:before{
+      inset: auto -10% -35% auto;
+      width: 180px;
+      height: 180px;
+    }
+
+    .folder-icon{
+      position: relative;
+      width: 92px;
+      height: 66px;
+      margin-bottom: 1.35rem;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #73d6ff, #3fa8dc);
+      box-shadow: inset 0 -5px 0 rgba(0,0,0,0.08), 0 10px 22px rgba(0,0,0,0.16);
+    }
+
+    .folder-icon:before{
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: -10px;
+      width: 34px;
+      height: 18px;
+      border-radius: 10px 10px 0 0;
+      background: linear-gradient(180deg, #52c0f7, #3199d3);
+    }
+
+    .topic-number{
+      color: rgba(255,255,255,0.48);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      margin-bottom: 0.55rem;
+    }
+
+    .topic-title{
+      font-size: 1.35rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+    }
+
+    .topic-copy{
+      color: var(--capstone-muted);
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    .topic-bar{
+      margin-top: 1.2rem;
+      width: 58px;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--capstone-accent);
+    }
+
+    .topic-open-pill{
+      position: absolute;
+      right: 1rem;
+      bottom: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.42rem 0.72rem;
+      border-radius: 999px;
+      background: rgba(186, 201, 100, 0.12);
+      border: 1px solid rgba(186, 201, 100, 0.22);
+      color: var(--capstone-accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .topic-open-pill.is-muted{
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.54);
+    }
+
+    .outcome-note{
+      margin-top: 1.35rem;
+      padding: 1.05rem 1.1rem;
+      border-radius: 18px;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.07);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+    }
+
+    .outcome-note small{
+      display: block;
+      color: var(--capstone-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.74rem;
+      font-weight: 700;
+      margin-bottom: 0.45rem;
+    }
+
+    .outcome-note p{
+      margin: 0;
+      color: var(--capstone-muted);
+      line-height: 1.8;
+    }
+
+    .skills-shell,
+    .opportunities-shell{
+      position: relative;
+      overflow: hidden;
+      border-radius: 34px;
+      border: 1px solid var(--capstone-border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      box-shadow: 0 28px 90px rgba(0,0,0,0.26);
+      backdrop-filter: blur(10px);
+    }
+
+    .skills-shell{
+      padding: clamp(1.6rem, 2.8vw, 2.5rem);
+    }
+
+    .skills-grid{
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .skill-card{
+      position: relative;
+      overflow: hidden;
+      min-height: 230px;
+      padding: 1.4rem 1.25rem;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.20), rgba(0,0,0,0.10));
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+    }
+
+    .skill-card:before{
+      content: "";
+      position: absolute;
+      right: -18px;
+      top: -26px;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(54, 168, 239, 0.16), rgba(54, 168, 239, 0.02) 72%, transparent 76%);
+      pointer-events: none;
+    }
+
+    .skill-card:hover{
+      transform: translateY(-8px);
+      border-color: rgba(54, 168, 239, 0.22);
+      box-shadow: 0 22px 56px rgba(0,0,0,0.24);
+    }
+
+    .skill-chip{
+      display: inline-flex;
+      align-items: center;
+      padding: 0.42rem 0.78rem;
+      border-radius: 999px;
+      background: rgba(54, 168, 239, 0.14);
+      border: 1px solid rgba(54, 168, 239, 0.24);
+      color: #8ddaff;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .skill-title{
+      margin: 1rem 0 0.5rem;
+      font-size: 1.35rem;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .skill-weeks{
+      color: rgba(255,255,255,0.58);
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .skill-copy{
+      margin: 0.9rem 0 0;
+      color: var(--capstone-muted);
+      line-height: 1.8;
+    }
+
+    .skill-footer{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.42rem;
+      margin-top: 1.15rem;
+      padding: 0.42rem 0.72rem;
+      border-radius: 999px;
+      background: rgba(186, 201, 100, 0.12);
+      border: 1px solid rgba(186, 201, 100, 0.22);
+      color: var(--capstone-accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .opportunities-shell{
+      padding: clamp(1.6rem, 2.8vw, 2.5rem);
+    }
+
+    .opportunities-shell:before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(186, 201, 100, 0.10), transparent 18%),
+        radial-gradient(circle at 84% 14%, rgba(54, 168, 239, 0.12), transparent 18%);
+      pointer-events: none;
+    }
+
+    .opportunities-shell > *{
+      position: relative;
+      z-index: 1;
+    }
+
+    .opportunity-stats{
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 1.4rem;
+    }
+
+    .opportunity-stat{
+      padding: 1rem;
+      border-radius: 18px;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .opportunity-stat-label{
+      color: var(--capstone-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+
+    .opportunity-stat-value{
+      margin-top: 0.5rem;
+      color: #fff;
+      font-size: 1.8rem;
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .opportunity-stat-sub{
+      margin-top: 0.42rem;
+      color: var(--capstone-soft);
+      font-size: 0.82rem;
+      line-height: 1.55;
+    }
+
+    .opportunities-layout{
+      display: grid;
+      grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .opportunity-form-panel,
+    .opportunity-board{
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.12));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+    }
+
+    .opportunity-form-panel{
+      padding: 1.35rem;
+    }
+
+    .opportunity-form-head h3,
+    .opportunity-board-head h3{
+      margin: 0.2rem 0 0.7rem;
+      font-size: 1.7rem;
+      letter-spacing: -0.03em;
+    }
+
+    .opportunity-form-copy,
+    .opportunity-board-copy{
+      color: var(--capstone-muted);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .opportunity-form{
+      display: grid;
+      gap: 14px;
+      margin-top: 1.25rem;
+    }
+
+    .opportunity-field-grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .opportunity-field{
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .opportunity-field span{
+      color: rgba(255,255,255,0.86);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .opportunity-input,
+    .opportunity-select{
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+      padding: 0.95rem 1rem;
+      outline: none;
+      transition: border-color 0.24s ease, box-shadow 0.24s ease, transform 0.24s ease;
+      appearance: none;
+    }
+
+    .opportunity-input::placeholder{
+      color: rgba(255,255,255,0.38);
+    }
+
+    .opportunity-select option{
+      color: #111;
+    }
+
+    .opportunity-input:focus,
+    .opportunity-select:focus{
+      border-color: rgba(186, 201, 100, 0.26);
+      box-shadow: 0 0 0 3px rgba(186, 201, 100, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .opportunity-form-note{
+      min-height: 1.4rem;
+      margin-top: 0.15rem;
+      color: var(--capstone-soft);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    .opportunity-form-note[data-state="success"]{
+      color: #8ef0b6;
+    }
+
+    .opportunity-form-note[data-state="error"]{
+      color: #ffb1b1;
+    }
+
+    .opportunity-submit-line{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 0.3rem;
+    }
+
+    .opportunity-form-tip{
+      color: var(--capstone-soft);
+      font-size: 0.84rem;
+      line-height: 1.65;
+      max-width: 22rem;
+    }
+
+    .opportunity-board{
+      padding: 1.35rem;
+    }
+
+    .opportunity-board-head{
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      margin-bottom: 1.15rem;
+    }
+
+    .opportunity-board-chip{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.42rem;
+      padding: 0.42rem 0.72rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.72);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .opportunity-lanes{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .opportunity-lane{
+      min-height: 100%;
+      padding: 1.1rem;
+      border-radius: 24px;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .opportunity-lane-head{
+      display: flex;
+      justify-content: space-between;
+      gap: 0.8rem;
+      align-items: flex-start;
+    }
+
+    .opportunity-route{
+      color: #fff;
+      font-size: 1.08rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .opportunity-route-copy{
+      margin-top: 0.25rem;
+      color: var(--capstone-soft);
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+
+    .opportunity-count{
+      min-width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(186, 201, 100, 0.12);
+      border: 1px solid rgba(186, 201, 100, 0.22);
+      color: var(--capstone-accent);
+      font-weight: 700;
+    }
+
+    .opportunity-list{
+      display: grid;
+      gap: 12px;
+      margin-top: 1rem;
+    }
+
+    .opportunity-empty{
+      padding: 1.15rem;
+      border-radius: 20px;
+      border: 1px dashed rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
+      color: var(--capstone-muted);
+      line-height: 1.75;
+    }
+
+    .opportunity-card{
+      position: relative;
+      overflow: hidden;
+      padding: 1rem;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.07);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.16);
+    }
+
+    .opportunity-card:before{
+      content: "";
+      position: absolute;
+      right: -22px;
+      bottom: -34px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(186, 201, 100, 0.14), rgba(186, 201, 100, 0.02) 70%, transparent 74%);
+      pointer-events: none;
+    }
+
+    .opportunity-card-head{
+      display: flex;
+      justify-content: space-between;
+      gap: 0.8rem;
+      align-items: flex-start;
+    }
+
+    .opportunity-company{
+      margin: 0;
+      font-size: 1.08rem;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+    }
+
+    .opportunity-module{
+      display: inline-flex;
+      align-items: center;
+      margin-top: 0.45rem;
+      padding: 0.34rem 0.62rem;
+      border-radius: 999px;
+      background: rgba(54, 168, 239, 0.12);
+      border: 1px solid rgba(54, 168, 239, 0.22);
+      color: #88d7ff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .opportunity-remove{
+      border: 0;
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      width: 38px;
+      height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.76);
+      transition: transform 0.22s ease, background 0.22s ease, color 0.22s ease;
+    }
+
+    .opportunity-remove:hover,
+    .opportunity-remove:focus{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.10);
+      color: #fff;
+      outline: none;
+    }
+
+    .opportunity-meta{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 0.9rem;
+    }
+
+    .opportunity-pill{
+      display: inline-flex;
+      align-items: center;
+      padding: 0.38rem 0.66rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.82);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .opportunity-pill.is-incampus{
+      background: rgba(186, 201, 100, 0.12);
+      border-color: rgba(186, 201, 100, 0.22);
+      color: var(--capstone-accent);
+    }
+
+    .opportunity-pill.is-offcampus{
+      background: rgba(54, 168, 239, 0.12);
+      border-color: rgba(54, 168, 239, 0.22);
+      color: #88d7ff;
+    }
+
+    .opportunity-pill.is-passed{
+      background: rgba(18, 203, 99, 0.14);
+      border-color: rgba(18, 203, 99, 0.22);
+      color: #8ef0b6;
+    }
+
+    .opportunity-pill.is-failed{
+      background: rgba(255, 98, 98, 0.14);
+      border-color: rgba(255, 98, 98, 0.22);
+      color: #ffb1b1;
+    }
+
+    .opportunity-pill.is-awaiting{
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.76);
+    }
+
+    .reveal-up{
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal-up.is-visible{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1199.98px){
+      .hero-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .topics-grid{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .skills-grid,
+      .opportunity-stats{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .opportunities-layout,
+      .opportunity-lanes{
+        grid-template-columns: 1fr;
+      }
+
+      .hero-banner,
+      .overview-panel{
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 767.98px){
+      .capstone-hero{
+        padding-top: 8.8rem;
+        padding-bottom: 3.5rem;
+      }
+
+      .hero-banner,
+      .overview-panel,
+      .topics-shell,
+      .topic-card{
+        border-radius: 24px;
+      }
+
+      .overview-stats,
+      .week-grid,
+      .topics-grid,
+      .skills-grid,
+      .opportunity-stats,
+      .opportunity-field-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions .btn{
+        width: 100%;
+        margin-right: 0;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="css/home-page-system.css">
+  <link rel="stylesheet" href="css/theme-toggle.css">
+</head>
+<body data-spy="scroll" data-target="#pb-navbar" data-offset="200">
+  <nav class="navbar navbar-expand-lg site-navbar navbar-light bg-light" id="pb-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsL2Capstone" aria-controls="navbarsL2Capstone" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbarsL2Capstone">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="academic.html">Back</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-overview">Overview</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-topics">Course Topics</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-interviews">Interview Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-opportunities">Opportunities</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="capstone-hero" id="section-overview">
+    <div class="capstone-shell">
+      <div class="hero-grid">
+        <div class="hero-banner reveal-up">
+          <div>
+            <span class="hero-kicker">6.1 L2 Capstone</span>
+            <h1 class="hero-title">Module-Based <strong>Revision</strong></h1>
+            <p class="hero-copy">
+              ECSE743L - L2 Capstone follows a four-module revision plan that reconnects programming, OOP, basic and advanced DSA, DBMS, Computer Networks, and a System Design placeholder into one placement-oriented academic track.
+            </p>
+            <div class="hero-metrics">
+              <div class="metric-chip">4 Course Modules</div>
+              <div class="metric-chip">26-Week Track</div>
+              <div class="metric-chip">Core R-O-S 30-6-6</div>
+              <div class="metric-chip">5 Credits</div>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#section-topics" class="btn btn-primary px-4 py-3">Open Course Topics</a>
+            <a href="academic.html#section-timeline" class="btn btn-secondary px-4 py-3">Back To Timeline</a>
+          </div>
+        </div>
+
+        <aside class="overview-panel reveal-up">
+          <div>
+            <div class="panel-kicker">Course Overview</div>
+            <h3>One syllabus, four disciplined revision windows.
+            </h3>
+            <p class="overview-panel-copy">
+              The updated plan is tighter and more placement-facing than the previous version. Each module now bundles two adjacent technical areas and ends closer to the kind of assessments and interviews the capstone is meant to prepare for.
+            </p>
+            <div class="outcome-note">
+              <small>Course-Specific Learning Outcome</small>
+              <p>CO1 focuses on revising Introduction to Programming, Basic and Advanced Data Structures and Algorithms, Database Management System, and Computer Networks as one connected preparation stream.</p>
+            </div>
+          </div>
+
+          <div class="week-grid">
+            <div class="week-chip">
+              <small>Module 1 • W1-W8</small>
+              <span>Introduction To Programming + Object-Oriented Programming</span>
+            </div>
+            <div class="week-chip">
+              <small>Module 2 • W9-W14</small>
+              <span>Basic Data Structures Algorithms + Database Management System</span>
+            </div>
+            <div class="week-chip">
+              <small>Module 3 • W15-W18</small>
+              <span>Advanced Data Structures Algorithms + Computer Networks</span>
+            </div>
+            <div class="week-chip">
+              <small>Module 4 • W19-W26</small>
+              <span>System Designs*</span>
+            </div>
+          </div>
+
+          <div class="overview-stats">
+            <div class="overview-stat">
+              <div class="overview-stat-label">Revision Tracks</div>
+              <div class="overview-stat-value">7</div>
+              <div class="overview-stat-sub">Programming, OOP, DSA, DBMS, CN, and the System Design placeholder.</div>
+            </div>
+            <div class="overview-stat">
+              <div class="overview-stat-label">Learning Outcome</div>
+              <div class="overview-stat-value">1</div>
+              <div class="overview-stat-sub">One course-specific outcome driving the entire revision map.</div>
+            </div>
+            <div class="overview-stat">
+              <div class="overview-stat-label">Interview Flow</div>
+              <div class="overview-stat-value">4</div>
+              <div class="overview-stat-sub">MCQs, coding assessments, technical interviews, and HR interviews.</div>
+            </div>
+            <div class="overview-stat">
+              <div class="overview-stat-label">Credits</div>
+              <div class="overview-stat-value">5</div>
+              <div class="overview-stat-sub">Core R-O-S format 30-6-6 in the updated capstone plan.</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section capstone-section" id="section-topics">
+    <div class="capstone-shell">
+      <div class="section-intro reveal-up">
+        <div class="section-kicker">Course Topics</div>
+        <h2 class="section-title">Revised Subject Tracks Inside L2 Capstone</h2>
+        <p class="section-copy">
+          The topic map below follows the updated module plan from the new capstone document. It drops the earlier frontend emphasis and now centers on programming, DSA depth, DBMS, Computer Networks, and the final System Design placeholder.
+        </p>
+      </div>
+
+      <div class="topics-shell reveal-up">
+        <div class="topics-grid" id="topicsGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section capstone-section" id="section-interviews">
+    <div class="capstone-shell">
+      <div class="section-intro reveal-up">
+        <div class="section-kicker">Interview Skills</div>
+        <h2 class="section-title">How The Capstone Moves Toward Hiring Rounds</h2>
+        <p class="section-copy">
+          The updated plan also sequences the interview layer explicitly. Early modules lean on MCQ and coding assessment practice, while the final module pushes into technical and HR interview readiness.
+        </p>
+      </div>
+
+      <div class="skills-shell reveal-up">
+        <div class="skills-grid" id="skillsGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-section capstone-section" id="section-opportunities">
+    <div class="capstone-shell">
+      <div class="section-intro reveal-up">
+        <div class="section-kicker">Opportunities Board</div>
+        <h2 class="section-title">In-campus / Off-campus Opportunities</h2>
+        <p class="section-copy">
+          The official plan marks these windows as N/A, so this board turns that empty space into a live application tracker. Add the companies you applied to, record whether each route is in-campus or off-campus, and mark the current result.
+        </p>
+      </div>
+
+      <div class="opportunities-shell reveal-up">
+        <div class="opportunity-stats">
+          <div class="opportunity-stat">
+            <div class="opportunity-stat-label">Logged Applications</div>
+            <div class="opportunity-stat-value" id="opportunityTotal">0</div>
+            <div class="opportunity-stat-sub">Every company added to the capstone opportunity board.</div>
+          </div>
+          <div class="opportunity-stat">
+            <div class="opportunity-stat-label">In-campus</div>
+            <div class="opportunity-stat-value" id="opportunityIncampus">0</div>
+            <div class="opportunity-stat-sub">Applications routed through the campus process.</div>
+          </div>
+          <div class="opportunity-stat">
+            <div class="opportunity-stat-label">Off-campus</div>
+            <div class="opportunity-stat-value" id="opportunityOffcampus">0</div>
+            <div class="opportunity-stat-sub">Independent applications tracked alongside the capstone.</div>
+          </div>
+          <div class="opportunity-stat">
+            <div class="opportunity-stat-label">Passed</div>
+            <div class="opportunity-stat-value" id="opportunityPassed">0</div>
+            <div class="opportunity-stat-sub">Applications that converted into the next round or a positive outcome.</div>
+          </div>
+        </div>
+
+        <div class="opportunities-layout">
+          <div class="opportunity-form-panel">
+            <div class="opportunity-form-head">
+              <div class="panel-kicker">Opportunity Intake</div>
+              <h3>Add a live application entry.</h3>
+              <p class="opportunity-form-copy">
+                Capture the module window, route, company name, and result status in one refined board that stays aligned with the capstone page design.
+              </p>
+            </div>
+
+            <form id="opportunityForm" class="opportunity-form">
+              <div class="opportunity-field-grid">
+                <label class="opportunity-field">
+                  <span>Route</span>
+                  <select id="opportunityRoute" class="opportunity-select" name="opportunityRoute">
+                    <option value="incampus">In-campus</option>
+                    <option value="offcampus">Off-campus</option>
+                  </select>
+                </label>
+
+                <label class="opportunity-field">
+                  <span>Module Window</span>
+                  <select id="opportunityModule" class="opportunity-select" name="opportunityModule">
+                    <option value="Module 1 • W1-W8">Module 1 • W1-W8</option>
+                    <option value="Module 2 • W9-W14">Module 2 • W9-W14</option>
+                    <option value="Module 3 • W15-W18">Module 3 • W15-W18</option>
+                    <option value="Module 4 • W19-W26">Module 4 • W19-W26</option>
+                  </select>
+                </label>
+              </div>
+
+              <label class="opportunity-field">
+                <span>Company Applied</span>
+                <input id="opportunityCompany" class="opportunity-input" name="opportunityCompany" type="text" maxlength="90" placeholder="Company name, internship drive, or interview process">
+              </label>
+
+              <label class="opportunity-field">
+                <span>Result</span>
+                <select id="opportunityResult" class="opportunity-select" name="opportunityResult">
+                  <option value="awaiting">Awaiting Result</option>
+                  <option value="passed">Passed</option>
+                  <option value="failed">Failed</option>
+                </select>
+              </label>
+
+              <div class="opportunity-submit-line">
+                <div class="opportunity-form-tip">
+                  Keep the board current as soon as you apply so the capstone page reflects both preparation and actual opportunity flow.
+                </div>
+                <button type="submit" class="btn btn-primary px-4 py-3">Add Opportunity</button>
+              </div>
+
+              <div class="opportunity-form-note" id="opportunityFormNote" aria-live="polite"></div>
+            </form>
+          </div>
+
+          <div class="opportunity-board">
+            <div class="opportunity-board-head">
+              <div>
+                <div class="panel-kicker">Live Board</div>
+                <h3>Current application pipeline.</h3>
+                <p class="opportunity-board-copy">
+                  Entries are grouped by route so the page can track how campus and off-campus movement overlaps with the capstone revision schedule.
+                </p>
+              </div>
+              <div class="opportunity-board-chip">Locally Saved Tracker</div>
+            </div>
+
+            <div class="opportunity-lanes">
+              <div class="opportunity-lane">
+                <div class="opportunity-lane-head">
+                  <div>
+                    <div class="opportunity-route">In-campus Opportunities</div>
+                    <div class="opportunity-route-copy">Applications tied directly to the campus drive cycle.</div>
+                  </div>
+                  <div class="opportunity-count" id="opportunityLaneIncampusCount">0</div>
+                </div>
+                <div class="opportunity-list" id="opportunityLaneIncampus"></div>
+              </div>
+
+              <div class="opportunity-lane">
+                <div class="opportunity-lane-head">
+                  <div>
+                    <div class="opportunity-route">Off-campus Opportunities</div>
+                    <div class="opportunity-route-copy">Independent applications running alongside the formal campus track.</div>
+                  </div>
+                  <div class="opportunity-count" id="opportunityLaneOffcampusCount">0</div>
+                </div>
+                <div class="opportunity-list" id="opportunityLaneOffcampus"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var OPPORTUNITY_STORAGE_KEY = 'l2-capstone-opportunities-v1';
+      var LEGACY_OPPORTUNITY_STORAGE_KEY = 'fte-capstone-opportunities-v1';
+      var TOPICS = [
+        {
+          number: '1.1',
+          title: 'Introduction To Programming',
+          copy: 'Variables, data types and operations, control statements, Strings DSA, Arrays DSA, methods basics, and recursion form the opening revision stream of Module 1.',
+          href: 'firstSemester-introduction-to-programming.html'
+        },
+        {
+          number: '2.1',
+          title: 'Object-Oriented Programming',
+          copy: 'Programming paradigms, OOP introduction, objects and classes, constructors, wrapper classes, packages, advanced variables and methods, access control, abstract classes, interfaces, and generics.',
+          href: ''
+        },
+        {
+          number: '3.1',
+          title: 'Basic Data Structures Algorithms',
+          copy: 'Module 2 revisits complexity analysis, mathematics for DSA, ArrayList, Vectors, LinkedList, Hash structures, Stacks, and Queues as core problem-solving foundations.',
+          href: ''
+        },
+        {
+          number: '2.3',
+          title: 'Database Management System',
+          copy: 'Data abstraction, data independence, data models, DBMS language and architecture, ER diagrams, ER-to-relational mapping, relational algebra, normalization, and transaction state.',
+          href: ''
+        },
+        {
+          number: '4.1',
+          title: 'Advanced Data Structures Algorithms',
+          copy: 'Module 3 compresses Tree DSA, Heap DSA, Graph DSA, and Tries into one shorter but deeper advanced-structures window.',
+          href: ''
+        },
+        {
+          number: '2.4',
+          title: 'Computer Networks',
+          copy: 'Client-server architecture, network types and topologies, OSI and TCP/IP models, sockets, ports and protocols, cookie management, email systems, DNS, and layered communication.',
+          href: ''
+        },
+        {
+          number: 'L2.7',
+          title: 'System Designs',
+          copy: 'Module 4 reserves the final W19-W26 runway for System Designs, but the current plan still marks the technical content as N/A while interviews continue to intensify.',
+          href: '',
+          statusLabel: 'Current Plan: N/A'
+        }
+      ];
+
+      var INTERVIEW_SKILLS = [
+        {
+          module: 'Module 1',
+          weeks: 'W1-W6',
+          title: 'Online Assessment - MCQ’s',
+          copy: 'The opening assessment layer leans on screening-style multiple choice questions while the programming and OOP revision base is still being rebuilt.',
+          footer: 'MCQ Filter'
+        },
+        {
+          module: 'Module 2',
+          weeks: 'W7-W12',
+          title: 'Online Assessment - Coding Questions',
+          copy: 'As the capstone moves into basic DSA and DBMS, the assessment model shifts toward hands-on coding rounds and structured problem solving.',
+          footer: 'Coding Round'
+        },
+        {
+          module: 'Module 3',
+          weeks: 'W13-W18',
+          title: 'Online Assessment - Coding Questions',
+          copy: 'Advanced DSA and Computer Networks continue the coding-heavy route, keeping the mid-capstone focus on execution under interview pressure.',
+          footer: 'Advanced Practice'
+        },
+        {
+          module: 'Module 4',
+          weeks: 'W19-W25',
+          title: 'Technical Interviews + HR Interviews',
+          copy: 'The final stretch transitions from test rounds into direct interview conversations, where technical explanation and HR readiness both matter.',
+          footer: 'Interview Stage'
+        }
+      ];
+
+      function escapeHtml(text) {
+        return String(text)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function formatOpportunityDate(timestamp) {
+        return new Intl.DateTimeFormat('en-IN', {
+          day: '2-digit',
+          month: 'short',
+          year: 'numeric'
+        }).format(new Date(timestamp));
+      }
+
+      function loadOpportunities() {
+        try {
+          var raw = localStorage.getItem(OPPORTUNITY_STORAGE_KEY) || localStorage.getItem(LEGACY_OPPORTUNITY_STORAGE_KEY);
+          var parsed;
+
+          if (!raw) return [];
+          parsed = JSON.parse(raw);
+          if (!Array.isArray(parsed)) return [];
+
+          return parsed.filter(function (item) {
+            return item &&
+              typeof item.id === 'string' &&
+              typeof item.company === 'string' &&
+              typeof item.route === 'string' &&
+              typeof item.module === 'string' &&
+              typeof item.result === 'string';
+          }).map(function (item) {
+            return {
+              id: item.id,
+              route: item.route === 'offcampus' ? 'offcampus' : 'incampus',
+              module: item.module,
+              company: item.company,
+              result: item.result === 'passed' || item.result === 'failed' ? item.result : 'awaiting',
+              createdAt: typeof item.createdAt === 'number' ? item.createdAt : Date.now()
+            };
+          });
+        } catch (error) {
+          return [];
+        }
+      }
+
+      function saveOpportunities(items) {
+        try {
+          localStorage.setItem(OPPORTUNITY_STORAGE_KEY, JSON.stringify(items));
+        } catch (error) {}
+      }
+
+      function setOpportunityNote(text, state) {
+        var note = document.getElementById('opportunityFormNote');
+        if (!note) return;
+        note.textContent = text || '';
+        note.setAttribute('data-state', state || '');
+      }
+
+      function buildOpportunityCard(item) {
+        var routeLabel = item.route === 'offcampus' ? 'Off-campus' : 'In-campus';
+        return [
+          '<article class="opportunity-card">',
+            '<div class="opportunity-card-head">',
+              '<div>',
+                '<h3 class="opportunity-company">', escapeHtml(item.company), '</h3>',
+                '<div class="opportunity-module">', escapeHtml(item.module), '</div>',
+              '</div>',
+              '<button type="button" class="opportunity-remove" data-remove-id="', escapeHtml(item.id), '" aria-label="Remove opportunity">',
+                '<span class="icon-bin"></span>',
+              '</button>',
+            '</div>',
+            '<div class="opportunity-meta">',
+              '<span class="opportunity-pill ', item.route === 'offcampus' ? 'is-offcampus' : 'is-incampus', '">', escapeHtml(routeLabel), '</span>',
+              '<span class="opportunity-pill is-', escapeHtml(item.result), '">', escapeHtml(item.result === 'awaiting' ? 'Awaiting Result' : item.result), '</span>',
+              '<span class="opportunity-pill">Added ', escapeHtml(formatOpportunityDate(item.createdAt)), '</span>',
+            '</div>',
+          '</article>'
+        ].join('');
+      }
+
+      function buildOpportunityEmpty(routeTitle, copy) {
+        return [
+          '<div class="opportunity-empty">',
+            '<strong>', escapeHtml(routeTitle), '</strong><br>',
+            escapeHtml(copy),
+          '</div>'
+        ].join('');
+      }
+
+      function renderTopics() {
+        var root = document.getElementById('topicsGrid');
+        if (!root) return;
+
+        root.innerHTML = TOPICS.map(function (topic) {
+          var linked = Boolean(topic.href);
+          var tag = linked
+            ? '<span class="topic-open-pill">Open Archive <span class="icon-chevron-right"></span></span>'
+            : '<span class="topic-open-pill is-muted">' + escapeHtml(topic.statusLabel || 'Plan Recorded') + '</span>';
+          var open = linked ? '<a href="' + escapeHtml(topic.href) + '" class="topic-card is-linked">' : '<article class="topic-card">';
+          var close = linked ? '</a>' : '</article>';
+
+          return [
+            open,
+              '<div class="folder-icon" aria-hidden="true"></div>',
+              '<div class="topic-number">Revision Track ', escapeHtml(topic.number), '</div>',
+              '<h3 class="topic-title">', escapeHtml(topic.title), '</h3>',
+              '<p class="topic-copy">', escapeHtml(topic.copy), '</p>',
+              '<div class="topic-bar"></div>',
+              tag,
+            close
+          ].join('');
+        }).join('');
+      }
+
+      function renderInterviewSkills() {
+        var root = document.getElementById('skillsGrid');
+        if (!root) return;
+
+        root.innerHTML = INTERVIEW_SKILLS.map(function (skill) {
+          return [
+            '<article class="skill-card">',
+              '<span class="skill-chip">', escapeHtml(skill.module), '</span>',
+              '<h3 class="skill-title">', escapeHtml(skill.title), '</h3>',
+              '<div class="skill-weeks">', escapeHtml(skill.weeks), '</div>',
+              '<p class="skill-copy">', escapeHtml(skill.copy), '</p>',
+              '<div class="skill-footer">', escapeHtml(skill.footer), '</div>',
+            '</article>'
+          ].join('');
+        }).join('');
+      }
+
+      function renderOpportunities() {
+        var items = loadOpportunities().sort(function (a, b) {
+          return b.createdAt - a.createdAt;
+        });
+        var incampus = items.filter(function (item) { return item.route === 'incampus'; });
+        var offcampus = items.filter(function (item) { return item.route === 'offcampus'; });
+        var passed = items.filter(function (item) { return item.result === 'passed'; });
+        var incampusRoot = document.getElementById('opportunityLaneIncampus');
+        var offcampusRoot = document.getElementById('opportunityLaneOffcampus');
+
+        document.getElementById('opportunityTotal').textContent = items.length;
+        document.getElementById('opportunityIncampus').textContent = incampus.length;
+        document.getElementById('opportunityOffcampus').textContent = offcampus.length;
+        document.getElementById('opportunityPassed').textContent = passed.length;
+        document.getElementById('opportunityLaneIncampusCount').textContent = incampus.length;
+        document.getElementById('opportunityLaneOffcampusCount').textContent = offcampus.length;
+
+        if (incampusRoot) {
+          incampusRoot.innerHTML = incampus.length
+            ? incampus.map(buildOpportunityCard).join('')
+            : buildOpportunityEmpty('No in-campus entries yet.', 'Add a campus drive application from the intake panel to start this side of the board.');
+        }
+
+        if (offcampusRoot) {
+          offcampusRoot.innerHTML = offcampus.length
+            ? offcampus.map(buildOpportunityCard).join('')
+            : buildOpportunityEmpty('No off-campus entries yet.', 'Use this lane to track independent applications that run in parallel with the capstone schedule.');
+        }
+      }
+
+      function initOpportunities() {
+        var form = document.getElementById('opportunityForm');
+        var board = document.querySelector('.opportunities-shell');
+
+        if (!form || !board) return;
+
+        form.addEventListener('submit', function (event) {
+          var items;
+          var company;
+          var route;
+          var moduleValue;
+          var result;
+
+          event.preventDefault();
+
+          company = document.getElementById('opportunityCompany').value.trim();
+          route = document.getElementById('opportunityRoute').value;
+          moduleValue = document.getElementById('opportunityModule').value;
+          result = document.getElementById('opportunityResult').value;
+
+          if (!company) {
+            setOpportunityNote('Add the company name before saving the opportunity.', 'error');
+            document.getElementById('opportunityCompany').focus();
+            return;
+          }
+
+          items = loadOpportunities();
+          items.unshift({
+            id: 'opportunity-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7),
+            route: route === 'offcampus' ? 'offcampus' : 'incampus',
+            module: moduleValue,
+            company: company,
+            result: result === 'passed' || result === 'failed' ? result : 'awaiting',
+            createdAt: Date.now()
+          });
+
+          saveOpportunities(items);
+          form.reset();
+          document.getElementById('opportunityRoute').value = 'incampus';
+          document.getElementById('opportunityModule').value = 'Module 1 • W1-W8';
+          document.getElementById('opportunityResult').value = 'awaiting';
+          setOpportunityNote('Opportunity added to the board.', 'success');
+          renderOpportunities();
+        });
+
+        board.addEventListener('click', function (event) {
+          var trigger = event.target.closest('[data-remove-id]');
+          var items;
+          if (!trigger) return;
+
+          items = loadOpportunities().filter(function (item) {
+            return item.id !== trigger.getAttribute('data-remove-id');
+          });
+
+          saveOpportunities(items);
+          setOpportunityNote('Opportunity removed from the board.', 'success');
+          renderOpportunities();
+        });
+
+        renderOpportunities();
+      }
+
+      function initReveal() {
+        if (!('IntersectionObserver' in window)) {
+          Array.prototype.forEach.call(document.querySelectorAll('.reveal-up'), function (el) {
+            el.classList.add('is-visible');
+          });
+          return;
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          });
+        }, { threshold: 0.14 });
+
+        Array.prototype.forEach.call(document.querySelectorAll('.reveal-up'), function (el, index) {
+          el.style.transitionDelay = Math.min(index * 60, 420) + 'ms';
+          observer.observe(el);
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        renderTopics();
+        renderInterviewSkills();
+        initOpportunities();
+        initReveal();
+      });
+    })();
+  </script>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row mb-5">
+        <p class="col-12 text-center">
+          Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="" target="_blank" class="text-primary">Manu Chaitanya</a>
+        </p>
+      </div>
+      <div class="row mb-5">
+        <div class="col-md-12 text-center">
+          <p>
+            <a href="https://www.facebook.com/m14chaitanya" class="social-item"><span class="icon-facebook2"></span></a>
+            <a href="#" class="social-item"><span class="icon-twitter"></span></a>
+            <a href="https://www.instagram.com/m17chaitanya/" class="social-item"><span class="icon-instagram2"></span></a>
+            <a href="https://www.linkedin.com/in/manuchaitanya/" class="social-item"><span class="icon-linkedin2"></span></a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="js/back-nav.js"></script>
+  <script src="js/home-page-system.js"></script>
+  <script src="js/theme-toggle.js"></script>
+</body>
+</html>
