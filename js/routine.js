@@ -197,27 +197,104 @@
     }).join("");
   }
 
+  function pointOnCircle(centerX, centerY, radius, angle) {
+    const radians = angle * Math.PI / 180;
+
+    return {
+      x: centerX + (radius * Math.cos(radians)),
+      y: centerY + (radius * Math.sin(radians))
+    };
+  }
+
+  function renderRoutineFlow(entry) {
+    const count = entry.steps.length;
+    const centerX = 160;
+    const centerY = 120;
+    const radius = 82;
+    const firstAngle = count === 2 ? -135 : -90;
+    const angleStep = count === 2 ? 180 : 360 / count;
+    const nodeTrim = 26;
+    const markerId = "routine-flow-arrow-" + entry.index;
+    const angles = entry.steps.map(function (_, index) {
+      return firstAngle + (index * angleStep);
+    });
+
+    if (count < 2) return "";
+
+    const paths = angles.slice(0, -1).map(function (angle, index) {
+      const nextAngle = angles[index + 1];
+      const start = pointOnCircle(centerX, centerY, radius, angle + nodeTrim);
+      const end = pointOnCircle(centerX, centerY, radius, nextAngle - nodeTrim);
+      const sweep = nextAngle - angle - (nodeTrim * 2);
+      const largeArc = sweep > 180 ? 1 : 0;
+
+      return [
+        '<path class="routine-flow-path" style="--flow-path-delay:', index * 180, 'ms" ',
+          'd="M ', start.x.toFixed(2), ' ', start.y.toFixed(2),
+          ' A ', radius, ' ', radius, ' 0 ', largeArc, ' 1 ', end.x.toFixed(2), ' ', end.y.toFixed(2), '" ',
+          'marker-end="url(#', markerId, ')"></path>'
+      ].join("");
+    }).join("");
+
+    const nodes = entry.steps.map(function (step, index) {
+      const point = pointOnCircle(centerX, centerY, radius, angles[index]);
+      const left = (point.x / 320) * 100;
+      const top = (point.y / 240) * 100;
+
+      return [
+        '<span class="routine-flow-node" style="left:', left.toFixed(2), '%; top:', top.toFixed(2), '%;">',
+          '<span>', escapeHtml(step), '</span>',
+        '</span>'
+      ].join("");
+    }).join("");
+
+    return [
+      '<div class="routine-flow" role="img" aria-label="Task order: ', escapeHtml(entry.steps.join(", then ")), '">',
+        '<div class="routine-flow-orbit">',
+          '<svg class="routine-flow-svg" viewBox="0 0 320 240" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">',
+            '<defs>',
+              '<marker id="', markerId, '" markerWidth="8" markerHeight="8" refX="6.5" refY="4" orient="auto" markerUnits="strokeWidth">',
+                '<path class="routine-flow-arrow" d="M 0 0 L 8 4 L 0 8 z"></path>',
+              '</marker>',
+            '</defs>',
+            '<circle class="routine-flow-guide" cx="160" cy="120" r="82"></circle>',
+            paths,
+          '</svg>',
+          nodes,
+        '</div>',
+      '</div>'
+    ].join("");
+  }
+
   function renderTimeline(entries) {
     return entries.map(function (entry) {
+      const hasFlow = entry.steps.length > 1;
       const steps = entry.steps.map(function (step) {
         return '<span class="routine-step">' + escapeHtml(step) + '</span>';
       }).join("");
+      const flow = renderRoutineFlow(entry);
+
+      const stackOffset = (entry.index - 1) * 14;
+      const mobileStackOffset = (entry.index - 1) * 8;
 
       return [
-        '<article class="routine-entry routine-entry--', escapeHtml(entry.badgeClass), '">',
+        '<article class="routine-entry routine-entry--', escapeHtml(entry.badgeClass), hasFlow ? ' routine-entry--has-flow' : '', '" style="--routine-stack-offset:', stackOffset, 'px; --routine-stack-offset-mobile:', mobileStackOffset, 'px; --routine-stack-order:', entry.index, ';">',
           '<div class="routine-time-block">',
             '<small>Block ', escapeHtml(pad(entry.index)), '</small>',
             '<span class="routine-window">', escapeHtml(entry.startLabel), '</span>',
             '<span class="routine-time-end">to ', escapeHtml(entry.endLabel), '</span>',
           '</div>',
           '<div class="routine-entry-body">',
-            '<div class="routine-entry-head">',
-              '<span class="routine-badge routine-badge--', escapeHtml(entry.badgeClass), '">', escapeHtml(entry.categoryLabel), '</span>',
-              '<span class="routine-duration">', escapeHtml(entry.durationLabel), '</span>',
+            '<div class="routine-entry-copy">',
+              '<div class="routine-entry-head">',
+                '<span class="routine-badge routine-badge--', escapeHtml(entry.badgeClass), '">', escapeHtml(entry.categoryLabel), '</span>',
+                '<span class="routine-duration">', escapeHtml(entry.durationLabel), '</span>',
+              '</div>',
+              '<h3 class="routine-track">', escapeHtml(entry.track), '</h3>',
+              '<span class="routine-track-note">', escapeHtml(entry.activity.replace(/\s*->\s*/g, ' -> ')), '</span>',
+              hasFlow ? '' : '<div class="routine-steps">' + steps + '</div>',
             '</div>',
-            '<h3 class="routine-track">', escapeHtml(entry.track), '</h3>',
-            '<span class="routine-track-note">', escapeHtml(entry.activity.replace(/\s*->\s*/g, ' -> ')), '</span>',
-            '<div class="routine-steps">', steps, '</div>',
+            flow,
           '</div>',
         '</article>'
       ].join("");
@@ -230,9 +307,6 @@
 
     const entries = enrichRoutine();
     const insights = buildInsights(entries);
-    const longestFocusLabel = insights.longestFocus
-      ? insights.longestFocus.durationLabel + " in " + insights.longestFocus.track
-      : "Not available";
 
     list.innerHTML = [
       '<div class="routine-shell">',
@@ -246,16 +320,6 @@
         '</div>',
         '<div class="routine-main">',
           '<aside class="routine-insights">',
-            '<div class="routine-stat-card">',
-              '<small>Longest focus block</small>',
-              '<strong>', escapeHtml(longestFocusLabel), '</strong>',
-              '<span>Deep-work windows stay concentrated around the capstone blocks instead of being scattered across the day.</span>',
-            '</div>',
-            '<div class="routine-stat-card">',
-              '<small>Day shape</small>',
-              '<strong>', escapeHtml(insights.blocks + ' Blocks') , '</strong>',
-              '<span>', escapeHtml(insights.startLabel + ' Wake-Up -> ' + insights.endLabel + ' Next-Day Close'), '</span>',
-            '</div>',
             '<div class="routine-breakdown">',
               '<h4 class="mb-0">Time Split across the day!</h4>',
               '<div class="mt-4">', renderBreakdown(insights), '</div>',

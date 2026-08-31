@@ -4,6 +4,7 @@
 	<title>Welcome Manu!</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="preload" as="image" href="images/home-loader-gradient-4k.jpg" fetchpriority="high">
   <script src="js/theme-init.js"></script>
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/flexslider.css">
@@ -18,6 +19,53 @@
 
 	<!-- Ratings Section Styles -->
 	<style>
+		body.is-page-loading{
+			overflow: hidden !important;
+		}
+
+		.page-loader{
+			position: fixed;
+			inset: 0;
+			z-index: 100000;
+			display: grid;
+			place-items: center;
+			background: #111210;
+			color: #f7f7f2;
+			opacity: 1;
+			visibility: visible;
+			transition: opacity 0.58s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.58s linear;
+		}
+
+		html[data-theme="light"] .page-loader{
+			background: #eeeae1;
+			color: #29271f;
+		}
+
+		.page-loader.is-complete{
+			opacity: 0;
+			visibility: hidden;
+			pointer-events: none;
+		}
+
+		.page-loader-count{
+			display: inline-flex;
+			align-items: flex-start;
+			font-family: "Nunito Sans", sans-serif;
+			font-size: clamp(6.5rem, 18vw, 15rem);
+			font-weight: 800;
+			line-height: 0.78;
+			letter-spacing: -0.09em;
+			font-variant-numeric: tabular-nums;
+		}
+
+		.page-loader-symbol{
+			margin: 0.06em 0 0 0.08em;
+			color: #bac964;
+			font-size: 0.28em;
+			font-weight: 800;
+			letter-spacing: 0;
+		}
+
 		/* Main hero + nav (custom) */
 		#pb-navbar{
 			transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
@@ -83,13 +131,32 @@
 			}
 		}
 
-		#section-home{
-			position: relative;
-			isolation: isolate;
-			background-position: center center !important;
-			background-size: cover !important;
-			overflow: hidden;
-		}
+			#section-home{
+				position: relative;
+				isolation: isolate;
+				background-position: center center !important;
+				background-size: cover !important;
+				overflow: hidden;
+			}
+
+			#section-home .hero-background-video{
+				position: absolute;
+				inset: 0;
+				z-index: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center center;
+				pointer-events: none;
+				opacity: 0;
+				visibility: hidden;
+				transition: opacity 0.45s ease, visibility 0.45s ease;
+			}
+
+			#section-home .hero-background-video.is-active{
+				opacity: 1;
+				visibility: visible;
+			}
 
 		#section-home,
 		#section-home .row{
@@ -97,13 +164,14 @@
 			min-height: 100vh;
 		}
 
-		#section-home:before{
-			background:
-				linear-gradient(180deg, rgba(0, 0, 0, 0.28) 0%, rgba(0, 0, 0, 0.48) 44%, rgba(0, 0, 0, 0.76) 100%),
-				radial-gradient(circle at 18% 18%, rgba(186, 201, 100, 0.16), transparent 28%),
-				radial-gradient(circle at 82% 24%, rgba(255, 255, 255, 0.08), transparent 24%);
-			opacity: 1;
-		}
+			#section-home:before{
+				background:
+					linear-gradient(180deg, rgba(0, 0, 0, 0.28) 0%, rgba(0, 0, 0, 0.48) 44%, rgba(0, 0, 0, 0.76) 100%),
+					radial-gradient(circle at 18% 18%, rgba(186, 201, 100, 0.16), transparent 28%),
+					radial-gradient(circle at 82% 24%, rgba(255, 255, 255, 0.08), transparent 24%);
+				opacity: 1;
+				z-index: 1;
+			}
 
 		#section-home:after{
 			content: "";
@@ -133,8 +201,8 @@
 		#section-home .hero-home-grid{
 			position: relative;
 			display: grid;
-			grid-template-columns: minmax(0, 1fr) minmax(400px, 0.82fr);
-			gap: clamp(72px, 9vw, 168px);
+			grid-template-columns: minmax(0, 1.2fr) minmax(360px, 0.62fr);
+			gap: clamp(38px, 5vw, 92px);
 			align-items: center;
 			padding: 2.3rem 0 5.2rem;
 		}
@@ -175,22 +243,25 @@
 		}
 
 		#section-home .hero-copy-panel{
-			max-width: 660px;
-			padding-right: clamp(22px, 3vw, 54px);
+			max-width: 820px;
+			padding-right: clamp(10px, 1.5vw, 28px);
 		}
 
 		#section-home .hero-copy-motion{
 			opacity: 0;
-			transform: translate3d(-96px, 0, 0);
+			transform: translate3d(clamp(-720px, -52vw, -180px), 0, 0);
+			filter: blur(5px);
 			transition:
-				opacity 0.42s ease,
-				transform 0.58s cubic-bezier(0.22, 1, 0.36, 1);
-			will-change: transform, opacity;
+				opacity 0.68s ease,
+				transform 1.08s cubic-bezier(0.16, 1, 0.3, 1),
+				filter 0.72s ease;
+			will-change: transform, opacity, filter;
 		}
 
 		#section-home .hero-copy-motion.is-visible{
 			opacity: 1;
 			transform: translate3d(0, 0, 0);
+			filter: blur(0);
 		}
 
 		#section-home .hero-stagger{
@@ -246,21 +317,47 @@
 
 		#section-home .hero-title-lead{
 			display: block;
-			margin-bottom: 0.45rem;
-			font-size: clamp(3.2rem, 7vw, 5.6rem);
+			margin-bottom: 0.55rem;
+			font-size: clamp(4rem, 8.4vw, 7.8rem);
 			font-weight: 200;
-			line-height: 0.95;
+			line-height: 0.9;
 			color: rgba(255,255,255,0.98);
 			text-shadow: 0 18px 40px rgba(0,0,0,0.16);
 		}
 
 		#section-home .hero-title strong{
 			display: block;
-			font-size: clamp(4.1rem, 8.2vw, 7.2rem);
+			font-size: clamp(5.6rem, 9vw, 9rem);
 			font-weight: 800;
-			line-height: 0.9;
+			line-height: 0.82;
 			color: #fff;
 			text-shadow: 0 24px 64px rgba(0,0,0,0.24);
+		}
+
+		#section-home .hero-title.is-title-ready .hero-title-lead{
+			animation: heroGreetingReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+		}
+
+		#section-home .hero-name-word{
+			display: inline-flex;
+			white-space: nowrap;
+		}
+
+		#section-home .hero-name-word:not(:last-child){
+			margin-right: 0.22em;
+		}
+
+		#section-home .hero-name-letter{
+			display: inline-block;
+			opacity: 0;
+			filter: blur(12px);
+			transform: translate3d(0, 0.72em, 0) rotateX(-72deg) scale(0.84);
+			transform-origin: center bottom;
+		}
+
+		#section-home .hero-title.is-title-ready .hero-name-letter{
+			animation: heroNameLetterReveal 0.78s cubic-bezier(0.16, 1, 0.3, 1) both;
+			animation-delay: var(--hero-letter-delay);
 		}
 
 		#section-home .hero-description{
@@ -461,6 +558,9 @@
 
 		#section-home .hero-control-wrap{
 			position: relative;
+			display: grid;
+			gap: 1.15rem;
+			align-self: start;
 			justify-self: end;
 			width: min(100%, 500px);
 			margin-right: -6px;
@@ -508,6 +608,116 @@
 			z-index: 0;
 		}
 
+		#section-home .hero-semester-card{
+			position: relative;
+			z-index: 1;
+			padding: 1.3rem 1.45rem 1.25rem;
+			border-radius: 30px;
+			background:
+				linear-gradient(135deg, rgba(20,20,20,0.84), rgba(10,10,10,0.66)),
+				radial-gradient(circle at 88% 12%, rgba(186,201,100,0.16), transparent 40%);
+			border: 1px solid rgba(255,255,255,0.1);
+			box-shadow: 0 30px 72px rgba(0,0,0,0.2);
+			backdrop-filter: blur(18px);
+			overflow: hidden;
+		}
+
+		#section-home .hero-semester-card:before{
+			content: "";
+			position: absolute;
+			inset: -70% auto auto 54%;
+			width: 230px;
+			height: 230px;
+			border-radius: 50%;
+			background: radial-gradient(circle, rgba(186,201,100,0.13), transparent 70%);
+			pointer-events: none;
+		}
+
+		#section-home .hero-semester-card > *{
+			position: relative;
+			z-index: 1;
+		}
+
+		#section-home .hero-semester-readout,
+		#section-home .hero-semester-dates{
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 1rem;
+		}
+
+		#section-home .hero-semester-label{
+			display: block;
+			font-size: 0.7rem;
+			font-weight: 800;
+			letter-spacing: 0.16em;
+			line-height: 1;
+			text-transform: uppercase;
+			color: rgba(255,255,255,0.52);
+		}
+
+		#section-home .hero-semester-readout{
+			justify-content: center;
+			margin-top: 0.85rem;
+		}
+
+		#section-home .hero-semester-count{
+			display: flex;
+			align-items: baseline;
+			justify-content: center;
+			width: 100%;
+			min-width: 0;
+			color: #fff;
+			font-size: clamp(6.2rem, 8vw, 8rem);
+			font-variant-numeric: tabular-nums;
+			font-weight: 700;
+			letter-spacing: -0.075em;
+			line-height: 0.8;
+		}
+
+		#section-home .hero-semester-divider{
+			margin: 0 0.1em;
+			color: rgba(186,201,100,0.82);
+			font-size: 0.78em;
+			font-weight: 500;
+			letter-spacing: 0;
+			transform: translateY(-0.16em);
+		}
+
+		#section-home .hero-semester-track{
+			position: relative;
+			height: 4px;
+			margin-top: 1rem;
+			border-radius: 999px;
+			background: rgba(255,255,255,0.09);
+			overflow: hidden;
+		}
+
+		#section-home .hero-semester-track:after{
+			content: "";
+			position: absolute;
+			inset: 0;
+			border-radius: inherit;
+			background: linear-gradient(90deg, #8f9f47, #d8e875);
+			box-shadow: 0 0 18px rgba(186,201,100,0.42);
+			transform: scaleX(0);
+			transform-origin: left center;
+			transition: transform 1.35s cubic-bezier(0.22, 1, 0.36, 1);
+		}
+
+		#section-home .hero-semester-card.is-counted .hero-semester-track:after{
+			transform: scaleX(var(--semester-progress, 0));
+		}
+
+		#section-home .hero-semester-dates{
+			margin-top: 0.72rem;
+			color: rgba(255,255,255,0.4);
+			font-size: 0.7rem;
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+
 		#section-home .hero-control-panel{
 			position: relative;
 			padding: 1.45rem;
@@ -519,6 +729,29 @@
 			box-shadow: 0 36px 84px rgba(0,0,0,0.2);
 			backdrop-filter: blur(18px);
 			overflow: hidden;
+		}
+
+		#section-home .hero-clock-card{
+			padding: clamp(1.5rem, 2.4vw, 2.2rem);
+			background:
+				linear-gradient(145deg, rgba(18,18,18,0.84), rgba(8,8,8,0.7)),
+				radial-gradient(circle at 88% 12%, rgba(186,201,100,0.13), transparent 40%);
+		}
+
+		#section-home .hero-clock-card .hero-time-block{
+			padding: 0;
+			border: 0;
+		}
+
+		#section-home .hero-clock-card .hero-local-time{
+			font-size: clamp(3.8rem, 5vw, 5.4rem);
+			font-variant-numeric: tabular-nums;
+			white-space: nowrap;
+		}
+
+		#section-home .hero-clock-card .hero-local-date{
+			margin-top: 0.85rem;
+			font-size: 1.08rem;
 		}
 
 		#section-home .hero-control-panel:before{
@@ -726,7 +959,18 @@
 			50%{ transform: translateY(-4px); }
 		}
 
-		@media (max-width: 1199.98px){
+			@keyframes heroGreetingReveal{
+				0%{ opacity: 0; filter: blur(14px); transform: translate3d(0, 0.42em, 0); letter-spacing: -0.02em; }
+				100%{ opacity: 1; filter: blur(0); transform: translate3d(0, 0, 0); letter-spacing: -0.07em; }
+			}
+
+			@keyframes heroNameLetterReveal{
+				0%{ opacity: 0; filter: blur(12px); transform: translate3d(0, 0.72em, 0) rotateX(-72deg) scale(0.84); }
+				65%{ opacity: 1; filter: blur(0); transform: translate3d(0, -0.06em, 0) rotateX(5deg) scale(1.025); }
+				100%{ opacity: 1; filter: blur(0); transform: translate3d(0, 0, 0) rotateX(0) scale(1); }
+			}
+
+			@media (max-width: 1199.98px){
 			#section-home .hero-home-grid{
 				grid-template-columns: minmax(0, 1fr);
 				gap: 2rem;
@@ -829,6 +1073,19 @@
 				border-radius: 28px;
 			}
 
+			#section-home .hero-semester-card{
+				padding: 1.15rem;
+				border-radius: 26px;
+			}
+
+			#section-home .hero-semester-readout{
+				margin-top: 0.75rem;
+			}
+
+			#section-home .hero-semester-count{
+				font-size: clamp(5.4rem, 27vw, 7rem);
+			}
+
 			#section-home .hero-local-time{
 				font-size: clamp(2.6rem, 14vw, 3.8rem);
 			}
@@ -841,7 +1098,18 @@
 			}
 		}
 
-		@media (prefers-reduced-motion: reduce){
+			@media (prefers-reduced-motion: reduce){
+				#section-home .hero-name-letter{
+					opacity: 1 !important;
+					filter: none !important;
+					transform: none !important;
+					animation: none !important;
+				}
+
+				#section-home .hero-title-lead{
+					animation: none !important;
+				}
+
 			#section-home .hero-panel-motion{
 				opacity: 1 !important;
 				transform: none !important;
@@ -866,12 +1134,137 @@
 			#section-home .hero-stagger,
 			#section-home .hero-btn,
 			#section-home .hero-phase-pill,
-			#section-home .hero-mini-card{
+			#section-home .hero-mini-card,
+			#section-home .hero-semester-track:after{
 				transition: none !important;
 			}
 		}
 
 		/* Ratings + Ratings History (custom) */
+		.ratings-average-stage{
+			position: fixed;
+			inset: 0;
+			z-index: 9000;
+			display: grid;
+			place-items: center;
+			padding: 1.5rem;
+			background: rgba(13, 14, 12, 0.82);
+			backdrop-filter: blur(14px);
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity 0.28s ease, background 0.42s ease, backdrop-filter 0.42s ease;
+		}
+
+		html[data-theme="light"] .ratings-average-stage{
+			background: rgba(238, 234, 225, 0.88);
+		}
+
+		.ratings-average-stage.is-visible{
+			opacity: 1;
+		}
+
+		.ratings-average-stage.is-flying{
+			background: rgba(13, 14, 12, 0);
+			backdrop-filter: blur(0);
+		}
+
+		html[data-theme="light"] .ratings-average-stage.is-flying{
+			background: rgba(238, 234, 225, 0);
+		}
+
+		.ratings-average-display{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			width: min(82vw, 720px);
+			min-height: min(54vw, 430px);
+			color: #fff;
+			text-align: center;
+			opacity: 0;
+			filter: blur(12px);
+			transform: translate3d(0, 38px, 0) scale(0.62);
+			transform-origin: center;
+			will-change: transform, opacity, filter;
+			transition:
+				opacity 0.42s ease,
+				filter 0.42s ease,
+				transform 0.62s cubic-bezier(0.16, 1, 0.3, 1);
+		}
+
+		html[data-theme="light"] .ratings-average-display{
+			color: #29271f;
+		}
+
+		.ratings-average-stage.is-visible .ratings-average-display{
+			opacity: 1;
+			filter: blur(0);
+			transform: translate3d(0, 0, 0) scale(1);
+		}
+
+		.ratings-average-stage.is-flying .ratings-average-display{
+			opacity: 0.08;
+			filter: blur(5px);
+			transform: translate3d(var(--average-flight-x, 0), var(--average-flight-y, 55vh), 0) scale(0.12);
+			transition:
+				opacity 0.88s ease-in,
+				filter 0.88s ease-in,
+				transform 0.92s cubic-bezier(0.55, 0.04, 0.85, 0.28);
+		}
+
+		.ratings-average-label{
+			margin-bottom: 0.7rem;
+			color: #bac964;
+			font-size: clamp(0.75rem, 1.3vw, 1rem);
+			font-weight: 800;
+			letter-spacing: 0.24em;
+			text-transform: uppercase;
+		}
+
+		.ratings-average-score{
+			display: inline-flex;
+			align-items: flex-end;
+			font-size: clamp(7rem, 22vw, 18rem);
+			font-weight: 800;
+			line-height: 0.76;
+			letter-spacing: -0.09em;
+			font-variant-numeric: tabular-nums;
+		}
+
+		.ratings-average-score small{
+			margin: 0 0 0.12em 0.16em;
+			color: #bac964;
+			font-size: 0.2em;
+			font-weight: 800;
+			letter-spacing: 0;
+		}
+
+		#section-ratings-history .ratings-history-summary.is-average-target{
+			animation: ratingsAverageTarget 1.05s cubic-bezier(0.16, 1, 0.3, 1);
+		}
+
+		@keyframes ratingsAverageTarget{
+			0%, 100%{
+				border-color: rgba(255,255,255,0.08);
+				box-shadow: 0 26px 70px rgba(0,0,0,0.16);
+				transform: scale(1);
+			}
+			42%{
+				border-color: rgba(186,201,100,0.7);
+				box-shadow: 0 28px 88px rgba(186,201,100,0.26);
+				transform: scale(1.018);
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce){
+			.ratings-average-stage,
+			.ratings-average-display,
+			#section-ratings-history .ratings-history-summary.is-average-target{
+				animation: none !important;
+				transition: none !important;
+			}
+		}
+
 		#section-ratings,
 		#section-ratings-history{
 			--rating-accent: #bac964;
@@ -933,6 +1326,104 @@
 			margin-bottom: 0;
 			font-size: clamp(2.25rem, 4vw, 3.8rem);
 			letter-spacing: -0.05em;
+		}
+
+		#section-ratings .ratings-day-title{
+			perspective: 700px;
+		}
+
+		#section-ratings .ratings-day-title-prefix,
+		#section-ratings .ratings-day-title-word{
+			display: inline-block;
+			will-change: transform, opacity, filter;
+		}
+
+		#section-ratings .ratings-day-title-word{
+			transform-origin: 50% 70%;
+		}
+
+		#section-ratings .ratings-day-title.is-playing .ratings-day-title-prefix{
+			animation: ratingsDayPrefixReveal 0.62s cubic-bezier(0.16, 1, 0.3, 1) both;
+		}
+
+		#section-ratings .ratings-day-title-word.is-best{
+			animation: ratingsBestReveal 0.72s cubic-bezier(0.16, 1, 0.3, 1) both;
+		}
+
+		#section-ratings .ratings-day-title-word.is-leaving{
+			animation: ratingsWordLeave 0.32s cubic-bezier(0.55, 0.05, 0.9, 0.4) both;
+		}
+
+		#section-ratings .ratings-day-title-word.is-day{
+			animation: ratingsDayArrive 0.72s cubic-bezier(0.16, 1, 0.3, 1) both;
+		}
+
+		@keyframes ratingsDayPrefixReveal{
+			0%{
+				opacity: 0;
+				filter: blur(8px);
+				transform: translate3d(-32px, 0, 0);
+			}
+			100%{
+				opacity: 1;
+				filter: blur(0);
+				transform: translate3d(0, 0, 0);
+			}
+		}
+
+		@keyframes ratingsBestReveal{
+			0%{
+				opacity: 0;
+				filter: blur(10px);
+				letter-spacing: 0.08em;
+				transform: translate3d(0, 46px, 0) rotateX(-58deg) scale(0.9);
+			}
+			100%{
+				opacity: 1;
+				filter: blur(0);
+				letter-spacing: inherit;
+				transform: translate3d(0, 0, 0) rotateX(0) scale(1);
+			}
+		}
+
+		@keyframes ratingsWordLeave{
+			0%{
+				opacity: 1;
+				filter: blur(0);
+				transform: translate3d(0, 0, 0) rotateX(0) scale(1);
+			}
+			100%{
+				opacity: 0;
+				filter: blur(8px);
+				transform: translate3d(0, -48px, 0) rotateX(52deg) scale(0.9);
+			}
+		}
+
+		@keyframes ratingsDayArrive{
+			0%{
+				opacity: 0;
+				filter: blur(9px);
+				transform: translate3d(0, 54px, 0) rotateX(-62deg) scale(0.86);
+			}
+			64%{
+				opacity: 1;
+				filter: blur(0);
+				transform: translate3d(0, -5px, 0) rotateX(4deg) scale(1.035);
+			}
+			100%{
+				opacity: 1;
+				filter: blur(0);
+				transform: translate3d(0, 0, 0) rotateX(0) scale(1);
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce){
+			#section-ratings .ratings-day-title-prefix,
+			#section-ratings .ratings-day-title-word{
+				animation: none !important;
+				filter: none !important;
+				transform: none !important;
+			}
 		}
 
 		#section-ratings .ratings-form{
@@ -1358,6 +1849,8 @@
 		}
 
 		#section-services .year-phase-grid{
+			--year-pullback-color: #d7f45f;
+			--year-pullback-glow: rgba(215, 244, 95, 0.62);
 			position: relative;
 			display: grid;
 			grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1365,10 +1858,56 @@
 			margin-top: 0.75rem;
 		}
 
+		#section-services .year-phase-grid:before,
+		#section-services .year-phase-grid:after{
+			content: "";
+			position: absolute;
+			top: -2rem;
+			z-index: 4;
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		#section-services .year-phase-grid:before{
+			left: -32vw;
+			width: 164vw;
+			height: 3px;
+			border-radius: 999px;
+			background:
+				repeating-linear-gradient(90deg, transparent 0 11px, rgba(255, 255, 255, 0.2) 11px 15px),
+				linear-gradient(90deg, transparent, var(--year-pullback-color) 18%, var(--year-pullback-color) 84%, transparent);
+			box-shadow: 0 0 9px var(--year-pullback-glow), 0 0 24px rgba(215, 244, 95, 0.24);
+			transform: translateY(-50%) scaleX(0.02);
+			transform-origin: left center;
+		}
+
+		#section-services .year-phase-grid:after{
+			left: -7vw;
+			width: 68px;
+			height: 68px;
+			border: 4px solid var(--year-pullback-color);
+			border-right-color: transparent;
+			border-radius: 50%;
+			background: radial-gradient(circle, rgba(215, 244, 95, 0.2), transparent 63%);
+			box-shadow:
+				0 0 0 8px rgba(215, 244, 95, 0.08),
+				0 0 30px var(--year-pullback-glow);
+			transform: translate3d(-10vw, -50%, 0) rotate(-110deg) scale(0.68);
+		}
+
+		#section-services.is-year-pullback-playing .year-phase-grid:before{
+			animation: yearPullbackCord 3.2s linear both;
+		}
+
+		#section-services.is-year-pullback-playing .year-phase-grid:after{
+			animation: yearPullbackHook 3.2s linear both;
+		}
+
 		#section-services .year-phase-card{
 			--phase-accent: rgba(186, 201, 100, 0.18);
 			--phase-accent-solid: #bac964;
 			position: relative;
+			z-index: 1;
 			height: 100%;
 			display: flex;
 			flex-direction: column;
@@ -1382,6 +1921,13 @@
 			box-shadow: 0 28px 72px rgba(0, 0, 0, 0.18);
 			overflow: hidden;
 			backdrop-filter: blur(10px);
+		}
+
+		#section-services.is-year-pullback-playing .year-phase-card{
+			pointer-events: none;
+			will-change: transform, opacity, filter;
+			animation: yearPhaseLaunchAndRecall 3.2s both;
+			animation-delay: calc(var(--year-card-index, 0) * 85ms);
 		}
 
 		#section-services .year-phase-card:before,
@@ -1608,6 +2154,124 @@
 			50%{ transform: translateY(-6px); }
 		}
 
+		@keyframes yearPhaseLaunchAndRecall{
+			0%{
+				opacity: 0;
+				filter: blur(8px);
+				transform: translate3d(-112vw, 0, 0) rotate(-2deg) scale(0.93);
+				animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+			}
+			19%{
+				opacity: 1;
+				filter: blur(0);
+				transform: translate3d(-4vw, 0, 0) rotate(0) scale(0.985);
+			}
+			28%{
+				opacity: 1;
+				transform: translate3d(0, 0, 0) scale(1);
+				animation-timing-function: cubic-bezier(0.52, 0.02, 0.88, 0.48);
+			}
+			47%{
+				opacity: 0.96;
+				filter: blur(0);
+				transform: translate3d(25vw, 0, 0) rotate(0.6deg) scale(0.995);
+			}
+			58%{
+				opacity: 0;
+				filter: blur(7px);
+				transform: translate3d(112vw, 0, 0) rotate(2deg) scale(0.94);
+				animation-timing-function: cubic-bezier(0.08, 0.82, 0.16, 1);
+			}
+			70%{
+				opacity: 1;
+				filter: blur(0);
+				transform: translate3d(-7vw, 0, 0) rotate(-0.45deg) scale(1.012);
+				animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+			}
+			79%{
+				transform: translate3d(3.2vw, 0, 0) rotate(0.2deg) scale(0.997);
+			}
+			87%{
+				transform: translate3d(-1.35vw, 0, 0) rotate(-0.08deg) scale(1.003);
+			}
+			94%{
+				transform: translate3d(0.48vw, 0, 0) rotate(0) scale(0.999);
+			}
+			100%{
+				opacity: 1;
+				filter: blur(0);
+				transform: translate3d(0, 0, 0) rotate(0) scale(1);
+			}
+		}
+
+		@keyframes yearPullbackCord{
+			0%, 49%{
+				opacity: 0;
+				transform: translateY(-50%) scaleX(0.02);
+			}
+			54%{
+				opacity: 0.9;
+				transform: translateY(-50%) scaleX(0.18);
+			}
+			61%{
+				opacity: 1;
+				transform: translateY(-50%) scaleX(1);
+			}
+			70%{
+				opacity: 0.9;
+				transform: translateY(-50%) scaleX(0.56);
+			}
+			82%{
+				opacity: 0.48;
+				transform: translateY(-50%) scaleX(0.25);
+			}
+			94%, 100%{
+				opacity: 0;
+				transform: translateY(-50%) scaleX(0.04);
+			}
+		}
+
+		@keyframes yearPullbackHook{
+			0%, 50%{
+				opacity: 0;
+				transform: translate3d(-10vw, -50%, 0) rotate(-110deg) scale(0.68);
+			}
+			54%{
+				opacity: 1;
+				transform: translate3d(8vw, -50%, 0) rotate(-35deg) scale(0.9);
+			}
+			61%{
+				opacity: 1;
+				transform: translate3d(116vw, -50%, 0) rotate(100deg) scale(1);
+			}
+			70%{
+				opacity: 1;
+				transform: translate3d(58vw, -50%, 0) rotate(-70deg) scale(0.94);
+			}
+			82%{
+				opacity: 0.72;
+				transform: translate3d(23vw, -50%, 0) rotate(-180deg) scale(0.82);
+			}
+			94%, 100%{
+				opacity: 0;
+				transform: translate3d(-3vw, -50%, 0) rotate(-260deg) scale(0.66);
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce){
+			#section-services.is-year-pullback-playing .year-phase-card{
+				animation: none !important;
+				opacity: 1 !important;
+				filter: none !important;
+				transform: none !important;
+			}
+
+			#section-services .year-phase-grid:before,
+			#section-services .year-phase-grid:after{
+				display: none !important;
+			}
+		}
+
 		@media (max-width: 991.98px){
 			#section-services .year-phase-grid{
 				grid-template-columns: 1fr;
@@ -1632,6 +2296,17 @@
 				flex-wrap: wrap;
 			}
 
+			#section-services .year-phase-grid:before,
+			#section-services .year-phase-grid:after{
+				top: -1.3rem;
+			}
+
+			#section-services .year-phase-grid:after{
+				width: 54px;
+				height: 54px;
+				border-width: 3px;
+			}
+
 			#section-services .year-phase-icon{
 				width: 96px;
 				height: 96px;
@@ -1652,12 +2327,16 @@
 			}
 		}
 
-        /* Blog on Medium (custom) */
+        /* Blog on Medium (center-weighted carousel) */
 		#section-blog{
+			--blog-card-width: clamp(340px, 42vw, 610px);
+			--blog-gap: clamp(18px, 2.5vw, 34px);
+			--blog-card-overlap: calc(var(--blog-card-width) * 0.05);
+			--blog-edge-space: calc((100vw - var(--blog-card-width)) / 2 + var(--blog-card-overlap));
 			position: relative;
 			overflow: hidden;
 			padding-top: 5.4rem;
-			padding-bottom: 5.8rem;
+			padding-bottom: 6.4rem;
 		}
 
 		#section-blog:before,
@@ -1666,7 +2345,7 @@
 			position: absolute;
 			border-radius: 50%;
 			pointer-events: none;
-			filter: blur(6px);
+			filter: blur(10px);
 		}
 
 		#section-blog:before{
@@ -1685,19 +2364,143 @@
 			background: radial-gradient(circle, rgba(127, 184, 255, 0.08), transparent 72%);
 		}
 
-		#section-blog .container{
+		#section-blog .blog-carousel-shell{
 			position: relative;
 			z-index: 1;
+			width: 100%;
+			padding-right: 0;
+			padding-left: 0;
+		}
+
+		#section-blog .blog-section-head{
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 2rem;
+			width: min(1320px, calc(100% - 48px));
+			margin: 0 auto 1.6rem;
+		}
+
+		#section-blog .section-heading{
+			width: 100%;
+			margin: 0;
+			text-align: center;
 		}
 
 		#section-blog .section-heading h2{
 			margin-bottom: 0;
-			font-size: clamp(2.25rem, 4vw, 3.8rem);
-			letter-spacing: -0.05em;
+			font-size: clamp(2.5rem, 5vw, 4.8rem);
+			letter-spacing: -0.06em;
 		}
 
-		#section-blog .col-sm-6.col-lg-4{
+		#section-blog .blog-carousel-tools{
+			position: absolute;
+			right: 0;
+			bottom: 0.45rem;
 			display: flex;
+			align-items: center;
+			gap: 0.65rem;
+		}
+
+		#section-blog .blog-carousel-status{
+			min-width: 70px;
+			color: rgba(255,255,255,0.55);
+			font-size: 0.76rem;
+			font-weight: 800;
+			letter-spacing: 0.18em;
+			text-align: center;
+		}
+
+		#section-blog .blog-carousel-button{
+			display: inline-grid;
+			place-items: center;
+			width: 48px;
+			height: 48px;
+			padding: 0;
+			border: 1px solid rgba(255,255,255,0.12);
+			border-radius: 50%;
+			background: rgba(255,255,255,0.05);
+			color: #fff;
+			font-size: 1.35rem;
+			line-height: 1;
+			cursor: pointer;
+			transition: color 0.28s ease, border-color 0.28s ease, background 0.28s ease, transform 0.28s ease;
+		}
+
+		#section-blog .blog-carousel-button:hover,
+		#section-blog .blog-carousel-button:focus-visible{
+			border-color: rgba(186,201,100,0.58);
+			background: rgba(186,201,100,0.14);
+			color: #d8e66f;
+			outline: none;
+			transform: scale(1.08);
+		}
+
+		#section-blog .blog-carousel-viewport{
+			position: relative;
+			overflow-x: auto;
+			overflow-y: hidden;
+			width: 100%;
+			padding: 3.8rem var(--blog-edge-space) 4.2rem;
+			scroll-padding-inline: var(--blog-edge-space);
+			scroll-snap-type: x mandatory;
+			overscroll-behavior-x: contain;
+			-webkit-overflow-scrolling: touch;
+			touch-action: pan-y;
+			-webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+			mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+			scrollbar-width: none;
+			cursor: grab;
+		}
+
+		#section-blog .blog-carousel-viewport:focus-visible{
+			outline: 1px solid rgba(186,201,100,0.55);
+			outline-offset: -6px;
+		}
+
+		#section-blog .blog-carousel-viewport.is-dragging{
+			cursor: grabbing;
+			scroll-snap-type: none;
+			user-select: none;
+		}
+
+		#section-blog .blog-carousel-viewport::-webkit-scrollbar{
+			display: none;
+		}
+
+		#section-blog .blog-carousel-track{
+			display: flex;
+			align-items: stretch;
+			gap: var(--blog-gap);
+			width: max-content;
+		}
+
+		#section-blog .blog-carousel-card{
+			display: flex;
+			flex: 0 0 var(--blog-card-width);
+			width: var(--blog-card-width);
+			margin-right: calc(var(--blog-card-overlap) * -1);
+			margin-left: calc(var(--blog-card-overlap) * -1);
+			scroll-snap-align: center;
+			scroll-snap-stop: always;
+			opacity: 0.38;
+			filter: saturate(0.5) brightness(0.68);
+			transform: scale(0.75);
+			transform-origin: center;
+			transition: opacity 0.55s ease, filter 0.55s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+		}
+
+		#section-blog .blog-carousel-card.is-near{
+			opacity: 0.7;
+			filter: saturate(0.78) brightness(0.86);
+			transform: scale(0.75);
+		}
+
+		#section-blog .blog-carousel-card.is-active{
+			opacity: 1;
+			filter: none;
+			transform: scale(1);
 		}
 
 		#section-blog .blog-entry{
@@ -1705,14 +2508,19 @@
 			display: flex;
 			flex-direction: column;
 			height: 100%;
+			min-height: 650px;
 			width: 100%;
-			border-radius: 32px;
+			border-radius: 34px;
 			overflow: hidden;
 			background:
 				linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03)),
 				radial-gradient(circle at top right, rgba(255,255,255,0.05), transparent 44%);
 			border: 1px solid rgba(255,255,255,0.08);
-			box-shadow: 0 28px 72px rgba(0,0,0,0.16);
+			box-shadow: 0 32px 90px rgba(0,0,0,0.22);
+		}
+
+		#section-blog .blog-carousel-card .blog-entry:hover{
+			transform: none;
 		}
 
 		#section-blog .blog-entry:before{
@@ -1736,7 +2544,8 @@
 			position: relative;
 			display: block;
 			overflow: hidden;
-			aspect-ratio: 4 / 3;
+			aspect-ratio: 16 / 10;
+			background: rgba(255,255,255,0.04);
 		}
 
 		#section-blog .blog-media:after{
@@ -1744,7 +2553,7 @@
 			position: absolute;
 			inset: auto 0 0;
 			height: 40%;
-			background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.2));
+			background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.22));
 			pointer-events: none;
 		}
 
@@ -1759,7 +2568,7 @@
 			display: flex;
 			flex-direction: column;
 			flex: 1 1 auto;
-			padding: 1.4rem 1.4rem 1.45rem;
+			padding: 1.65rem 1.7rem 1.7rem;
 		}
 
 		#section-blog .blog-kicker{
@@ -1780,9 +2589,9 @@
 
 		#section-blog .blog-entry-text h3{
 			margin-bottom: 0.9rem;
-			font-size: clamp(1.5rem, 1.8vw, 1.8rem);
-			line-height: 1.18;
-			letter-spacing: -0.04em;
+			font-size: clamp(1.55rem, 2.15vw, 2.15rem);
+			line-height: 1.15;
+			letter-spacing: -0.045em;
 			display: -webkit-box;
 			-webkit-box-orient: vertical;
 			-webkit-line-clamp: 3;
@@ -1796,7 +2605,8 @@
 		#section-blog .blog-entry-text p.mb-4{
 			margin-bottom: 1.25rem !important;
 			color: rgba(255,255,255,0.62);
-			line-height: 1.8;
+			font-size: 1rem;
+			line-height: 1.75;
 			display: -webkit-box;
 			-webkit-box-orient: vertical;
 			-webkit-line-clamp: 3;
@@ -1825,30 +2635,157 @@
 			margin-left: auto;
 		}
 
-		#section-blog .blog-entry:hover:before{
+		#section-blog .blog-entry:hover:before,
+		#section-blog .blog-carousel-card:focus-within .blog-entry:before{
 			opacity: 1;
 			transform: translateX(120%);
 		}
 
-		#section-blog .blog-entry:hover .blog-media img{
-			transform: scale(1.08);
+		#section-blog .blog-entry:hover .blog-media img,
+		#section-blog .blog-carousel-card:focus-within .blog-media img{
+			transform: scale(1.07);
 		}
 
 		#section-blog .blog-entry:hover .blog-entry-text p.mb-4{
 			color: rgba(255,255,255,0.74);
 		}
 
+		#section-blog .blog-preview-orbit{
+			position: fixed;
+			z-index: 10000;
+			left: 50%;
+			top: clamp(78px, 8vh, 112px);
+			width: min(48vw, 570px);
+			aspect-ratio: 1;
+			border: 1px solid rgba(255,255,255,0.22);
+			border-radius: 50%;
+			overflow: hidden;
+			background: #f8f8f5;
+			box-shadow: 0 42px 140px rgba(0,0,0,0.58), 0 0 0 14px rgba(186,201,100,0.08);
+			opacity: 0;
+			visibility: hidden;
+			pointer-events: none;
+			transform: translate(-50%, -14px) scale(0.72) rotate(-3deg);
+			transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+		}
+
+		#section-blog .blog-preview-orbit.is-visible{
+			opacity: 1;
+			visibility: visible;
+			transform: translate(-50%, 0) scale(1) rotate(0);
+		}
+
+		#section-blog .blog-preview-orbit img{
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center;
+		}
+
+		#section-blog .blog-preview-orbit:after{
+			content: "";
+			position: absolute;
+			inset: 0;
+			border: 18px solid rgba(255,255,255,0.08);
+			border-radius: inherit;
+			box-shadow: inset 0 0 60px rgba(0,0,0,0.14);
+		}
+
+		html[data-theme="light"] #section-blog .blog-carousel-status{
+			color: rgba(55,49,41,0.6);
+		}
+
+		html[data-theme="light"] #section-blog .blog-carousel-button{
+			border-color: rgba(55,49,41,0.14);
+			background: rgba(255,255,255,0.62);
+			color: #373129;
+		}
+
+		html[data-theme="light"] #section-blog .blog-carousel-button:hover,
+		html[data-theme="light"] #section-blog .blog-carousel-button:focus-visible{
+			border-color: rgba(139,158,67,0.48);
+			background: rgba(162,180,90,0.15);
+			color: #758836;
+		}
+
 		@media (max-width: 767.98px){
+			#section-blog{
+				--blog-card-width: min(82vw, 390px);
+				--blog-gap: 10px;
+				padding-top: 4.4rem;
+				padding-bottom: 4.8rem;
+			}
+
+			#section-blog .blog-section-head{
+				flex-direction: column;
+				width: calc(100% - 32px);
+				margin-bottom: 0.3rem;
+			}
+
+			#section-blog .blog-carousel-tools{
+				position: static;
+			}
+
+			#section-blog .section-heading h2{
+				font-size: clamp(2.15rem, 12vw, 3.4rem);
+			}
+
+			#section-blog .blog-carousel-status{
+				display: none;
+			}
+
+			#section-blog .blog-carousel-button{
+				width: 42px;
+				height: 42px;
+			}
+
+			#section-blog .blog-carousel-viewport{
+				padding-top: 3rem;
+				padding-bottom: 3.5rem;
+				-webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 4%, #000 96%, transparent 100%);
+				mask-image: linear-gradient(90deg, transparent 0%, #000 4%, #000 96%, transparent 100%);
+			}
+
+			#section-blog .blog-carousel-card{
+				opacity: 0.48;
+				transform: scale(0.75);
+			}
+
+			#section-blog .blog-carousel-card.is-active{
+				opacity: 1;
+				transform: scale(1);
+			}
+
 			#section-blog .blog-entry{
-				border-radius: 26px;
+				min-height: 590px;
+				border-radius: 28px;
 			}
 
 			#section-blog .blog-entry-text{
-				padding: 1.2rem;
+				padding: 1.25rem;
+			}
+
+			#section-blog .blog-entry-text h3{
+				font-size: 1.55rem;
 			}
 
 			#section-blog .blog-entry-text .meta a:last-child{
 				margin-left: 0;
+			}
+
+			#section-blog .blog-preview-orbit{
+				top: 74px;
+				width: min(82vw, 360px);
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce){
+			#section-blog .blog-carousel-card,
+			#section-blog .blog-entry:before,
+			#section-blog .blog-media img,
+			#section-blog .blog-preview-orbit{
+				transition-duration: 0.01ms !important;
 			}
 		}
 			/* Recent Bravo Badges (custom carousel) */
@@ -2266,6 +3203,97 @@
 		#section-resume .container{
 			position: relative;
 			z-index: 1;
+			transition:
+				opacity 0.28s ease,
+				filter 0.28s ease,
+				transform 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+		}
+
+		#section-resume .career-affirmation{
+			position: absolute;
+			inset: 0;
+			z-index: 4;
+			display: grid;
+			place-items: center;
+			opacity: 0;
+			visibility: hidden;
+			pointer-events: none;
+			transition: opacity 0.14s ease, visibility 0s linear 0.14s;
+		}
+
+		#section-resume .career-affirmation:before{
+			content: "";
+			position: absolute;
+			width: min(66vw, 760px);
+			aspect-ratio: 1;
+			border-radius: 50%;
+			background: radial-gradient(circle, rgba(5,5,5,0.78) 0 22%, rgba(5,5,5,0.42) 48%, transparent 72%);
+			filter: blur(4px);
+		}
+
+		#section-resume .career-affirmation-letter{
+			position: relative;
+			z-index: 1;
+			display: block;
+			min-width: 0.8em;
+			color: #fff;
+			font-size: min(var(--career-affirmation-size, 280px), 42vw);
+			font-weight: 800;
+			letter-spacing: -0.08em;
+			line-height: 0.74;
+			text-align: center;
+			text-shadow:
+				0 0 1px rgba(255,255,255,0.7),
+				0 26px 70px rgba(0,0,0,0.46),
+				0 0 60px rgba(186,201,100,0.18);
+			will-change: opacity, transform, filter;
+		}
+
+		#section-resume .career-affirmation-letter.is-flashing{
+			animation: careerLetterFlash var(--career-letter-duration, 190ms) cubic-bezier(0.16, 1, 0.3, 1) both;
+		}
+
+		#section-resume .career-affirmation-marker{
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 1px;
+			height: 1px;
+			pointer-events: none;
+		}
+
+		#section-resume.is-affirming .container{
+			opacity: 0.18;
+			filter: blur(7px);
+			transform: scale(0.985);
+		}
+
+		#section-resume.is-affirming .career-affirmation{
+			opacity: 1;
+			visibility: visible;
+			transition: opacity 0.12s ease, visibility 0s;
+		}
+
+		@keyframes careerLetterFlash{
+			0%{
+				opacity: 0;
+				filter: blur(14px);
+				transform: translateY(18%) scale(0.58);
+			}
+			18%{
+				opacity: 1;
+				filter: blur(0);
+			}
+			68%{
+				opacity: 1;
+				filter: blur(0);
+				transform: translateY(0) scale(1);
+			}
+			100%{
+				opacity: 0;
+				filter: blur(2px);
+				transform: translateY(-8%) scale(1.12);
+			}
 		}
 
 		#section-resume .section-heading h2{
@@ -2506,6 +3534,14 @@
 		}
 
 		@media (max-width: 767.98px){
+			#section-resume .career-affirmation:before{
+				width: 120vw;
+			}
+
+			#section-resume .career-affirmation-letter{
+				font-size: min(var(--career-affirmation-size, 170px), 44vw);
+			}
+
 			#section-resume .career-column-head{
 				margin-bottom: 1.2rem;
 			}
@@ -2527,6 +3563,19 @@
 
 			#section-resume .career-score small{
 				text-align: left;
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce){
+			#section-resume .career-affirmation,
+			#section-resume .career-affirmation-letter{
+				display: none !important;
+			}
+
+			#section-resume .container{
+				opacity: 1 !important;
+				filter: none !important;
+				transform: none !important;
 			}
 		}
 
@@ -3231,15 +4280,290 @@
 		transform: translateY(-8px);
 	}
 
-	#section-presence .presence-card-bottom{
+#section-presence .presence-card-bottom{
 		flex-direction: column;
 		align-items: flex-start;
+	}
+}
+
+#section-presence .presence-motion-toggle{
+	flex: 0 0 auto;
+	margin-top: 0.2rem;
+	white-space: nowrap;
+}
+
+#section-presence .presence-motion-toggle i{
+	display: inline-block;
+	margin-left: 0.45rem;
+	transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#section-presence .presence-motion-toggle[aria-pressed="true"] i{
+	transform: rotate(90deg);
+}
+
+#section-presence .presence-marquee{
+	position: relative;
+	overflow: hidden;
+	margin-inline: calc(clamp(1.35rem, 2vw, 1.9rem) * -1);
+	padding: 0.75rem clamp(1.35rem, 2vw, 1.9rem) 1rem;
+	-webkit-mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
+	mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
+}
+
+#section-presence .presence-marquee-track{
+	display: flex;
+	align-items: stretch;
+	width: max-content;
+	will-change: transform;
+	animation: presenceMarquee 48s linear infinite;
+}
+
+#section-presence .presence-marquee:is(:hover, :focus-within) .presence-marquee-track,
+#section-presence .presence-marquee.is-paused .presence-marquee-track{
+	animation-play-state: paused;
+}
+
+#section-presence .presence-marquee .presence-grid{
+	display: flex;
+	flex: 0 0 auto;
+	align-items: stretch;
+	gap: 0.85rem;
+	padding-right: 0.85rem;
+	perspective: none;
+}
+
+#section-presence .presence-marquee .presence-card,
+#section-presence .presence-marquee .presence-card--wide,
+#section-presence .presence-marquee .presence-card--third{
+	flex: 0 0 clamp(220px, 19vw, 270px);
+	width: clamp(220px, 19vw, 270px);
+	min-height: 188px;
+	padding: 0.95rem;
+	grid-column: auto;
+	border-radius: 24px;
+}
+
+#section-presence .presence-marquee .presence-card-top{
+	margin-bottom: 0.72rem;
+}
+
+#section-presence .presence-marquee .presence-logo{
+	width: 48px;
+	height: 48px;
+	border-radius: 15px;
+}
+
+#section-presence .presence-marquee .presence-logo img{
+	max-width: 27px;
+	max-height: 27px;
+}
+
+#section-presence .presence-marquee .presence-logo--icon{
+	font-size: 1.35rem;
+}
+
+#section-presence .presence-marquee .presence-chip{
+	padding: 0.36rem 0.58rem;
+	font-size: 0.62rem;
+	letter-spacing: 0.14em;
+}
+
+#section-presence .presence-marquee .presence-card h3{
+	margin-bottom: 0.5rem;
+	font-size: clamp(1.22rem, 1.7vw, 1.55rem);
+}
+
+#section-presence .presence-marquee .presence-card p{
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	font-size: 0.84rem;
+	line-height: 1.55;
+}
+
+#section-presence .presence-marquee .presence-card-bottom{
+	padding-top: 0.82rem;
+	gap: 0.55rem;
+}
+
+#section-presence .presence-marquee .presence-handle{
+	overflow: hidden;
+	font-size: 0.7rem;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+#section-presence .presence-marquee .presence-arrow{
+	font-size: 0.66rem;
+	letter-spacing: 0.12em;
+}
+
+@keyframes presenceMarquee{
+	to{
+		transform: translate3d(-50%, 0, 0);
+	}
+}
+
+@media (max-width: 767.98px){
+	#section-presence .presence-shell-head{
+		align-items: stretch;
+	}
+
+	#section-presence .presence-motion-toggle{
+		align-self: flex-start;
+	}
+
+	#section-presence .presence-marquee .presence-card,
+	#section-presence .presence-marquee .presence-card--wide,
+	#section-presence .presence-marquee .presence-card--third{
+		flex-basis: min(74vw, 248px);
+		width: min(74vw, 248px);
+		min-height: 184px;
+	}
+
+	#section-presence .presence-marquee .presence-card-bottom{
+		flex-direction: row;
+		align-items: center;
+	}
+}
+
+@media (prefers-reduced-motion: reduce){
+	#section-presence .presence-motion-toggle{
+		display: none;
+	}
+
+	#section-presence .presence-marquee{
+		overflow-x: auto;
+		-webkit-mask-image: none;
+		mask-image: none;
+		scrollbar-width: thin;
+	}
+
+	#section-presence .presence-marquee-track{
+		animation: none;
+		transform: none;
+	}
+
+#section-presence .presence-marquee-group[aria-hidden="true"]{
+		display: none;
+	}
+}
+
+/* Full-width logo rail inspired by the reference motion strip. */
+#section-presence.presence-logo-rail{
+	padding: 1.65rem 0;
+	overflow: hidden;
+}
+
+#section-presence.presence-logo-rail:before,
+#section-presence.presence-logo-rail:after{
+	display: none;
+}
+
+#section-presence.presence-logo-rail .container{
+	width: 100%;
+	max-width: none;
+	padding: 0;
+}
+
+#section-presence .presence-logo-shell{
+	width: 100%;
+}
+
+#section-presence.presence-logo-rail .presence-marquee{
+	margin: 0;
+	padding: 0.7rem 0 0.85rem;
+	-webkit-mask-image: linear-gradient(90deg, transparent 0, rgba(0,0,0,0.08) 16%, rgba(0,0,0,0.28) 28%, #000 40%, #000 60%, rgba(0,0,0,0.28) 72%, rgba(0,0,0,0.08) 84%, transparent 100%);
+	mask-image: linear-gradient(90deg, transparent 0, rgba(0,0,0,0.08) 16%, rgba(0,0,0,0.28) 28%, #000 40%, #000 60%, rgba(0,0,0,0.28) 72%, rgba(0,0,0,0.08) 84%, transparent 100%);
+}
+
+#section-presence.presence-logo-rail .presence-marquee-track{
+	animation-duration: 34s;
+}
+
+#section-presence.presence-logo-rail .presence-marquee .presence-grid{
+	gap: clamp(2.5rem, 6vw, 6.5rem);
+	padding-right: clamp(2.5rem, 6vw, 6.5rem);
+}
+
+#section-presence .presence-logo-link{
+	display: inline-flex;
+	flex: 0 0 72px;
+	width: 72px;
+	height: 72px;
+	align-items: center;
+	justify-content: center;
+	color: rgba(255,255,255,0.92) !important;
+	text-decoration: none !important;
+	transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+}
+
+#section-presence .presence-logo-link:hover,
+#section-presence .presence-logo-link:focus-visible{
+	opacity: 1;
+	transform: translateY(-5px) scale(1.1);
+}
+
+#section-presence .presence-logo-link:focus-visible{
+	outline: 2px solid #bac964;
+	outline-offset: 7px;
+	border-radius: 18px;
+}
+
+#section-presence .presence-logo-link .presence-card-top{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+}
+
+#section-presence .presence-logo-link .presence-logo{
+	width: 54px;
+	height: 54px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	box-shadow: none;
+}
+
+#section-presence .presence-logo-link .presence-logo img{
+	max-width: 36px;
+	max-height: 36px;
+}
+
+#section-presence.presence-logo-rail .presence-logo--icon{
+	font-size: 2.25rem;
+}
+
+#section-presence .presence-logo-link :is(.presence-chip, h3, p, .presence-card-bottom){
+	display: none;
+}
+
+@media (max-width: 767.98px){
+	#section-presence.presence-logo-rail{
+		padding: 1.1rem 0;
+	}
+
+	#section-presence.presence-logo-rail .presence-marquee .presence-grid{
+		gap: 2.6rem;
+		padding-right: 2.6rem;
+	}
+
+	#section-presence .presence-logo-link{
+		flex-basis: 62px;
+		width: 62px;
+		height: 62px;
 	}
 }
 
 #section-portfolio{
 	--portfolio-card-width: clamp(280px, 30vw, 420px);
 	--portfolio-gap: clamp(18px, 2.4vw, 28px);
+	--portfolio-scroll-scale: 1;
+	--portfolio-scroll-y: 0px;
 	position: relative;
 	overflow: hidden;
 	padding-top: 5.5rem;
@@ -3273,6 +4597,11 @@
 #section-portfolio .container{
 	position: relative;
 	z-index: 1;
+	width: min(94vw, 1680px);
+	max-width: none;
+	transform-origin: center top;
+	transform: translate3d(0, var(--portfolio-scroll-y), 0) scale(var(--portfolio-scroll-scale));
+	will-change: transform;
 }
 
 #section-portfolio .section-heading h2{
@@ -3505,7 +4834,7 @@
 	position: absolute;
 	inset: 0;
 	border-radius: inherit;
-	background: linear-gradient(180deg, rgba(8, 8, 8, 0.04) 22%, rgba(8, 8, 8, 0.74) 100%);
+	background: linear-gradient(180deg, rgba(248,244,238,0.04), rgba(248,244,238,0.26));
 	transition: background 0.42s ease;
 }
 
@@ -3517,7 +4846,7 @@
 
 #section-portfolio .single-portfolio.is-current .thumb .overlay-bg,
 #section-portfolio .single-portfolio:hover .thumb .overlay-bg{
-	background: linear-gradient(180deg, rgba(8, 8, 8, 0.02) 18%, rgba(8, 8, 8, 0.88) 100%);
+	background: linear-gradient(180deg, rgba(248,244,238,0.04), rgba(248,244,238,0.26));
 }
 
 #section-portfolio .single-portfolio .middle{
@@ -3613,6 +4942,10 @@
 		--portfolio-card-width: min(78vw, 340px);
 	}
 
+	#section-portfolio .container{
+		width: calc(100vw - 20px);
+	}
+
 	#section-portfolio .filters{
 		margin-bottom: 2rem;
 	}
@@ -3647,6 +4980,10 @@
 }
 
 @media (prefers-reduced-motion: reduce){
+	#section-portfolio .container{
+		transform: none !important;
+	}
+
 	#section-portfolio .filters ul li,
 	#section-portfolio .portfolio-nav,
 	#section-portfolio .single-portfolio,
@@ -3665,6 +5002,11 @@
 	--routine-health: #4fe08e;
 	--routine-reset: #7fb8ff;
 	--routine-sleep: #ffd36b;
+	--routine-card-height: 416px;
+}
+
+#section-routine > .container{
+	max-width: 1360px;
 }
 
 #section-routine .section-heading h2{
@@ -3689,7 +5031,7 @@
 	border: 1px solid rgba(255,255,255,0.1);
 	box-shadow: 0 26px 70px rgba(0,0,0,0.22);
 	backdrop-filter: blur(10px);
-	overflow: hidden;
+	overflow: visible;
 }
 
 #section-routine .routine-shell:before{
@@ -3754,10 +5096,39 @@
 
 #section-routine .routine-metric,
 #section-routine .routine-stat-card{
-	padding: 1rem 1.05rem;
-	border-radius: 18px;
-	background: rgba(0,0,0,0.18);
-	border: 1px solid rgba(255,255,255,0.06);
+	position: relative;
+	min-height: 132px;
+	padding: 1.15rem 1.2rem;
+	border-radius: 22px;
+	overflow: hidden;
+	background:
+		linear-gradient(145deg, rgba(255,255,255,0.075), rgba(255,255,255,0.018)),
+		rgba(7,7,7,0.24);
+	border: 1px solid rgba(255,255,255,0.09);
+	box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 14px 34px rgba(0,0,0,0.14);
+	transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+#section-routine .routine-metric:before,
+#section-routine .routine-stat-card:before{
+	content: "";
+	position: absolute;
+	inset: 0 auto 0 0;
+	width: 3px;
+	background: var(--routine-metric-color, var(--routine-accent));
+	box-shadow: 0 0 18px color-mix(in srgb, var(--routine-metric-color, var(--routine-accent)) 58%, transparent);
+}
+
+#section-routine .routine-metric:nth-child(1){ --routine-metric-color: var(--routine-accent); }
+#section-routine .routine-metric:nth-child(2){ --routine-metric-color: var(--routine-focus); }
+#section-routine .routine-metric:nth-child(3){ --routine-metric-color: var(--routine-health); }
+#section-routine .routine-metric:nth-child(4){ --routine-metric-color: var(--routine-sleep); }
+
+#section-routine .routine-metric:hover,
+#section-routine .routine-stat-card:hover{
+	transform: translateY(-4px);
+	border-color: color-mix(in srgb, var(--routine-metric-color, var(--routine-accent)) 30%, rgba(255,255,255,0.1));
+	box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 20px 42px rgba(0,0,0,0.2);
 }
 
 #section-routine .routine-metric small,
@@ -3775,10 +5146,11 @@
 #section-routine .routine-metric strong,
 #section-routine .routine-stat-card strong{
 	display: block;
-	font-size: 1.85rem;
+	font-size: 1.95rem;
 	line-height: 1;
-	margin-bottom: 0.35rem;
-	color: var(--routine-accent);
+	margin-bottom: 0.5rem;
+	color: var(--routine-metric-color, var(--routine-accent));
+	letter-spacing: -0.045em;
 }
 
 #section-routine .routine-metric span,
@@ -3803,10 +5175,14 @@
 }
 
 #section-routine .routine-breakdown{
-	padding: 1.2rem 1.05rem;
-	border-radius: 22px;
-	background: rgba(0,0,0,0.18);
-	border: 1px solid rgba(255,255,255,0.06);
+	position: relative;
+	padding: 1.45rem 1.3rem;
+	border-radius: 26px;
+	background:
+		linear-gradient(150deg, rgba(255,255,255,0.07), rgba(255,255,255,0.015)),
+		rgba(7,7,7,0.24);
+	border: 1px solid rgba(255,255,255,0.09);
+	box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 18px 46px rgba(0,0,0,0.17);
 }
 
 #section-routine .routine-breakdown h4{
@@ -3845,37 +5221,84 @@
 }
 
 #section-routine .routine-timeline{
-	display: grid;
-	gap: 14px;
+	--routine-stack-top: clamp(84px, 8vw, 112px);
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+	position: relative;
+}
+
+#section-routine .routine-timeline:after{
+	content: "";
+	display: block;
+	flex: 0 0 clamp(260px, 48vh, 520px);
 }
 
 #section-routine .routine-entry{
-	position: relative;
+	position: sticky;
+	top: calc(var(--routine-stack-top) + var(--routine-stack-offset, 0px));
+	z-index: var(--routine-stack-order, 1);
 	display: grid;
-	grid-template-columns: 172px 1fr;
-	gap: 16px;
-	padding: 1.05rem 1.1rem;
-	border-radius: 24px;
-	background: rgba(255,255,255,0.04);
-	border: 1px solid rgba(255,255,255,0.07);
+	grid-template-columns: 224px 1fr;
+	gap: clamp(22px, 2.4vw, 34px);
+	width: 100%;
+	height: var(--routine-card-height);
+	min-height: var(--routine-card-height);
+	margin-bottom: clamp(18px, 3vh, 30px);
+	padding: 1.15rem;
+	border-radius: 34px;
+	isolation: isolate;
+	background:
+		radial-gradient(circle at 88% 8%, color-mix(in srgb, var(--routine-entry-accent, var(--routine-accent)) 10%, transparent), transparent 34%),
+		linear-gradient(145deg, rgba(55,55,55,0.99), rgba(25,25,25,0.99));
+	border: 1px solid color-mix(in srgb, var(--routine-entry-accent, var(--routine-accent)) 16%, rgba(255,255,255,0.08));
 	overflow: hidden;
-	transition: transform 0.32s ease, border-color 0.32s ease, box-shadow 0.32s ease;
+	box-shadow:
+		0 34px 80px rgba(0,0,0,0.3),
+		0 10px 28px rgba(0,0,0,0.18),
+		inset 0 1px 0 rgba(255,255,255,0.1);
+	backdrop-filter: blur(22px) saturate(125%);
+	transform-origin: top center;
+	transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 #section-routine .routine-entry:before{
 	content: "";
 	position: absolute;
 	left: 0;
-	top: 0;
-	bottom: 0;
-	width: 4px;
+	top: 9%;
+	bottom: 9%;
+	z-index: 3;
+	width: 5px;
+	border-radius: 0 999px 999px 0;
 	background: var(--routine-entry-accent, var(--routine-accent));
+	box-shadow: 0 0 24px color-mix(in srgb, var(--routine-entry-accent, var(--routine-accent)) 58%, transparent);
+}
+
+#section-routine .routine-entry:after{
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	border-radius: inherit;
+	background:
+		linear-gradient(112deg, rgba(255,255,255,0.105), transparent 18%, transparent 76%, rgba(255,255,255,0.025)),
+		radial-gradient(circle at 100% 100%, color-mix(in srgb, var(--routine-entry-accent, var(--routine-accent)) 8%, transparent), transparent 38%);
+	pointer-events: none;
+}
+
+#section-routine .routine-entry > *{
+	position: relative;
+	z-index: 2;
 }
 
 #section-routine .routine-entry:hover{
-	transform: translateY(-4px);
-	border-color: rgba(186, 201, 100, 0.24);
-	box-shadow: 0 22px 45px rgba(0,0,0,0.18);
+	transform: translateY(-7px) scale(1.004);
+	border-color: color-mix(in srgb, var(--routine-entry-accent, var(--routine-accent)) 34%, rgba(255,255,255,0.1));
+	box-shadow:
+		0 42px 96px rgba(0,0,0,0.34),
+		0 14px 34px rgba(0,0,0,0.2),
+		inset 0 1px 0 rgba(255,255,255,0.14);
 }
 
 #section-routine .routine-entry--focus{ --routine-entry-accent: var(--routine-focus); }
@@ -3884,49 +5307,106 @@
 #section-routine .routine-entry--sleep{ --routine-entry-accent: var(--routine-sleep); }
 
 #section-routine .routine-time-block{
-	padding-right: 8px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	min-height: 100%;
+	padding: 1.35rem 1.4rem;
+	border-radius: 25px;
+	overflow: hidden;
+	background:
+		linear-gradient(145deg, rgba(255,255,255,0.075), rgba(255,255,255,0.018)),
+		rgba(0,0,0,0.16);
+	border: 1px solid rgba(255,255,255,0.08);
+	box-shadow: inset 0 1px 0 rgba(255,255,255,0.07), 0 18px 38px rgba(0,0,0,0.13);
+}
+
+#section-routine .routine-time-block:after{
+	content: "";
+	position: absolute;
+	right: -86px;
+	bottom: -108px;
+	width: 190px;
+	height: 190px;
+	border: 1px solid color-mix(in srgb, var(--routine-entry-accent, var(--routine-accent)) 28%, transparent);
+	border-radius: 50%;
+	box-shadow:
+		0 0 0 24px color-mix(in srgb, var(--routine-entry-accent, var(--routine-accent)) 4%, transparent),
+		0 0 0 48px color-mix(in srgb, var(--routine-entry-accent, var(--routine-accent)) 2%, transparent);
+	pointer-events: none;
 }
 
 #section-routine .routine-time-block small{
+	position: relative;
+	z-index: 1;
 	display: block;
 	color: rgba(255,255,255,0.46);
 	text-transform: uppercase;
-	letter-spacing: 0.08em;
-	font-size: 0.7rem;
+	letter-spacing: 0.16em;
+	font-size: 0.72rem;
 	font-weight: 700;
-	margin-bottom: 0.32rem;
+	margin-bottom: 0.85rem;
 }
 
 #section-routine .routine-window{
+	position: relative;
+	z-index: 1;
 	display: block;
-	font-size: 1.12rem;
+	font-size: clamp(1.45rem, 1.8vw, 1.78rem);
 	font-weight: 700;
-	line-height: 1.3;
+	line-height: 1.08;
+	letter-spacing: -0.045em;
 }
 
 #section-routine .routine-time-end{
+	position: relative;
+	z-index: 1;
 	display: block;
 	color: rgba(255,255,255,0.54);
-	margin-top: 0.24rem;
+	margin-top: 0.72rem;
+	font-size: 1.02rem;
+}
+
+#section-routine .routine-entry-body{
+	display: flex;
+	align-items: center;
+	height: 100%;
+	padding: 0.5rem 0.4rem;
+	min-width: 0;
+}
+
+#section-routine .routine-entry-copy{
+	min-width: 0;
+}
+
+#section-routine .routine-entry--has-flow .routine-entry-body{
+	display: grid;
+	grid-template-columns: minmax(200px, 1fr) minmax(290px, 350px);
+	align-items: center;
+	gap: clamp(20px, 2.4vw, 36px);
+	height: 100%;
 }
 
 #section-routine .routine-entry-head{
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	gap: 10px;
-	margin-bottom: 0.55rem;
+	gap: 12px;
+	margin-bottom: 0.9rem;
 }
 
 #section-routine .routine-badge,
 #section-routine .routine-duration{
 	display: inline-flex;
 	align-items: center;
-	padding: 0.4rem 0.72rem;
+	padding: 0.5rem 0.86rem;
 	border-radius: 999px;
-	font-size: 0.78rem;
+	border: 1px solid rgba(255,255,255,0.08);
+	font-size: 0.8rem;
 	font-weight: 700;
-	letter-spacing: 0.04em;
+	letter-spacing: 0.06em;
+	box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
 #section-routine .routine-badge{
@@ -3945,9 +5425,16 @@
 }
 
 #section-routine .routine-track{
-	font-size: 1.1rem;
-	line-height: 1.45;
-	margin-bottom: 0.4rem;
+	font-size: clamp(1.3rem, 1.7vw, 1.6rem);
+	line-height: 1.28;
+	letter-spacing: -0.035em;
+	margin-bottom: 0.62rem;
+}
+
+#section-routine .routine-track-note{
+	max-width: 40rem;
+	font-size: 1.03rem;
+	line-height: 1.65;
 }
 
 #section-routine .routine-steps{
@@ -3969,10 +5456,136 @@
 	line-height: 1.2;
 }
 
+#section-routine .routine-flow{
+	width: min(100%, 350px);
+	justify-self: end;
+	color: var(--routine-entry-accent, var(--routine-accent));
+	filter: drop-shadow(0 20px 32px rgba(0,0,0,0.18));
+}
+
+#section-routine .routine-flow-orbit{
+	position: relative;
+	width: 100%;
+	aspect-ratio: 4 / 3;
+	isolation: isolate;
+}
+
+#section-routine .routine-flow-orbit:before{
+	content: "";
+	position: absolute;
+	inset: 8%;
+	z-index: 0;
+	border-radius: 50%;
+	background:
+		radial-gradient(circle, rgba(255,255,255,0.075) 0 26%, rgba(255,255,255,0.018) 57%, transparent 72%),
+		conic-gradient(from 210deg, transparent, color-mix(in srgb, currentColor 12%, transparent), transparent 35%);
+	box-shadow: inset 0 0 62px rgba(0,0,0,0.24), 0 0 0 1px rgba(255,255,255,0.025);
+}
+
+#section-routine .routine-flow-svg{
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+#section-routine .routine-flow-guide{
+	fill: none;
+	stroke: rgba(255,255,255,0.08);
+	stroke-width: 1.2;
+	stroke-dasharray: 3 8;
+}
+
+#section-routine .routine-flow-path{
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 2.4;
+	stroke-linecap: round;
+	stroke-dasharray: 7 8;
+	filter: drop-shadow(0 0 5px currentColor);
+	animation: routineFlowTravel 4.8s linear infinite;
+	animation-delay: var(--flow-path-delay, 0ms);
+}
+
+#section-routine .routine-flow-arrow{
+	fill: currentColor;
+}
+
+#section-routine .routine-flow-node{
+	position: absolute;
+	z-index: 3;
+	width: 78px;
+	height: 78px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2px;
+	padding: 7px;
+	border-radius: 50%;
+	background: linear-gradient(145deg, rgba(74,74,74,0.99), rgba(24,24,24,0.99));
+	border: 1px solid color-mix(in srgb, currentColor 42%, transparent);
+	box-shadow: 0 18px 34px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.1), 0 0 0 7px color-mix(in srgb, currentColor 8%, transparent);
+	color: #fff;
+	text-align: center;
+	transform: translate(-50%, -50%);
+	transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#section-routine .routine-flow-node > span{
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	color: #fff;
+	font-size: 0.72rem;
+	font-weight: 400;
+	line-height: 1.14;
+}
+
+#section-routine .routine-flow-node:hover{
+	transform: translate(-50%, -50%) scale(1.08);
+	border-color: currentColor;
+	box-shadow: 0 16px 30px rgba(0,0,0,0.3), 0 0 0 9px color-mix(in srgb, currentColor 11%, transparent);
+}
+
+@keyframes routineFlowTravel{
+	to{ stroke-dashoffset: -60; }
+}
+
+@media (max-width: 1279.98px){
+	#section-routine .routine-main{
+		grid-template-columns: 1fr;
+	}
+}
+
 @media (max-width: 991.98px){
 	#section-routine .routine-hero,
 	#section-routine .routine-main{
 		grid-template-columns: 1fr;
+	}
+
+	#section-routine .routine-timeline{
+		--routine-stack-top: 82px;
+	}
+
+	#section-routine .routine-entry{
+		grid-template-columns: 180px 1fr;
+	}
+
+	#section-routine .routine-entry--has-flow .routine-entry-body{
+		grid-template-columns: minmax(170px, 1fr) minmax(240px, 285px);
+	}
+
+	#section-routine .routine-flow{
+		width: min(100%, 285px);
+	}
+
+	#section-routine .routine-flow-node{
+		width: 64px;
+		height: 64px;
 	}
 }
 
@@ -3983,10 +5596,51 @@
 
 	#section-routine .routine-entry{
 		grid-template-columns: 1fr;
+		height: auto;
+		min-height: var(--routine-card-height);
+		padding: 1rem;
+		border-radius: 28px;
+		top: calc(var(--routine-stack-top) + var(--routine-stack-offset-mobile, 0px));
+	}
+
+	#section-routine .routine-time-block{
+		min-height: 132px;
+		padding: 1.1rem 1.2rem;
+	}
+
+	#section-routine .routine-entry-body{
+		align-items: flex-start;
+		height: auto;
+		padding: 0.45rem 0.3rem 0.7rem;
+	}
+
+	#section-routine .routine-entry--has-flow .routine-entry-body{
+		grid-template-columns: 1fr;
+		height: auto;
+	}
+
+	#section-routine .routine-flow{
+		width: min(100%, 300px);
+		justify-self: center;
 	}
 
 	#section-routine .routine-hero-metrics{
 		grid-template-columns: 1fr;
+	}
+}
+
+@media (prefers-reduced-motion: reduce){
+	#section-routine .routine-entry{
+		position: relative;
+		top: auto;
+	}
+
+	#section-routine .routine-timeline:after{
+		display: none;
+	}
+
+	#section-routine .routine-flow-path{
+		animation: none;
 	}
 }
 
@@ -3996,7 +5650,20 @@
   <link rel="stylesheet" href="css/theme-toggle.css">
   <link rel="stylesheet" href="css/record-date-picker.css">
 </head>
-<body data-spy="scroll" data-target="#pb-navbar" data-offset="200">
+<body class="is-page-loading" data-spy="scroll" data-target="#pb-navbar" data-offset="200" aria-busy="true">
+	<div class="page-loader" id="pageLoader" role="progressbar" aria-label="Loading website" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+		<div class="page-loader-count" aria-hidden="true">
+			<span id="pageLoaderValue">0</span><span class="page-loader-symbol">%</span>
+		</div>
+	</div>
+	<script src="js/page-loader.js?v=20260831-3"></script>
+
+	<div class="ratings-average-stage" id="ratingsAverageStage" role="status" aria-live="assertive" aria-atomic="true" hidden>
+		<div class="ratings-average-display" id="ratingsAverageDisplay">
+			<span class="ratings-average-label">Daily Average</span>
+			<strong class="ratings-average-score"><span id="ratingsAverageValue">0.00</span><small>/5</small></strong>
+		</div>
+	</div>
 
 
 
@@ -4015,7 +5682,7 @@
 						<li class="nav-item"><a class="nav-link" href="#section-bravo">Bravo Badges</a></li>
 					<li class="nav-item"><a class="nav-link" href="#section-services">Year Timeline</a></li>
 					<li class="nav-item"><a class="nav-link" href="#section-routine">Daily Routine</a></li>
-					<li class="nav-item"><a class="nav-link" href="#section-ratings">My Ratings</a></li>
+					<li class="nav-item"><a class="nav-link" href="#section-ratings">My Day</a></li>
 				  </ul>
 			</div>
 		</div>
@@ -4024,21 +5691,17 @@
 
 
 
-		<section class="site-hero" style="background-image: url(images/darkModeHomeWallpaper.jpg);" id="section-home" data-stellar-background-ratio="0.5">
-		<div class="container">
+		<section class="site-hero" style="background-image: url(images/home-loader-gradient-4k.jpg);" id="section-home" data-stellar-background-ratio="0.5">
+			<video class="hero-background-video" data-hero-background-video muted loop playsinline preload="none" poster="images/home-loader-gradient-4k.jpg" aria-hidden="true" tabindex="-1"></video>
+			<div class="container">
 			<div class="row intro-text align-items-center justify-content-center">
-				<div class="col-xl-11 pt-5">
-					<div class="hero-home-grid" id="mainHeroShell">
-						<div class="hero-copy-panel hero-copy-motion">
-							<div class="hero-kicker-row hero-stagger" style="--hero-delay: 80ms;">
-								<span class="hero-kicker hero-kicker--accent">2026 Operating System</span>
-								<span class="hero-kicker" id="heroDateBadge">Sat 14 Mar</span>
-							</div>
-
-							<h1 class="site-heading hero-title hero-stagger" style="--hero-delay: 150ms;">
-								<span class="hero-title-lead" id="heroGreeting">Hello, I'm</span>
-								<strong class="d-block" id="heroName">Manu Chaitanya</strong>
-							</h1>
+				<div class="col-xl-12 pt-5">
+						<div class="hero-home-grid" id="mainHeroShell">
+							<div class="hero-copy-panel hero-copy-motion">
+								<h1 class="site-heading hero-title hero-stagger" style="--hero-delay: 150ms;">
+									<span class="hero-title-lead" id="heroGreeting">Good Evening</span>
+									<strong class="d-block" id="heroName" aria-label="Manu Chaitanya!">Manu Chaitanya!</strong>
+								</h1>
 
 
 							<div class="hero-roleline hero-stagger" style="--hero-delay: 320ms;">
@@ -4079,40 +5742,29 @@
 						</div>
 
 						<div class="hero-control-wrap hero-panel-motion">
-							<div class="hero-control-panel" data-hero-depth="16">
-								<div class="hero-control-top">
-									<span class="hero-control-label">Mission Control</span>
-									<span class="hero-live-pill"><i></i> Live</span>
+							<section class="hero-semester-card" id="heroSemesterCard" data-hero-depth="10" aria-labelledby="heroSemesterTitle">
+								<span class="hero-semester-label" id="heroSemesterTitle">Semester Clock</span>
+								<div class="hero-semester-readout">
+									<div class="hero-semester-count" id="heroSemesterCount" aria-label="Current week 1 of 26 total weeks">
+										<span id="heroCurrentWeek">0</span>
+										<span class="hero-semester-divider" aria-hidden="true">/</span>
+										<span id="heroTotalWeeks">0</span>
+									</div>
 								</div>
+								<div class="hero-semester-track" aria-hidden="true"></div>
+								<div class="hero-semester-dates">
+									<time datetime="2026-08-24">24 Aug 2026</time>
+									<span aria-hidden="true">to</span>
+									<time datetime="2027-02-23">23 Feb 2027</time>
+								</div>
+							</section>
 
-								<div class="hero-time-block">
-									<div class="hero-local-time" id="heroLocalTime">03:52 AM</div>
-									<div class="hero-local-date" id="heroLocalDate">Saturday, 14 March 2026</div>
+								<div class="hero-control-panel hero-clock-card" data-hero-depth="16" aria-label="Local time and date">
+									<div class="hero-time-block">
+										<div class="hero-local-time" id="heroLocalTime">03:52 AM</div>
+										<div class="hero-local-date" id="heroLocalDate">Saturday, 14 March 2026</div>
+									</div>
 								</div>
-
-								<div class="hero-control-grid">
-									<a href="#section-portfolio" class="hero-mini-card">
-										<small>Gallery</small>
-										<strong>This Year</strong>
-										<span>Milestones and Build Snapshots across 2026.</span>
-									</a>
-									<a href="#section-resume" class="hero-mini-card">
-										<small>Trajectory</small>
-										<strong>My Career</strong>
-										<span>Education, Work, and the Path behind the current role.</span>
-									</a>
-									<a href="#section-bravo" class="hero-mini-card">
-										<small>Recognition</small>
-										<strong>Bravo Badges</strong>
-										<span>Recent trust signals, impact, and leadership feedback.</span>
-									</a>
-								</div>
-
-								<div class="hero-control-note">
-									<span class="hero-control-note-chip">2026 Tracks</span>
-									<p>Intent. Intensity. Identity. A single year broken into deliberate phases.</p>
-								</div>
-							</div>
 						</div>
 
 						<a href="#section-presence" class="hero-scroll-link hero-stagger" style="--hero-delay: 640ms;">Scroll <i class="icon-chevron-down"></i></a>
@@ -4122,176 +5774,39 @@
 		</div>
 	</section> <!-- section -->
 
-	<section class="site-section" id="section-presence">
-		<div class="container">
-			<div class="row align-items-end">
-				<div class="col-lg-7">
-					<div class="section-heading presence-head">
-						<span class="presence-kicker">Digital Presence</span>
-						<h2>Across The <strong>Internet</strong></h2>
+	<section class="site-section presence-logo-rail" id="section-presence" aria-label="Across the Internet">
+		<div class="presence-logo-shell">
+			<div class="presence-marquee" data-presence-marquee>
+				<div class="presence-marquee-track" data-presence-marquee-track>
+					<div class="presence-grid presence-marquee-group" data-presence-marquee-group>
+						<a class="presence-logo-link" href="https://github.com/manuchaitanya17" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+							<span class="presence-logo"><img src="images/account-logos/github.svg" alt="" loading="lazy"></span>
+						</a>
+						<a class="presence-logo-link" href="https://medium.com/@manuchaitanya" target="_blank" rel="noopener noreferrer" aria-label="Medium">
+							<span class="presence-logo"><img src="images/account-logos/medium.svg" alt="" loading="lazy"></span>
+						</a>
+						<a class="presence-logo-link" href="https://leetcode.com/u/manuchaitanya17/" target="_blank" rel="noopener noreferrer" aria-label="LeetCode">
+							<span class="presence-logo"><img src="images/account-logos/leetcode.svg" alt="" loading="lazy"></span>
+						</a>
+						<a class="presence-logo-link" href="https://www.geeksforgeeks.org/profile/root2924100" target="_blank" rel="noopener noreferrer" aria-label="GeeksforGeeks">
+							<span class="presence-logo"><img src="images/account-logos/geeksforgeeks.svg" alt="" loading="lazy"></span>
+						</a>
+						<a class="presence-logo-link" href="https://replit.com/@ManuChaitanya" target="_blank" rel="noopener noreferrer" aria-label="Replit">
+							<span class="presence-logo"><img src="images/account-logos/replit.svg" alt="" loading="lazy"></span>
+						</a>
+						<a class="presence-logo-link" href="https://manuchaitanya.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="My Portfolio">
+							<span class="presence-logo"><img src="images/manu-mark.svg?v=2" alt="" loading="lazy"></span>
+						</a>
+						<a class="presence-logo-link" href="https://www.linkedin.com/in/manuchaitanya/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+							<span class="presence-logo presence-logo--icon" aria-hidden="true"><i class="icon-linkedin2"></i></span>
+						</a>
+						<a class="presence-logo-link" href="https://www.facebook.com/m14chaitanya" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+							<span class="presence-logo"><img src="images/account-logos/facebook.svg" alt="" loading="lazy"></span>
+						</a>
+						<a class="presence-logo-link" href="https://www.instagram.com/m17chaitanya/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+							<span class="presence-logo"><img src="images/account-logos/instagram.svg" alt="" loading="lazy"></span>
+						</a>
 					</div>
-				</div>
-				<div class="col-lg-5">
-					<div class="presence-stat-strip">
-						<div class="presence-stat-chip">
-							<strong>09</strong>
-							<span>Linked destinations collected in one surface.</span>
-						</div>
-						<div class="presence-stat-chip">
-							<strong>05</strong>
-							<span>Build, learn, write, and ship focused platforms.</span>
-						</div>
-						<div class="presence-stat-chip">
-							<strong>04</strong>
-							<span>Career and social profiles for public visibility.</span>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="presence-shell">
-				<div class="presence-shell-head">
-					<div class="presence-shell-copy">
-						<span class="presence-shell-label">Linked Outpost</span>
-						<h3 class="presence-shell-title">A compact layer for repositories, articles, practice logs, network profiles, and the personal site.</h3>
-					</div>
-				</div>
-
-				<div class="presence-grid">
-					<a class="presence-card presence-card--wide" href="https://github.com/manuchaitanya17" target="_blank" rel="noopener noreferrer" style="--presence-accent-rgb: 127, 184, 255; --card-tilt: -1;">
-						<div class="presence-card-top">
-							<span class="presence-logo">
-								<img src="images/account-logos/github.svg" alt="GitHub logo" loading="lazy">
-							</span>
-							<span class="presence-chip">Codebase</span>
-						</div>
-						<h3>GitHub</h3>
-						<p>Repositories, portfolio code, and the implementation trail behind what ships live across the site.</p>
-						<div class="presence-card-bottom">
-							<span class="presence-handle">github.com/manuchaitanya17</span>
-							<span class="presence-arrow">Open <i class="icon-chevron-right"></i></span>
-						</div>
-					</a>
-
-					<a class="presence-card" href="https://medium.com/@manuchaitanya" target="_blank" rel="noopener noreferrer" style="--presence-accent-rgb: 115, 208, 133; --card-tilt: 1;">
-						<div class="presence-card-top">
-							<span class="presence-logo">
-								<img src="images/account-logos/medium.svg" alt="Medium logo" loading="lazy">
-							</span>
-							<span class="presence-chip">Writing</span>
-						</div>
-						<h3>Medium</h3>
-						<p>Problem-solving breakdowns, DSA notes, and compact long-form technical thinking.</p>
-						<div class="presence-card-bottom">
-							<span class="presence-handle">@manuchaitanya</span>
-							<span class="presence-arrow">Read <i class="icon-chevron-right"></i></span>
-						</div>
-					</a>
-
-					<a class="presence-card" href="https://leetcode.com/u/manuchaitanya17/" target="_blank" rel="noopener noreferrer" style="--presence-accent-rgb: 243, 178, 72; --card-tilt: -1;">
-						<div class="presence-card-top">
-							<span class="presence-logo">
-								<img src="images/account-logos/leetcode.svg" alt="LeetCode logo" loading="lazy">
-							</span>
-							<span class="presence-chip">Practice</span>
-						</div>
-						<h3>LeetCode</h3>
-						<p>Interview-style question work, daily repetitions, and the data structure practice layer.</p>
-						<div class="presence-card-bottom">
-							<span class="presence-handle">leetcode.com/u/manuchaitanya17</span>
-							<span class="presence-arrow">Solve <i class="icon-chevron-right"></i></span>
-						</div>
-					</a>
-
-					<a class="presence-card" href="https://www.geeksforgeeks.org/profile/root2924100" target="_blank" rel="noopener noreferrer" style="--presence-accent-rgb: 85, 184, 121; --card-tilt: 1;">
-						<div class="presence-card-top">
-							<span class="presence-logo">
-								<img src="images/account-logos/geeksforgeeks.svg" alt="GeeksforGeeks logo" loading="lazy">
-							</span>
-							<span class="presence-chip">DSA</span>
-						</div>
-						<h3>GFG</h3>
-						<p>Additional practice, reference material, and problem sets that sit alongside the LeetCode rhythm.</p>
-						<div class="presence-card-bottom">
-							<span class="presence-handle">root2924100</span>
-							<span class="presence-arrow">Visit <i class="icon-chevron-right"></i></span>
-						</div>
-					</a>
-
-					<a class="presence-card" href="https://replit.com/@ManuChaitanya" target="_blank" rel="noopener noreferrer" style="--presence-accent-rgb: 255, 118, 72; --card-tilt: -1;">
-						<div class="presence-card-top">
-							<span class="presence-logo">
-								<img src="images/account-logos/replit.svg" alt="Replit logo" loading="lazy">
-							</span>
-							<span class="presence-chip">Sandbox</span>
-						</div>
-						<h3>Replit</h3>
-						<p>Fast experiments, browser-accessible prototypes, and quick runtime ideas outside the local machine.</p>
-						<div class="presence-card-bottom">
-							<span class="presence-handle">@ManuChaitanya</span>
-							<span class="presence-arrow">Launch <i class="icon-chevron-right"></i></span>
-						</div>
-					</a>
-
-					<a class="presence-card presence-card--wide" href="https://manuchaitanya.netlify.app/" target="_blank" rel="noopener noreferrer" style="--presence-accent-rgb: 179, 158, 255; --card-tilt: 1;">
-						<div class="presence-card-top">
-							<span class="presence-logo presence-logo--monogram">
-								<span class="presence-monogram">MC</span>
-							</span>
-							<span class="presence-chip">Personal Site</span>
-						</div>
-						<h3>My Portfolio</h3>
-						<p>An additional live surface for the broader portfolio story, separate from the 2026 timeline-driven build on this site.</p>
-						<div class="presence-card-bottom">
-							<span class="presence-handle">manuchaitanya.netlify.app</span>
-							<span class="presence-arrow">Open <i class="icon-chevron-right"></i></span>
-						</div>
-					</a>
-
-					<a class="presence-card presence-card--third" href="https://www.linkedin.com/in/manuchaitanya/" target="_blank" rel="noopener noreferrer" style="--presence-accent-rgb: 88, 148, 255; --card-tilt: -1;">
-						<div class="presence-card-top">
-							<span class="presence-logo presence-logo--icon">
-								<i class="icon-linkedin2"></i>
-							</span>
-							<span class="presence-chip">Career</span>
-						</div>
-						<h3>LinkedIn</h3>
-						<p>Professional history, role transitions, and the public career version of the same journey.</p>
-						<div class="presence-card-bottom">
-							<span class="presence-handle">linkedin.com/in/manuchaitanya</span>
-							<span class="presence-arrow">Connect <i class="icon-chevron-right"></i></span>
-						</div>
-					</a>
-
-					<a class="presence-card presence-card--third" href="https://www.facebook.com/m14chaitanya" target="_blank" rel="noopener noreferrer" style="--presence-accent-rgb: 89, 124, 245; --card-tilt: 1;">
-						<div class="presence-card-top">
-							<span class="presence-logo">
-								<img src="images/account-logos/facebook.svg" alt="Facebook logo" loading="lazy">
-							</span>
-							<span class="presence-chip">Social</span>
-						</div>
-						<h3>Facebook</h3>
-						<p>Personal network presence and a more informal public channel connected to the wider online identity.</p>
-						<div class="presence-card-bottom">
-							<span class="presence-handle">facebook.com/m14chaitanya</span>
-							<span class="presence-arrow">Open <i class="icon-chevron-right"></i></span>
-						</div>
-					</a>
-
-					<a class="presence-card presence-card--third" href="https://www.instagram.com/m17chaitanya/" target="_blank" rel="noopener noreferrer" style="--presence-accent-rgb: 232, 111, 168; --card-tilt: -1;">
-						<div class="presence-card-top">
-							<span class="presence-logo">
-								<img src="images/account-logos/instagram.svg" alt="Instagram logo" loading="lazy">
-							</span>
-							<span class="presence-chip">Visual</span>
-						</div>
-						<h3>Instagram</h3>
-						<p>A lighter visual layer for the same digital footprint, with personality and public-facing snapshots.</p>
-						<div class="presence-card-bottom">
-							<span class="presence-handle">@m17chaitanya</span>
-							<span class="presence-arrow">View <i class="icon-chevron-right"></i></span>
-						</div>
-					</a>
 				</div>
 			</div>
 		</div>
@@ -4302,7 +5817,7 @@
 
 
 
-	<section class="site-section" id="section-portfolio" data-portfolio-mode="carousel">
+	<section class="site-section" id="section-portfolio" data-portfolio-mode="carousel" data-portfolio-scroll-reveal>
 		<div class="container">
 			<div class="row">
 				<div class="section-heading text-center col-md-12">
@@ -4390,7 +5905,7 @@
 							</a>                                
 						</div> 
 						<div class="p-inner">
-							<h4>743 & IP-I</h4>
+							<h4>743 & IP-II</h4>
 							<div class="cat">Intent, February 24th</div>
 						</div>
 					</div>
@@ -4441,6 +5956,10 @@
 
 	
 	<section class="site-section " id="section-resume">
+		<span class="career-affirmation-marker" data-career-affirmation-marker aria-hidden="true"></span>
+		<div class="career-affirmation" data-career-affirmation data-sentence="I M THE BEST" aria-hidden="true">
+			<span class="career-affirmation-letter" data-career-affirmation-letter></span>
+		</div>
 		<div class="container">
 			<div class="row career-cols">
 				<div class="col-md-12 mb-5">
@@ -4524,7 +6043,47 @@
 							<div class="bravo-top">
 								<div class="bravo-person">
 									<div class="bravo-avatar">
-										<img src="images/person_1.jpg" alt="Vince Miller" class="img-fluid">
+										<img src="images/bravo-ratul-tamuli.jpg" alt="Ratul Tamuli" class="img-fluid">
+									</div>
+									<div class="bravo-person-meta">
+										<strong>Ratul Tamuli</strong>
+										<span>Crowe Horwath</span>
+									</div>
+								</div>
+								<span class="bravo-badge">Thought Leadership</span>
+							</div>
+							<p class="bravo-quote">Manu demonstrated exceptional thinking during a recent United Mining enhancement. Not only did he deliver a working solution, but he proactively developed an innovative approach that could be leveraged for future clients, going well beyond what was required. Well done, Manu!</p>
+							<div class="bravo-footer">
+								<div class="bravo-signoff">Ratul Tamuli, Crowe Horwath</div>
+								<span class="bravo-date">Jun 29, 2026</span>
+							</div>
+						</article>
+
+						<article class="bravo-card">
+							<div class="bravo-top">
+								<div class="bravo-person">
+									<div class="bravo-avatar">
+										<img src="images/bravo-vince-miller.jpg" alt="Vince Miller" class="img-fluid">
+									</div>
+									<div class="bravo-person-meta">
+										<strong>Vince Miller</strong>
+										<span>Senior Functional Consultant, Crowe Horwath</span>
+									</div>
+								</div>
+								<span class="bravo-badge">Core Values</span>
+							</div>
+							<p class="bravo-quote">Manu has been very impressive in his ability to take and receive feedback. At the end of the FY, Manu was given feedback that provided opportunities to improve his communication, and he has taken that feedback early on and run with it. The increase in communication has seemed seamless and has shown through the quality of his work and deliverables. When compared to his peers, I am very easily able to report on Manu&apos;s workload, having visibility that he provides on the status of his items and tasks. There is still room to grow (as always), but Manu is crushing it thus far, and I am very proud of the quick progress he has made!</p>
+							<div class="bravo-footer">
+								<div class="bravo-signoff">Vince Miller, Senior Functional Consultant, Crowe Horwath</div>
+								<span class="bravo-date">Apr 07, 2026</span>
+							</div>
+						</article>
+
+						<article class="bravo-card">
+							<div class="bravo-top">
+								<div class="bravo-person">
+									<div class="bravo-avatar">
+										<img src="images/bravo-vince-miller.jpg" alt="Vince Miller" class="img-fluid">
 									</div>
 									<div class="bravo-person-meta">
 										<strong>Vince Miller</strong>
@@ -4544,7 +6103,7 @@
 							<div class="bravo-top">
 								<div class="bravo-person">
 									<div class="bravo-avatar">
-										<img src="images/person_1.jpg" alt="Vince Miller" class="img-fluid">
+										<img src="images/bravo-vince-miller.jpg" alt="Vince Miller" class="img-fluid">
 									</div>
 									<div class="bravo-person-meta">
 										<strong>Vince Miller</strong>
@@ -4610,7 +6169,9 @@
 				<button class="bravo-indicator" type="button" data-bravo-dot="1" aria-label="Go to bravo badge 2"></button>
 				<button class="bravo-indicator" type="button" data-bravo-dot="2" aria-label="Go to bravo badge 3"></button>
 				<button class="bravo-indicator" type="button" data-bravo-dot="3" aria-label="Go to bravo badge 4"></button>
-				<span class="bravo-status" id="bravoStatus">01 / 04</span>
+				<button class="bravo-indicator" type="button" data-bravo-dot="4" aria-label="Go to bravo badge 5"></button>
+				<button class="bravo-indicator" type="button" data-bravo-dot="5" aria-label="Go to bravo badge 6"></button>
+				<span class="bravo-status" id="bravoStatus">01 / 06</span>
 			</div>
 		</div>
 	</section>
@@ -4627,7 +6188,7 @@
 				</div>
 			</div>
 			<div class="year-phase-grid">
-				<article class="site-service-item site-animate year-phase-card year-phase-card--intent" data-animate-effect="fadeIn">
+				<article class="site-service-item year-phase-card year-phase-card--intent">
 					<div class="year-phase-meta">
 						<span class="year-phase-index">Phase 01</span>
 						<span class="year-phase-status">Foundation</span>
@@ -4642,7 +6203,7 @@
 					<a href="intent.html" class="site-link year-phase-link">See More <i class="icon-chevron-right"></i></a>
 				</article>
 
-				<article class="site-service-item site-animate year-phase-card year-phase-card--intensity" data-animate-effect="fadeIn">
+				<article class="site-service-item year-phase-card year-phase-card--intensity">
 					<div class="year-phase-meta">
 						<span class="year-phase-index">Phase 02</span>
 						<span class="year-phase-status">Execution</span>
@@ -4657,7 +6218,7 @@
 					<a href="intensity.html" class="site-link year-phase-link">See More <i class="icon-chevron-right"></i></a>
 				</article>
 
-				<article class="site-service-item site-animate year-phase-card year-phase-card--identity" data-animate-effect="fadeIn">
+				<article class="site-service-item year-phase-card year-phase-card--identity">
 					<div class="year-phase-meta">
 						<span class="year-phase-index">Phase 03</span>
 						<span class="year-phase-status">Ownership</span>
@@ -4703,7 +6264,10 @@
 			<div class="row">
 				<div class="col-md-12 mb-5">
 					<div class="section-heading text-center">
-						<h2>My <strong>Ratings</strong></h2>
+						<h2 class="ratings-day-title" data-ratings-day-title aria-label="My Day">
+							<span class="ratings-day-title-prefix" aria-hidden="true">My</span>
+							<strong class="ratings-day-title-word" data-ratings-day-word aria-hidden="true">Day</strong>
+						</h2>
 					</div>
 				</div>
 			</div>
@@ -4960,80 +6524,111 @@
 
 
     <section class="site-section" id="section-blog">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 mb-5">
-					<div class="section-heading text-center">
-						<h2>Blog on <strong>Medium</strong></h2>
-					</div>
+		<div class="container-fluid blog-carousel-shell" data-blog-carousel>
+			<div class="blog-section-head">
+				<div class="section-heading">
+					<h2>Blog on <strong>Medium</strong></h2>
+				</div>
+				<div class="blog-carousel-tools" aria-label="Medium post carousel controls">
+					<button class="blog-carousel-button" type="button" data-blog-previous aria-label="Show previous Medium post">&larr;</button>
+					<span class="blog-carousel-status" data-blog-status aria-live="polite">01 / 04</span>
+					<button class="blog-carousel-button" type="button" data-blog-next aria-label="Show next Medium post">&rarr;</button>
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="col-sm-6 col-lg-4 mb-4">
-					<div class="blog-entry">
-						<a href="https://medium.com/@manuchaitanya/traversals-in-a-2-d-matrix-c356090552bd" target="_blank" rel="noopener" class="blog-media">
-							<img src="images/post_1.jpg" alt="Traversals in a 2-D Matrix" class="img-fluid">
-						</a>
-						<div class="blog-entry-text">
-							<span class="blog-kicker">Medium Post</span>
-							<h3>
-								<a href="https://medium.com/@manuchaitanya/traversals-in-a-2-d-matrix-c356090552bd" target="_blank" rel="noopener">
-									Traversals in a 2-D Matrix
-								</a>
-							</h3>
-							<p class="mb-4">Matrix traversal is a core technique for searching, pathfinding, and data manipulation. Explore common traversal patterns with Java.</p>
+			<div class="blog-preview-orbit" data-blog-preview aria-hidden="true">
+				<img src="images/blog-previews/approval-medium-page.png" alt="" data-blog-preview-image>
+			</div>
 
-							<div class="meta">
-								<a href="https://medium.com/@manuchaitanya/traversals-in-a-2-d-matrix-c356090552bd" target="_blank" rel="noopener"><span class="icon-calendar"></span> Jan 23, 2025</a>
-								<a href="https://medium.com/@manuchaitanya/traversals-in-a-2-d-matrix-c356090552bd" target="_blank" rel="noopener"><span class="icon-bubble"></span> 5 min read</a>
+			<div class="blog-carousel-viewport" data-blog-carousel-viewport tabindex="0" aria-label="Medium posts. Scroll horizontally or use the arrow keys.">
+				<div class="blog-carousel-track" data-blog-carousel-track>
+					<article class="blog-carousel-card is-active" data-blog-card data-preview="images/blog-previews/approval-medium-page.png" data-preview-alt="Screenshot of the Approval-First Inventory Adjustment article on Medium">
+						<div class="blog-entry">
+							<a href="https://medium.com/@manuchaitanya/building-an-approval-first-inventory-adjustment-framework-in-netsuite-6ca861a06c22" target="_blank" rel="noopener" class="blog-media">
+								<img src="images/blog-previews/approval-inventory.png" alt="Approval-first inventory adjustment flow" class="img-fluid">
+							</a>
+							<div class="blog-entry-text">
+								<span class="blog-kicker">Latest Medium Post</span>
+								<h3>
+									<a href="https://medium.com/@manuchaitanya/building-an-approval-first-inventory-adjustment-framework-in-netsuite-6ca861a06c22" target="_blank" rel="noopener">
+										Building an Approval-First Inventory Adjustment Framework in NetSuite
+									</a>
+								</h3>
+								<p class="mb-4">A controlled NetSuite framework that stages sensitive inventory adjustments, routes approval, and creates the native posting only after approval.</p>
+
+								<div class="meta">
+									<a href="https://medium.com/@manuchaitanya/building-an-approval-first-inventory-adjustment-framework-in-netsuite-6ca861a06c22" target="_blank" rel="noopener"><span class="icon-calendar"></span> Jun 6, 2026</a>
+									<a href="https://medium.com/@manuchaitanya/building-an-approval-first-inventory-adjustment-framework-in-netsuite-6ca861a06c22" target="_blank" rel="noopener"><span class="icon-bubble"></span> 16 min read</a>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
+					</article>
 
-				<div class="col-sm-6 col-lg-4 mb-4">
-					<div class="blog-entry">
-						<a href="https://medium.com/@manuchaitanya/monotonic-stack-for-efficient-problem-solving-next-greater-next-smaller-previous-greater-and-6c63d0572644" target="_blank" rel="noopener" class="blog-media">
-							<img src="images/post_2.jpg" alt="Monotonic Stack for Efficient Problem Solving" class="img-fluid">
-						</a>
-						<div class="blog-entry-text">
-							<span class="blog-kicker">Medium Post</span>
-							<h3>
-								<a href="https://medium.com/@manuchaitanya/monotonic-stack-for-efficient-problem-solving-next-greater-next-smaller-previous-greater-and-6c63d0572644" target="_blank" rel="noopener">
-									Monotonic Stack for Efficient Problem Solving: Next Greater, Next Smaller, Previous Greater, and Previous Smaller Elements
-								</a>
-							</h3>
-							<p class="mb-4">Monotonic stacks power NGE/NSE and PGE/PSE problems—an interview favorite—with elegant linear-time solutions.</p>
+					<article class="blog-carousel-card" data-blog-card data-preview="images/blog-previews/matrix-medium-page.png" data-preview-alt="Screenshot of the Traversals in a 2-D Matrix article on Medium">
+						<div class="blog-entry">
+							<a href="https://medium.com/@manuchaitanya/traversals-in-a-2-d-matrix-c356090552bd" target="_blank" rel="noopener" class="blog-media">
+								<img src="images/post_1.jpg" alt="Traversals in a 2-D Matrix" class="img-fluid">
+							</a>
+							<div class="blog-entry-text">
+								<span class="blog-kicker">Medium Post</span>
+								<h3>
+									<a href="https://medium.com/@manuchaitanya/traversals-in-a-2-d-matrix-c356090552bd" target="_blank" rel="noopener">
+										Traversals in a 2-D Matrix
+									</a>
+								</h3>
+								<p class="mb-4">Matrix traversal is a core technique for searching, pathfinding, and data manipulation. Explore common traversal patterns with Java.</p>
 
-							<div class="meta">
-								<a href="https://medium.com/@manuchaitanya/monotonic-stack-for-efficient-problem-solving-next-greater-next-smaller-previous-greater-and-6c63d0572644" target="_blank" rel="noopener"><span class="icon-calendar"></span> Jan 20, 2025</a>
-								<a href="https://medium.com/@manuchaitanya/monotonic-stack-for-efficient-problem-solving-next-greater-next-smaller-previous-greater-and-6c63d0572644" target="_blank" rel="noopener"><span class="icon-bubble"></span> 5 min read</a>
+								<div class="meta">
+									<a href="https://medium.com/@manuchaitanya/traversals-in-a-2-d-matrix-c356090552bd" target="_blank" rel="noopener"><span class="icon-calendar"></span> Jan 23, 2025</a>
+									<a href="https://medium.com/@manuchaitanya/traversals-in-a-2-d-matrix-c356090552bd" target="_blank" rel="noopener"><span class="icon-bubble"></span> 5 min read</a>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
+					</article>
 
-				<div class="col-sm-6 col-lg-4 mb-4">
-					<div class="blog-entry">
-						<a href="https://medium.com/@manuchaitanya/from-linear-search-to-binary-search-koko-eating-bananas-c58347af8a3f" target="_blank" rel="noopener" class="blog-media">
-							<img src="images/post_3.jpg" alt="From Linear Search to Binary Search: Koko Eating Bananas" class="img-fluid">
-						</a>
-						<div class="blog-entry-text">
-							<span class="blog-kicker">Medium Post</span>
-							<h3>
-								<a href="https://medium.com/@manuchaitanya/from-linear-search-to-binary-search-koko-eating-bananas-c58347af8a3f" target="_blank" rel="noopener">
-									From Linear Search to Binary Search: Koko Eating Bananas
-								</a>
-							</h3>
-							<p class="mb-4">Koko Eating Bananas: why linear search TLEs and how binary search finds the minimum valid speed efficiently.</p>
+					<article class="blog-carousel-card" data-blog-card data-preview="images/blog-previews/monotonic-medium-page.png" data-preview-alt="Screenshot of the Monotonic Stack article on Medium">
+						<div class="blog-entry">
+							<a href="https://medium.com/@manuchaitanya/monotonic-stack-for-efficient-problem-solving-next-greater-next-smaller-previous-greater-and-6c63d0572644" target="_blank" rel="noopener" class="blog-media">
+								<img src="images/post_2.jpg" alt="Monotonic Stack for Efficient Problem Solving" class="img-fluid">
+							</a>
+							<div class="blog-entry-text">
+								<span class="blog-kicker">Medium Post</span>
+								<h3>
+									<a href="https://medium.com/@manuchaitanya/monotonic-stack-for-efficient-problem-solving-next-greater-next-smaller-previous-greater-and-6c63d0572644" target="_blank" rel="noopener">
+										Monotonic Stack for Efficient Problem Solving: Next Greater, Next Smaller, Previous Greater, and Previous Smaller Elements
+									</a>
+								</h3>
+								<p class="mb-4">Monotonic stacks power NGE/NSE and PGE/PSE problems - an interview favorite - with elegant linear-time solutions.</p>
 
-							<div class="meta">
-								<a href="https://medium.com/@manuchaitanya/from-linear-search-to-binary-search-koko-eating-bananas-c58347af8a3f" target="_blank" rel="noopener"><span class="icon-calendar"></span> Dec 24, 2024</a>
-								<a href="https://medium.com/@manuchaitanya/from-linear-search-to-binary-search-koko-eating-bananas-c58347af8a3f" target="_blank" rel="noopener"><span class="icon-bubble"></span> 3 min read</a>
+								<div class="meta">
+									<a href="https://medium.com/@manuchaitanya/monotonic-stack-for-efficient-problem-solving-next-greater-next-smaller-previous-greater-and-6c63d0572644" target="_blank" rel="noopener"><span class="icon-calendar"></span> Jan 20, 2025</a>
+									<a href="https://medium.com/@manuchaitanya/monotonic-stack-for-efficient-problem-solving-next-greater-next-smaller-previous-greater-and-6c63d0572644" target="_blank" rel="noopener"><span class="icon-bubble"></span> 5 min read</a>
+								</div>
 							</div>
 						</div>
-					</div>
+					</article>
+
+					<article class="blog-carousel-card" data-blog-card data-preview="images/blog-previews/koko-medium-page.png" data-preview-alt="Screenshot of the Koko Eating Bananas article on Medium">
+						<div class="blog-entry">
+							<a href="https://medium.com/@manuchaitanya/from-linear-search-to-binary-search-koko-eating-bananas-c58347af8a3f" target="_blank" rel="noopener" class="blog-media">
+								<img src="images/post_3.jpg" alt="From Linear Search to Binary Search: Koko Eating Bananas" class="img-fluid">
+							</a>
+							<div class="blog-entry-text">
+								<span class="blog-kicker">Medium Post</span>
+								<h3>
+									<a href="https://medium.com/@manuchaitanya/from-linear-search-to-binary-search-koko-eating-bananas-c58347af8a3f" target="_blank" rel="noopener">
+										From Linear Search to Binary Search: Koko Eating Bananas
+									</a>
+								</h3>
+								<p class="mb-4">Why linear search TLEs and how binary search finds Koko's minimum valid eating speed efficiently.</p>
+
+								<div class="meta">
+									<a href="https://medium.com/@manuchaitanya/from-linear-search-to-binary-search-koko-eating-bananas-c58347af8a3f" target="_blank" rel="noopener"><span class="icon-calendar"></span> Dec 24, 2024</a>
+									<a href="https://medium.com/@manuchaitanya/from-linear-search-to-binary-search-koko-eating-bananas-c58347af8a3f" target="_blank" rel="noopener"><span class="icon-bubble"></span> 3 min read</a>
+								</div>
+							</div>
+						</div>
+					</article>
 				</div>
 			</div>
 		</div>
@@ -5130,11 +6725,12 @@
 	<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
 	<script src="js/custom.js"></script>
 	<script src="js/record-date-picker.js"></script>
-	<script src="js/ratings.js"></script>
-	<script src="js/greeting.js"></script>
-	<script src="js/hero-main.js"></script>
+		<script src="js/ratings.js?v=20260831-3"></script>
+		<script src="js/greeting.js?v=20260831-3"></script>
+		<script src="js/hero-main.js?v=20260831-3"></script>
 	<script src="js/routine.js"></script>
 	<script src="js/home-effects.js"></script>
+	<script src="js/blog-carousel.js?v=20260831-1"></script>
 		<script>
 			(function () {
 				"use strict";

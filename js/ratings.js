@@ -392,6 +392,88 @@
     else el.classList.add('text-info');
   }
 
+  var averageAnimationRun = 0;
+
+  function playAverageFlight(average, onComplete) {
+    var stage = $('ratingsAverageStage');
+    var display = $('ratingsAverageDisplay');
+    var valueEl = $('ratingsAverageValue');
+    var target = document.querySelector('#section-ratings-history .ratings-history-summary');
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var runId = ++averageAnimationRun;
+
+    if (!stage || !display || !valueEl) {
+      if (typeof onComplete === 'function') onComplete();
+      return;
+    }
+
+    valueEl.textContent = Number(average).toFixed(2);
+    stage.setAttribute('aria-label', 'Daily average ' + Number(average).toFixed(2) + ' out of 5');
+    stage.classList.remove('is-visible', 'is-flying');
+    stage.style.removeProperty('--average-flight-x');
+    stage.style.removeProperty('--average-flight-y');
+    stage.hidden = false;
+
+    if (target) target.classList.remove('is-average-target');
+
+    function finish() {
+      if (runId !== averageAnimationRun) return;
+
+      stage.classList.remove('is-visible', 'is-flying');
+      stage.hidden = true;
+
+      if (target) {
+        target.scrollIntoView({
+          behavior: reducedMotion ? 'auto' : 'smooth',
+          block: 'center'
+        });
+
+        window.setTimeout(function () {
+          target.classList.add('is-average-target');
+          window.setTimeout(function () {
+            target.classList.remove('is-average-target');
+          }, 1100);
+        }, reducedMotion ? 0 : 320);
+      }
+
+      window.setTimeout(function () {
+        if (runId === averageAnimationRun && typeof onComplete === 'function') {
+          onComplete();
+        }
+      }, reducedMotion ? 0 : 520);
+    }
+
+    window.requestAnimationFrame(function () {
+      window.requestAnimationFrame(function () {
+        if (runId !== averageAnimationRun) return;
+        stage.classList.add('is-visible');
+
+        window.setTimeout(function () {
+          if (runId !== averageAnimationRun) return;
+
+          if (reducedMotion) {
+            finish();
+            return;
+          }
+
+          var displayRect = display.getBoundingClientRect();
+          var targetRect = target ? target.getBoundingClientRect() : null;
+          var startX = displayRect.left + displayRect.width / 2;
+          var startY = displayRect.top + displayRect.height / 2;
+          var targetX = targetRect ? targetRect.left + targetRect.width / 2 : window.innerWidth / 2;
+          var targetY = targetRect
+            ? Math.min(targetRect.top + targetRect.height / 2, window.innerHeight + 180)
+            : window.innerHeight + 120;
+
+          stage.style.setProperty('--average-flight-x', (targetX - startX).toFixed(1) + 'px');
+          stage.style.setProperty('--average-flight-y', (targetY - startY).toFixed(1) + 'px');
+          stage.classList.add('is-flying');
+          window.setTimeout(finish, 940);
+        }, reducedMotion ? 760 : 1080);
+      });
+    });
+  }
+
   function getSelectedRatings(formEl) {
     var out = {};
     for (var i = 0; i < CATEGORIES.length; i++) {
@@ -690,9 +772,17 @@
       // Compose & open email draft (daily + any period summaries that end today)
       var subject = CONFIG.subjectPrefix + ' — ' + iso;
       var body = buildEmailBody({ todayISO: iso, todayRatings: selected, store: storeNow });
+      var dailyAverage = computeDailyAverage(selected);
+      var submitButton = form.querySelector('button[type="submit"]');
 
-      setStatus('Saved ratings for ' + iso + '. Opening email draft…', 'success');
-      openEmailDraft(subject, body);
+      if (submitButton) submitButton.disabled = true;
+      setStatus('Saved ratings for ' + iso + '. Average: ' + dailyAverage.toFixed(2) + '/5.', 'success');
+
+      playAverageFlight(dailyAverage, function () {
+        if (submitButton) submitButton.disabled = false;
+        setStatus('Saved ratings for ' + iso + '. Opening email draft…', 'success');
+        openEmailDraft(subject, body);
+      });
     });
 
     // History controls

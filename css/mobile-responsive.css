@@ -2,6 +2,7 @@
   html,
   body{
     overflow-x: hidden;
+    overflow-x: clip;
   }
 
   .site-navbar,
@@ -184,7 +185,7 @@
   }
 
   #section-home{
-    background-image: url("../images/mobileIndexPage.jpg") !important;
+    background-image: url("../images/home-loader-gradient-4k.jpg") !important;
     background-position: center top !important;
     background-size: cover !important;
   }
@@ -210,11 +211,11 @@
   }
 
   #section-home .hero-title-lead{
-    font-size: clamp(2.35rem, 13vw, 4.25rem) !important;
+    font-size: clamp(2.9rem, 15vw, 4.8rem) !important;
   }
 
   #section-home .hero-title strong{
-    font-size: clamp(3.2rem, 18vw, 5.1rem) !important;
+    font-size: clamp(4rem, 19vw, 5.9rem) !important;
     word-break: break-word;
   }
 

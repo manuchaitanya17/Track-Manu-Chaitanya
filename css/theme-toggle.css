@@ -689,7 +689,7 @@ html[data-theme="light"] #section-contact{
 }
 
 html[data-theme="light"] #section-home{
-  background-image:url("../images/dayModeHomePageWallpaper1.jpg") !important;
+  background-image:url("../images/home-loader-gradient-4k.jpg") !important;
   background-position:center center !important;
   background-size:cover !important;
   background-repeat:no-repeat !important;
@@ -786,6 +786,7 @@ html[data-theme="light"] #section-home .hero-day-banner p{
 }
 
 html[data-theme="light"] #section-home .hero-control-panel,
+html[data-theme="light"] #section-home .hero-semester-card,
 html[data-theme="light"] #section-home .hero-mini-card,
 html[data-theme="light"] #section-home .hero-phase-pill,
 html[data-theme="light"] #section-home .hero-roleline,
@@ -793,6 +794,23 @@ html[data-theme="light"] #section-home .hero-day-banner{
   background:rgba(251,248,242,0.80) !important;
   border-color:var(--day-border) !important;
   box-shadow:var(--day-shadow) !important;
+}
+
+html[data-theme="light"] #section-home .hero-semester-label,
+html[data-theme="light"] #section-home .hero-semester-dates{
+  color:var(--day-muted) !important;
+}
+
+html[data-theme="light"] #section-home .hero-semester-count{
+  color:var(--day-text) !important;
+}
+
+html[data-theme="light"] #section-home .hero-semester-divider{
+  color:var(--day-accent-strong) !important;
+}
+
+html[data-theme="light"] #section-home .hero-semester-track{
+  background:rgba(52,47,40,0.1) !important;
 }
 
 html[data-theme="light"] #section-home .hero-phase-pill small,
@@ -994,6 +1012,18 @@ html[data-theme="light"] #section-resume .career-role small{
   box-shadow:none !important;
 }
 
+html[data-theme="light"] #section-resume .career-affirmation:before{
+  background:radial-gradient(circle, rgba(247,243,236,0.9) 0 22%, rgba(247,243,236,0.62) 48%, transparent 72%) !important;
+}
+
+html[data-theme="light"] #section-resume .career-affirmation-letter{
+  color:var(--day-text) !important;
+  text-shadow:
+    0 0 1px rgba(52,47,40,0.42),
+    0 26px 70px rgba(125,109,83,0.2),
+    0 0 60px rgba(162,180,90,0.16) !important;
+}
+
 html[data-theme="light"] #section-resume .career-column-head h2,
 html[data-theme="light"] #section-resume .career-panel h3,
 html[data-theme="light"] #section-resume .career-role h4,
@@ -1058,6 +1088,96 @@ html[data-theme="light"] #section-routine .routine-duration{
   border-color:var(--day-border) !important;
   box-shadow:none !important;
 }
+
+html[data-theme="light"] #section-routine .routine-entry{
+  background:
+    radial-gradient(circle at 88% 8%, color-mix(in srgb, var(--routine-entry-accent, var(--day-accent)) 11%, transparent), transparent 34%),
+    linear-gradient(145deg, rgba(255,253,249,0.995), rgba(239,233,224,0.99)) !important;
+  border-color:color-mix(in srgb, var(--routine-entry-accent, var(--day-accent)) 18%, rgba(125,109,83,0.14)) !important;
+  box-shadow:
+    0 34px 78px rgba(105,88,62,0.15),
+    0 10px 28px rgba(125,109,83,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.96) !important;
+}
+
+html[data-theme="light"] #section-routine .routine-entry:hover{
+  border-color:color-mix(in srgb, var(--routine-entry-accent, var(--day-accent)) 35%, rgba(125,109,83,0.16)) !important;
+  box-shadow:
+    0 42px 92px rgba(105,88,62,0.18),
+    0 14px 34px rgba(125,109,83,0.12),
+    inset 0 1px 0 #fff !important;
+}
+
+html[data-theme="light"] #section-routine .routine-entry:after{
+  background:
+    linear-gradient(112deg, rgba(255,255,255,0.92), transparent 19%, transparent 76%, rgba(255,255,255,0.16)),
+    radial-gradient(circle at 100% 100%, color-mix(in srgb, var(--routine-entry-accent, var(--day-accent)) 8%, transparent), transparent 38%) !important;
+}
+
+html[data-theme="light"] #section-routine .routine-time-block{
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.9), rgba(236,229,219,0.76)) !important;
+  border-color:rgba(125,109,83,0.13) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.98),
+    0 18px 38px rgba(125,109,83,0.09) !important;
+}
+
+html[data-theme="light"] #section-routine .routine-time-block:after{
+  border-color:color-mix(in srgb, var(--routine-entry-accent, var(--day-accent)) 32%, transparent) !important;
+}
+
+html[data-theme="light"] #section-routine .routine-metric,
+html[data-theme="light"] #section-routine .routine-stat-card{
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.88), rgba(240,234,225,0.72)) !important;
+  border-color:rgba(125,109,83,0.12) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.96),
+    0 16px 34px rgba(125,109,83,0.09) !important;
+}
+
+html[data-theme="light"] #section-routine .routine-metric:hover,
+html[data-theme="light"] #section-routine .routine-stat-card:hover{
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 22px 44px rgba(125,109,83,0.13) !important;
+}
+
+html[data-theme="light"] #section-routine .routine-breakdown{
+  background:
+    linear-gradient(150deg, rgba(255,255,255,0.88), rgba(240,234,225,0.7)) !important;
+  border-color:rgba(125,109,83,0.12) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.96),
+    0 20px 48px rgba(125,109,83,0.1) !important;
+}
+
+html[data-theme="light"] #section-routine .routine-flow-orbit:before{
+  background:
+    radial-gradient(circle, rgba(255,255,255,0.9) 0 28%, rgba(162,180,90,0.045) 58%, transparent 72%),
+    conic-gradient(from 210deg, transparent, color-mix(in srgb, currentColor 10%, transparent), transparent 35%) !important;
+  box-shadow:inset 0 0 54px rgba(125,109,83,0.09), 0 0 0 1px rgba(125,109,83,0.035) !important;
+}
+
+html[data-theme="light"] #section-routine .routine-flow-guide{
+  stroke:rgba(97,87,74,0.16) !important;
+}
+
+html[data-theme="light"] #section-routine .routine-flow-node{
+  background:linear-gradient(145deg, rgba(255,255,255,0.98), rgba(242,237,229,0.98)) !important;
+  border-color:var(--day-border) !important;
+  box-shadow:0 18px 34px rgba(125,109,83,0.14), inset 0 1px 0 #fff, 0 0 0 7px rgba(162,180,90,0.06) !important;
+}
+
+html[data-theme="light"] #section-routine .routine-flow-node > span{
+  color:var(--day-text) !important;
+}
+
+html[data-theme="light"] #section-routine .routine-entry--focus .routine-flow{ color:#7d8f37; }
+html[data-theme="light"] #section-routine .routine-entry--health .routine-flow{ color:#328f63; }
+html[data-theme="light"] #section-routine .routine-entry--reset .routine-flow{ color:#627792; }
+html[data-theme="light"] #section-routine .routine-entry--sleep .routine-flow{ color:#9c7030; }
 
 html[data-theme="light"] #section-routine .routine-metric small,
 html[data-theme="light"] #section-routine .routine-stat-card small,
@@ -1877,5 +1997,94 @@ html[data-theme="light"] body.experience-body .btn-outline-primary:focus{
   background:rgba(250,247,242,0.94) !important;
   border-color:var(--day-border) !important;
   color:var(--day-text) !important;
+  box-shadow:none !important;
+}
+
+/* Shared expanding-dot interaction for buttons across the site. */
+:is(.btn, button.btn, .hero-btn){
+  --button-motion-fill:#f5efe6;
+  --button-motion-color:#17130f;
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  transform:translateZ(0);
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease !important;
+}
+
+:is(.btn, button.btn, .hero-btn)::before{
+  content:"";
+  position:absolute;
+  left:1.05rem;
+  top:50%;
+  z-index:-1;
+  width:10px;
+  height:10px;
+  border-radius:999px;
+  background:var(--button-motion-fill);
+  opacity:0;
+  pointer-events:none;
+  transform:translate3d(-50%, -50%, 0) scale(0.25);
+  transition:
+    transform 0.56s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.18s ease;
+}
+
+:is(.btn, button.btn, .hero-btn):is(:hover, :focus-visible):not(.is-disabled):not(:disabled)::before{
+  opacity:1;
+  transform:translate3d(-50%, -50%, 0) scale(42);
+}
+
+:is(.btn, button.btn, .hero-btn):is(:hover, :focus-visible):not(.is-disabled):not(:disabled){
+  color:var(--button-motion-color) !important;
+  transform:translateY(-3px);
+}
+
+:is(.btn, button.btn, .hero-btn):active:not(.is-disabled):not(:disabled){
+  transform:translateY(-1px) scale(0.97);
+  transition-duration:0.12s !important;
+}
+
+:is(.btn, button.btn, .hero-btn) i{
+  display:inline-block;
+  transition:transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:is(.btn, button.btn, .hero-btn):is(:hover, :focus-visible) i[class*="chevron-right"],
+:is(.btn, button.btn, .hero-btn):is(:hover, :focus-visible) i[class*="arrow-right"]{
+  transform:translateX(4px);
+}
+
+:is(.btn-secondary, .btn-outline-light, .btn-outline-primary, .hero-btn--ghost){
+  --button-motion-fill:#c5d763;
+  --button-motion-color:#121212;
+}
+
+html[data-theme="light"] :is(.btn, button.btn, .hero-btn){
+  --button-motion-fill:var(--day-text);
+  --button-motion-color:#fff;
+}
+
+html[data-theme="light"] .btn-primary{
+  --button-motion-fill:#fff;
+  --button-motion-color:var(--day-text);
+}
+
+@media (prefers-reduced-motion: reduce){
+  :is(.btn, button.btn, .hero-btn)::before{
+    display:none !important;
+  }
+}
+
+html[data-theme="light"] #section-presence.presence-logo-rail .presence-logo-link{
+  color:var(--day-text) !important;
+}
+
+html[data-theme="light"] #section-presence.presence-logo-rail .presence-logo{
+  background:transparent !important;
+  border:0 !important;
   box-shadow:none !important;
 }

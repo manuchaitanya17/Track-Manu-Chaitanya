@@ -17,7 +17,11 @@
   var PTO_SEED_ENTRIES = [
     { date: "2026-03-27", title: "Casual Leave", leaveType: "casual" },
     { date: "2026-03-30", title: "Casual Leave", leaveType: "casual" },
-    { date: "2026-03-31", title: "Casual Leave", leaveType: "casual" }
+    { date: "2026-03-31", title: "Casual Leave", leaveType: "casual" },
+    { date: "2026-04-22", title: "Sick Leave", leaveType: "sick" },
+    { date: "2026-04-23", title: "Sick Leave", leaveType: "sick" },
+    { date: "2026-07-06", title: "Sick Leave", leaveType: "sick" },
+    { date: "2026-08-06", title: "Sick Leave", leaveType: "sick" }
   ];
 
   var PTO_META = {
