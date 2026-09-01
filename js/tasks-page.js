@@ -12,10 +12,55 @@
   var UPCOMING_OCCURRENCE_LIMIT = 8;
   var UPCOMING_OCCURRENCE_HORIZON_DAYS = 180;
 
-  var CATEGORY_META = {
-    work: { label: "CRW-I Billable", className: "tasks-task-work" },
-    personal: { label: "CRW-I Non-Billable", className: "tasks-task-personal" },
-    deep: { label: "L2 Capstone", className: "tasks-task-deep" }
+  var LANE_META = {
+    "crw-ii": {
+      label: "CRW-II",
+      typeLabel: "Billing Type",
+      defaultType: "billable",
+      types: ["billable", "non-billable"]
+    },
+    "l2-capstone": {
+      label: "L2 Capstone",
+      typeLabel: "Focus Area",
+      defaultType: "course-revision",
+      types: ["course-revision", "opportunities-applications", "interviews-hustle"]
+    }
+  };
+
+  var TASK_TYPE_META = {
+    "billable": {
+      label: "Billable",
+      lane: "crw-ii",
+      className: "tasks-task-billable"
+    },
+    "non-billable": {
+      label: "Non Billable",
+      lane: "crw-ii",
+      className: "tasks-task-non-billable"
+    },
+    "course-revision": {
+      label: "Course Revision",
+      lane: "l2-capstone",
+      className: "tasks-task-course-revision"
+    },
+    "opportunities-applications": {
+      label: "Opportunities and Applications",
+      lane: "l2-capstone",
+      className: "tasks-task-opportunities"
+    },
+    "interviews-hustle": {
+      label: "Interviews Hustle",
+      lane: "l2-capstone",
+      className: "tasks-task-interviews"
+    }
+  };
+
+  var LEGACY_CATEGORY_MAP = {
+    work: { lane: "crw-ii", taskType: "billable" },
+    personal: { lane: "crw-ii", taskType: "non-billable" },
+    health: { lane: "crw-ii", taskType: "non-billable" },
+    deep: { lane: "l2-capstone", taskType: "course-revision" },
+    admin: { lane: "l2-capstone", taskType: "course-revision" }
   };
 
   var DAY_TYPE_META = {
@@ -136,17 +181,39 @@
     return REPEAT_META[value] ? value : "none";
   }
 
-  function normalizeCategory(value){
-    if(value === "work" || value === "personal" || value === "deep"){
+  function getLegacyTaskClassification(value){
+    return LEGACY_CATEGORY_MAP[value] || LEGACY_CATEGORY_MAP.work;
+  }
+
+  function normalizeLane(value, legacyCategory){
+    if(LANE_META[value]){
       return value;
     }
-    if(value === "health"){
-      return "personal";
+    if(TASK_TYPE_META[value]){
+      return TASK_TYPE_META[value].lane;
     }
-    if(value === "admin"){
-      return "deep";
+    if(TASK_TYPE_META[legacyCategory]){
+      return TASK_TYPE_META[legacyCategory].lane;
     }
-    return "work";
+    return getLegacyTaskClassification(legacyCategory || value).lane;
+  }
+
+  function normalizeTaskType(value, lane, legacyCategory){
+    var normalizedLane = normalizeLane(lane, legacyCategory || value);
+    var legacyClassification;
+
+    if(TASK_TYPE_META[value] && TASK_TYPE_META[value].lane === normalizedLane){
+      return value;
+    }
+    if(TASK_TYPE_META[legacyCategory] && TASK_TYPE_META[legacyCategory].lane === normalizedLane){
+      return legacyCategory;
+    }
+
+    legacyClassification = getLegacyTaskClassification(legacyCategory || value);
+    if(legacyClassification.lane === normalizedLane){
+      return legacyClassification.taskType;
+    }
+    return LANE_META[normalizedLane].defaultType;
   }
 
   function normalizeRepeatInterval(value){
@@ -361,11 +428,42 @@
   }
 
   function getTaskClass(task){
-    return CATEGORY_META[task.category] ? CATEGORY_META[task.category].className : CATEGORY_META.work.className;
+    var lane = normalizeLane(task.lane, task.category);
+    var taskType = normalizeTaskType(task.taskType, lane, task.category);
+    return TASK_TYPE_META[taskType].className;
   }
 
   function getTaskCategoryLabel(task){
-    return CATEGORY_META[task.category] ? CATEGORY_META[task.category].label : CATEGORY_META.work.label;
+    var lane = normalizeLane(task.lane, task.category);
+    var taskType = normalizeTaskType(task.taskType, lane, task.category);
+    return LANE_META[lane].label + " · " + TASK_TYPE_META[taskType].label;
+  }
+
+  function syncTaskTypeOptions(preferredType){
+    var lane;
+    var laneMeta;
+    var nextTaskType;
+
+    if(!refs.taskLane || !refs.taskType){
+      return;
+    }
+
+    lane = normalizeLane(refs.taskLane.value);
+    laneMeta = LANE_META[lane];
+    nextTaskType = normalizeTaskType(preferredType || refs.taskType.value, lane, preferredType || refs.taskType.value);
+    refs.taskLane.value = lane;
+    refs.taskType.innerHTML = "";
+
+    laneMeta.types.forEach(function(taskType){
+      var option = document.createElement("option");
+      option.value = taskType;
+      option.textContent = TASK_TYPE_META[taskType].label;
+      refs.taskType.appendChild(option);
+    });
+
+    refs.taskType.value = nextTaskType;
+    refs.taskTypeLabel.textContent = laneMeta.typeLabel;
+    refs.taskTypeField.setAttribute("data-lane", lane);
   }
 
   function loadTasks(){
@@ -389,6 +487,8 @@
         var completedDates = Array.isArray(task.completedDates) ? task.completedDates.filter(function(entry){
           return parseDateKey(entry);
         }) : [];
+        var lane = normalizeLane(task.lane, task.category);
+        var taskType = normalizeTaskType(task.taskType, lane, task.category);
 
         if(Boolean(task.done) && completedDates.indexOf(task.date) === -1){
           completedDates.push(task.date);
@@ -401,7 +501,8 @@
           allDay: Boolean(task.allDay),
           startTime: task.startTime || "",
           endTime: task.endTime || "",
-          category: normalizeCategory(task.category),
+          lane: lane,
+          taskType: taskType,
           reminder: task.reminder !== false,
           notes: task.notes || "",
           repeat: normalizeRepeat(task.repeat),
@@ -693,7 +794,8 @@
 
     refs.taskDate.value = formatDateInput(targetDate);
     syncDateFieldDisplay();
-    refs.taskCategory.value = "work";
+    refs.taskLane.value = "crw-ii";
+    syncTaskTypeOptions("billable");
     refs.taskAllDay.checked = false;
     refs.taskReminder.checked = true;
     refs.taskStartTime.value = formatTimeInput(start);
@@ -718,7 +820,8 @@
     setDefaultFormValues(targetDate);
     refs.taskTitle.value = task.title;
     refs.taskDate.value = task.date;
-    refs.taskCategory.value = task.category;
+    refs.taskLane.value = task.lane;
+    syncTaskTypeOptions(task.taskType);
     refs.taskAllDay.checked = Boolean(task.allDay);
     refs.taskReminder.checked = task.reminder !== false;
     refs.taskNotes.value = task.notes || "";
@@ -891,7 +994,8 @@
       allDay: Boolean(task.allDay),
       startTime: task.startTime || "",
       endTime: task.endTime || "",
-      category: task.category,
+      lane: task.lane,
+      taskType: task.taskType,
       reminder: task.reminder !== false,
       notes: task.notes || "",
       repeat: normalizeRepeat(task.repeat),
@@ -1634,6 +1738,8 @@
     var repeat = normalizeRepeat(refs.taskRepeat ? refs.taskRepeat.value : "none");
     var repeatInterval = normalizeRepeatInterval(refs.taskRepeatInterval ? refs.taskRepeatInterval.value : 1);
     var repeatUnit = normalizeRepeatUnit(refs.taskRepeatUnit ? refs.taskRepeatUnit.value : "days");
+    var lane = normalizeLane(refs.taskLane.value);
+    var taskType = normalizeTaskType(refs.taskType.value, lane);
 
     if(!title || !date){
       showToast("Task not saved", "A task title and date are required.");
@@ -1660,7 +1766,8 @@
       allDay: allDay,
       startTime: allDay ? "" : startTime,
       endTime: allDay ? "" : endTime,
-      category: normalizeCategory(refs.taskCategory.value),
+      lane: lane,
+      taskType: taskType,
       reminder: refs.taskReminder.checked,
       notes: refs.taskNotes.value.trim(),
       repeat: repeat,
@@ -1859,6 +1966,9 @@
       refs.taskRepeatInterval.addEventListener("input", syncRepeatUI);
       refs.taskRepeatUnit.addEventListener("change", syncRepeatUI);
     }
+    refs.taskLane.addEventListener("change", function(){
+      syncTaskTypeOptions();
+    });
     refs.taskAllDay.addEventListener("change", updateTimeFields);
     refs.taskStartTimeTrigger.addEventListener("click", function(){
       openTimePicker("start");
@@ -2007,7 +2117,10 @@
     refs.taskDateCalendar = document.getElementById("taskDateCalendar");
     refs.taskDateToday = document.getElementById("taskDateToday");
     refs.taskDateClose = document.getElementById("taskDateClose");
-    refs.taskCategory = document.getElementById("taskCategory");
+    refs.taskLane = document.getElementById("taskLane");
+    refs.taskTypeField = document.getElementById("taskTypeField");
+    refs.taskTypeLabel = document.getElementById("taskTypeLabel");
+    refs.taskType = document.getElementById("taskType");
     refs.taskRepeat = document.getElementById("taskRepeat");
     refs.taskRepeatOptions = document.getElementById("taskRepeatOptions");
     refs.taskRepeatSummary = document.getElementById("taskRepeatSummary");

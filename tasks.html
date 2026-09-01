@@ -180,12 +180,17 @@
 
                 <label class="tasks-field">
                   <span>Lane</span>
-                  <select id="taskCategory" name="taskCategory">
-                    <option value="work">Work</option>
-                    <option value="personal">Personal</option>
-                    <option value="deep">Deep Focus</option>
-                    <option value="health">Health</option>
-                    <option value="admin">Admin</option>
+                  <select id="taskLane" name="taskLane" required>
+                    <option value="crw-ii">CRW-II</option>
+                    <option value="l2-capstone">L2 Capstone</option>
+                  </select>
+                </label>
+
+                <label class="tasks-field" id="taskTypeField">
+                  <span id="taskTypeLabel">Billing Type</span>
+                  <select id="taskType" name="taskType" required>
+                    <option value="billable">Billable</option>
+                    <option value="non-billable">Non Billable</option>
                   </select>
                 </label>
               </div>
