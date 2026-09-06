@@ -299,7 +299,7 @@
       position: relative;
       display: block;
       min-height: 240px;
-      padding: 1.5rem 1.3rem 1.4rem;
+      padding: 1.5rem 1.3rem 4.6rem;
       border-radius: 24px;
       background: linear-gradient(180deg, rgba(0,0,0,0.20), rgba(0,0,0,0.10));
       border: 1px solid rgba(255,255,255,0.08);
@@ -546,6 +546,81 @@
     .opportunities-shell > *{
       position: relative;
       z-index: 1;
+    }
+
+    .official-opportunity-plan{
+      margin-bottom: 1.4rem;
+      padding: 1.25rem;
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(135deg, rgba(54,168,239,0.09), rgba(0,0,0,0.16) 48%, rgba(186,201,100,0.08));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+
+    .official-opportunity-head{
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .official-opportunity-head h3{
+      margin: 0.2rem 0 0;
+      font-size: 1.7rem;
+      letter-spacing: -0.03em;
+    }
+
+    .official-opportunity-head p{
+      max-width: 36rem;
+      margin: 0;
+      color: var(--capstone-muted);
+      line-height: 1.7;
+    }
+
+    .official-opportunity-grid{
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .official-opportunity-card{
+      min-height: 158px;
+      padding: 1rem;
+      border-radius: 19px;
+      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(0,0,0,0.18);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .official-opportunity-card.is-active{
+      border-color: rgba(54,168,239,0.26);
+      background: linear-gradient(150deg, rgba(54,168,239,0.15), rgba(0,0,0,0.18));
+    }
+
+    .official-opportunity-window{
+      color: var(--capstone-soft);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .official-opportunity-card strong{
+      display: block;
+      margin-top: 0.7rem;
+      color: #fff;
+      font-size: 1.15rem;
+      line-height: 1.25;
+    }
+
+    .official-opportunity-card span:last-child{
+      margin-top: 0.55rem;
+      color: var(--capstone-muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
     }
 
     .opportunity-stats{
@@ -941,7 +1016,8 @@
       }
 
       .skills-grid,
-      .opportunity-stats{
+      .opportunity-stats,
+      .official-opportunity-grid{
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
@@ -974,8 +1050,14 @@
       .topics-grid,
       .skills-grid,
       .opportunity-stats,
+      .official-opportunity-grid,
       .opportunity-field-grid{
         grid-template-columns: 1fr;
+      }
+
+      .official-opportunity-head{
+        align-items: flex-start;
+        flex-direction: column;
       }
 
       .hero-actions .btn{
@@ -998,9 +1080,9 @@
           <li class="nav-item"><a class="nav-link" href="academic.html">Back</a></li>
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="#section-overview">Overview</a></li>
-          <li class="nav-item"><a class="nav-link" href="#section-topics">Course Topics</a></li>
-          <li class="nav-item"><a class="nav-link" href="#section-interviews">Interview Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-topics">Course Revision</a></li>
           <li class="nav-item"><a class="nav-link" href="#section-opportunities">Opportunities</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section-interviews">Interview Skills</a></li>
         </ul>
       </div>
     </div>
@@ -1014,7 +1096,7 @@
             <span class="hero-kicker">6.1 L2 Capstone</span>
             <h1 class="hero-title">Module-Based <strong>Revision</strong></h1>
             <p class="hero-copy">
-              ECSE743L - L2 Capstone follows a four-module revision plan that reconnects programming, OOP, basic and advanced DSA, DBMS, Computer Networks, and a System Design placeholder into one placement-oriented academic track.
+              ECSE743L - L2 Capstone follows a four-module plan covering Introduction to Programming, Operating Systems, Basic and Advanced DSA, Computer Networks, DBMS, System Design (LLD), and Object-Oriented Programming in one placement-oriented academic track.
             </p>
             <div class="hero-metrics">
               <div class="metric-chip">4 Course Modules</div>
@@ -1026,6 +1108,7 @@
 
           <div class="hero-actions">
             <a href="#section-topics" class="btn btn-primary px-4 py-3">Open Course Topics</a>
+            <a href="assets/sixth-semester/l2-capstone.docx" class="btn btn-secondary px-4 py-3" download>Download Course Plan</a>
             <a href="academic.html#section-timeline" class="btn btn-secondary px-4 py-3">Back To Timeline</a>
           </div>
         </div>
@@ -1036,7 +1119,7 @@
             <h3>One syllabus, four disciplined revision windows.
             </h3>
             <p class="overview-panel-copy">
-              The updated plan is tighter and more placement-facing than the previous version. Each module now bundles two adjacent technical areas and ends closer to the kind of assessments and interviews the capstone is meant to prepare for.
+              Each module pairs two technical areas with an opportunity or interview milestone, moving from programming foundations through systems, data structures, databases, LLD, and object-oriented design.
             </p>
             <div class="outcome-note">
               <small>Course-Specific Learning Outcome</small>
@@ -1046,28 +1129,28 @@
 
           <div class="week-grid">
             <div class="week-chip">
-              <small>Module 1 • W1-W8</small>
-              <span>Introduction To Programming + Object-Oriented Programming</span>
+              <small>Module 1 • W1-W10</small>
+              <span>Introduction To Programming + Operating System</span>
             </div>
             <div class="week-chip">
-              <small>Module 2 • W9-W14</small>
-              <span>Basic Data Structures Algorithms + Database Management System</span>
+              <small>Module 2 • W11-W14</small>
+              <span>Basic Data Structures and Algorithms + Computer Networks</span>
             </div>
             <div class="week-chip">
               <small>Module 3 • W15-W18</small>
-              <span>Advanced Data Structures Algorithms + Computer Networks</span>
+              <span>Advanced Data Structures and Algorithms + Database Management System</span>
             </div>
             <div class="week-chip">
               <small>Module 4 • W19-W26</small>
-              <span>System Designs*</span>
+              <span>System Designs (LLD) + Object-Oriented Programming</span>
             </div>
           </div>
 
           <div class="overview-stats">
             <div class="overview-stat">
               <div class="overview-stat-label">Revision Tracks</div>
-              <div class="overview-stat-value">7</div>
-              <div class="overview-stat-sub">Programming, OOP, DSA, DBMS, CN, and the System Design placeholder.</div>
+              <div class="overview-stat-value">8</div>
+              <div class="overview-stat-sub">Programming, OS, Basic and Advanced DSA, CN, DBMS, LLD, and OOP.</div>
             </div>
             <div class="overview-stat">
               <div class="overview-stat-label">Learning Outcome</div>
@@ -1096,28 +1179,12 @@
         <div class="section-kicker">Course Topics</div>
         <h2 class="section-title">Revised Subject Tracks Inside L2 Capstone</h2>
         <p class="section-copy">
-          The topic map below follows the updated module plan from the new capstone document. It drops the earlier frontend emphasis and now centers on programming, DSA depth, DBMS, Computer Networks, and the final System Design placeholder.
+          The course revision map follows the supplied four-module plan: Programming with Operating Systems, Basic DSA with Computer Networks, Advanced DSA with DBMS, and System Design (LLD) with OOP.
         </p>
       </div>
 
       <div class="topics-shell reveal-up">
         <div class="topics-grid" id="topicsGrid"></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="site-section capstone-section" id="section-interviews">
-    <div class="capstone-shell">
-      <div class="section-intro reveal-up">
-        <div class="section-kicker">Interview Skills</div>
-        <h2 class="section-title">How The Capstone Moves Toward Hiring Rounds</h2>
-        <p class="section-copy">
-          The updated plan also sequences the interview layer explicitly. Early modules lean on MCQ and coding assessment practice, while the final module pushes into technical and HR interview readiness.
-        </p>
-      </div>
-
-      <div class="skills-shell reveal-up">
-        <div class="skills-grid" id="skillsGrid"></div>
       </div>
     </div>
   </section>
@@ -1128,11 +1195,44 @@
         <div class="section-kicker">Opportunities Board</div>
         <h2 class="section-title">In-campus / Off-campus Opportunities</h2>
         <p class="section-copy">
-          The official plan marks these windows as N/A, so this board turns that empty space into a live application tracker. Add the companies you applied to, record whether each route is in-campus or off-campus, and mark the current result.
+          The official plan records Salesforce opportunity JR357143 in Module 1 and marks Modules 2-4 as N/A. The live board remains available for tracking additional in-campus and off-campus applications alongside that source schedule.
         </p>
       </div>
 
       <div class="opportunities-shell reveal-up">
+        <div class="official-opportunity-plan">
+          <div class="official-opportunity-head">
+            <div>
+              <div class="panel-kicker">Official Course Plan</div>
+              <h3>Opportunity schedule by module.</h3>
+            </div>
+            <p>These four entries mirror the supplied L2 Capstone document and stay separate from locally saved application records.</p>
+          </div>
+
+          <div class="official-opportunity-grid">
+            <article class="official-opportunity-card is-active">
+              <div class="official-opportunity-window">Module 1 • W1-W10</div>
+              <strong>Salesforce</strong>
+              <span>Opportunity ID JR357143</span>
+            </article>
+            <article class="official-opportunity-card">
+              <div class="official-opportunity-window">Module 2 • W11-W14</div>
+              <strong>N/A</strong>
+              <span>No opportunity listed in the course plan.</span>
+            </article>
+            <article class="official-opportunity-card">
+              <div class="official-opportunity-window">Module 3 • W15-W18</div>
+              <strong>N/A</strong>
+              <span>No opportunity listed in the course plan.</span>
+            </article>
+            <article class="official-opportunity-card">
+              <div class="official-opportunity-window">Module 4 • W19-W26</div>
+              <strong>N/A</strong>
+              <span>No opportunity listed in the course plan.</span>
+            </article>
+          </div>
+        </div>
+
         <div class="opportunity-stats">
           <div class="opportunity-stat">
             <div class="opportunity-stat-label">Logged Applications</div>
@@ -1179,8 +1279,8 @@
                 <label class="opportunity-field">
                   <span>Module Window</span>
                   <select id="opportunityModule" class="opportunity-select" name="opportunityModule">
-                    <option value="Module 1 • W1-W8">Module 1 • W1-W8</option>
-                    <option value="Module 2 • W9-W14">Module 2 • W9-W14</option>
+                    <option value="Module 1 • W1-W10">Module 1 • W1-W10</option>
+                    <option value="Module 2 • W11-W14">Module 2 • W11-W14</option>
                     <option value="Module 3 • W15-W18">Module 3 • W15-W18</option>
                     <option value="Module 4 • W19-W26">Module 4 • W19-W26</option>
                   </select>
@@ -1253,83 +1353,121 @@
     </div>
   </section>
 
+  <section class="site-section capstone-section" id="section-interviews">
+    <div class="capstone-shell">
+      <div class="section-intro reveal-up">
+        <div class="section-kicker">Interview Skills</div>
+        <h2 class="section-title">How The Capstone Moves Toward Hiring Rounds</h2>
+        <p class="section-copy">
+          Module 1 begins with MCQ assessments, Modules 2 and 3 move into coding questions, and Module 4 closes the 26-week plan with technical and HR interviews.
+        </p>
+      </div>
+
+      <div class="skills-shell reveal-up">
+        <div class="skills-grid" id="skillsGrid"></div>
+      </div>
+    </div>
+  </section>
+
   <script>
     (function () {
       var OPPORTUNITY_STORAGE_KEY = 'l2-capstone-opportunities-v1';
       var LEGACY_OPPORTUNITY_STORAGE_KEY = 'fte-capstone-opportunities-v1';
+      var DEFAULT_OPPORTUNITY_MODULE = 'Module 1 • W1-W10';
       var TOPICS = [
         {
-          number: '1.1',
+          module: 'Module 1',
+          weeks: 'W1-W10',
+          code: '1.1',
           title: 'Introduction To Programming',
-          copy: 'Variables, data types and operations, control statements, Strings DSA, Arrays DSA, methods basics, and recursion form the opening revision stream of Module 1.',
+          copy: 'Variables, Data Types and Operations, Control Statements, Strings DSA, Arrays DSA, Methods Basics, and Recursion form the opening revision stream.',
           href: 'firstSemester-introduction-to-programming.html'
         },
         {
-          number: '2.1',
-          title: 'Object-Oriented Programming',
-          copy: 'Programming paradigms, OOP introduction, objects and classes, constructors, wrapper classes, packages, advanced variables and methods, access control, abstract classes, interfaces, and generics.',
+          module: 'Module 1',
+          weeks: 'W1-W10',
+          code: '3.3',
+          title: 'Operating System',
+          copy: 'Operating-system foundations, storage and boot flow, processes and CPU scheduling, concurrency, synchronization, deadlocks, memory allocation, paging, segmentation, virtual memory, page replacement, thrashing, and concurrency coding problems.',
           href: ''
         },
         {
-          number: '3.1',
-          title: 'Basic Data Structures Algorithms',
-          copy: 'Module 2 revisits complexity analysis, mathematics for DSA, ArrayList, Vectors, LinkedList, Hash structures, Stacks, and Queues as core problem-solving foundations.',
+          module: 'Module 2',
+          weeks: 'W11-W14',
+          code: '3.1',
+          title: 'Basic Data Structures and Algorithms',
+          copy: 'Introduction to DSA, complexity analysis, mathematics for DSA, ArrayList, Vectors, LinkedList, Hash structures, Stacks, and Queues build the core problem-solving foundation.',
           href: ''
         },
         {
-          number: '2.3',
-          title: 'Database Management System',
-          copy: 'Data abstraction, data independence, data models, DBMS language and architecture, ER diagrams, ER-to-relational mapping, relational algebra, normalization, and transaction state.',
-          href: ''
-        },
-        {
-          number: '4.1',
-          title: 'Advanced Data Structures Algorithms',
-          copy: 'Module 3 compresses Tree DSA, Heap DSA, Graph DSA, and Tries into one shorter but deeper advanced-structures window.',
-          href: ''
-        },
-        {
-          number: '2.4',
+          module: 'Module 2',
+          weeks: 'W11-W14',
+          code: '2.4',
           title: 'Computer Networks',
-          copy: 'Client-server architecture, network types and topologies, OSI and TCP/IP models, sockets, ports and protocols, cookie management, email systems, DNS, and layered communication.',
+          copy: 'Network architectures, protocols, transmission, addressing, topologies, OSI and TCP/IP, devices, HTTP, cookies, email, DNS, transport and network layers, UDP, TCP, NAT, IPv4, IPv6, and the data-link layer.',
           href: ''
         },
         {
-          number: 'L2.7',
-          title: 'System Designs',
-          copy: 'Module 4 reserves the final W19-W26 runway for System Designs, but the current plan still marks the technical content as N/A while interviews continue to intensify.',
-          href: '',
-          statusLabel: 'Current Plan: N/A'
+          module: 'Module 3',
+          weeks: 'W15-W18',
+          code: '4.1',
+          title: 'Advanced Data Structures and Algorithms',
+          copy: 'Tree DSA, Heap DSA, Graph DSA, and Tries form the shorter, deeper advanced-structures revision window.',
+          href: ''
+        },
+        {
+          module: 'Module 3',
+          weeks: 'W15-W18',
+          code: '2.3',
+          title: 'Database Management System',
+          copy: 'DBMS architecture and administration, ER and relational models, SQL, normalization, transactions and ACID, indexing, NoSQL, clustering, replication, partitioning, sharding, scaling patterns, CAP, and master-slave architecture.',
+          href: ''
+        },
+        {
+          module: 'Module 4',
+          weeks: 'W19-W26',
+          code: 'LLD',
+          title: 'System Designs (LLD)',
+          copy: 'UML, SOLID, creational, structural, and behavioral design patterns lead into practical LLD exercises for document, delivery, payment, inventory, communication, and game systems.',
+          href: ''
+        },
+        {
+          module: 'Module 4',
+          weeks: 'W19-W26',
+          code: '2.1',
+          title: 'Object-Oriented Programming',
+          copy: 'Programming paradigms, objects and classes, constructors, wrapper classes, packages, advanced variables and methods, OOP principles, access control, Object class, abstract classes, interfaces, and generics.',
+          href: ''
         }
       ];
 
       var INTERVIEW_SKILLS = [
         {
           module: 'Module 1',
-          weeks: 'W1-W6',
+          weeks: 'W1-W10',
           title: 'Online Assessment - MCQ’s',
-          copy: 'The opening assessment layer leans on screening-style multiple choice questions while the programming and OOP revision base is still being rebuilt.',
+          copy: 'Screening-style multiple-choice assessments run beside the Introduction to Programming and Operating System revision window.',
           footer: 'MCQ Filter'
         },
         {
           module: 'Module 2',
-          weeks: 'W7-W12',
+          weeks: 'W11-W14',
           title: 'Online Assessment - Coding Questions',
-          copy: 'As the capstone moves into basic DSA and DBMS, the assessment model shifts toward hands-on coding rounds and structured problem solving.',
+          copy: 'Coding assessments begin as the capstone moves through Basic DSA and Computer Networks.',
           footer: 'Coding Round'
         },
         {
           module: 'Module 3',
-          weeks: 'W13-W18',
+          weeks: 'W15-W18',
           title: 'Online Assessment - Coding Questions',
-          copy: 'Advanced DSA and Computer Networks continue the coding-heavy route, keeping the mid-capstone focus on execution under interview pressure.',
+          copy: 'Advanced DSA and DBMS continue the coding-heavy assessment route through the third module.',
           footer: 'Advanced Practice'
         },
         {
           module: 'Module 4',
-          weeks: 'W19-W25',
+          weeks: 'W19-W26',
           title: 'Technical Interviews + HR Interviews',
-          copy: 'The final stretch transitions from test rounds into direct interview conversations, where technical explanation and HR readiness both matter.',
+          copy: 'The final LLD and OOP phase transitions into technical and HR interviews, where design explanation and communication both matter.',
           footer: 'Interview Stage'
         }
       ];
@@ -1349,6 +1487,14 @@
           month: 'short',
           year: 'numeric'
         }).format(new Date(timestamp));
+      }
+
+      function normalizeOpportunityModule(value) {
+        var migrations = {
+          'Module 1 • W1-W8': 'Module 1 • W1-W10',
+          'Module 2 • W9-W14': 'Module 2 • W11-W14'
+        };
+        return migrations[value] || value || DEFAULT_OPPORTUNITY_MODULE;
       }
 
       function loadOpportunities() {
@@ -1371,7 +1517,7 @@
             return {
               id: item.id,
               route: item.route === 'offcampus' ? 'offcampus' : 'incampus',
-              module: item.module,
+              module: normalizeOpportunityModule(item.module),
               company: item.company,
               result: item.result === 'passed' || item.result === 'failed' ? item.result : 'awaiting',
               createdAt: typeof item.createdAt === 'number' ? item.createdAt : Date.now()
@@ -1433,15 +1579,15 @@
         root.innerHTML = TOPICS.map(function (topic) {
           var linked = Boolean(topic.href);
           var tag = linked
-            ? '<span class="topic-open-pill">Open Archive <span class="icon-chevron-right"></span></span>'
-            : '<span class="topic-open-pill is-muted">' + escapeHtml(topic.statusLabel || 'Plan Recorded') + '</span>';
+            ? '<span class="topic-open-pill">Open ' + escapeHtml(topic.code) + ' Archive <span class="icon-chevron-right"></span></span>'
+            : '<span class="topic-open-pill is-muted">' + escapeHtml(topic.code) + ' • Plan Recorded</span>';
           var open = linked ? '<a href="' + escapeHtml(topic.href) + '" class="topic-card is-linked">' : '<article class="topic-card">';
           var close = linked ? '</a>' : '</article>';
 
           return [
             open,
               '<div class="folder-icon" aria-hidden="true"></div>',
-              '<div class="topic-number">Revision Track ', escapeHtml(topic.number), '</div>',
+              '<div class="topic-number">', escapeHtml(topic.module), ' • ', escapeHtml(topic.weeks), '</div>',
               '<h3 class="topic-title">', escapeHtml(topic.title), '</h3>',
               '<p class="topic-copy">', escapeHtml(topic.copy), '</p>',
               '<div class="topic-bar"></div>',
@@ -1515,7 +1661,7 @@
 
           company = document.getElementById('opportunityCompany').value.trim();
           route = document.getElementById('opportunityRoute').value;
-          moduleValue = document.getElementById('opportunityModule').value;
+          moduleValue = normalizeOpportunityModule(document.getElementById('opportunityModule').value);
           result = document.getElementById('opportunityResult').value;
 
           if (!company) {
@@ -1537,7 +1683,7 @@
           saveOpportunities(items);
           form.reset();
           document.getElementById('opportunityRoute').value = 'incampus';
-          document.getElementById('opportunityModule').value = 'Module 1 • W1-W8';
+          document.getElementById('opportunityModule').value = DEFAULT_OPPORTUNITY_MODULE;
           document.getElementById('opportunityResult').value = 'awaiting';
           setOpportunityNote('Opportunity added to the board.', 'success');
           renderOpportunities();

@@ -8,14 +8,14 @@
 
   const DAILY_ROUTINE = [
     { start: "04:45AM", end: "05:00AM", activity: "Wakeup -> Brush -> Green Tea & Check Tasks" },
-    { start: "05:00AM", end: "07:00AM", activity: "ECSE743- L2 Capstone" },
+    { start: "05:00AM", end: "07:00AM", activity: "ECSE743L - L2 Capstone" },
     { start: "07:00AM", end: "09:00AM", activity: "Workout -> Skin Care & Shower -> Breakfast" },
-    { start: "09:00AM", end: "11:00AM", activity: "ECSE743- L2 Capstone" },
+    { start: "09:00AM", end: "11:00AM", activity: "ECSE743L - L2 Capstone" },
     { start: "11:00AM", end: "02:00PM", activity: "CRW-II" },
     { start: "02:00PM", end: "03:00PM", activity: "Lunch -> Rest" },
     { start: "03:00PM", end: "06:00PM", activity: "CRW-II" },
     { start: "06:00PM", end: "07:00PM", activity: "Friends and Gupshup" },
-    { start: "07:00PM", end: "09:00PM", activity: "CRW-II -> ECSE743- L2 Capstone" },
+    { start: "07:00PM", end: "09:00PM", activity: "CRW-II -> ECSE743L - L2 Capstone" },
     { start: "09:00PM", end: "10:00PM", activity: "Dinner & Web Series" },
     { start: "10:00PM", end: "04:45AM", activity: "Rest" }
   ];
