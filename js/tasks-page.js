@@ -19,8 +19,8 @@
       defaultType: "billable",
       types: ["billable", "non-billable"]
     },
-    "l2-capstone": {
-      label: "L2 Capstone",
+    "l1-capstone": {
+      label: "L1 Capstone",
       typeLabel: "Focus Area",
       defaultType: "course-revision",
       types: ["course-revision", "opportunities-applications", "interviews-hustle"]
@@ -40,17 +40,17 @@
     },
     "course-revision": {
       label: "Course Revision",
-      lane: "l2-capstone",
+      lane: "l1-capstone",
       className: "tasks-task-course-revision"
     },
     "opportunities-applications": {
       label: "Opportunities and Applications",
-      lane: "l2-capstone",
+      lane: "l1-capstone",
       className: "tasks-task-opportunities"
     },
     "interviews-hustle": {
       label: "Interviews Hustle",
-      lane: "l2-capstone",
+      lane: "l1-capstone",
       className: "tasks-task-interviews"
     }
   };
@@ -59,8 +59,12 @@
     work: { lane: "crw-ii", taskType: "billable" },
     personal: { lane: "crw-ii", taskType: "non-billable" },
     health: { lane: "crw-ii", taskType: "non-billable" },
-    deep: { lane: "l2-capstone", taskType: "course-revision" },
-    admin: { lane: "l2-capstone", taskType: "course-revision" }
+    deep: { lane: "l1-capstone", taskType: "course-revision" },
+    admin: { lane: "l1-capstone", taskType: "course-revision" }
+  };
+
+  var LEGACY_LANE_MAP = {
+    "l2-capstone": "l1-capstone"
   };
 
   var DAY_TYPE_META = {
@@ -186,6 +190,7 @@
   }
 
   function normalizeLane(value, legacyCategory){
+    value = LEGACY_LANE_MAP[value] || value;
     if(LANE_META[value]){
       return value;
     }
